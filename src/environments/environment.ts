@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  //URL:'http://173.255.227.138/backendicfresh/public/api'
+  URL:'http://localhost:8000/api'
 };
 
 /*
