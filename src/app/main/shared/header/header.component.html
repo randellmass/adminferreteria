@@ -6,7 +6,7 @@
       <img src="../../../assets/images/logo-mini.svg" alt="logo" /> </a>
   </div>
   <div class="navbar-menu-wrapper d-flex align-items-center">
-    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize" (click)="toggleIconOnlySidebar()">
       <span class="mdi mdi-menu"></span>
     </button>
     <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
@@ -28,7 +28,7 @@
         </div>
       </li>
     </ul>
-    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas" (click)="toggleOffcanvas()">
       <span class="icon-menu"></span>
     </button>
   </div>
