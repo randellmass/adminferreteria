@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-8">
+        <div class="card">
+            <div class="card-body">
+                <ul class="nav nav-tabs bg-light">
+                    <li class="nav-item">
+                       <a class="nav-link" routerLink="/main/usuarios/registrar"  aria-current="page" >Crear Usuario|</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-12">
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-subtitle">Usuarios</h4>
+                
+                <table *ngIf="!loading" class="table table-bordered table-hover " id="order-listing">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Rol</th>
+                            <th>Estado</th>
+                            <th>Opcion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of usuarios">
+                            <td>{{ user['name'] | lowercase}}</td>
+                            <td>{{ user['email'] }}</td>
+                            <td *ngIf="user['rol_id']==1"><label class="badge badge-primary">{{ user['rol_nombre'] | uppercase}}</label></td>
+                            <td *ngIf="user['rol_id']==2"><label class="badge badge-info">{{ user['rol_nombre'] | uppercase}}</label></td>
+                            <td *ngIf="user['rol_id']==3"><label class="badge badge-warning">{{ user['rol_nombre'] | uppercase}}</label></td>
+                            <td *ngIf="user['estado_id']==1" class="text-center"><label class="badge badge-success">{{ user['estado_nombre'] | uppercase}}</label></td>
+                            <td *ngIf="user['estado_id']==2" class="text-center"><label class="badge badge-danger">{{ user['estado_nombre'] | uppercase}}</label></td>
+                            <td>
+                                <a class="btn btn-secondary btn-sm" routerLink="/main/usuarios/editar/{{user['id']}}"><i class="mdi mdi-pencil"></i>Editar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+       
+    </div>
+</div>
+

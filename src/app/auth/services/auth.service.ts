@@ -31,13 +31,18 @@ export class AuthService {
           
             await this.guardartoken(resp['token']);
 
-            resolve(true);
+            resolve({
+              res: true
+            });
           
           }else{
           
             this.token = null;
             localStorage.clear();
-            resolve(false);
+            resolve({
+              res:false,
+              mensaje:resp['mensaje']
+            });
           }
 
         });
@@ -62,7 +67,7 @@ export class AuthService {
           }else{
           
             this.token = null;
-            localStorage.clear;
+            localStorage.clear();
             resolve(false);
           }
 
@@ -101,9 +106,11 @@ export class AuthService {
   return new Promise<boolean>(resolve =>{
 
     this.http.get(`${ URL }/usertoken`,{ headers }).subscribe( resp =>{
-          if( resp['res']){
-              //console.log(resp);
-              this.usuario = resp['user'];
+          
+        if( resp['res']){
+             
+             this.usuario = resp['user'];
+              
              resolve(true);
           }else{
               this.router.navigateByUrl('auth');

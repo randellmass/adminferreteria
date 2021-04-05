@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Servicio } from 'src/app/main/pages/servicios/interfaces/servicios';
-import { ServiciosService } from '../../../../servicios/services/servicios.service';
 
 @Component({
   selector: 'app-solicitudes-dashboard',
@@ -9,20 +7,19 @@ import { ServiciosService } from '../../../../servicios/services/servicios.servi
 })
 export class SolicitudesDashboardComponent implements OnInit {
 
-  servicios:Servicio[] = [];
-
-  constructor(private solictudesService:ServiciosService) { 
-     this.getlistado_servicios_cliente();
+  
+  constructor() { 
+     //this.getlistado_servicios_cliente();
   }
 
   ngOnInit(): void {
   }
 
-  async getlistado_servicios_cliente(){
+  /*async getlistado_servicios_cliente(){
     this.servicios = await this.solictudesService.listado_servicio_cliente();
 
     console.log(this.servicios);
    
- }
+ }*/
 
 }

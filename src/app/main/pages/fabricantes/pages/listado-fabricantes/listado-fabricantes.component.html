@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-8">
+        <div class="card">
+            <div class="card-body">
+                <ul class="nav nav-tabs bg-light">
+                    <li class="nav-item">
+                       <a class="nav-link" routerLink="/main/fabricantes/registrar"  aria-current="page" >Crear Fabricante&nbsp;|</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-8">
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-subtitle">Fabricantes</h4>
+                
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Opción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let fabricante of fabricantes">
+                            <td>{{ fabricante['nombre'] | lowercase}}</td>
+                            <td>
+                                <a class="btn btn-secondary btn-sm" routerLink="/main/fabricantes/editar/{{fabricante['id']}}"><i class="mdi mdi-pencil"></i>Editar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+       
+    </div>
+</div>

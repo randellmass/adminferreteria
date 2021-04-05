@@ -8,19 +8,17 @@
                 <div class="profile-image">
                   <img src="../../../assets/images/faces/face8.jpg" alt="profile image"> </div>
                 <div class="text-wrapper">
-                  <p class="profile-name">Richard V.Welsh</p>
+                  <p class="profile-name">{{ usuario.name}}</p>
                   <div>
-                    <small class="designation text-muted">Manager</small>
+                    <small class="designation text-muted">{{ usuario.email}}</small>
                     <span class="status-indicator online"></span>
                   </div>
                 </div>
               </div>
-              <button class="btn btn-success btn-block">New Project
-                <i class="mdi mdi-plus"></i>
-              </button>
+
             </div>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" data-toggle="collapse" href="#dashboard-dropdown" aria-expanded="false" aria-controls="dashboard-dropdown">
               <i class="menu-icon mdi mdi-television"></i>
               <span class="menu-title">Dashboard</span>
@@ -29,10 +27,65 @@
             <div class="collapse" id="dashboard-dropdown">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link" href="">Dashboard 1</a>
+                  <a class="nav-link" [routerLink]="['dashboard']" routerLinkActive="active">Dashboard</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#operaciones-dropdown" aria-expanded="false" aria-controls="operaciones-dropdown">
+              <i class="menu-icon mdi mdi-cast"></i>
+              <span class="menu-title">Operaciones</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="operaciones-dropdown">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/main/equipos" routerLinkActive="active">Equipos</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="">Dashboard 2</a>
+                  <a class="nav-link" routerLink="/main/familias" routerLinkActive="active">Familias</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/main/usuarios" routerLinkActive="active">Usuarios</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" data-toggle="collapse" href="#tablasMaestras-dropdown" aria-expanded="false" aria-controls="tablasMaestras-dropdown">
+              <i class="menu-icon mdi mdi-settings"></i>
+              <span class="menu-title">Tablas Maestras</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="tablasMaestras-dropdown">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"  >
+                  <a class="nav-link" routerLink="/main/fabricantes" routerLinkActive="active">Fabricantes</a>
+                </li>
+                <li class="nav-item"  >
+                  <a class="nav-link" routerLink="/main/grupos" routerLinkActive="active">Grupos</a>
+                </li>
+                <li class="nav-item"  >
+                  <a class="nav-link" routerLink="/main/categorias" routerLinkActive="active">Categorias</a>
+                </li>
+           
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#informes-dropdown" aria-expanded="false" aria-controls="informes-dropdown">
+              <i class="menu-icon mdi mdi-television"></i>
+              <span class="menu-title">Informes</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="informes-dropdown">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="">Informe1</a>
                 </li>
               </ul>
             </div>

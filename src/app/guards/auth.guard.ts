@@ -13,14 +13,14 @@ export class AuthGuard implements CanLoad, CanActivate{
 
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    console.log('guard CantAc');
+    //console.log('guard CantAc');
     return this.authService.validatoken();
    // return false;
 
   }
 
   canLoad(route: Route, segments: UrlSegment[]): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    console.log('guard');
+    //console.log('guard');
     return this.authService.validatoken();
    //return false;
   }

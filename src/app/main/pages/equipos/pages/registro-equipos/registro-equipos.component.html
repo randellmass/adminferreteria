@@ -1,0 +1,119 @@
+<div class="row mt-2">
+    <div class="col-10">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-subtitle">Registro Equipos</h4>
+                <form class="mt-4" [formGroup]="form_equipos" (ngSubmit)="guardar()" >
+
+                    <div class="row">
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Cod.Siesa</label>
+                                <input formControlName="codificacion"
+                                       type="text" 
+                                       class="form-control" >
+                            </div>
+                        </div>    
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Referencia Siesa</label>
+                                <input formControlName="modelo" 
+                                       type="text" 
+                                       class="form-control" >
+                            </div>
+                        </div>    
+
+                    </div>    
+
+                    <div class="row">
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Descripción Siesa</label>
+                                <input formControlName="nombre" 
+                                       type="text" 
+                                       class="form-control" >
+                            </div>
+                        </div>  
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Serie</label>
+                                <input formControlName="serie" 
+                                       type="text" 
+                                       class="form-control">
+                            </div>
+                        </div>   
+                    </div>     
+
+                    <div class="row">
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Fabricante</label>
+                                <select formControlName="fabricante_id" 
+                                        class="form-control">
+                                    <option value="" selected>Seleccionar</option>
+                                    <option value="{{ fabricante['id']}}" *ngFor="let fabricante of fabricantes">{{ fabricante['nombre'] }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Marca Comercial</label>
+                                <select formControlName="marca_comercial_id" 
+                                        class="form-control">
+                                    <option value="" selected>Seleccionar</option>
+                                    <option value="{{ fabricante['id']}}" *ngFor="let fabricante of fabricantes">{{ fabricante['nombre'] }}</option>
+                                </select>
+                            </div>
+                        </div>  
+                        
+                    </div>
+                    
+                    <div class="row">
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Tipo equipo:</label>
+                                <select formControlName="equipo_tipo_id" 
+                                        class="form-control">
+                                    <option value="" selected>Seleccionar</option>
+                                    <option value="{{ tipo['id']}}" *ngFor="let tipo of equipos_tipos">{{ tipo['nombre'] }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Descripción Comercial</label>
+                                <input formControlName="nombre2" 
+                                       type="text" 
+                                       class="form-control" >
+                            </div>
+                        </div>   
+                    
+                    </div>
+                                
+                                
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                        
+                </form>
+
+                <div class="row mt-5" *ngIf="errors.length>0">
+                    <div class="col-12">
+                      <div class="alert alert-danger " role="alert">
+                         <ul>
+                             <li *ngFor="let error of errors" >{{ error }}</li>
+                         </ul>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,82 @@
+<div class="row mt-2">
+    <div class="col-10">
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-subtitle">Editar Categoria</h4>
+
+                <form class="mt-4 cmxform" (ngSubmit)="editar()" [formGroup]="form_categoria" >
+                    <fieldset>
+                        <div class="form-row">
+                            
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Grupo:</label>
+                                    <select formControlName="equipo_grupo_id" 
+                                            class="form-control">
+                                        <option value="" selected>Seleccionar</option>
+                                        <option value="{{ grupo['id']}}" *ngFor="let grupo of grupos">{{ grupo['nombre'] }}</option>
+                                    </select>
+                                    <label class="error mt-2 text-danger" 
+                                            for="equipo_grupo_id" 
+                                            *ngIf="campoNoValido('equipo_grupo_id')">*Escoja grupo</label>
+                       
+                                </div>
+                            </div>
+                            
+                            <div class="form-group col-md-6">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" class="form-control"
+                                    formControlName="nombre"
+                                    placeholder="Nombre">
+                                <label class="error mt-2 text-danger" 
+                                       for="nombre" 
+                                       *ngIf="campoNoValido('nombre')">*Digite Nombre / Minimo 3 Caracteres</label>
+                            </div>
+
+                            
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Estado:</label>
+                                    <select formControlName="estado_id" 
+                                            class="form-control">
+                                        <option value="" selected>Seleccionar</option>
+                                        <option value="1">Activo</option>
+                                        <option value="2">Inactivo</option>
+                                    </select>
+                                    <label class="error mt-2 text-danger" 
+                                           for="estado_id" 
+                                           *ngIf="campoNoValido('estado_id')">*Debe Escojer Estado usuario.</label>
+                     
+                                </div>
+                            </div>
+                    
+                            
+                        </div>
+                    
+                        <button type="submit" class="btn btn-primary">Editar</button>
+                    </fieldset>
+                </form>
+
+                <div class="row mt-5" *ngIf="errors.length>0">
+                    <div class="col-12">
+                      <div class="alert alert-danger " role="alert">
+                         <ul>
+                             <li *ngFor="let error of errors" >{{ error }}</li>
+                         </ul>
+                      </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+

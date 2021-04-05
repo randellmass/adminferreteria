@@ -9,6 +9,7 @@ import { AuthService } from '../../../auth/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
+  usuario:any = {};
 
   public sidebarOpened = false;
   toggleOffcanvas() {
@@ -38,10 +39,12 @@ export class HeaderComponent implements OnInit {
               }
 
   ngOnInit(): void {
+
+    this.usuario = this.authService.usuario;
+    
   }
 
   async logout(){
-    console.log('logout')
     const cerrar = await this.authService.salir_usuario();
     
     if(cerrar){

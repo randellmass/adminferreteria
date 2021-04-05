@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="col-8">
+        <div class="card">
+            <div class="card-body">
+                <ul class="nav nav-tabs bg-light">
+                    <li class="nav-item">
+                       <a class="nav-link" routerLink="/main/familias/registrar"  aria-current="page" >Crear Familia|</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-12">
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-subtitle">Familias Equipos</h4>
+                
+                <table *ngIf="!loading" class="table table-bordered table-hover"  id="order-listing">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Categorias</th>
+                            <th>Estado</th>
+                            <th>Opción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let familia of familias">
+                            <td>{{ familia['nombre'] | lowercase}}</td>
+                            <td><div *ngFor="let cate of familia['categorias']">{{cate['equipo_grupo_nombre']}} - {{cate['nombre']}}</div></td>
+                            <td *ngIf="familia['estado_id']==1"><label class="badge badge-success">{{ familia['estado_nombre'] | uppercase}}</label></td>
+                            <td *ngIf="familia['estado_id']==2"><label class="badge badge-danger">{{ familia['estado_nombre'] | uppercase}}</label></td>
+                            <td>
+                                <div class="mb-2"><a class="btn btn-inverse-dark btn-sm" routerLink="/main/familias/items/{{familia['id']}}"><i class="mdi mdi-pencil"></i>Items</a></div>
+                                <div><a class="btn btn-secondary btn-sm" routerLink="/main/familias/editar/{{familia['id']}}"><i class="mdi mdi-pencil"></i>Editar</a></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="row mt-5" *ngIf="errors.length>0">
+                    <div class="col-12">
+                      <div class="alert alert-danger " role="alert">
+                         <ul>
+                             <li *ngFor="let error of errors" >{{ error }}</li>
+                         </ul>
+                      </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        
+       
+    </div>
+</div>
+
+
+

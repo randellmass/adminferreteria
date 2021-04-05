@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-8">
+        <div class="card">
+            <div class="card-body">
+                <ul class="nav nav-tabs bg-light">
+                    <li class="nav-item">
+                       <a class="nav-link" routerLink="/main/equipos/registrar"  aria-current="page" >Crear Equipo&nbsp;|</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-4">
+        <form class="d-flex" [formGroup]="form_buscar_equipo" (ngSubmit)="buscar_equipo()">
+            <input class="form-control me-2"
+                   formControlName="buscarEquipo"
+                   type="search" 
+                   placeholder="Buscar" aria-label="Search">
+            <button class="btn btn-outline-primary"
+                    type="submit">Buscar</button>
+        </form>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-12">
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-subtitle">Equipos</h4>
+                
+                <table class="table table-bordered table-hover table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Cod.Siesa</th>
+                            <th>Descripción Siesa</th>
+                            <th>Ref.Siesa</th>
+                            <th>Serie</th>
+                            <th>Estado</th>
+                            <th>Opción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let equipo of equipos">
+                            <td>{{ equipo['codificacion'] | uppercase}}</td>
+                            <td>{{ equipo['nombre'] | uppercase}}</td>
+                            <td>{{ equipo['modelo'] | uppercase}}</td>
+                            <td>{{ equipo['serie'] | uppercase}}</td>
+                            <td *ngIf="equipo['equipo_estado_id']==1"><label class="badge badge-success">{{ equipo['equipo_estado_nombre'] | uppercase}}</label></td>
+                            <td *ngIf="equipo['equipo_estado_id']==2"><label class="badge badge-danger">{{ equipo['equipo_estado_nombre'] | uppercase}}</label></td>
+                       
+                            <td>
+                                <a class="btn btn-secondary btn-sm" routerLink="/main/equipos/editar/{{equipo['id']}}"><i class="mdi mdi-pencil"></i>Editar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+       
+    </div>
+</div>
+

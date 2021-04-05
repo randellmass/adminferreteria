@@ -1,0 +1,30 @@
+<div class="row mt-2">
+    <div class="col-6">
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-subtitle">Fabricantes</h4>
+
+                <form class="mt-4 cmxform" (ngSubmit)="guardar()" [formGroup]="form_fabricante" >
+                    <fieldset>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" class="form-control"
+                                    formControlName="nombre"
+                                    placeholder="Nombre">
+                                <label class="error mt-2 text-danger" 
+                                       for="nombre" 
+                                       *ngIf="campoNoValido('nombre')">*Digite Nombre / Minimo 3 Caracteres</label>
+                            </div>
+                        </div>
+                    
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </fieldset>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
