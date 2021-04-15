@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { FamiliasService } from '../../services/familias.service';
@@ -38,11 +38,10 @@ export class ItemFamiliasComponent implements OnInit {
           
         })
       }
-
       
       crear_form_add_equipo(){
         this.form_add_equipo = this.fb.group({
-          equipo_id : ['',[Validators.required]]
+          items: ['',Validators.required]
         });
       }
 
@@ -56,7 +55,7 @@ export class ItemFamiliasComponent implements OnInit {
         
         this.familia = familia1['data'];
         this.equipos = familia1['data']['equipos'];
-        console.log(this.familia);
+        //console.log(this.familia);
         //console.log(categoria_familia1);
         
       }
@@ -64,25 +63,74 @@ export class ItemFamiliasComponent implements OnInit {
 
       async buscar_equipo(){
         this.loading =true;
-        console.log(this.form_buscar_equipo.value);
+        this.errors=[];
+        
+        //console.log(this.form_buscar_equipo.value);
         const eq = await this.equiposService.buscar_equipo(this.form_buscar_equipo.value);
         this.equipos_buscar = eq['data'];
 
         this.equipos_add = this.equipos_buscar ;
 
-        console.log(this.equipos_buscar);
-        console.log(this.equipos_add);
-        
-        //this.form_add_equipo.
+        //console.log(this.equipos_buscar);
+        //console.log(this.equipos_add);
         
         
         this.loading= false;
         this.crear_form_add_equipo();
       }
 
-      agregar_equipo()
+      async agregar_equipo()
       {
-          console.log(this.form_add_equipo.value);
+          this.errors=[];
+
+          if(this.form_add_equipo.invalid){
+            this.form_add_equipo.markAllAsTouched();
+            return;
+          }
+
+          const form_values = { ...this.form_add_equipo.value,familia_id:this.familia['id']}
+      
+          const registro = await this.familiaService.registra_familia_items(form_values);
+          
+          if(!registro['res']){
+            //console.log(registro['mensaje'])
+            this.errors = registro['mensaje'];
+            return;
+          }
+          
+          if(registro['res']){
+            console.log(registro['data']);
+
+            this.equipos_buscar = [];
+            this.equipos_add = [];
+            this.errors =[]
+            //asigno nuavementos los equipos de la familia para actualizar tabla
+            this.equipos = registro['data'];
+
+            this.form_add_equipo.reset();
+            this.form_buscar_equipo.reset();
+          }
+      }
+
+      async eliminar_familia_items(familia_id:number,item:any)
+      {
+          const eliminar = await this.familiaService.eliminar_familias_items(familia_id,item['id']);
+          
+          if(!eliminar['res']){
+            //console.log(registro['mensaje'])
+            this.errors = eliminar['mensaje'];
+            return;
+          }
+
+          if(eliminar['res']){
+            const i = this.equipos.indexOf(item);
+
+            if(i !==-1){
+              this.equipos.splice( i, 1 );
+            }
+
+            //console.log(eliminar['data']);
+          }
       }
 
 

@@ -148,4 +148,73 @@ export class FamiliasService {
         }); 
 
     } 
+
+    registra_familia_items(items:any)
+    {
+      
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+
+        this.http.post(`${ URL}/equipos_familias/items`, items ,{ headers })
+        .subscribe( resp =>{
+          
+              if(resp['res'])
+              {
+                  resolve({
+                      res:true,
+                      data:resp['data']
+                  });
+              }else{
+                  resolve({
+                    res:false,
+                    mensaje:resp['mensaje']
+                  });
+              }
+        
+          });
+
+        }); 
+
+    } 
+
+    eliminar_familias_items(familia_id:number,item_id:number)
+    {
+      
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+
+        this.http.get(`${ URL}/equipos_familias/items/destroy/${ familia_id }/${ item_id}`,{ headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+                resolve(
+                  {
+                    res:true,
+                    data: resp['data']
+                  }
+                );
+            }else{
+                resolve(
+                  {
+                    res:false,
+                    mensaje: resp['mensaje']
+                  }
+                );
+            }
+        
+          });
+
+        }); 
+      
+
+    } 
 }

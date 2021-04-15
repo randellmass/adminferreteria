@@ -6,6 +6,7 @@ import { ListadoFabricantesComponent } from './pages/listado-fabricantes/listado
 import { RegistroFabricantesComponent } from './pages/registro-fabricantes/registro-fabricantes.component';
 import { FabricantesRoutingModule } from './fabricantes-routing.module';
 import { EditarFabricantesComponent } from './pages/editar-fabricantes/editar-fabricantes.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 
@@ -16,7 +17,8 @@ import { EditarFabricantesComponent } from './pages/editar-fabricantes/editar-fa
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FabricantesRoutingModule
+    FabricantesRoutingModule,
+    SharedModule
   ]
 })
 export class FabricantesModule { }

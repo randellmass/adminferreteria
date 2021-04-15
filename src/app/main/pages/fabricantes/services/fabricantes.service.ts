@@ -53,15 +53,24 @@ export class FabricantesService {
           'Accept': 'application/json', 
           'Authorization': `Bearer ${ this.authService.token }` 
         });
+
   
         this.http.post(`${ URL}/fabricantes`, fabricante ,{ headers })
         .subscribe( resp =>{
           
             if(resp['res'])
             {
-                resolve(true);
+              resolve(
+                {
+                  res:true,
+                  data:resp['data']
+                });
             }else{
-                resolve(false);
+                resolve(
+                {
+                  res:false,
+                  data:resp['mensaje']
+                });
             }
         
          });

@@ -23,6 +23,7 @@
                 <table *ngIf="!loading" class="table table-bordered table-hover"  id="order-listing">
                     <thead>
                         <tr>
+                            <th>Imágen</th>
                             <th>Nombre</th>
                             <th>Categorias</th>
                             <th>Estado</th>
@@ -31,6 +32,9 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let familia of familias">
+                            <td>
+                                <img src="./assets/images/paqueteMRCT.png" alt="">
+                            </td>
                             <td>{{ familia['nombre'] | lowercase}}</td>
                             <td><div *ngFor="let cate of familia['categorias']">{{cate['equipo_grupo_nombre']}} - {{cate['nombre']}}</div></td>
                             <td *ngIf="familia['estado_id']==1"><label class="badge badge-success">{{ familia['estado_nombre'] | uppercase}}</label></td>

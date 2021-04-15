@@ -1,5 +1,5 @@
 <div class="row mt-2">
-    <div class="col-6">
+    <div class="col-10">
 
         <div class="card">
             <div class="card-body">
@@ -8,7 +8,7 @@
                 <form class="mt-4 cmxform" (ngSubmit)="guardar()" [formGroup]="form_fabricante" >
                     <fieldset>
                         <div class="form-row">
-                            <div class="form-group col-md-12">
+                            <div class=" col-md-6">
                                 <label for="nombre">Nombre</label>
                                 <input type="text" class="form-control"
                                     formControlName="nombre"
@@ -16,6 +16,16 @@
                                 <label class="error mt-2 text-danger" 
                                        for="nombre" 
                                        *ngIf="campoNoValido('nombre')">*Digite Nombre / Minimo 3 Caracteres</label>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="">Imágen:</label>
+                                <div>
+                                    <img *ngIf="!imgTemp"src="./assets/images/no-image.png" alt="" width="200px">
+                                    <img *ngIf="imgTemp" [src]="imgTemp" alt="" width="200px">
+                                </div>
+                                <input type="file" 
+                                       class="form-control" 
+                                       (change)="file_imagen($event.target.files[0])">
                             </div>
                         </div>
                     

@@ -33,6 +33,7 @@
                 <table class="table table-bordered table-hover table-responsive">
                     <thead>
                         <tr>
+                            <th>Imágen</th>
                             <th>Cod.Siesa</th>
                             <th>Descripción Siesa</th>
                             <th>Ref.Siesa</th>
@@ -43,6 +44,9 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let equipo of equipos">
+                            <td>
+                                <img src="./assets/images/paqueteMRCT.png" alt="">
+                            </td>
                             <td>{{ equipo['codificacion'] | uppercase}}</td>
                             <td>{{ equipo['nombre'] | uppercase}}</td>
                             <td>{{ equipo['modelo'] | uppercase}}</td>

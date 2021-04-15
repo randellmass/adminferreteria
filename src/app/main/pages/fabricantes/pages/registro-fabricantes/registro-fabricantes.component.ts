@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FabricantesService } from '../../services/fabricantes.service';
 import { Router } from '@angular/router';
+import { ImagesSubirService } from '../../../../shared/service/images-subir.service';
 
 @Component({
   selector: 'app-registro-fabricantes',
@@ -11,11 +12,15 @@ import { Router } from '@angular/router';
 export class RegistroFabricantesComponent implements OnInit {
 
   form_fabricante:FormGroup = this.fb.group({
-    nombre : ['',[Validators.required,Validators.minLength(3)]]
+    nombre : ['',[Validators.required,Validators.minLength(3)]],
   });
+
+  imgTemp:any= "";
+  imagen:File = null;
   
   constructor(private fb:FormBuilder,
               private fabricantesService:FabricantesService,
+              private imagesSubirService:ImagesSubirService,
               private router:Router) { }
 
   ngOnInit(): void {
@@ -34,10 +39,35 @@ export class RegistroFabricantesComponent implements OnInit {
 
       const registro = await this.fabricantesService.registra_fabricantes(this.form_fabricante.value);
 
-      if(registro){
+      if(registro['res']){
+
+        const cargueImagen = await this.imagesSubirService.subir_imagen(this.imagen,'fabricante',registro['data']['id']);
+
+        if (cargueImagen['res']){
+          //console.log(cargueImagen);
+        }else{
+          console.log(cargueImagen);
+        }
+
          this.form_fabricante.reset();
          this.router.navigateByUrl('main/fabricantes');
       }
+  }
+
+  file_imagen(file:File){
+   
+    this.imagen = file;
+   
+    if(!file){
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.readAsDataURL( file);
+    reader.onloadend = () => {
+      this.imgTemp = reader.result;
+    }
+
   }
 
 }

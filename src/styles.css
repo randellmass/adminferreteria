@@ -180,3 +180,12 @@
 	content: " ";
 	display: table;
 }
+
+
+
+
+.img-ss, .image-grouped img, .table td img, .jsgrid .jsgrid-table td img, .table th img, .jsgrid .jsgrid-table th img, .settings-panel .color-tiles .tiles{
+	width: 100px;
+	height: 100px;
+	border-radius: 0%;
+}
