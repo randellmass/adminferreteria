@@ -1,7 +1,7 @@
 <div class="row mt-2">
     <div class="col-12">
 
-        <div class="card">
+        <div class="card" *ngIf="!loading" >
             <div class="card-body">
                 <h4 class="card-subtitle">Editar Fabricante</h4>
 
@@ -21,10 +21,11 @@
                             <div class="col-md-6">
                                 <label for="">Imágen:</label>
                                 <div>
-                                    <img *ngIf="!imgTemp" [src]="imagen_servidor | imagen" alt="" width="200px">
-                                    <img *ngIf="imgTemp" [src]="imgTemp" alt="" width="200px">
+                                    <img *ngIf="!imagesSubirService.imgTemp" [src]="imagen_servidor | imagen" alt="" width="200px">
+                                    <img *ngIf="imagesSubirService.imgTemp" [src]="imagesSubirService.imgTemp" alt="" width="200px">
                                 </div>
-                                <input type="file" 
+                                <input type="file"
+                                       accept="image/png,image/jpeg" 
                                        class="form-control" 
                                        (change)="file_imagen($event.target.files[0])">
                             </div>

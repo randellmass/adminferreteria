@@ -7,18 +7,21 @@ import { RegistroFamiliasComponent } from './pages/registro-familias/registro-fa
 import { ListadoFamiliasComponent } from './pages/listado-familias/listado-familias.component';
 import { EditarFamiliasComponent } from './pages/editar-familias/editar-familias.component';
 import { ItemFamiliasComponent } from './pages/item-familias/item-familias.component';
+import { SharedModule } from '../../shared/shared.module';
+import { ArchivoFamiliasComponent } from './pages/archivo-familias/archivo-familias.component';
 
 
 @NgModule({
   declarations: [
       RegistroFamiliasComponent, 
       ListadoFamiliasComponent, 
-      EditarFamiliasComponent, ItemFamiliasComponent],
+      EditarFamiliasComponent, ItemFamiliasComponent, ArchivoFamiliasComponent],
   imports: [
     CommonModule,
     FamiliasRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    SharedModule,
   ]
 })
 export class FamiliasModule { }

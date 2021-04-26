@@ -82,17 +82,38 @@
                             <th>Descripción Siesa</th>
                             <th>Ref.Siesa</th>
                             <th>Serie</th>
+                            <th>Orden</th>
                             <th>Opción</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let equipo of equipos">
+                        <tr *ngFor="let equipo of equipos;let i= index">
                             <td>{{ equipo['codificacion'] | uppercase}}</td>
                             <td>{{ equipo['nombre'] | uppercase}}</td>
                             <td>{{ equipo['modelo'] | uppercase}}</td>
                             <td>{{ equipo['serie'] | uppercase}}</td>
                             <td>
-                                <button type="button" class="btn btn-inverse-danger btn-sm" (click)="eliminar_familia_items(familia['id'],equipo)">Eliminar</button>
+                                <div *ngIf="i == 0">
+                                    <button type="button" class="btn btn-inverse-success btn-sm" (click)="bajarItem(i,equipo)">Bajar</button>
+                                </div>
+
+                                <div *ngIf="i != 0 && i != equipos.length-1">
+                                    <div>
+                                        <button type="button" class="btn btn-inverse-success btn-sm" (click)="subirItem(i,equipo)">Subir</button>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn-inverse-success btn-sm" (click)="bajarItem(i,equipo)">Bajar</button>
+                                    </div>
+                                </div>
+
+                                <div *ngIf="i == equipos.length-1">
+                                    <button type="button" class="btn btn-inverse-success btn-sm" (click)="subirItem(i,equipo)">subir</button>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <button type="button" class="btn btn-inverse-danger btn-sm" (click)="eliminar_familia_items(familia['id'],equipo)">Eliminar</button>
+                                </div>
                             </td>
                         </tr>
                     </tbody>

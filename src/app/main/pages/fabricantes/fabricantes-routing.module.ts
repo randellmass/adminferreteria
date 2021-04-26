@@ -7,17 +7,24 @@ import { EditarFabricantesComponent } from './pages/editar-fabricantes/editar-fa
 
 const routes: Routes = [
   {
-    path:'listado', component:ListadoFabricantesComponent
-  },
-  {
-    path:'registrar', component:RegistroFabricantesComponent
-  },
-  {
-    path:'editar/:id', component:EditarFabricantesComponent
-  },
-  {
-    path:'', redirectTo:'listado', pathMatch:'full'
+    path:'',
+    children:[
+        {
+          path:'listado', component:ListadoFabricantesComponent
+        },
+        {
+          path:'registrar', component:RegistroFabricantesComponent
+        },
+        {
+          path:'editar/:id', component:EditarFabricantesComponent
+        },
+        {
+          path:'', redirectTo:'listado', pathMatch:'full'
+        }
+    ]
   }
+  
+
 ];
 
 

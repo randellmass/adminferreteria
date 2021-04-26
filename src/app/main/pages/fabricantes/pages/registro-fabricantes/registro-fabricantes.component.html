@@ -20,8 +20,8 @@
                             <div class="col-md-6">
                                 <label for="">Imágen:</label>
                                 <div>
-                                    <img *ngIf="!imgTemp"src="./assets/images/no-image.png" alt="" width="200px">
-                                    <img *ngIf="imgTemp" [src]="imgTemp" alt="" width="200px">
+                                    <img *ngIf="!imagesSubirService.imgTemp"src="./assets/images/no-image.png" alt="" width="200px">
+                                    <img *ngIf="imagesSubirService.imgTemp" [src]="imagesSubirService.imgTemp" alt="" width="200px">
                                 </div>
                                 <input type="file" 
                                        class="form-control" 

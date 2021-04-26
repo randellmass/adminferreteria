@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { EquiposService } from '../../services/equipos.service';
 import { FabricantesService } from '../../../fabricantes/services/fabricantes.service';
+import { ImagesSubirService } from '../../../../shared/service/images-subir.service';
 
 @Component({
   selector: 'app-editar-equipos',
@@ -18,11 +19,18 @@ export class EditarEquiposComponent implements OnInit {
   errors:any=[];
   equipo:any;
 
+  imgTemp:any= "";
+  imagen_servidor:any = null;
+  imagenCargar:File = null;
+
+  loading:boolean = false;
+
   constructor(private fb:FormBuilder,
               private equiposService:EquiposService,
               private router:Router,
               private fabricantesService:FabricantesService,
-              private activatedRoute:ActivatedRoute) { }
+              private activatedRoute:ActivatedRoute,
+              public imagesSubirService:ImagesSubirService) { }
 
   ngOnInit(): void {
 
@@ -34,7 +42,8 @@ export class EditarEquiposComponent implements OnInit {
       equipo_fabricante_id:['',[Validators.required]],
       marca_comercial_id:['',[Validators.required]],
       equipo_tipo_id:['',[Validators.required]],
-      nombre2:['',[Validators.required,Validators.minLength(3)]]
+      nombre2:['',[Validators.required,Validators.minLength(3)]],
+      equipo_estado_id:['',[Validators.required]]
     });
 
     this.activatedRoute.params.subscribe( params =>{
@@ -43,6 +52,10 @@ export class EditarEquiposComponent implements OnInit {
     })
 
     this.cargar_select_form();
+  }
+
+  campoNoValido(campo:string){
+    return this.form_equipos.controls[campo].touched && this.form_equipos.controls[campo].errors;
   }
   
   async cargar_select_form(){
@@ -53,8 +66,18 @@ export class EditarEquiposComponent implements OnInit {
 
   async buscar_individual_equipo(equipo_id:number){
 
+    this.loading = true;
+
     this.equipo = await this.equiposService.individual_equipos(equipo_id);
+
+    if(this.equipo['imagen']){
+      this.imagen_servidor = this.equipo['imagen'];
+    }
+
     this.valores_formulario();
+
+    this.loading = false;
+
   }
 
   valores_formulario(){
@@ -76,17 +99,37 @@ export class EditarEquiposComponent implements OnInit {
     
     const editar = await this.equiposService.editar_equipos(this.form_equipos.value,this.equipo.id);
     
-    if(!editar['res']){
-      console.log(editar['mensaje'])
+    if(!editar['res'])
+    {
       this.errors = editar['mensaje'];
       return;
     }
     
     if(editar['res']){
+
+      if(this.imagenCargar){
+        await this.imagesSubirService.subir_imagen(this.imagenCargar,'equipo',this.equipo.id);
+        this.imagenCargar=null;
+        this.imagesSubirService.imgTemp ="";
+        this.imagen_servidor =null;
+     }
+
       this.form_equipos.reset();
       this.router.navigateByUrl('main/equipos');
     }
     
+  }
+
+  file_imagen(file:File){
+   
+    this.imagenCargar = file;
+   
+    if(!file){
+      return;
+    }
+
+    this.imagesSubirService.imagen64(file);
+
   }
 
 }

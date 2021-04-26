@@ -38,7 +38,7 @@
 
                         <div class="row">
                                       
-                            <div class="col-lg-12">
+                            <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>Categorias:</label>
                                     <select class="form-control" 
@@ -53,7 +53,17 @@
                                       *ngIf="campoNoValido('categorias')">*Escoja Categorias</label>
                                 </div>
                             </div>
-
+                            <div class="col-md-6">
+                                <label for="">Imágen:</label>
+                                <div>
+                                    <img *ngIf="!imagesSubirService.imgTemp" src="./assets/images/no-image.png" alt="" width="200px">
+                                    <img *ngIf="imagesSubirService.imgTemp" [src]="imagesSubirService.imgTemp" alt="" width="200px">
+                                </div>
+                                <input type="file" 
+                                       class="form-control" 
+                                       (change)="file_imagen($event.target.files[0])">
+                            </div>
+                    
                         </div>
                     
                         <button type="submit" class="btn btn-primary">Guardar</button>

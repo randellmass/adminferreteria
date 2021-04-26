@@ -27,7 +27,6 @@ export class ItemFamiliasComponent implements OnInit {
       loading:boolean = true;
 
       constructor(private fb:FormBuilder,
-                  private router:Router,
                   private familiaService:FamiliasService,
                   private equiposService:EquiposService,
                   private activatedRoute:ActivatedRoute) { }
@@ -56,7 +55,7 @@ export class ItemFamiliasComponent implements OnInit {
         this.familia = familia1['data'];
         this.equipos = familia1['data']['equipos'];
         //console.log(this.familia);
-        //console.log(categoria_familia1);
+        //console.log(this.equipos);
         
       }
   
@@ -99,7 +98,7 @@ export class ItemFamiliasComponent implements OnInit {
           }
           
           if(registro['res']){
-            console.log(registro['data']);
+            //console.log(registro['data']);
 
             this.equipos_buscar = [];
             this.equipos_add = [];
@@ -131,6 +130,30 @@ export class ItemFamiliasComponent implements OnInit {
 
             //console.log(eliminar['data']);
           }
+      }
+
+      subirItem(index:number,equipo:any){
+        
+        const itemAnterior = index - 1;
+        
+        const itemTemp = this.equipos[itemAnterior];
+    
+        this.equipos[itemAnterior] = equipo;   
+        this.equipos[index] = itemTemp;   
+
+        //console.log(this.equipos);
+      }
+
+      bajarItem(index:number,equipo:any){
+        
+        const itemSiguiente = index + 1;
+        
+        const itemTemp = this.equipos[itemSiguiente];
+    
+        this.equipos[itemSiguiente] = equipo;   
+        this.equipos[index] = itemTemp;   
+
+        //console.log(this.equipos);
       }
 
 

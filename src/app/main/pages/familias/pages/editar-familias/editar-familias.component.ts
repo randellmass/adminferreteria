@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { FamiliasService } from '../../services/familias.service';
 import { CategoriasService } from '../../../categorias/services/categorias.service';
+import { ImagesSubirService } from '../../../../shared/service/images-subir.service';
 
 @Component({
   selector: 'app-editar-familias',
@@ -23,11 +24,18 @@ export class EditarFamiliasComponent implements OnInit {
     categorias_select:any =[];
     familia:any;
 
+    imgTemp:any= "";
+    imagen_servidor:any = null;
+    imagenCargar:File = null;
+  
+    loading:boolean = false;
+
     constructor(private fb:FormBuilder,
                 private router:Router,
                 private familiaService:FamiliasService,
                 private categoriasService:CategoriasService,
-                private activatedRoute:ActivatedRoute) { }
+                private activatedRoute:ActivatedRoute,
+                public imagesSubirService:ImagesSubirService) { }
 
     ngOnInit(): void {
 
@@ -50,14 +58,18 @@ export class EditarFamiliasComponent implements OnInit {
 
     async buscar_individual_familia(familia_id:number){
 
+      this.loading = true;
       const familia1 = await this.familiaService.individual_familia(familia_id);
       const categoria_familia1 = familia1['data']['categorias'].map( (cat_id:any) => cat_id.toString());
       
       this.familia = familia1['data'];
-      //console.log(this.familia);
-      //console.log(categoria_familia1);
-      
+
+      if(this.familia['imagen']){
+        this.imagen_servidor = this.familia['imagen'];
+      }
+  
       this.valores_formulario(categoria_familia1);
+      this.loading = false;
     }
 
     valores_formulario(categorias:any){
@@ -85,9 +97,29 @@ export class EditarFamiliasComponent implements OnInit {
         
         if(registro['res']){
           //console.log(registro['data']);
+
+          if(this.imagenCargar){
+             await this.imagesSubirService.subir_imagen(this.imagenCargar,'familia',this.familia.id);
+             this.imagenCargar=null;
+             this.imagesSubirService.imgTemp ="";
+             this.imagen_servidor =null;
+          }
+
           this.form_familia.reset();
           this.router.navigateByUrl('main/familias');
         }
+    }
+
+    file_imagen(file:File){
+   
+      this.imagenCargar = file;
+     
+      if(!file){
+        return;
+      }
+  
+      this.imagesSubirService.imagen64(file);
+  
     }
 
 }

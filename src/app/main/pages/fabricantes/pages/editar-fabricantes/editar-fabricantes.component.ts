@@ -13,19 +13,32 @@ export class EditarFabricantesComponent implements OnInit {
 
   fabricante:any = {}
   
-  form_fabricante:FormGroup;
+  form_fabricante:FormGroup = this.fb.group({
+        nombre : [,[Validators.required,Validators.minLength(3)]]
+  });
+
 
   imgTemp:any= "";
   imagen_servidor:any = null;
   imagenCargar:File = null;
 
+  loading:boolean = false;
+
   constructor(private fb:FormBuilder,
               private fabricantesService:FabricantesService,
-              private imagesSubirService:ImagesSubirService,
+              public imagesSubirService:ImagesSubirService,
               private router:Router,
               private activatedRoute:ActivatedRoute
             )
-  {  }
+  { 
+
+    
+    this.activatedRoute.params.subscribe( params =>{
+      this.buscar_individual_fabricante( params['id']);
+      
+    })
+    
+   }
 
   campoNoValido(campo:string){
     return this.form_fabricante.controls[campo].touched && this.form_fabricante.controls[campo].errors;
@@ -33,29 +46,21 @@ export class EditarFabricantesComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.crear_formulario();
-    
-    this.activatedRoute.params.subscribe( params =>{
-      this.buscar_individual_fabricante( params['id']);
-      
-    })
     
   }
 
-  crear_formulario(){
-      this.form_fabricante = this.fb.group({
-          nombre : [,[Validators.required,Validators.minLength(3)]]
-      });
-  }
+
 
   async buscar_individual_fabricante(fabricante_id:number){
 
+    this.loading = true;
     this.fabricante = await this.fabricantesService.individual_fabricantes(fabricante_id);
     if(this.fabricante['imagen']){
       this.imagen_servidor = this.fabricante['imagen'];
     }
 
     this.valores_formulario();
+    this.loading = false;
   }
 
   valores_formulario(){
@@ -72,7 +77,10 @@ export class EditarFabricantesComponent implements OnInit {
 
     const registro = await this.fabricantesService.editar_fabricantes(this.form_fabricante.value,this.fabricante.id);
     if(this.imagenCargar){
-      const cargueImagen = await this.imagesSubirService.subir_imagen(this.imagenCargar,'fabricante',this.fabricante.id);
+       await this.imagesSubirService.subir_imagen(this.imagenCargar,'fabricante',this.fabricante.id);
+       this.imagenCargar=null;
+       this.imagesSubirService.imgTemp ="";
+       this.imagen_servidor =null;
     }
 
     if(registro){
@@ -89,11 +97,7 @@ export class EditarFabricantesComponent implements OnInit {
       return;
     }
 
-    const reader = new FileReader();
-    reader.readAsDataURL( file);
-    reader.onloadend = () => {
-      this.imgTemp = reader.result;
-    }
+    this.imagesSubirService.imagen64(file);
 
   }
 

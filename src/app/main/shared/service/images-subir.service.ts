@@ -11,8 +11,10 @@ const URL = environment.URL;
 })
 export class ImagesSubirService {
 
+    imgTemp:any = null;
+
     constructor(private http:HttpClient,
-              private authService:AuthService) { }
+                private authService:AuthService) { }
 
 
     subir_imagen(archivo:File,
@@ -55,4 +57,14 @@ export class ImagesSubirService {
         }); 
   
     } 
+
+    imagen64(file:File){
+
+        const reader = new FileReader();
+        reader.readAsDataURL( file);
+        reader.onloadend = () => {
+          this.imgTemp = reader.result;
+        }
+
+    }
 }

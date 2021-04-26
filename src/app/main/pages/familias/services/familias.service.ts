@@ -69,7 +69,8 @@ export class FamiliasService {
               if(resp['res'])
               {
                   resolve({
-                      res:true
+                      res:true,
+                      data: resp['data']
                   });
               }else{
                   resolve({

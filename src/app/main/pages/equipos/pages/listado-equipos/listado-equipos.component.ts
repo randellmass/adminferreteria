@@ -1,15 +1,17 @@
-import { Component, OnInit, } from '@angular/core';
-import { EquiposService } from '../../services/equipos.service';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { DataTable } from 'simple-datatables';
+
+import { EquiposService } from '../../services/equipos.service';
 
 @Component({
   selector: 'app-listado-equipos',
-  templateUrl: './listado-equipos.component.html',
-  styleUrls: ['./listado-equipos.component.css']
-})
+  templateUrl: './listado-equipos.component.html'})
+  
 export class ListadoEquiposComponent implements OnInit {
 
-  equipos:any=[]
+  equipos:any=[];
+  loading:boolean = false;
 
   form_buscar_equipo:FormGroup = this.fb.group({
      buscarEquipo : ['',[Validators.required]]
@@ -27,13 +29,19 @@ export class ListadoEquiposComponent implements OnInit {
 
   async listado(){
 
+    this.loading= true;
     this.equipos = await this.equiposService.listado_equipos();
+    this.loading= false;
   }
 
   async buscar_equipo(){
-    console.log(this.form_buscar_equipo.value);
+    this.loading= true;
     const eq = await this.equiposService.buscar_equipo(this.form_buscar_equipo.value);
     this.equipos = eq['data'];
+    console.log(eq);
+    this.loading= false;
   }
+
+  
 
 }

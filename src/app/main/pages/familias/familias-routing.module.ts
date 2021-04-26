@@ -5,6 +5,7 @@ import { ListadoFamiliasComponent } from './pages/listado-familias/listado-famil
 import { RegistroFamiliasComponent } from './pages/registro-familias/registro-familias.component';
 import { EditarFamiliasComponent } from './pages/editar-familias/editar-familias.component';
 import { ItemFamiliasComponent } from './pages/item-familias/item-familias.component';
+import { ArchivoFamiliasComponent } from './pages/archivo-familias/archivo-familias.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,9 @@ const routes: Routes = [
         },
         {
             path:'items/:id', component:ItemFamiliasComponent
+        },
+        {
+          path:'archivos/:id', component:ArchivoFamiliasComponent
         },
         {
             path:'**', pathMatch:"full", redirectTo:'listado'

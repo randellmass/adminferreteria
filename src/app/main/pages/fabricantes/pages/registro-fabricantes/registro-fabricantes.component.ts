@@ -20,7 +20,7 @@ export class RegistroFabricantesComponent implements OnInit {
   
   constructor(private fb:FormBuilder,
               private fabricantesService:FabricantesService,
-              private imagesSubirService:ImagesSubirService,
+              public imagesSubirService:ImagesSubirService,
               private router:Router) { }
 
   ngOnInit(): void {
@@ -37,24 +37,27 @@ export class RegistroFabricantesComponent implements OnInit {
          return;
       }
 
-      const registro = await this.fabricantesService.registra_fabricantes(this.form_fabricante.value);
+      try {
+        const registro = await this.fabricantesService.registra_fabricantes(this.form_fabricante.value);
 
-      if(registro['res']){
-
-        const cargueImagen = await this.imagesSubirService.subir_imagen(this.imagen,'fabricante',registro['data']['id']);
-
-        if (cargueImagen['res']){
-          //console.log(cargueImagen);
-        }else{
-          console.log(cargueImagen);
+        if(registro['res']){
+  
+           //subimos la foto
+           await this.imagesSubirService.subir_imagen(this.imagen,'fabricante',registro['data']['id']);
+           this.imagesSubirService.imgTemp = "";
+           
+           this.form_fabricante.reset();
+           this.router.navigateByUrl('main/fabricantes');
         }
-
-         this.form_fabricante.reset();
-         this.router.navigateByUrl('main/fabricantes');
+      } catch (error) {
+          console.log(error);
       }
+
+  
   }
 
-  file_imagen(file:File){
+  file_imagen(file:File)
+  {
    
     this.imagen = file;
    
@@ -62,11 +65,7 @@ export class RegistroFabricantesComponent implements OnInit {
       return;
     }
 
-    const reader = new FileReader();
-    reader.readAsDataURL( file);
-    reader.onloadend = () => {
-      this.imgTemp = reader.result;
-    }
+    this.imagesSubirService.imagen64(file);
 
   }
 

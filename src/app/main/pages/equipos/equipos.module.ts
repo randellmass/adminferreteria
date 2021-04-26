@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { EquiposRoutingModule } from './equipos-routing.module';
 import { ListadoEquiposComponent } from './pages/listado-equipos/listado-equipos.component';
 import { RegistroEquiposComponent } from './pages/registro-equipos/registro-equipos.component';
 import { EditarEquiposComponent } from './pages/editar-equipos/editar-equipos.component';
-import { RouterModule } from '@angular/router';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
@@ -17,7 +17,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     EquiposRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule,
   ]
 })
 export class EquiposModule { }

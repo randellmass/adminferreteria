@@ -189,3 +189,7 @@
 	height: 100px;
 	border-radius: 0%;
 }
+
+.table td, .jsgrid .jsgrid-table td, .table th, .jsgrid .jsgrid-table th {
+	white-space: normal;
+}

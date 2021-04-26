@@ -1,6 +1,6 @@
 <div class="row mt-2">
-    <div class="col-10">
-        <div class="card">
+    <div class="col-12">
+        <div class="card" *ngIf="!loading">
             <div class="card-body">
                 <h4 class="card-subtitle">Editar Equipo</h4>
                 <form class="mt-4" [formGroup]="form_equipos" (ngSubmit)="editar()" >
@@ -22,6 +22,9 @@
                                 <input formControlName="modelo" 
                                        type="text" 
                                        class="form-control" >
+                                <label class="error mt-2 text-danger" 
+                                       for="modelo" 
+                                       *ngIf="campoNoValido('modelo')">*Digite Referencia Siesa</label>
                             </div>
                         </div>    
 
@@ -35,6 +38,9 @@
                                 <input formControlName="nombre" 
                                        type="text" 
                                        class="form-control" >
+                                <label class="error mt-2 text-danger" 
+                                       for="nombre" 
+                                       *ngIf="campoNoValido('nombre')">*Digite descripción Siesa</label>
                             </div>
                         </div>  
 
@@ -44,6 +50,9 @@
                                 <input formControlName="serie" 
                                        type="text" 
                                        class="form-control">
+                                <label class="error mt-2 text-danger" 
+                                       for="serie" 
+                                       *ngIf="campoNoValido('serie')">*Digite Serie producto</label>
                             </div>
                         </div>   
                     </div>     
@@ -55,8 +64,12 @@
                                 <label>Fabricante</label>
                                 <select formControlName="equipo_fabricante_id" 
                                         class="form-control">
+                                    <option value="" selected>Seleccionar</option>
                                     <option value="{{ fabricante['id']}}" *ngFor="let fabricante of fabricantes">{{ fabricante['nombre'] }}</option>
                                 </select>
+                                <label class="error mt-2 text-danger" 
+                                       for="equipo_fabricante_id" 
+                                       *ngIf="campoNoValido('equipo_fabricante_id')">*Escoja Fabricante</label>
                             </div>
                         </div>
                         
@@ -65,8 +78,12 @@
                                 <label>Marca Comercial</label>
                                 <select formControlName="marca_comercial_id" 
                                         class="form-control">
+                                    <option value="" selected>Seleccionar</option>
                                     <option value="{{ fabricante['id']}}" *ngFor="let fabricante of fabricantes">{{ fabricante['nombre'] }}</option>
                                 </select>
+                                <label class="error mt-2 text-danger" 
+                                       for="marca_comercial_id" 
+                                       *ngIf="campoNoValido('marca_comercial_id')">*Escoja Marca comercial</label>
                             </div>
                         </div>  
                         
@@ -75,26 +92,77 @@
                     <div class="row">
 
                         <div class="col-lg-6">
+
+                            <div class="row">    
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Tipo equipo:</label>
+                                        <select formControlName="equipo_tipo_id" 
+                                                class="form-control">
+                                            <option value="" selected>Seleccionar</option>
+                                            <option value="{{ tipo['id']}}" *ngFor="let tipo of equipos_tipos">{{ tipo['nombre'] }}</option>
+                                        </select>
+                                        <label class="error mt-2 text-danger" 
+                                            for="equipo_tipo_id" 
+                                            *ngIf="campoNoValido('equipo_tipo_id')">*Escoja tipo equipo</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">    
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Estado:</label>
+                                        <select formControlName="equipo_estado_id" 
+                                                class="form-control">
+                                            <option value="" selected>Seleccionar</option>
+                                            <option value="1">Activo</option>
+                                            <option value="2">Inactivo</option>
+                                        </select>
+                                        <label class="error mt-2 text-danger" 
+                                               for="equipo_estado_id" 
+                                               *ngIf="campoNoValido('equipo_estado_id')">*Debe Escojer Estado equipo.</label>
+                         
+                                    </div>
+                                </div>
+        
+                            </div> 
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Descripción Comercial</label>
+                                        <input formControlName="nombre2" 
+                                               type="text" 
+                                               class="form-control" >
+                                        <label class="error mt-2 text-danger" 
+                                               for="nombre2" 
+                                               *ngIf="campoNoValido('nombre2')">*Digite descripción comercial</label>
+                                    </div>
+                                </div> 
+        
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label>Tipo equipo:</label>
-                                <select formControlName="equipo_tipo_id" 
-                                        class="form-control">
-                                    <option value="" selected>Seleccionar</option>
-                                    <option value="{{ tipo['id']}}" *ngFor="let tipo of equipos_tipos">{{ tipo['nombre'] }}</option>
-                                </select>
+                                <label for="">Imágen:</label>
+                                <div>
+                                    <img *ngIf="!imagesSubirService.imgTemp" [src]="imagen_servidor | imagen" alt="" width="200px">
+                                    <img *ngIf="imagesSubirService.imgTemp" [src]="imagesSubirService.imgTemp" alt="" width="200px">
+                                </div>
+                                <input type="file"
+                                    accept="image/png,image/jpeg" 
+                                    class="form-control" 
+                                    (change)="file_imagen($event.target.files[0])">
                             </div>
                         </div>
                         
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label>Descripción Comercial</label>
-                                <input formControlName="nombre2" 
-                                       type="text" 
-                                       class="form-control" >
-                            </div>
-                        </div>   
+                    
                     
                     </div>
+                    
+                
                                 
                                 
                     <button type="submit" class="btn btn-primary">Editar</button>
