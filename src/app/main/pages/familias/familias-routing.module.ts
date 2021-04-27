@@ -24,7 +24,7 @@ const routes: Routes = [
             path:'items/:id', component:ItemFamiliasComponent
         },
         {
-          path:'archivos/:id', component:ArchivoFamiliasComponent
+            path:'archivos/:id', component:ArchivoFamiliasComponent
         },
         {
             path:'**', pathMatch:"full", redirectTo:'listado'

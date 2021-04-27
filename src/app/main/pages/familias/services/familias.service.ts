@@ -95,7 +95,7 @@ export class FamiliasService {
           'Authorization': `Bearer ${ this.authService.token }` 
         });
 
-        this.http.get(`${ URL}/equipos_familias/${familia_id}}`,{ headers })
+        this.http.get(`${ URL}/equipos_familias/${familia_id}`,{ headers })
         .subscribe( resp =>{
           
               if(resp['res'])

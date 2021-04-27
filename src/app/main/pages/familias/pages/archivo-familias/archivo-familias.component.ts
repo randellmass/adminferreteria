@@ -50,7 +50,7 @@ export class ArchivoFamiliasComponent implements OnInit {
       const familia1 = await this.familiaService.individual_familia(familia_id);
       this.roles = await this.usuariosService.listado_roles();
       
-      console.log(familia1['data']);
+      //console.log(familia1['data']);
 
       this.familia = familia1['data'];
       this.archivos = familia1['data']['files'];
@@ -73,6 +73,7 @@ export class ArchivoFamiliasComponent implements OnInit {
                                 this.form_file.get('nombre').value);
      if (archivo['res'])
      {
+        console.log(archivo['data']);
         this.file = null;
         this.form_file.reset();
         this.buscar_individual_familia(this.familia['id']);
@@ -86,7 +87,7 @@ export class ArchivoFamiliasComponent implements OnInit {
      const eliminar = await this.filesSubirService.eliminar_file(archivo['id']);
      
      if (eliminar['res']) {
-       console.log(eliminar['data']);
+       //console.log(eliminar['data']);
         const i = this.archivos.indexOf( archivo );
 
         

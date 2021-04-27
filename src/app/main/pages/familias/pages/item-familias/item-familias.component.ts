@@ -33,7 +33,8 @@ export class ItemFamiliasComponent implements OnInit {
 
       ngOnInit(): void {
         this.activatedRoute.params.subscribe( params =>{
-          this.buscar_individual_familia( params['id']);
+          
+          this.buscar_individual_familia(params['id']);
           
         })
       }
