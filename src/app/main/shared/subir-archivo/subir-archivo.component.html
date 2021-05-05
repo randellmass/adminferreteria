@@ -1,0 +1,64 @@
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-subtitle">Subir Archivo</h4>
+
+        <form class="cmxform" (ngSubmit)="agregar_file()" [formGroup]="form_file" *ngIf="!loading" >
+            <fieldset>
+
+
+                <div class="row">
+                            
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Permisos:</label>
+                            <select multiple class="form-control" formControlName="roles">
+                                <option [value]="rol['id']" *ngFor="let rol of roles">{{ rol['nombre']}}</option>
+                            </select>
+                            <label class="error mt-2 text-danger" 
+                                    for="roles" 
+                                    *ngIf="campoNoValido('roles')">*Escoja Permiso</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Nombre Archivo:</label>
+                            <input type="text" 
+                                    class="form-control" 
+                                    formControlName="nombre">
+                            <label class="error mt-2 text-danger" 
+                                for="nombre" 
+                            *ngIf="campoNoValido('nombre')">*Digite nombre de Archivo</label>
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Archivo:</label>
+                            <input type="file" class="form-control" formControlName="file"
+                                    (change)="file_cargar($event.target.files[0])" >
+                            <label class="error mt-2 text-danger" 
+                                for="file" 
+                                *ngIf="campoNoValido('file')">*Escoja Archivo</label>
+                        </div>
+                    </div>
+
+                </div>
+            
+                <button type="submit" class="btn btn-primary">Agregar</button>
+            </fieldset>
+        </form>
+
+        <div class="row mt-5" *ngIf="errors.length>0">
+            <div class="col-12">
+                <div class="alert alert-danger " role="alert">
+                    <ul>
+                        <li *ngFor="let error of errors" >{{ error }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

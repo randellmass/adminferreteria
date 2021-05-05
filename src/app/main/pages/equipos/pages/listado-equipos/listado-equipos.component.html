@@ -55,7 +55,9 @@
                             <td *ngIf="equipo['equipo_estado_id']==2"><label class="badge badge-danger">{{ equipo['equipo_estado_nombre'] | uppercase}}</label></td>
                        
                             <td>
-                                <a class="btn btn-secondary btn-sm" routerLink="/main/equipos/editar/{{equipo['id']}}"><i class="mdi mdi-pencil"></i>Editar</a>
+                               <a class="btn btn-secondary mb-2" routerLink="/main/equipos/editar/{{equipo['id']}}"><i class="mdi mdi-pencil"></i>Editar</a>&nbsp;
+                               <a class="btn btn-secondary mb-2" routerLink="/main/equipos/archivos/{{equipo['id']}}"><i class="mdi mdi-pencil"></i>Archivos</a>&nbsp;
+                               <a class="btn btn-secondary" routerLink="/main/equipos/caracteristica/{{equipo['id']}}"><i class="mdi mdi-pencil"></i>Caracteristicas</a>
                             </td>
                         </tr>
                     </tbody>

@@ -2,15 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MainRoutingModule } from './main-routing.module';
-import { SolicitudesDashboardComponent } from './pages/dashboard/pages/solicitudes/solicitudes-dashboard/solicitudes-dashboard.component';
 import { MainComponent } from './main.component';
 import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
   declarations: [
-    SolicitudesDashboardComponent,
-    MainComponent],
+    MainComponent,],
   imports: [
     CommonModule,
     MainRoutingModule,

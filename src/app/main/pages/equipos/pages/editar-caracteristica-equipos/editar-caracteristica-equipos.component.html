@@ -1,0 +1,68 @@
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-subtitle">Editar Caracteristica</h4>
+
+        <form class="cmxform" (ngSubmit)="editar_caracteristica()" [formGroup]="form_caracteristica" *ngIf="!loading" >
+            <fieldset>
+
+
+                <div class="row">
+                            
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Caracteristica:</label>
+                            <select class="form-control" formControlName="caracteristica_id">
+                                <option value="" selected>*Escoja caracteristica</option>
+                                <option [value]="caract['id']" *ngFor="let caract of caracteristicas">{{ caract['nombre']}}</option>
+                            </select>
+                            <label class="error mt-2 text-danger" 
+                                    for="caracteristica_id" 
+                                    *ngIf="campoNoValido('caracteristica_id')">*Escoja caracteristica</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Unidad:</label>
+                            <select class="form-control" formControlName="unidad_id">
+                                <option value="" selected>*Escoja Unidad</option>
+                                <option [value]="unidad['id']" *ngFor="let unidad of unidades">{{ unidad['nombre']}}</option>
+                            </select>
+                            <label class="error mt-2 text-danger" 
+                                    for="unidad_id" 
+                                    *ngIf="campoNoValido('unidad_id')">*Escoja Unidad</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Valor:</label>
+                            <input type="text" 
+                                    class="form-control" 
+                                    formControlName="valor">
+                            <label class="error mt-2 text-danger" 
+                                for="valor" 
+                            *ngIf="campoNoValido('valor')">*Digite valor</label>
+                        </div>
+                        
+                    </div>
+   
+
+                </div>
+            
+                <button type="submit" class="btn btn-inverse-primary btn-block">Editar</button>
+                <button type="button" class="btn btn-inverse-warning btn-block mt-2" (click)="cancelar_editar()" >Cancelar</button>
+            </fieldset>
+        </form>
+
+        <div class="row mt-5" *ngIf="errors.length>0">
+            <div class="col-12">
+                <div class="alert alert-danger " role="alert">
+                    <ul>
+                        <li *ngFor="let error of errors" >{{ error }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

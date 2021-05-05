@@ -1,0 +1,59 @@
+<div class="row mt-2">
+    <div class="col-8">
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-subtitle">Equipo</h4>
+                <table class="table table-responsive">
+           
+                    <tbody *ngIf="equipo">
+                        <tr>
+                            <td scope="row">Nombre:</td>
+                            <td>{{ equipo['nombre'] }}</td>
+                        </tr>
+                        <tr>
+                            <td scope="row">Estado:</td>
+                            <td>{{ equipo['equipo_estado_nombre'] }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card mt-3">
+            <div class="card-body">
+                <h4 class="card-subtitle">Listado Archivos</h4>
+                <table class="table table-bordered table-inverse table-responsive">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Permiso Ver</th>
+                            <th>Opcion</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let archivo of archivos">
+                                <td scope="row"><a [href]="archivo['url']|imagen" target="_blank" >{{ archivo['nombre']}}</a></td>
+                                <td>
+                                    <div *ngFor="let permiso of archivo['permisos']">
+                                        {{ permiso['permiso_nombre']}}
+                                    </div>
+                                </td>
+                                <td>
+                                    <a class="btn btn-inverse-secondary " (click)="editar_archivo(archivo['id'])">Editar</a>&nbsp;
+                                    <a class="btn btn-inverse-danger " (click)="eliminar_archivo(archivo)">Eliminar</a>
+                                </td>
+                            </tr>
+                
+                        </tbody>
+                </table>
+            </div>
+        </div>
+   
+    </div>
+
+    <div class="col-4">
+        <app-subir-archivo modelo="equipo" [modelo_id]="equipo['id']" *ngIf="!loading && operacion =='guardar'" (archivos_form)="archivos = $event"></app-subir-archivo>
+        <app-editar-archivo modelo="equipo" [modelo_id]="equipo['id']" [archivo_id]="archivo_id" *ngIf="!loading && operacion =='editar'" (archivos_form)="archivos = $event"  (operacion_form)="operacion = $event"></app-editar-archivo>
+    </div>
+</div>

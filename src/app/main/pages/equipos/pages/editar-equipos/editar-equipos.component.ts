@@ -68,7 +68,11 @@ export class EditarEquiposComponent implements OnInit {
 
     this.loading = true;
 
-    this.equipo = await this.equiposService.individual_equipos(equipo_id);
+    const data = await this.equiposService.individual_equipos(equipo_id);
+
+    this.equipo = data['data'];
+
+    console.log(this.equipo);
 
     if(this.equipo['imagen']){
       this.imagen_servidor = this.equipo['imagen'];

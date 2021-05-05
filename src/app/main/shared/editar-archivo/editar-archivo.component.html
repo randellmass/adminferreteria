@@ -1,0 +1,46 @@
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-subtitle">Editar Archivo</h4>
+
+        <form class="cmxform" (ngSubmit)="editar_file()" [formGroup]="form_file" *ngIf="!loading" >
+            <fieldset>
+
+
+                <div class="row">
+                            
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Permisos:</label>
+                            <select multiple class="form-control" formControlName="roles">
+                                <option [value]="rol['id']" *ngFor="let rol of roles">{{ rol['nombre']}}</option>
+                            </select>
+                            <label class="error mt-2 text-danger" 
+                                    for="roles" 
+                                    *ngIf="campoNoValido('roles')">*Escoja Permiso</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Nombre Archivo:</label>
+                            <input type="text" 
+                                    class="form-control" 
+                                    formControlName="nombre">
+                            <label class="error mt-2 text-danger" 
+                                for="nombre" 
+                            *ngIf="campoNoValido('nombre')">*Digite nombre de Archivo</label>
+                        </div>
+                        
+                    </div>
+     
+                </div>
+            
+                <button type="submit" class="btn btn-primary">Editar</button>
+                &nbsp;
+                <button type="button" class="btn btn-inverse-dark" (click)="cancelar_editar()">Cancelar</button>
+            </fieldset>
+        </form>
+
+    </div>
+</div>
+

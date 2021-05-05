@@ -155,5 +155,37 @@ export class UsuariosService {
     
          }); 
     
+    } 
+
+    editar_usuario_client(usuario:any,usuario_id:number)
+    {
+       
+        return new Promise<any>( resolve =>{
+          
+          const headers = new HttpHeaders({
+            'Accept': 'application/json', 
+            'Authorization': `Bearer ${ this.authService.token }` 
+          });
+    
+          this.http.post(`${ URL}/client/update/${usuario_id}`, usuario ,{ headers })
+          .subscribe( resp =>{
+            
+              if(resp['res'])
+              {
+                  resolve({
+                      res:true,
+                      data:resp['data']
+                  });
+              }else{
+                  resolve({
+                    res:false,
+                    data:resp['mensaje']
+                  });
+              }
+          
+           });
+    
+         }); 
+    
       } 
 }

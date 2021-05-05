@@ -7,13 +7,21 @@ import { ListadoEquiposComponent } from './pages/listado-equipos/listado-equipos
 import { RegistroEquiposComponent } from './pages/registro-equipos/registro-equipos.component';
 import { EditarEquiposComponent } from './pages/editar-equipos/editar-equipos.component';
 import { SharedModule } from '../../shared/shared.module';
+import { ArchivoEquiposComponent } from './pages/archivo-equipos/archivo-equipos.component';
+import { CaracteristicaEquiposComponent } from './pages/caracteristica-equipos/caracteristica-equipos.component';
+import { RegistroCaracteristicaEquiposComponent } from './pages/registro-caracteristica-equipos/registro-caracteristica-equipos.component';
+import { EditarCaracteristicaEquiposComponent } from './pages/editar-caracteristica-equipos/editar-caracteristica-equipos.component';
 
 
 @NgModule({
   declarations: [
     ListadoEquiposComponent, 
     RegistroEquiposComponent, 
-    EditarEquiposComponent],
+    EditarEquiposComponent, 
+    ArchivoEquiposComponent, 
+    CaracteristicaEquiposComponent, 
+    RegistroCaracteristicaEquiposComponent, 
+    EditarCaracteristicaEquiposComponent],
   imports: [
     CommonModule,
     EquiposRoutingModule,

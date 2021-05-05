@@ -6,13 +6,14 @@ import { ListadoUsuariosComponent } from './pages/listado-usuarios/listado-usuar
 import { RegistroUsuariosComponent } from './pages/registro-usuarios/registro-usuarios.component';
 import { EditarUsuariosComponent } from './pages/editar-usuarios/editar-usuarios.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PerfilUsuariosComponent } from './pages/perfil-usuarios/perfil-usuarios.component';
 
 
 @NgModule({
   declarations: [
       ListadoUsuariosComponent, 
       RegistroUsuariosComponent, 
-      EditarUsuariosComponent],
+      EditarUsuariosComponent, PerfilUsuariosComponent],
   imports: [
     CommonModule,
     UsuariosRoutingModule,

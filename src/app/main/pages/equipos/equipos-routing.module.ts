@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ArchivoEquiposComponent } from './pages/archivo-equipos/archivo-equipos.component';
+import { CaracteristicaEquiposComponent } from './pages/caracteristica-equipos/caracteristica-equipos.component';
 
 import { EditarEquiposComponent } from './pages/editar-equipos/editar-equipos.component';
 import { ListadoEquiposComponent } from './pages/listado-equipos/listado-equipos.component';
@@ -17,6 +19,12 @@ const routes: Routes = [
       },
       {
         path:'editar/:id', component:EditarEquiposComponent
+      },
+      {
+        path:'archivos/:id', component:ArchivoEquiposComponent
+      },
+      {
+        path:'caracteristica/:id', component:CaracteristicaEquiposComponent
       },
       {
         path:'**', pathMatch:'full', redirectTo:'listado'

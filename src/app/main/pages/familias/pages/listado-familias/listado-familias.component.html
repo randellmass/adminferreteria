@@ -39,10 +39,10 @@
                             <td><div *ngFor="let cate of familia['categorias']">{{cate['equipo_grupo_nombre']}} - {{cate['nombre']}}</div></td>
                             <td *ngIf="familia['estado_id']==1"><label class="badge badge-success">{{ familia['estado_nombre'] | uppercase}}</label></td>
                             <td *ngIf="familia['estado_id']==2"><label class="badge badge-danger">{{ familia['estado_nombre'] | uppercase}}</label></td>
-                            <td>
-                                <div class="mb-2"><a class="btn btn-secondary btn-sm" routerLink="/main/familias/items/{{familia['id']}}"><i class="mdi mdi-pencil"></i>Items</a></div>
-                                <div class="mb-2"><a class="btn btn-secondary btn-sm" routerLink="/main/familias/archivos/{{familia['id']}}"><i class="mdi mdi-pencil"></i>Archivos</a></div>
-                                <div><a class="btn btn-secondary btn-sm" routerLink="/main/familias/editar/{{familia['id']}}"><i class="mdi mdi-pencil"></i>Editar</a></div>
+                            <td >
+                                <div class="mb-2"><a class="btn btn-secondary btn-block" routerLink="/main/familias/editar/{{familia['id']}}"><i class="mdi mdi-pencil"></i>Editar</a></div>
+                                <div class="mb-2"><a class="btn btn-secondary btn-block" routerLink="/main/familias/items/{{familia['id']}}"><i class="mdi mdi-pencil"></i>Items</a></div>
+                                <div ><a class="btn btn-secondary btn-block" routerLink="/main/familias/archivos/{{familia['id']}}"><i class="mdi mdi-pencil"></i>Archivos</a></div>
                             </td>
                         </tr>
                     </tbody>

@@ -1,0 +1,58 @@
+<div class="row mt-2">
+    <div class="col-12">
+
+        <div class="card">
+            <div class="card-body">
+                <div class="row mt-2">
+                    <div class="col-8">
+                        <h4 class="card-subtitle">Equipos</h4>
+                    </div>
+                    <div class="col-4">
+                        <div class="d-flex ">
+                            <input class="form-control me-2"
+                                   type="search" 
+                                   placeholder="Buscar" aria-label="Search" 
+                                   (keyUp.enter)="buscar_equipos( buscar.value)"
+                                   #buscar>
+                            <button class="btn btn-inverse-primary"
+                                    type="submit"
+                                    (click)="buscar_equipos( buscar.value)">Consultar</button>
+                        </div>
+                    </div>
+                </div>    
+                
+                <table class="table table-bordered table-hover table-responsive" *ngIf="equipos">
+                    <thead>
+                        <tr>
+                            <th>Imágen</th>
+                            <th>Cod.Siesa</th>
+                            <th [ngStyle]="{width: '200px'}">Descripción Siesa</th>
+                            <th>Ref.Siesa</th>
+                            <th>Serie</th>
+                            <th>Estado</th>
+                            <th>Ver</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let equipo of equipos">
+                            <td>
+                                <img [src]="equipo['imagen'] | imagen" class="img-md" [alt]="equipo['modelo']">
+                            </td>
+                            <td>{{ equipo['codificacion'] | uppercase}}</td>
+                            <td >{{ equipo['nombre'] | uppercase}}</td>
+                            <td>{{ equipo['modelo'] | uppercase}}</td>
+                            <td>{{ equipo['serie'] | uppercase}}</td>
+                            <td *ngIf="equipo['equipo_estado_id']==1"><label class="badge badge-success">{{ equipo['equipo_estado_nombre'] | uppercase}}</label></td>
+                            <td *ngIf="equipo['equipo_estado_id']==2"><label class="badge badge-danger">{{ equipo['equipo_estado_nombre'] | uppercase}}</label></td>
+                       
+                            <td>
+                                <a routerLink="/main/dashboard/detalle/{{equipo['id']}}" class="btn btn-inverse-dark" >Info</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+       
+    </div>
+</div>

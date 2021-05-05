@@ -116,12 +116,15 @@ export class EquiposService {
           'Authorization': `Bearer ${ this.authService.token }` 
         });
   
-        this.http.get(`${ URL}/equipos/${equipo_id}}`,{ headers })
+        this.http.get(`${ URL}/equipos/${equipo_id}`,{ headers })
         .subscribe( resp =>{
           
           if(resp['res'])
           {
-              resolve(resp['data']);
+              resolve({
+                res:true,
+                data:resp['data']
+                });
           }else{
               resolve({
                 res:false,

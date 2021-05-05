@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { UsuariosService } from '../../services/usuarios.service';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({
   selector: 'app-editar-usuarios',

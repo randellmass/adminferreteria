@@ -12,7 +12,7 @@ const URL = environment.URL;
 })
 export class FilesSubirService {
 
-  constructor(private http:HttpClient,
+    constructor(private http:HttpClient,
               private authService:AuthService) { }
 
     subir_file(archivo:File,
@@ -61,9 +61,55 @@ export class FilesSubirService {
  
        }); 
  
-   } 
+    } 
 
-  eliminar_file(archivo_id:number)
+   editar_file(modelo:string,
+            modelo_id:string,
+            archivo_id:string,
+            roles:any,
+            nombreFile:string)
+    {
+
+    return new Promise<any>( resolve =>{
+
+          const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+          });
+          const formData = new FormData();
+          formData.append('archivo_id',archivo_id);
+          roles.forEach( (rol:string) => {
+              formData.append('roles[]',rol);
+          });
+
+          formData.append('nombre',nombreFile);
+
+
+            this.http.post(`${ URL}/file_update/${ modelo }/${ modelo_id }`, formData ,{ headers })
+                  .subscribe( resp =>{
+
+                  if(resp['res'])
+                  {
+                    resolve(
+                    {
+                      res:true,
+                      data:resp['data']
+                    });
+                  }else{
+                    resolve(
+                    {
+                      res:false,
+                      data:resp['mensaje']
+                    });
+                  }
+
+              });
+
+          }); 
+
+    } 
+
+    eliminar_file(archivo_id:number)
   {
 
     return new Promise<any>( resolve =>{
@@ -97,4 +143,39 @@ export class FilesSubirService {
         }); 
 
     } 
+
+    ver_file(modelo:string,modelo_id:string,archivo_id:string)
+    {
+  
+      return new Promise<any>( resolve =>{
+  
+            const headers = new HttpHeaders({
+            'Accept': 'application/json', 
+            'Authorization': `Bearer ${ this.authService.token }` 
+            });
+      
+  
+            this.http.get(`${ URL}/file_show/${ modelo }/${ modelo_id }/${ archivo_id }`,{ headers })
+            .subscribe( resp =>{
+  
+                  if(resp['res'])
+                  {
+                    resolve(
+                    {
+                      res:true,
+                      data:resp['data']
+                    });
+                  }else{
+                    resolve(
+                    {
+                      res:false,
+                      data:resp['mensaje']
+                    });
+                  }
+  
+            });
+  
+          }); 
+  
+      } 
 }
