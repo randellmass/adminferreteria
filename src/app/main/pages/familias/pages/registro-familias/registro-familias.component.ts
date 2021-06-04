@@ -69,7 +69,7 @@ export class RegistroFamiliasComponent implements OnInit {
             this.imagesSubirService.imgTemp ="";
          
           this.form_familia.reset();
-          this.router.navigateByUrl('main/familias');
+          this.router.navigateByUrl('main/categorias');
         }
     }
 

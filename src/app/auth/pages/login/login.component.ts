@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   forma_login:FormGroup;
   error:string = "";
+  loading:boolean = false;
   
   constructor( private fb:FormBuilder,
                private authService:AuthService,
@@ -50,14 +51,14 @@ export class LoginComponent implements OnInit {
           control.markAllAsTouched();
       });
     }else{
-    
+      this.loading = true;
       const valido = await this.authService.login(this.forma_login.get('email').value, this.forma_login.get('password').value);
-
+      this.loading = false;
       if(valido['res']){
         this.error="";
         this.router.navigateByUrl('');
       }else{
-        this.error = valido['mensaje'];
+        this.error = valido['data'];
       }
     }
   }

@@ -32,11 +32,14 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let user of usuarios">
-                            <td>{{ user['name'] | lowercase}}</td>
+                            <td>{{ user['name'] | uppercase}}</td>
                             <td>{{ user['email'] }}</td>
                             <td *ngIf="user['rol_id']==1"><label class="badge badge-primary">{{ user['rol_nombre'] | uppercase}}</label></td>
                             <td *ngIf="user['rol_id']==2"><label class="badge badge-info">{{ user['rol_nombre'] | uppercase}}</label></td>
                             <td *ngIf="user['rol_id']==3"><label class="badge badge-warning">{{ user['rol_nombre'] | uppercase}}</label></td>
+                            <td *ngIf="user['rol_id']==4"><label class="badge badge-inverse-success">{{ user['rol_nombre'] | uppercase}}</label></td>
+                            <td *ngIf="user['rol_id']==5"><label class="badge badge-dark">{{ user['rol_nombre'] | uppercase}}</label></td>
+                            <td *ngIf="user['rol_id']==6"><label class="badge badge-secundary">{{ user['rol_nombre'] | uppercase}}</label></td>
                             <td *ngIf="user['estado_id']==1" class="text-center"><label class="badge badge-success">{{ user['estado_nombre'] | uppercase}}</label></td>
                             <td *ngIf="user['estado_id']==2" class="text-center"><label class="badge badge-danger">{{ user['estado_nombre'] | uppercase}}</label></td>
                             <td>

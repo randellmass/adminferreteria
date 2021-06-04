@@ -31,6 +31,7 @@ export class ListadoEquiposComponent implements OnInit {
 
     this.loading= true;
     this.equipos = await this.equiposService.listado_equipos();
+    //console.log(this.equipos);
     this.loading= false;
   }
 
@@ -38,7 +39,7 @@ export class ListadoEquiposComponent implements OnInit {
     this.loading= true;
     const eq = await this.equiposService.buscar_equipo(this.form_buscar_equipo.value);
     this.equipos = eq['data'];
-    console.log(eq);
+    //console.log(eq);
     this.loading= false;
   }
 

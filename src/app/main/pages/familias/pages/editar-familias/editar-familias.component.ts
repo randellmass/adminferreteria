@@ -106,7 +106,7 @@ export class EditarFamiliasComponent implements OnInit {
           }
 
           this.form_familia.reset();
-          this.router.navigateByUrl('main/familias');
+          this.router.navigateByUrl('main/categorias');
         }
     }
 

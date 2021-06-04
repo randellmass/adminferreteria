@@ -41,7 +41,7 @@ export class AuthService {
             localStorage.clear();
             resolve({
               res:false,
-              mensaje:resp['mensaje']
+              data:resp['mensaje']
             });
           }
 
@@ -108,7 +108,6 @@ export class AuthService {
     this.http.get(`${ URL }/usertoken`,{ headers }).subscribe( resp =>{
           
         if( resp['res']){
-             
              this.usuario = resp['user'];
               
              resolve(true);

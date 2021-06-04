@@ -1,0 +1,84 @@
+<div class="row mt-2">
+    <div class="col-8">
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-subtitle">Caracteristicas</h4>
+                
+                <table *ngIf="!loading" class="table table-bordered table-hover"  id="order-listing">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Estado</th>
+                            <th>Opción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let caracteristica of caracteristicas; let i=index">
+                            <td><input [name]="i" type="text" class="form-control" [value]="caracteristica['nombre'] | uppercase" #mi></td>
+                            <td>
+                                <select [name]="is" #msi class="form-control">
+                                        <option value="1" *ngIf="caracteristica['estado_id'] == 1" selected>Activo</option>
+                                        <option value="2" *ngIf="caracteristica['estado_id'] == 1" >Inactivo</option>
+                                        <option value="1" *ngIf="caracteristica['estado_id'] == 2" >Activo</option>
+                                        <option value="2" *ngIf="caracteristica['estado_id'] == 2" selected>Inactivo</option>
+                                </select>
+                                
+                            </td>
+                            <td>
+                                <button (click)="item_v(i,caracteristica,mi.value,msi.value)" class="btn btn-secondary">Editar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="row mt-5" *ngIf="errors.length>0">
+                    <div class="col-12">
+                      <div class="alert alert-danger " role="alert">
+                         <ul>
+                             <li *ngFor="let error of errors" >{{ error }}</li>
+                         </ul>
+                      </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        
+       
+    </div>
+    <div class="col-4">
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-subtitle">Registrar Caracteristica</h4>
+                <form class="mt-4 cmxform" (ngSubmit)="guardar()" [formGroup]="form_caracteristica">
+                    <fieldset>
+                        <div class="form-row">
+                            
+                            
+                            <div class="form-group col-md-12">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" class="form-control"
+                                    formControlName="nombre"
+                                    placeholder="Nombre">
+                                <label class="error mt-2 text-danger" 
+                                       for="nombre" 
+                                       *ngIf="campoNoValido('nombre')">*Digite Nombre / Minimo 3 Caracteres</label>
+                            </div>
+
+                            
+                        </div>
+                    
+                        <button type="submit" class="btn btn-inverse-primary btn-block">Guardar</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+

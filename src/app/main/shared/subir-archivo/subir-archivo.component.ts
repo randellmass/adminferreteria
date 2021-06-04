@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { ArchivosTiposService } from '../../pages/archivos-tipos/service/archivos-tipos.service';
 import { UsuariosService } from '../../pages/usuarios/services/usuarios.service';
 import { FilesSubirService } from '../service/files-subir.service';
 
@@ -17,19 +19,22 @@ export class SubirArchivoComponent implements OnInit {
   
   form_file:FormGroup = this.fb.group({
     roles: ['',Validators.required],
+    archivo_tipo_id: ['',Validators.required],
     nombre: ['',[Validators.required,Validators.minLength(3)]],
     file: ['',[Validators.required]]
   });
 
   file:File;
   roles:any =[];
+  archivo_tipos:any =[];
   loading:boolean = true;
   errors:any =[];
   archivos:any=[];
 
   constructor(private fb:FormBuilder,
               private usuariosService:UsuariosService,
-              private filesSubirService:FilesSubirService) { }
+              private filesSubirService:FilesSubirService,
+              private archivosTiposService:ArchivosTiposService) { }
 
   ngOnInit(): void {
     this.cargarSelectInicial();
@@ -43,6 +48,8 @@ export class SubirArchivoComponent implements OnInit {
 
     this.loading=true;
       this.roles = await this.usuariosService.listado_roles();
+      const FileTypes = await this.archivosTiposService.listado_archivo_tipos();
+      this.archivo_tipos = FileTypes['data'];
     this.loading=false;
     
   }
@@ -59,6 +66,7 @@ export class SubirArchivoComponent implements OnInit {
                                 this.modelo,
                                 this.modelo_id,
                                 this.form_file.get('roles').value,
+                                this.form_file.get('archivo_tipo_id').value,
                                 this.form_file.get('nombre').value);
      if (archivo['res'])
      {

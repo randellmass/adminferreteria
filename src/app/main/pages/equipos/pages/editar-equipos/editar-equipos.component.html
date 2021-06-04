@@ -13,6 +13,9 @@
                                 <input formControlName="codificacion"
                                        type="text" 
                                        class="form-control" >
+                                <label class="error mt-2 text-danger" 
+                                       for="codificacion" 
+                                       *ngIf="campoNoValido('codificacion')">*Digite codigo Siesa</label>
                             </div>
                         </div>    
 
@@ -115,9 +118,7 @@
                                         <label>Estado:</label>
                                         <select formControlName="equipo_estado_id" 
                                                 class="form-control">
-                                            <option value="" selected>Seleccionar</option>
-                                            <option value="1">Activo</option>
-                                            <option value="2">Inactivo</option>
+                                            <option [value]="estado['id']" *ngFor="let estado of equipos_estados">{{ estado['nombre']}}</option>
                                         </select>
                                         <label class="error mt-2 text-danger" 
                                                for="equipo_estado_id" 
@@ -148,7 +149,7 @@
                             <div class="form-group">
                                 <label for="">Imágen:</label>
                                 <div>
-                                    <img *ngIf="!imagesSubirService.imgTemp" [src]="imagen_servidor | imagen" alt="" width="200px">
+                                    <img *ngIf="!imagesSubirService.imgTemp" [src]="imagen_servidor | imagen:'thumb'" alt="" width="200px">
                                     <img *ngIf="imagesSubirService.imgTemp" [src]="imagesSubirService.imgTemp" alt="" width="200px">
                                 </div>
                                 <input type="file"
@@ -157,12 +158,9 @@
                                     (change)="file_imagen($event.target.files[0])">
                             </div>
                         </div>
-                        
                     
                     
                     </div>
-                    
-                
                                 
                                 
                     <button type="submit" class="btn btn-primary">Editar</button>

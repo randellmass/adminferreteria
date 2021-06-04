@@ -49,7 +49,7 @@ export class DashboardEquiposService {
   
     }  
 
-    buscar_equipos(consulta:string)
+    buscar_equipos(consulta:string,tipoArchivo:string)
     {
       
       return new Promise<any>( resolve =>{
@@ -61,7 +61,7 @@ export class DashboardEquiposService {
 
         const formData = new FormData();
         formData.append('buscarEquipo',consulta);
-
+        formData.append('tipoArchivo',tipoArchivo);
   
         this.http.post(`${ URL}/dashboard/buscar`,formData,{ headers })
         .subscribe( resp =>{

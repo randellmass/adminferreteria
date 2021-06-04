@@ -8,6 +8,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ImagenPipe } from './pipes/imagen.pipe';
 import { SubirArchivoComponent } from './subir-archivo/subir-archivo.component';
 import { EditarArchivoComponent } from './editar-archivo/editar-archivo.component';
+import { LoadingComponent } from './loading/loading.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { EditarArchivoComponent } from './editar-archivo/editar-archivo.componen
     ImagenPipe, 
     SubirArchivoComponent,
     EditarArchivoComponent,
+    LoadingComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +31,7 @@ import { EditarArchivoComponent } from './editar-archivo/editar-archivo.componen
     ImagenPipe,
     SubirArchivoComponent,
     EditarArchivoComponent,
+    LoadingComponent,
   ]
 })
 export class SharedModule { }

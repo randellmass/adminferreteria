@@ -4,7 +4,7 @@
             <div class="card-body">
                 <ul class="nav nav-tabs bg-light">
                     <li class="nav-item">
-                       <a class="nav-link" routerLink="/main/categorias/registrar"  aria-current="page" >Crear Categoria|</a>
+                       <a class="nav-link" routerLink="/main/familias/registrar"  aria-current="page" >Crear Categoria|</a>
                     </li>
                 </ul>
             </div>
@@ -31,12 +31,12 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let categoria of categorias">
-                            <td>{{ categoria['equipo_grupo_nombre'] | lowercase}}</td>
-                            <td>{{ categoria['nombre'] | lowercase}}</td>
+                            <td>{{ categoria['equipo_grupo_nombre'] | uppercase}}</td>
+                            <td>{{ categoria['nombre'] | uppercase}}</td>
                             <td *ngIf="categoria['estado_id']==1"><label class="badge badge-success">{{ categoria['estado_nombre'] | uppercase}}</label></td>
                             <td *ngIf="categoria['estado_id']==2"><label class="badge badge-danger">{{ categoria['estado_nombre'] | uppercase}}</label></td>
                             <td>
-                                <a class="btn btn-secondary btn-sm" routerLink="/main/categorias/editar/{{categoria['id']}}"><i class="mdi mdi-pencil"></i>Editar</a>
+                                <a class="btn btn-secondary btn-sm" routerLink="/main/familias/editar/{{categoria['id']}}"><i class="mdi mdi-pencil"></i>Editar</a>
                             </td>
                         </tr>
                     </tbody>

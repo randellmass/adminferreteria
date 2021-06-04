@@ -37,7 +37,32 @@ export class EquiposService {
          });
   
        }); 
+  
+    }  
+
+    listado_equipos_estados()
+    {
      
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+  
+        this.http.get(`${ URL}/equipos_estados`,{ headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+                resolve(resp['data']);
+            }else{
+                resolve(false);
+            }
+        
+         });
+  
+       }); 
   
     }  
 
@@ -128,7 +153,7 @@ export class EquiposService {
           }else{
               resolve({
                 res:false,
-                mensaje:resp['mensaje']
+                data:resp['mensaje']
               });
           }
         

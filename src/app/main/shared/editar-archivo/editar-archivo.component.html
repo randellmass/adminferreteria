@@ -22,6 +22,17 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="form-group">
+                            <label for="">Tipo:</label>
+                            <select class="form-control" formControlName="archivo_tipo_id">
+                                <option [value]="archivo_tipo['id']" *ngFor="let archivo_tipo of archivo_tipos">{{ archivo_tipo['nombre']}}</option>
+                            </select>
+                            <label class="error mt-2 text-danger" 
+                                    for="archivo_tipo_id" 
+                                    *ngIf="campoNoValido('archivo_tipo_id')">*Escoja Permiso</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
                             <label for="">Nombre Archivo:</label>
                             <input type="text" 
                                     class="form-control" 

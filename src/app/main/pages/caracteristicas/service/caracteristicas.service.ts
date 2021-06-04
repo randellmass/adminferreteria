@@ -40,7 +40,7 @@ export class CaracteristicasService {
                 resolve(
                   {
                     res:false,
-                    mensaje: resp['mensaje']
+                    data: resp['mensaje']
                   }
                 );
             }
@@ -52,8 +52,7 @@ export class CaracteristicasService {
 
     }   
 
-    //TODO: realizar crub caracteristicas
-    /*registra_familia(familia:any)
+    registra_caracteristicas(caracteristica:any)
     {
       
       return new Promise<any>( resolve =>{
@@ -63,7 +62,7 @@ export class CaracteristicasService {
           'Authorization': `Bearer ${ this.authService.token }` 
         });
 
-        this.http.post(`${ URL}/equipos_familias`, familia ,{ headers })
+        this.http.post(`${ URL}/caracteristicas`, caracteristica ,{ headers })
         .subscribe( resp =>{
           
               if(resp['res'])
@@ -74,8 +73,8 @@ export class CaracteristicasService {
                   });
               }else{
                   resolve({
-                    res:false,
-                    mensaje:resp['mensaje']
+                      res:false,
+                      data:resp['mensaje']
                   });
               }
         
@@ -85,7 +84,8 @@ export class CaracteristicasService {
 
     } 
 
-    individual_familia(familia_id: number)
+
+    editar_caracteristica(caracteristica:any,caracteristica_id:number)
     {
       
       return new Promise<any>( resolve =>{
@@ -95,40 +95,7 @@ export class CaracteristicasService {
           'Authorization': `Bearer ${ this.authService.token }` 
         });
 
-        this.http.get(`${ URL}/equipos_familias/${familia_id}`,{ headers })
-        .subscribe( resp =>{
-          
-              if(resp['res'])
-              {
-                  resolve({
-                      res:true,
-                      data: resp['data']
-                  });
-              }else{
-                  resolve({
-                    res:false,
-                    mensaje:resp['mensaje']
-                  });
-              }
-        
-          });
-
-        }); 
-      
-
-    } 
-
-    editar_categoria(familia:any,familia_id:number)
-    {
-      
-      return new Promise<any>( resolve =>{
-        
-        const headers = new HttpHeaders({
-          'Accept': 'application/json', 
-          'Authorization': `Bearer ${ this.authService.token }` 
-        });
-
-        this.http.put(`${ URL}/equipos_familias/${ familia_id }`, familia ,{ headers })
+        this.http.put(`${ URL}/caracteristicas/${ caracteristica_id }`, caracteristica ,{ headers })
         .subscribe( resp =>{
           
                 if(resp['res'])
@@ -139,8 +106,8 @@ export class CaracteristicasService {
                     });
                 }else{
                     resolve({
-                      res:false,
-                      mensaje:resp['mensaje']
+                        res:false,
+                        data:resp['mensaje']
                     });
                 }
         
@@ -150,72 +117,5 @@ export class CaracteristicasService {
 
     } 
 
-    registra_familia_items(items:any)
-    {
-      
-      return new Promise<any>( resolve =>{
-        
-        const headers = new HttpHeaders({
-          'Accept': 'application/json', 
-          'Authorization': `Bearer ${ this.authService.token }` 
-        });
-
-        this.http.post(`${ URL}/equipos_familias/items`, items ,{ headers })
-        .subscribe( resp =>{
-          
-              if(resp['res'])
-              {
-                  resolve({
-                      res:true,
-                      data:resp['data']
-                  });
-              }else{
-                  resolve({
-                    res:false,
-                    mensaje:resp['mensaje']
-                  });
-              }
-        
-          });
-
-        }); 
-
-    } 
-
-    eliminar_familias_items(familia_id:number,item_id:number)
-    {
-      
-      return new Promise<any>( resolve =>{
-        
-        const headers = new HttpHeaders({
-          'Accept': 'application/json', 
-          'Authorization': `Bearer ${ this.authService.token }` 
-        });
-
-        this.http.get(`${ URL}/equipos_familias/items/destroy/${ familia_id }/${ item_id}`,{ headers })
-        .subscribe( resp =>{
-          
-            if(resp['res'])
-            {
-                resolve(
-                  {
-                    res:true,
-                    data: resp['data']
-                  }
-                );
-            }else{
-                resolve(
-                  {
-                    res:false,
-                    mensaje: resp['mensaje']
-                  }
-                );
-            }
-        
-          });
-
-        }); 
-      
-
-    } */
+   
 }

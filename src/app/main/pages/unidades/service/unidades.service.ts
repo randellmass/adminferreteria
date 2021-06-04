@@ -39,7 +39,7 @@ export class UnidadesService {
                 resolve(
                   {
                     res:false,
-                    mensaje: resp['mensaje']
+                    data: resp['mensaje']
                   }
                 );
             }
@@ -47,7 +47,70 @@ export class UnidadesService {
           });
 
         }); 
+    }
+    
+    registra_unidad(unidad:any)
+    {
       
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
 
-    }   
+        this.http.post(`${ URL}/unidades`, unidad ,{ headers })
+        .subscribe( resp =>{
+          
+              if(resp['res'])
+              {
+                  resolve({
+                      res:true,
+                      data: resp['data']
+                  });
+              }else{
+                  resolve({
+                      res:false,
+                      data:resp['mensaje']
+                  });
+              }
+        
+          });
+
+        }); 
+
+    } 
+
+
+    editar_unidad(unidad:any,unidad_id:number)
+    {
+      
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+
+        this.http.put(`${ URL}/unidades/${ unidad_id }`, unidad ,{ headers })
+        .subscribe( resp =>{
+          
+                if(resp['res'])
+                {
+                    resolve({
+                        res:true,
+                        data: resp['data']
+                    });
+                }else{
+                    resolve({
+                        res:false,
+                        data:resp['mensaje']
+                    });
+                }
+        
+          });
+
+        }); 
+
+    } 
 }

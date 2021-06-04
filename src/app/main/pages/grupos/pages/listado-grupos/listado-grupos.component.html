@@ -30,7 +30,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let grupo of grupos">
-                            <td>{{ grupo['nombre'] | lowercase}}</td>
+                            <td>{{ grupo['nombre'] | uppercase}}</td>
                             <td *ngIf="grupo['estado_id']==1"><label class="badge badge-success">{{ grupo['estado_nombre'] | uppercase}}</label></td>
                             <td *ngIf="grupo['estado_id']==2"><label class="badge badge-danger">{{ grupo['estado_nombre'] | uppercase}}</label></td>
                             <td>

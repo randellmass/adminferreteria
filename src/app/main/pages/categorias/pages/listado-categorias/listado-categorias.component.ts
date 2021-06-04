@@ -9,9 +9,9 @@ import { CategoriasService } from '../../services/categorias.service';
 })
 export class ListadoCategoriasComponent implements OnInit, AfterViewChecked {
 
-  categorias:any = [];
-  errors:any=[];
-  loading:boolean = false;
+      categorias:any = [];
+      errors:any=[];
+      loading:boolean = false;
 
       constructor(private categoriasService:CategoriasService) { }
 

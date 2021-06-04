@@ -11,19 +11,19 @@
                 
                             <tbody>
                                 <tr>
-                                    <td>Código Siesa:</td>
+                                    <td><strong>Código Siesa:</strong></td>
                                     <td>{{ equipo['codificacion']}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Descripción:</td>
+                                    <td><strong>Descripción:</strong></td>
                                     <td>{{ equipo['nombre'] | uppercase}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Referencia:</td>
+                                    <td><strong>Referencia:</strong></td>
                                     <td>{{ equipo['modelo']}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Serie:</td>
+                                    <td><strong>Serie:</strong></td>
                                     <td>{{ equipo['serie']}}</td>
                                 </tr>
                                 
@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-6">
                         <h4 class="card-subtitle">Imágen</h4>
-                         <img [ngStyle]="{width: '250px'}" [src]="equipo['imagen'] | imagen" alt="" class="img">   
+                         <img [ngStyle]="{width: '400px'}" [src]="equipo['imagen'] | imagen" alt="" class="img img-thumbnail">   
                     </div>
                 </div>
             </div>

@@ -33,7 +33,7 @@
                             <td align="center">
                                 <img [src]="fabricante['imagen'] | imagen" class="img-md" alt="">
                             </td>
-                            <td>{{ fabricante['nombre'] | lowercase}}</td>
+                            <td>{{ fabricante['nombre'] | uppercase}}</td>
                             <td>
                                 <a class="btn btn-secondary btn-sm" routerLink="/main/fabricantes/editar/{{fabricante['id']}}"><i class="mdi mdi-pencil"></i>Editar</a>
                             </td>

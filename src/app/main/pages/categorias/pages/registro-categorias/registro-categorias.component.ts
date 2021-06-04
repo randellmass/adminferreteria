@@ -53,7 +53,7 @@ export class RegistroCategoriasComponent implements OnInit {
       
       if(registro['res']){
         this.form_categoria.reset();
-        this.router.navigateByUrl('main/categorias');
+        this.router.navigateByUrl('main/familias');
       }
   }
 

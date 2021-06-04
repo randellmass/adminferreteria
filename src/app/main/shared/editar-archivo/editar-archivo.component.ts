@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { ArchivosTiposService } from '../../pages/archivos-tipos/service/archivos-tipos.service';
 import { UsuariosService } from '../../pages/usuarios/services/usuarios.service';
 import { FilesSubirService } from '../service/files-subir.service';
 
@@ -19,10 +20,12 @@ export class EditarArchivoComponent implements OnInit {
 
     form_file:FormGroup = this.fb.group({
       roles: ['',Validators.required],
+      archivo_tipo_id: ['',Validators.required],
       nombre: ['',[Validators.required,Validators.minLength(3)]],
     });
 
     roles:any =[];
+    archivo_tipos:any =[];
     loading:boolean = true;
     errors:any =[];
     archivos:any=[];
@@ -30,7 +33,8 @@ export class EditarArchivoComponent implements OnInit {
 
     constructor(private fb:FormBuilder,
               private usuariosService:UsuariosService,
-              private filesSubirService:FilesSubirService) { }
+              private filesSubirService:FilesSubirService,
+              private archivosTiposService:ArchivosTiposService) { }
 
     ngOnInit(): void {
       this.cargarSelectInicial();
@@ -45,15 +49,20 @@ export class EditarArchivoComponent implements OnInit {
   
       this.loading=true;
         this.roles = await this.usuariosService.listado_roles();
+        const FileTypes = await this.archivosTiposService.listado_archivo_tipos();
+        this.archivo_tipos = FileTypes['data'];
+
         this.archivo_editar = await this.filesSubirService.ver_file(this.modelo,this.modelo_id,this.archivo_id);
-        this.cargar_form_data();
+        const permisos = this.archivo_editar['data']['permisos'].map( (rol_id:any) => parseInt(rol_id));
+        this.cargar_form_data(permisos);
       this.loading=false;
       
     }
 
-    cargar_form_data(){
+    cargar_form_data(permisos:any){
        this.form_file.reset({
-           roles:this.archivo_editar['data']['permisos'],
+           roles:permisos,
+           archivo_tipo_id:this.archivo_editar['data']['file_type_id'],
            nombre:this.archivo_editar['data']['nombre']}
        );
     }
@@ -69,6 +78,7 @@ export class EditarArchivoComponent implements OnInit {
                                                               this.modelo_id,
                                                               this.archivo_id,
                                                               this.form_file.get('roles').value,
+                                                              this.form_file.get('archivo_tipo_id').value,
                                                               this.form_file.get('nombre').value)
         
         if (editar['res'])

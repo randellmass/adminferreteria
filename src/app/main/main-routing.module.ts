@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main.component';
 
+import { AdminGuard } from '../guards/admin.guard';
+import { UsuariosGuard } from '../guards/usuarios.guard';
+
 const routes: Routes = [
     {
       path:'', component:MainComponent,
@@ -12,26 +15,42 @@ const routes: Routes = [
         },
         { 
           path: 'fabricantes',
+          canLoad: [UsuariosGuard],
           loadChildren: () => import('./pages/fabricantes/fabricantes.module').then(m =>m.FabricantesModule)
         },
         { 
           path: 'equipos',
+          canLoad: [UsuariosGuard], 
           loadChildren: () => import('./pages/equipos/equipos.module').then(m =>m.EquiposModule)
         },
         { 
           path: 'usuarios',
+          canLoad: [AdminGuard],
           loadChildren: () => import('./pages/usuarios/usuarios.module').then(m =>m.UsuariosModule)
         },
         { 
           path: 'grupos',
+          canLoad: [UsuariosGuard],
           loadChildren: () => import('./pages/grupos/grupos.module').then(m =>m.GruposModule)
         },
         { 
-          path: 'categorias',
+          path: 'familias',
+          canLoad: [UsuariosGuard],
           loadChildren: () => import('./pages/categorias/categorias.module').then(m =>m.CategoriasModule)
         },
         { 
-          path: 'familias',
+          path: 'caracteristicas',
+          canLoad: [UsuariosGuard], 
+          loadChildren: () => import('./pages/caracteristicas/caracteristicas.module').then(m =>m.CaracteristicasModule)
+        },
+        { 
+          path: 'unidades',
+          canLoad: [UsuariosGuard], 
+          loadChildren: () => import('./pages/unidades/unidades.module').then(m =>m.UnidadesModule)
+        },
+        { 
+          path: 'categorias',
+          canLoad: [UsuariosGuard], 
           loadChildren: () => import('./pages/familias/familias.module').then(m =>m.FamiliasModule)
         },
         {

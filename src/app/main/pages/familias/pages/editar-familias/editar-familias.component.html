@@ -57,7 +57,7 @@
                             <div class="col-md-6">
                                 <label for="">Imágen:</label>
                                 <div>
-                                    <img *ngIf="!imagesSubirService.imgTemp" [src]="imagen_servidor | imagen" alt="" width="200px">
+                                    <img *ngIf="!imagesSubirService.imgTemp" [src]="imagen_servidor | imagen:'thumb'" alt="" width="200px">
                                     <img *ngIf="imagesSubirService.imgTemp" [src]="imagesSubirService.imgTemp" alt="" width="200px">
                                 </div>
                                 <input type="file"

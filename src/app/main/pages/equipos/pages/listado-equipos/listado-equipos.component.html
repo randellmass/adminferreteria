@@ -29,8 +29,9 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-subtitle">Equipos</h4>
+                <app-loading *ngIf="loading"></app-loading>
                 
-                <table class="table table-bordered table-hover table-responsive" *ngIf="equipos">
+                <table class="table table-bordered table-hover table-responsive" *ngIf="equipos && !loading" >
                     <thead>
                         <tr>
                             <th>Imágen</th>
@@ -38,6 +39,7 @@
                             <th>Descripción Siesa</th>
                             <th>Ref.Siesa</th>
                             <th>Serie</th>
+                            <th>Comparte</th>
                             <th>Estado</th>
                             <th>Opción</th>
                         </tr>
@@ -45,19 +47,22 @@
                     <tbody>
                         <tr *ngFor="let equipo of equipos">
                             <td>
-                                <img [src]="equipo['imagen'] | imagen" class="img-md" [alt]="equipo['modelo']">
+                                <img [src]="equipo['imagen'] | imagen:'thumb'" class="img-md" [alt]="equipo['modelo']">
                             </td>
                             <td>{{ equipo['codificacion'] | uppercase}}</td>
                             <td >{{ equipo['nombre'] | uppercase}}</td>
                             <td>{{ equipo['modelo'] | uppercase}}</td>
                             <td>{{ equipo['serie'] | uppercase}}</td>
-                            <td *ngIf="equipo['equipo_estado_id']==1"><label class="badge badge-success">{{ equipo['equipo_estado_nombre'] | uppercase}}</label></td>
-                            <td *ngIf="equipo['equipo_estado_id']==2"><label class="badge badge-danger">{{ equipo['equipo_estado_nombre'] | uppercase}}</label></td>
+                            <td>{{ equipo['user_reg_nombre'] | uppercase}}</td>
+                            <td *ngIf="equipo['equipo_estado_id']==2"><label class="badge badge-success">{{ equipo['equipo_estado_nombre'] | uppercase}}</label></td>
+                            <td *ngIf="equipo['equipo_estado_id']==1"><label class="badge badge-warning">{{ equipo['equipo_estado_nombre'] | uppercase}}</label></td>
+                            <td *ngIf="equipo['equipo_estado_id']==3"><label class="badge badge-danger">{{ equipo['equipo_estado_nombre'] | uppercase}}</label></td>
                        
                             <td>
                                <a class="btn btn-secondary mb-2" routerLink="/main/equipos/editar/{{equipo['id']}}"><i class="mdi mdi-pencil"></i>Editar</a>&nbsp;
                                <a class="btn btn-secondary mb-2" routerLink="/main/equipos/archivos/{{equipo['id']}}"><i class="mdi mdi-pencil"></i>Archivos</a>&nbsp;
-                               <a class="btn btn-secondary" routerLink="/main/equipos/caracteristica/{{equipo['id']}}"><i class="mdi mdi-pencil"></i>Caracteristicas</a>
+                               <a class="btn btn-secondary mb-2" routerLink="/main/equipos/caracteristica/{{equipo['id']}}"><i class="mdi mdi-pencil"></i>Caracteristicas</a>&nbsp;
+                               <a routerLink="/main/dashboard/detalle/{{equipo['id']}}" class="btn btn-secondary" ><i class="mdi mdi-television"></i>VistaDetalle</a>
                             </td>
                         </tr>
                     </tbody>

@@ -27,6 +27,7 @@
                     <thead class="thead-inverse">
                         <tr>
                             <th>Nombre</th>
+                            <th>Tipo Archivo</th>
                             <th>Permiso Ver</th>
                             <th>Opcion</th>
                         </tr>
@@ -34,6 +35,7 @@
                         <tbody>
                             <tr *ngFor="let archivo of archivos">
                                 <td scope="row"><a [href]="archivo['url']|imagen" target="_blank" >{{ archivo['nombre']}}</a></td>
+                                <td>{{ archivo['file_type_nombre']}}</td>
                                 <td>
                                     <div *ngFor="let permiso of archivo['permisos']">
                                         {{ permiso['permiso_nombre']}}
