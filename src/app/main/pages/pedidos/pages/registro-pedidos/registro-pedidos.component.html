@@ -1,0 +1,189 @@
+<div class="card mb-2">
+    <div class="card-body">
+        <h4 class="card-subtitle">Filtrar Tercero</h4>
+            <form class="d-flex" [formGroup]="form_buscar_tercero" (ngSubmit)="buscar_tercero()">
+                <input class="form-control me-2"
+                    formControlName="buscarTercero"
+                    type="search" 
+                    placeholder="Buscar" aria-label="Search">
+                <button class="btn btn-outline-primary"
+                        type="submit">Buscar</button>
+            </form>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-subtitle">Registro pedido</h4>
+
+        <form class="cmxform" (ngSubmit)="agregar_pedido()" [formGroup]="formPedido" >
+            <fieldset>
+
+
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Documento:</label>
+                            <input type="text" 
+                                    class="form-control" 
+                                    formControlName="documento">
+                            <label class="error mt-2 text-danger" 
+                                for="documento" 
+                            *ngIf="campoNoValido('documento')">*Digite documento: </label>
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Terceros:</label>
+                            <select class="form-control" formControlName="tercero_id">
+                                <option value="" selected>*Escoja tercero</option>
+                                <option [value]="tercero['id']" *ngFor="let tercero of terceros">{{ tercero['documento']}} - {{ tercero['nombre']}}</option>
+                            </select>
+                            <label class="error mt-2 text-danger" 
+                                for="tercero_id" 
+                            *ngIf="campoNoValido('tercero_id')">*Escoja tercero: </label>
+                        </div>
+                        
+                    </div>
+
+
+                </div>
+                    
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Observacion:</label>
+                            <input type="text" 
+                                    class="form-control" 
+                                    formControlName="observacion">
+              
+                        </div>
+                        
+                    </div>
+       
+                </div>
+
+                <div class="row">    
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="">Fecha Recibido:</label>
+                            <input type="date" 
+                                    class="form-control" 
+                                    formControlName="fecha_recibido">
+                            <label class="error mt-2 text-danger" 
+                                    for="fecha_recibido" 
+                                *ngIf="campoNoValido('fecha_recibido')">*Digite Fecha: </label>
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="">Fecha Entrega:</label>
+                            <input type="date" 
+                                    class="form-control" 
+                                    formControlName="fecha_entrega">
+              
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="row">    
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="">Op Ensamble:</label>
+                            <input type="text" 
+                                    class="form-control" 
+                                    formControlName="op_ensamble">
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="">Op Laminado:</label>
+                            <input type="text" 
+                                    class="form-control" 
+                                    formControlName="op_laminado">
+              
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="row">    
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="">Op Serpertin</label>
+                            <input type="text" 
+                                    class="form-control" 
+                                    formControlName="op_serpertin">
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="">Op Electrica:</label>
+                            <input type="text" 
+                                    class="form-control" 
+                                    formControlName="op_electrica">
+              
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="">Op Refri:</label>
+                            <input type="text" 
+                                    class="form-control" 
+                                    formControlName="op_refri">
+              
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="">Vendedor:</label>
+                            <select class="form-control" formControlName="vendedor">
+                                <option value="" selected>*Escoja Vendedor</option>
+                                <option [value]="vendedor['id']" *ngFor="let vendedor of vendedores">{{ vendedor['email']}}</option>
+                            </select>
+                            <label class="error mt-2 text-danger" 
+                                for="vendedor" 
+                            *ngIf="campoNoValido('vendedor')">*Escoja Vendedor: </label>
+                        </div>
+                        
+                    </div>
+       
+                </div>
+            
+                <button type="submit" class="btn btn-primary">Agregar</button>
+            </fieldset>
+        </form>
+
+        <div class="row mt-5" *ngIf="errors.length>0">
+            <div class="col-12">
+                <div class="alert alert-danger " role="alert">
+                    <ul>
+                        <li *ngFor="let error of errors" >{{ error }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -30,6 +30,10 @@ export class SidebarComponent implements OnInit {
             {
                "nombre":"Listado Equipos",
                "url":"/main/dashboard"
+            },
+            {
+               "nombre":"PedidoProduccion",
+               "url":"/main/dashboard/pedido"
             }
           ]
       },
@@ -44,6 +48,14 @@ export class SidebarComponent implements OnInit {
             {
                "nombre":"Categorias",
                "url":"/main/categorias"
+            },
+            {
+               "nombre":"Terceros",
+               "url":"/main/tercero"
+            },
+            {
+               "nombre":"Pedidos",
+               "url":"/main/pedidos"
             }
           ]
       },
@@ -88,6 +100,10 @@ export class SidebarComponent implements OnInit {
             {
                "nombre":"Listado Equipos",
                "url":"/main/dashboard"
+            },
+            {
+               "nombre":"PedidoProduccion",
+               "url":"/main/dashboard/pedido"
             }
           ]
       },
@@ -102,6 +118,14 @@ export class SidebarComponent implements OnInit {
             {
                "nombre":"Categorias",
                "url":"/main/categorias"
+            },
+            {
+               "nombre":"Terceros",
+               "url":"/main/tercero"
+            },
+            {
+               "nombre":"Pedidos",
+               "url":"/main/pedidos"
             }
           ]
       },
@@ -138,6 +162,10 @@ export class SidebarComponent implements OnInit {
             {
                "nombre":"Listado Equipos",
                "url":"/main/dashboard"
+            },
+            {
+               "nombre":"PedidoProduccion",
+               "url":"/main/dashboard/pedido"
             }
           ]
       }

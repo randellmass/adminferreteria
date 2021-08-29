@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { EquiposDetallesComponent } from './pages/equipos-detalles/equipos-detalles.component';
 import { EquiposListadoComponent } from './pages/equipos-listado/equipos-listado.component';
+import { VercomercialPedidoComponent } from './pages/vercomercial-pedido/vercomercial-pedido.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,9 @@ const routes: Routes = [
       },
       {
         path:'detalle/:id', component:EquiposDetallesComponent
+      },
+      {
+        path:'pedido', component:VercomercialPedidoComponent
       },
       {
         path:'', redirectTo:'listado'

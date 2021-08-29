@@ -1,0 +1,120 @@
+<div class="row">
+    <div class="col-10">
+
+        <div class="row mb-2">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-subtitle">Pedido</h4>
+                        <table *ngIf="pedido" class="table table-bordered table-hover table-responsive">
+                            <tr>
+                                <td>Documento:</td>
+                                <td>{{ pedido['documento']}}</td>
+                                <td>Estado:</td>
+                                <td>{{ pedido['pedidoestado_nombre']}}</td>
+                            </tr>
+                            <tr>
+                                <td>F.Entrega:</td>
+                                <td>{{ pedido['fecha_entrega']}}</td>
+                                <td>F.Recibido:</td>
+                                <td>{{ pedido['fecha_recibido']}}</td>
+                            </tr>
+                            <tr>
+                                <td>Fecha actual:</td>
+                                <td>{{ pedido['fecha_actual'] }}</td>
+                                <td>Dias Entrega:</td>
+                                <td>{{ pedido['dias_entrega']}}</td>
+                            </tr>
+
+                            <tr>
+                                <td>Op ensamble:</td>
+                                <td>{{ pedido['op_ensamble']}}</td>
+                                <td>Op laminado:</td>
+                                <td>{{ pedido['op_laminado']}}</td>
+                            </tr>
+
+                            <tr>
+                                <td>Op serpertin:</td>
+                                <td>{{ pedido['op_serpertin']}}</td>
+                                <td>Op electrica:</td>
+                                <td>{{ pedido['op_electrica']}}</td>
+                            </tr>
+
+                            <tr>
+                                <td>Op refri:</td>
+                                <td>{{ pedido['op_refri']}}</td>
+                                <td>Observacion:</td>
+                                <td>{{ pedido['observacion']}}</td>
+                            </tr>
+                            
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        
+                        <table *ngIf="!loading" class="table table-bordered table-hover table-responsive">
+                            <tr>
+                                <td>Cliente:</td>
+                                <td>{{ pedido['tercero_documento']}} - {{ pedido['tercero_nombre']}}</td>
+                            </tr>
+
+                            <tr>
+                                <td>Asesor:</td>
+                                <td>{{ pedido['vendedor_email']}}</td>
+                            </tr>
+
+                        </table>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        
+                        <table *ngIf="!loading" class="table table-bordered table-hover table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Cantidad</th>
+                                    <th>No.Solidwork</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of ordenes">
+                                    <td>{{ item['equipo_codificacion']}} - {{ item['equipo_modelo']}} -{{ item['equipo_nombre']}}</td>
+                                    <td>{{ item['cantidad']}}</td>
+                                    <td>{{ item['solidwork']}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+    </div>
+
+
+
+</div>
+
+
+
+
+

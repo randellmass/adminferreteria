@@ -1,0 +1,81 @@
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-subtitle">Editar Tercero</h4>
+
+        <form class="cmxform" (ngSubmit)="editar_tercero()" [formGroup]="formTercero" >
+            <fieldset>
+
+
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Documento:</label>
+                            <input type="text" 
+                                    class="form-control" 
+                                    formControlName="documento">
+                            <label class="error mt-2 text-danger" 
+                                for="documento" 
+                            *ngIf="campoNoValido('documento')">*Digite documento: </label>
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Nombre:</label>
+                            <input type="text" 
+                                    class="form-control" 
+                                    formControlName="nombre">
+                            <label class="error mt-2 text-danger" 
+                                for="nombre" 
+                            *ngIf="campoNoValido('nombre')">*Digite nombre: </label>
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Email:</label>
+                            <input type="text" 
+                                    class="form-control" 
+                                    formControlName="email">
+              
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Celular:</label>
+                            <input type="text" 
+                                    class="form-control" 
+                                    formControlName="celular">
+              
+                        </div>
+                        
+                    </div>
+       
+                </div>
+            
+                <button type="submit" class="btn btn-primary">Editar</button> |
+                &nbsp;
+                <button type="button" class="btn btn-inverse-secundary" (click)="cancelar_editar()">Cancelar</button>
+
+            </fieldset>
+        </form>
+
+        <div class="row mt-5" *ngIf="errors.length>0">
+            <div class="col-12">
+                <div class="alert alert-danger " role="alert">
+                    <ul>
+                        <li *ngFor="let error of errors" >{{ error }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

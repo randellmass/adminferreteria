@@ -1,0 +1,98 @@
+<div class="row">
+    <div class="col-8">
+
+        <div class="row mb-2">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-subtitle">Pedidos Producción</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="d-flex" [formGroup]="formBuscarPedido" (ngSubmit)="buscar_pedido()">
+                            <input class="form-control me-2"
+                                formControlName="buscarPedido"
+                                type="search" 
+                                placeholder="Buscar Pedidos" aria-label="Search">
+                            <button class="btn btn-outline-primary"
+                                    type="submit">Buscar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        
+                        <table *ngIf="!loading" class="table table-bordered table-hover table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Documento</th>
+                                    <th>Descripición</th>
+                                    <th>Estado</th>
+                                    <th>Opción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let pedido of pedidos">
+                                    <td>{{ pedido['documento']}}</td>
+                                    <td>
+                                        <div class="mb-2"><strong>Cliente:</strong>&nbsp;{{ pedido['tercero_documento']}} - {{ pedido['tercero_nombre']}}</div>
+                                        <div class="mb-2"><strong>F.Recibido:</strong>&nbsp;{{ pedido['fecha_recibido']}}</div>
+                                        <div class="mb-2"><strong>F.Entrega:</strong>&nbsp;{{ pedido['fecha_entrega']}}</div>
+                                        <div class="mb-2"><strong>Dias Entrega:</strong>&nbsp;{{ pedido['dias_entrega']}}</div>
+                                        <div class="mb-2"><strong>Vendedor:</strong>&nbsp;{{ pedido['vendedor_email']}}</div>
+                                    </td>
+                                    <td>
+                                        {{ pedido['pedidoestado_nombre']}}
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <button type="button" class="btn btn-inverse-dark mb-2" (click)="editar_pedido(pedido)">Editar</button>
+                                        </div>
+                                        <div>
+                                            <button type="button" class="btn btn-inverse-primary mb-2" (click)="ordenes_pedido(pedido)">Items</button>
+                                        </div>
+                                        <div>
+                                            <button type="button" class="btn btn-inverse-success" (click)="ver_pedido(pedido)">Ver+</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="row mt-5" *ngIf="errors.length>0">
+                            <div class="col-12">
+                            <div class="alert alert-danger " role="alert">
+                                <ul>
+                                    <li *ngFor="let error of errors" >{{ error }}</li>
+                                </ul>
+                            </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-4">
+        <app-registro-pedidos [pedidos_array] = "pedidos" *ngIf="!loading && operacion =='guardar'" (pedido_nuevo)="pedidos = $event"></app-registro-pedidos>
+        <app-editar-pedidos [pedido_id]="pedido_id" [pedidos_array] = "pedidos" *ngIf="!loading && operacion =='editar'" (pedido_nuevo)="pedidos = $event" (operacion_form)="operacion = $event"></app-editar-pedidos>
+    </div>
+
+</div>
+
+
+

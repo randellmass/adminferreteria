@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-8">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-subtitle">Terceros</h4>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="row mt-2">
+    <div class="col-8">
+
+        <div class="card">
+            <div class="card-body">
+                
+                <table *ngIf="!loading" class="table table-bordered table-hover table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Documento</th>
+                            <th>Nombre</th>
+                            <th>Opción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tercero of terceros">
+                            <td>{{ tercero['documento']}}</td>
+                            <td>{{ tercero['nombre']}}</td>
+                            <td>
+                                <button type="button" class="btn btn-secundary" (click)="editar_tercero(tercero)">Editar </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="row mt-5" *ngIf="errors.length>0">
+                    <div class="col-12">
+                      <div class="alert alert-danger " role="alert">
+                         <ul>
+                             <li *ngFor="let error of errors" >{{ error }}</li>
+                         </ul>
+                      </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+       
+    </div>
+    <div class="col-4">
+        <app-registro-terceros [terceros_array] ="terceros" *ngIf="!loading && operacion =='guardar'" (tercero_form)="terceros = $event"></app-registro-terceros>
+        <app-editar-terceros [tercero_id]="tercero_id" [terceros_array] ="terceros" *ngIf="!loading && operacion =='editar'" (tercero_form)="terceros = $event" (operacion_form)="operacion = $event"></app-editar-terceros>
+    </div>
+
+</div>
+
+

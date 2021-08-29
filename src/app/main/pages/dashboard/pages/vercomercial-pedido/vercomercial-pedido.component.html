@@ -1,0 +1,138 @@
+<div class="row">
+    <div class="col-8">
+
+        <div class="row mb-2">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-subtitle">Pedidos Producción</h4>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="pedido != null">
+            <div class="col-12">
+                     
+                <div class="row mb-2">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-subtitle">Pedido</h4>
+                                <table *ngIf="pedido" class="table table-bordered table-hover table-responsive">
+                                    <tr>
+                                        <td>Documento:</td>
+                                        <td>{{ pedido['documento']}}</td>
+                                        <td>Estado:</td>
+                                        <td>{{ pedido['pedidoestado_nombre']}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>F.Entrega:</td>
+                                        <td>{{ pedido['fecha_entrega']}}</td>
+                                        <td>F.Recibido:</td>
+                                        <td>{{ pedido['fecha_recibido']}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fecha actual:</td>
+                                        <td>{{ pedido['fecha_actual']}}</td>
+                                        <td>Dias Entrega:</td>
+                                        <td>{{ pedido['dias_entrega']}}</td>
+                                    </tr>
+                                    
+                                </table>
+                            </div>
+        
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="row mb-2">
+                    <div class="col-12">
+        
+                        <div class="card">
+                            <div class="card-body">
+                                
+                                <table *ngIf="!loading" class="table table-bordered table-hover table-responsive">
+                                    <tr>
+                                        <td>Cliente:</td>
+                                        <td>{{ pedido['tercero_documento']}} - {{ pedido['tercero_nombre']}}</td>
+                                    </tr>
+        
+                                    <tr>
+                                        <td>Asesor:</td>
+                                        <td>{{ pedido['vendedor_email']}}</td>
+                                    </tr>
+        
+                                </table>
+                                
+                            </div>
+                        </div>
+        
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <div class="col-12">
+        
+                        <div class="card">
+                            <div class="card-body">
+                                
+                                <table *ngIf="!loading" class="table table-bordered table-hover table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th>Item</th>
+                                            <th>Cantidad</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of pedido['ordenes']">
+                                            <td>{{ item['equipo_codificacion']}} - {{ item['equipo_modelo']}} -{{ item['equipo_nombre']}}</td>
+                                            <td>{{ item['cantidad']}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                            </div>
+                        </div>
+        
+                    </div>
+                </div>
+   
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-subtitle">Filtrar Pedido</h4>
+                    <form class="d-flex" [formGroup]="formBuscarPedido" (ngSubmit)="buscar_pedido()">
+                        <input class="form-control me-2"
+                            formControlName="buscarPedido"
+                            type="search" 
+                            placeholder="Buscar" aria-label="Search">
+                        <button class="btn btn-outline-primary"
+                                type="submit">Buscar</button>
+                    </form>
+
+                    <div class="row mt-5" *ngIf="errors.length>0">
+                        <div class="col-12">
+                            <div class="alert alert-danger " role="alert">
+                                <ul>
+                                    <li *ngFor="let error of errors" >{{ error }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
