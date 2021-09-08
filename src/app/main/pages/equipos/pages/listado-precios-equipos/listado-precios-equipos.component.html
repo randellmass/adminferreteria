@@ -1,0 +1,65 @@
+<div class="row mt-2">
+    <div class="col-8">
+
+        <div class="card" *ngIf="equipo">
+            <div class="card-body">
+                <h4 class="card-subtitle">Equipo</h4>
+
+                <div class="row mt-2">
+                    <div class="col-4">
+                        <div [ngStyle]="{width: '200px'}" >
+                            <img [src]="equipo['imagen'] | imagen" [alt]="equipo['nombre']" class="img img-thumbnail">
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <table class="table table-responsive">
+                   
+                            <tbody >
+                                <tr>
+                                    <td scope="row">Nombre:</td>
+                                    <td>{{ equipo['nombre'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Estado:</td>
+                                    <td>{{ equipo['equipo_estado_nombre'] }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        
+        <div class="card mt-3">
+            <div class="card-body">
+                <h4 class="card-subtitle">Listado Costos</h4>
+                <table class="table table-bordered table-inverse table-responsive">
+                    <thead class="thead-inverse">
+                        <tr >
+                            <th>Costo</th>
+                            <th>venta</th>
+                            <th>Opcion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let costo of costos">
+                            <td>{{ costo['valor_costo'] | number}}</td>
+                            <td>{{ costo['valor_venta'] | number}}</td>
+                            <td>
+                                <button type="button" class="btn btn-inverse-danger" (click)="eliminar_costo(costo)">Quitar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                        
+                </table>
+            </div>
+        </div>
+   
+    </div>
+
+    <div class="col-4">
+        <app-registro-precios-equipos [equipo_id]="equipo['id']" [costos_arr]="costos" *ngIf="!loading && operacion =='guardar'" (costo_form)="costos = $event"></app-registro-precios-equipos>
+    </div>
+ 

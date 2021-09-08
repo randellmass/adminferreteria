@@ -1,0 +1,36 @@
+<div class="row mt-2">
+    <div class="col-8">
+
+        
+        <div class="card mt-3">
+            <div class="card-body">
+                <h4 class="card-subtitle">Listado Principal por capacidades</h4>
+                <table class="table table-bordered table-inverse table-responsive">
+                    <thead class="thead-inverse">
+                        <tr >
+                            <th>Capacidad</th>
+                            <th>Estado</th>
+                            <th>Opcion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of lpMateriales">
+                            <td>{{ item['capacidad']['valor'] | number }}</td>
+                            <td>{{ item['estado']['nombre']}}</td>
+                            <td>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                        
+                </table>
+            </div>
+        </div>
+   
+    </div>
+
+    <div class="col-4">
+        <app-registro-lpmaterial [lpMateriales_arr]="lpMateriales" *ngIf="!loading && operacion =='guardar'" (lpMaterial_form)="lpMateriales = $event"></app-registro-lpmaterial>
+    </div>
+ 
+

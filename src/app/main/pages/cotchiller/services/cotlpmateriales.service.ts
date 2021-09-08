@@ -1,126 +1,93 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 
 const URL = environment.URL;
 
 @Injectable({
   providedIn: 'root'
 })
-export class EquiposCaracteristicasService {
+export class CotlpmaterialesService {
 
-  constructor(private http:HttpClient,
-              private authService:AuthService) { }
-
-    subir_caracteristica(equipo_id:string,caracteristica:any)
+  
+    constructor(private http:HttpClient,
+                private authService:AuthService) { }
+      
+    index()
     {
-
+                 
           return new Promise<any>( resolve =>{
-
-              const headers = new HttpHeaders({
+            
+            const headers = new HttpHeaders({
               'Accept': 'application/json', 
               'Authorization': `Bearer ${ this.authService.token }` 
-              });
-
-                this.http.post(`${ URL}/equipos/caracteristica/store/${ equipo_id }`, caracteristica ,{ headers })
-                .subscribe( resp =>{
-
-                      if(resp['res'])
+            });
+      
+            this.http.get(`${ URL}/cot_lp_capacidades`,{ headers })
+            .subscribe( resp =>{
+              
+                if(resp['res'])
+                {
+                    resolve(
                       {
-                          resolve(
-                          {
-                            res:true,
-                            data:resp['data']
-                          });
-                      }else{
-                          resolve(
-                          {
-                            res:false,
-                            data:resp['mensaje']
-                          });
+                        res:true,
+                        data: resp['data']
                       }
-
-                });
-
-          }); 
-
+                    );
+                }else{
+                    resolve(
+                      {
+                        res:false,
+                        data: resp['mensaje']
+                      }
+                    );
+                }
+            
+              });
+      
+            }); 
+      
     } 
 
-    update_caracteristica(equipo_id:string,caracteristica:any,caract_id:any)
+    show(listado_id:any)
     {
-
+                 
           return new Promise<any>( resolve =>{
-
-              const headers = new HttpHeaders({
+            
+            const headers = new HttpHeaders({
               'Accept': 'application/json', 
               'Authorization': `Bearer ${ this.authService.token }` 
-              });
-
-                const formdata = new FormData();
-                formdata.append('unidad_id',caracteristica['unidad_id']);
-                formdata.append('valor',caracteristica['valor']);
-
-
-                this.http.post(`${ URL}/equipos/caracteristica/update/${ equipo_id }/${caract_id}`, formdata ,{ headers })
-                .subscribe( resp =>{
-
-                      if(resp['res'])
+            });
+      
+            this.http.get(`${ URL}/cot_lp_capacidades/${ listado_id }`,{ headers })
+            .subscribe( resp =>{
+              
+                if(resp['res'])
+                {
+                    resolve(
                       {
-                          resolve(
-                          {
-                            res:true,
-                            data:resp['data']
-                          });
-                      }else{
-                          resolve(
-                          {
-                            res:false,
-                            data:resp['mensaje']
-                          });
+                        res:true,
+                        data: resp['data']
                       }
-
-                });
-
-          }); 
-
-    } 
-
-    caracteristica_individual(equipo_id:string,caract_id:any)
-    {
-
-          return new Promise<any>( resolve =>{
-
-              const headers = new HttpHeaders({
-              'Accept': 'application/json', 
-              'Authorization': `Bearer ${ this.authService.token }` 
-              });
-
-                this.http.get(`${ URL}/equipos/caracteristica/show/${ equipo_id }/${caract_id}`,{ headers })
-                .subscribe( resp =>{
-
-                      if(resp['res'])
+                    );
+                }else{
+                    resolve(
                       {
-                          resolve(
-                          {
-                            res:true,
-                            data:resp['data']
-                          });
-                      }else{
-                          resolve(
-                          {
-                            res:false,
-                            data:resp['mensaje']
-                          });
+                        res:false,
+                        data: resp['mensaje']
                       }
-
-                });
-
-          }); 
-
+                    );
+                }
+            
+              });
+      
+            }); 
+      
     }
 
-    eliminar_caracteristica(caract_id:any)
+    store(listado:any)
     {
 
           return new Promise<any>( resolve =>{
@@ -130,7 +97,76 @@ export class EquiposCaracteristicasService {
               'Authorization': `Bearer ${ this.authService.token }` 
               });
 
-                this.http.get(`${ URL}/equipos/caracteristica/delete/${caract_id}`,{ headers })
+                this.http.post(`${ URL}/cot_lp_capacidades`, listado ,{ headers })
+                .subscribe( resp =>{
+
+                      if(resp['res'])
+                      {
+                          resolve(
+                          {
+                            res:true,
+                            data:resp['data']
+                          });
+                      }else{
+                          resolve(
+                          {
+                            res:false,
+                            data:resp['mensaje']
+                          });
+                      }
+
+                });
+
+          }); 
+
+    } 
+
+    update(equipo_id:any,equipo:any)
+    {
+
+          return new Promise<any>( resolve =>{
+
+              const headers = new HttpHeaders({
+              'Accept': 'application/json', 
+              'Authorization': `Bearer ${ this.authService.token }` 
+              });
+
+                this.http.put(`${ URL}/cot_productos/${ equipo_id }`, equipo ,{ headers })
+                .subscribe( resp =>{
+
+                      if(resp['res'])
+                      {
+                          resolve(
+                          {
+                            res:true,
+                            data:resp['data']
+                          });
+                      }else{
+                          resolve(
+                          {
+                            res:false,
+                            data:resp['mensaje']
+                          });
+                      }
+
+                });
+
+          }); 
+
+    } 
+
+
+    destroy(equipo_id:any,costo_id:any)
+    {
+
+          return new Promise<any>( resolve =>{
+
+              const headers = new HttpHeaders({
+              'Accept': 'application/json', 
+              'Authorization': `Bearer ${ this.authService.token }` 
+              });
+
+                this.http.delete(`${ URL}/equipos/${ equipo_id }/costo/${ costo_id}`,{ headers })
                 .subscribe( resp =>{
 
                       if(resp['res'])

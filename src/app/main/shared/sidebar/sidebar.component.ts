@@ -60,6 +60,24 @@ export class SidebarComponent implements OnInit {
           ]
       },
       {
+         "categoria":"CotizacionChiller",
+         "icon":"mdi mdi-television",
+         "enlaces":[
+           {
+              "nombre":"Cotizaciones",
+              "url":"/main/cotchiller/listado"
+           },
+           {
+              "nombre":"Productos",
+              "url":"/main/cotchiller/equipos"
+           },
+           {
+               "nombre":"listado Principal",
+               "url":"/main/cotchiller/lpmateriales"
+            }
+         ]
+      },
+      {
           "categoria":"Tablas-Maestras",
           "icon":"mdi mdi-settingst",
           "enlaces":[

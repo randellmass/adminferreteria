@@ -1,0 +1,71 @@
+<div class="row mt-2">
+    <div class="col-8">
+
+        <div class="card" *ngIf="producto">
+            <div class="card-body">
+                <h4 class="card-subtitle">Equipo</h4>
+
+                <div class="row mt-2">
+       
+                    <div class="col-12">
+                        <table class="table table-responsive">
+                   
+                            <tbody >
+                                <tr>
+                                    <td scope="row">Capacidad:</td>
+                                    <td>{{ producto['capacidad']['valor'] | number}}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Circuitos:</td>
+                                    <td>{{ producto['circuito']['nombre'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Referencia:</td>
+                                    <td>{{ producto['equipo']['modelo'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Nombre:</td>
+                                    <td>{{ producto['equipo']['nombre'] }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        
+        <div class="card mt-3">
+            <div class="card-body">
+                <h4 class="card-subtitle">Listado Costos</h4>
+                <table class="table table-bordered table-inverse table-responsive">
+                    <thead class="thead-inverse">
+                        <tr >
+                            <th>TipoAccesorio</th>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Opcion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of compntes">
+                            <td>{{ item['tipo_accesorio']['nombre']}}</td>
+                            <td>{{ item['equipo']['modelo']}} - {{ item['equipo']['nombre']}}</td>
+                            <td>{{ item['cantidad'] | number }}</td>
+                            <td>
+                                <button type="button" class="btn btn-inverse-danger" (click)="eliminar_compnte(item)">Quitar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                        
+                </table>
+            </div>
+        </div>
+   
+    </div>
+
+    <div class="col-4">
+        <app-registro-producto-compnte-cot [producto_id]="producto" [compntes_arr]="compntes" *ngIf="!loading && operacion =='guardar'" (compnte_form)="compntes = $event"></app-registro-producto-compnte-cot>
+    </div>
+ 

@@ -12,8 +12,8 @@ import { EquiposCaracteristicasService } from '../../services/equipos-caracteris
 })
 export class RegistroCaracteristicaEquiposComponent implements OnInit {
 
-  @Input() equipo_id:string;
-  @Output() caracteristicas_form = new EventEmitter<[]>();
+    @Input() equipo_id:string;
+    @Output() caracteristicas_form = new EventEmitter<[]>();
 
  
     form_caracteristica:FormGroup = this.fb.group({

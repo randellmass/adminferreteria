@@ -24,6 +24,11 @@ const routes: Routes = [
           loadChildren: () => import('./pages/equipos/equipos.module').then(m =>m.EquiposModule)
         },
         { 
+          path: 'cotchiller',
+          canLoad: [UsuariosGuard], 
+          loadChildren: () => import('./pages/cotchiller/cotchiller.module').then(m =>m.CotchillerModule)
+        },
+        { 
           path: 'tercero',
           canLoad: [UsuariosGuard], 
           loadChildren: () => import('./pages/terceros/terceros.module').then(m =>m.TercerosModule)

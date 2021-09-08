@@ -5,6 +5,7 @@ import { CaracteristicaEquiposComponent } from './pages/caracteristica-equipos/c
 
 import { EditarEquiposComponent } from './pages/editar-equipos/editar-equipos.component';
 import { ListadoEquiposComponent } from './pages/listado-equipos/listado-equipos.component';
+import { ListadoPreciosEquiposComponent } from './pages/listado-precios-equipos/listado-precios-equipos.component';
 import { RegistroEquiposComponent } from './pages/registro-equipos/registro-equipos.component';
 
 const routes: Routes = [
@@ -25,6 +26,9 @@ const routes: Routes = [
       },
       {
         path:'caracteristica/:id', component:CaracteristicaEquiposComponent
+      },
+     {
+        path:'costo/:id', component:ListadoPreciosEquiposComponent
       },
       {
         path:'**', pathMatch:'full', redirectTo:'listado'

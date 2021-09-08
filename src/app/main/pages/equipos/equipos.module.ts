@@ -11,6 +11,8 @@ import { ArchivoEquiposComponent } from './pages/archivo-equipos/archivo-equipos
 import { CaracteristicaEquiposComponent } from './pages/caracteristica-equipos/caracteristica-equipos.component';
 import { RegistroCaracteristicaEquiposComponent } from './pages/registro-caracteristica-equipos/registro-caracteristica-equipos.component';
 import { EditarCaracteristicaEquiposComponent } from './pages/editar-caracteristica-equipos/editar-caracteristica-equipos.component';
+import { ListadoPreciosEquiposComponent } from './pages/listado-precios-equipos/listado-precios-equipos.component';
+import { RegistroPreciosEquiposComponent } from './pages/registro-precios-equipos/registro-precios-equipos.component';
 
 
 @NgModule({
@@ -21,7 +23,7 @@ import { EditarCaracteristicaEquiposComponent } from './pages/editar-caracterist
     ArchivoEquiposComponent, 
     CaracteristicaEquiposComponent, 
     RegistroCaracteristicaEquiposComponent, 
-    EditarCaracteristicaEquiposComponent],
+    EditarCaracteristicaEquiposComponent, ListadoPreciosEquiposComponent, RegistroPreciosEquiposComponent],
   imports: [
     CommonModule,
     EquiposRoutingModule,
