@@ -1,3 +1,4 @@
+
 /* You can add global styles to this file, and also import other style files */
 .navbar.default-layout .navbar-brand-wrapper .navbar-brand img{
     width: calc(280px - 130px);
@@ -215,3 +216,9 @@
 	text-decoration-line: underline;
 	border-radius: 8px;
 }
+
+.table td, .jsgrid .jsgrid-table td, .table th, .jsgrid .jsgrid-table th {
+    vertical-align: top;
+	font-size: 12px;
+}
+

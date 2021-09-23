@@ -1,0 +1,82 @@
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-subtitle">Editar Estado</h4>
+
+        <form class="cmxform" (ngSubmit)="editarCotizacion()" [formGroup]="formCotizacion" *ngIf="!loading" >
+            <fieldset>
+                    
+
+                <div class="row">
+
+                            
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Capacidad Equipo Cotizar:</label>
+                            <select class="form-control" formControlName="cotestado_id">
+                                <option value="" selected>*Escoja Estado</option>
+                                <option [value]="estado['id']" *ngFor="let estado of cotestados">{{ estado['nombre']}}</option>
+                            </select>
+                            <label class="error mt-2 text-danger" 
+                                    for="cotestado_id" 
+                                    *ngIf="campoNoValido('cotestado_id')">*Escoja Estado</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Asesor Asignado:</label>
+                            <select class="form-control" formControlName="user_asignada">
+                                <option value="" selected>*Escoja Asesor</option>
+                                <option [value]="user['id']" *ngFor="let user of usuarios">{{ user['email']}}</option>
+                            </select>
+                            <label class="error mt-2 text-danger" 
+                                    for="user_asignada" 
+                                    *ngIf="campoNoValido('user_asignada')">*Escoja Asesor</label>
+                        </div>
+                    </div>
+
+                   
+                    
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Observacion Asignado:</label>
+                            <textarea class="form-control" 
+                                      formControlName="observacion_asignado" 
+                                      rows="5">
+                            </textarea>
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Observacion Aprobado:</label>
+                            <textarea class="form-control" 
+                                      formControlName="observacion_aprobada" 
+                                      rows="5">
+                            </textarea>
+                        </div>
+                        
+                    </div>
+   
+                </div>
+            
+                <button type="submit" class="btn btn-inverse-primary">Editar</button> | <button type="button" class="btn btn-secondary" (click)="editarcancelar()">Cancelar</button>
+            </fieldset>
+        </form>
+
+        <div class="row mt-5" *ngIf="errors.length>0">
+            <div class="col-12">
+                <div class="alert alert-danger " role="alert">
+                    <ul>
+                        <li *ngFor="let error of errors" >{{ error }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+

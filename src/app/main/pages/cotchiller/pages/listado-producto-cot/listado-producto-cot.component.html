@@ -9,6 +9,7 @@
                     <thead class="thead-inverse">
                         <tr >
                             <th>Capacidad</th>
+                            <th>Voltaje</th>
                             <th>Circuitos</th>
                             <th>Producto</th>
                             <th>Estado</th>
@@ -17,7 +18,8 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let item of equipos">
-                            <td>{{ item['capacidad']['valor']}}</td>
+                            <td>{{ item['capacidad']['valor'] | number}}</td>
+                            <td>{{ item['voltaje']['nombre']}}</td>
                             <td>{{ item['circuito']['nombre']}}</td>
                             <td>{{ item['equipo']['modelo']}} - {{ item['equipo']['nombre']}}</td>
                             <td>{{ item['estado']['nombre']}}</td>

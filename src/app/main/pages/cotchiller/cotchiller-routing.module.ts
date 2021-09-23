@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ListadoEquiposComponent } from '../equipos/pages/listado-equipos/listado-equipos.component';
+import { ListadoCotizacionDetalleComponent } from './pages/listado-cotizacion-detalle/listado-cotizacion-detalle.component';
 import { ListadoCotizacionComponent } from './pages/listado-cotizacion/listado-cotizacion.component';
 import { ListadoLpmaterialDetalleComponent } from './pages/listado-lpmaterial-detalle/listado-lpmaterial-detalle.component';
 import { ListadoLpmaterialComponent } from './pages/listado-lpmaterial/listado-lpmaterial.component';
@@ -13,6 +13,9 @@ const routes: Routes = [
        children:[
          {  
             path:'listado', component:ListadoCotizacionComponent
+         },
+         {
+            path:'detalle/:id', component:ListadoCotizacionDetalleComponent
          },
          {  
             path:'equipos', component:ListadoProductoCotComponent

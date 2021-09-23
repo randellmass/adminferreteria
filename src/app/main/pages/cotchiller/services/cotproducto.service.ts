@@ -120,6 +120,40 @@ export class CotproductoService {
 
     } 
 
+    buscar_producto_x_capacidad_y_circuito(equipo:any)
+    {
+
+          return new Promise<any>( resolve =>{
+
+              const headers = new HttpHeaders({
+              'Accept': 'application/json', 
+              'Authorization': `Bearer ${ this.authService.token }` 
+              });
+
+                this.http.post(`${ URL}/cotproductos/buscar`, equipo ,{ headers })
+                .subscribe( resp =>{
+
+                      if(resp['res'])
+                      {
+                          resolve(
+                          {
+                            res:true,
+                            data:resp['data']
+                          });
+                      }else{
+                          resolve(
+                          {
+                            res:false,
+                            data:resp['mensaje']
+                          });
+                      }
+
+                });
+
+          }); 
+
+    }
+
     update(equipo_id:any,equipo:any)
     {
 
@@ -236,6 +270,42 @@ export class CotproductoService {
         });
   
         this.http.get(`${ URL}/cot_circuitos`,{ headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+                resolve(
+                  {
+                    res:true,
+                    data: resp['data']
+                  }
+                );
+            }else{
+                resolve(
+                  {
+                    res:false,
+                    data: resp['mensaje']
+                  }
+                );
+            }
+        
+         });
+  
+       }); 
+  
+    } 
+
+    index_voltajes()
+    {
+     
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+  
+        this.http.get(`${ URL}/cot_voltajes`,{ headers })
         .subscribe( resp =>{
           
             if(resp['res'])

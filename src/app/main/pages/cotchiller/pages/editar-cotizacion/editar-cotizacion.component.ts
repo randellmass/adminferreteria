@@ -4,14 +4,16 @@ import { CotchillerService } from '../../services/cotchiller.service';
 import { CotproductoService } from '../../services/cotproducto.service';
 
 @Component({
-  selector: 'app-registro-cotizacion',
-  templateUrl: './registro-cotizacion.component.html',
-  styleUrls: ['./registro-cotizacion.component.css']
+  selector: 'app-editar-cotizacion',
+  templateUrl: './editar-cotizacion.component.html',
+  styleUrls: ['./editar-cotizacion.component.css']
 })
-export class RegistroCotizacionComponent implements OnInit {
+export class EditarCotizacionComponent implements OnInit {
 
+      @Input() cotizacion_id:any;
       @Input() cotizaciones_arr:any[]=[];
       @Output() cotizacion_form = new EventEmitter<any>();
+      @Output() operacion_form = new EventEmitter<any>();
 
       ValidarEquipo(cotcapacidad_id:any,cotvoltaje_id:any,cotcircuito_id:any,cotproducto_id:any){
         return (formGroup:AbstractControl):ValidationErrors | null =>{
@@ -79,7 +81,9 @@ export class RegistroCotizacionComponent implements OnInit {
       equipos:any[]=[];
       circuitos:any[]=[];
       compresores:any[]=[];
+      compresor_cot:any;
       intercambiadores:any[]=[];
+      intercambiador_cot:any;
       oculto_producto:boolean = true;
 
       constructor(private fb:FormBuilder,
@@ -88,13 +92,15 @@ export class RegistroCotizacionComponent implements OnInit {
 
       ngOnInit(): void {
           this.cargar_select();
+          this.cargar_cotizacion();
 
           this.formCotizacion.controls['cotproducto_id'].valueChanges.subscribe( equipo =>{
             
          
               if(equipo!="")
               {
-         
+                  this.compresor_cot=null;
+                  this.intercambiador_cot=null;
                   this.equipos.forEach( item =>{
 
                       if (item['id'] == equipo) {
@@ -130,28 +136,49 @@ export class RegistroCotizacionComponent implements OnInit {
 
             const rest_voltaje = await this.cotProductoService.index_voltajes();
             this.voltajes = rest_voltaje['data'];
-
+            
+  
           this.loading= false;
       }
 
-      async agregarCotizacion(){
+      cargar_cotizacion(){
+          this.formCotizacion.reset({
+              ...this.cotizacion_id
+          });
 
-        if(this.formCotizacion.invalid){
-          this.formCotizacion.markAllAsTouched();
-          return;
-        }
-        
-        const registro = await this.cotClientesService.store(this.formCotizacion.value);
-        if(registro['res'])
-        {
-            this.cotizaciones_arr.unshift(registro['data']);
-            this.cotizacion_form.emit(this.cotizaciones_arr);
-            this.errors = [];
-            this.formCotizacion.reset();
-        }else{
-            //console.log(registro['data']);
-            this.errors = registro['data'];
-        }
+          console.log(this.cotizacion_id);
+
+          this.compresor_cot = this.cotizacion_id['compresor'];
+          this.intercambiador_cot = this.cotizacion_id['intercambiador'];
+
+      }
+
+      async editarCotizacion()
+      {
+
+          if(this.formCotizacion.invalid){
+            this.formCotizacion.markAllAsTouched();
+            return;
+          }
+          
+
+          const registro = await this.cotClientesService.update(this.cotizacion_id['id'],this.formCotizacion.value);
+          if(registro['res'])
+          {
+            const i = this.cotizaciones_arr.indexOf( this.cotizacion_id );
+  
+            if ( i !== -1 ) {
+              this.cotizaciones_arr[i] = registro['data'];
+            }  
+              this.cotizacion_form.emit(this.cotizaciones_arr);
+              this.operacion_form.emit('guardar');
+              
+              this.errors = [];
+              this.formCotizacion.reset();
+          }else{
+              //console.log(registro['data']);
+              this.errors = registro['data'];
+          }
 
       }
 
@@ -179,5 +206,8 @@ export class RegistroCotizacionComponent implements OnInit {
           //this.loading= false;
       }
 
-      
+      editarcancelar(){
+        this.operacion_form.emit('guardar');
+      }
+
 }

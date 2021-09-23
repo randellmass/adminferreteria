@@ -10,15 +10,31 @@
                         <tr >
                             <th>Capacidad</th>
                             <th>Estado</th>
+                            <th>Observacion</th>
                             <th>Opcion</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of lpMateriales">
+                        <tr *ngFor="let item of lpMateriales; let i=index">
                             <td>{{ item['capacidad']['valor'] | number }}</td>
-                            <td>{{ item['estado']['nombre']}}</td>
                             <td>
-
+                                <select #select_estado class="form-control">
+                                    <option value="1" *ngIf="item['estado_id'] == 1" selected>Activo</option>
+                                    <option value="2" *ngIf="item['estado_id'] == 1" >Inactivo</option>
+                                    <option value="1" *ngIf="item['estado_id'] == 2" >Activo</option>
+                                    <option value="2" *ngIf="item['estado_id'] == 2" selected>Inactivo</option>
+                                </select>
+                            </td>
+                            <td>
+                                   <textarea  rows="2" #observacion  class="form-control">{{ item['observacion']}}</textarea>
+                            </td>
+                            <td>
+                                <div class="mb-2">
+                                    <button type="button" class="btn btn-secondary" (click)="editarListado(i,item,select_estado.value,observacion.value)">Editar</button>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-secondary" (click)="link_detalle(item)">Detalle</button>
+                                </div>
                             </td>
                         </tr>
                     </tbody>

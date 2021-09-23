@@ -1,1 +1,60 @@
-<p>listado-cotizacion works!</p>
+<div class="row">
+    <div class="col-8">
+
+        
+        <div class="card ">
+            <div class="card-body">
+                <h4 class="card-subtitle">Listado Cotizaciones</h4>
+                <table class="table table-bordered table-inverse table-responsive">
+                    <thead class="thead-inverse">
+                        <tr >
+                            <th scope="col" >Fecha</th>
+                            <th scope="col">Cliente</th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Opcion</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr *ngFor="let cot of cotizaciones" scope="row">
+                            <td >
+                                <div>{{ cot['updated_at'] | date:'YYYY-MM-dd'}}</div>
+                            </td>
+                            <td>
+                                <div class="mb-2"><strong>CC/Nit:&nbsp;</strong>{{ cot['tercero_documento'] }}</div>
+                                <div><strong>Nombre:&nbsp;</strong>{{ cot['tercero_nombre']}}</div>
+                            <td>
+                                <div class="mb-2"><strong>Capacidad:&nbsp;</strong>{{ cot['capacidad']['valor'] | number}}</div>
+                                <div class="mb-2"><strong>Voltaje:&nbsp;</strong>{{ cot['voltaje']['nombre']}}</div>
+                                <div class="mb-2"><strong>Circuito:&nbsp;</strong>{{ cot['circuito']['nombre'] }}</div>
+                                <div *ngIf="cot['producto']"><strong>Equipo:&nbsp;</strong>{{ cot['producto']['equipo']['modelo'] }} - {{ cot['producto']['equipo']['nombre'] }}</div>
+                            </td>
+                            <td>{{ cot['estado']['nombre'] }}</td>
+                            <td>
+                                <div *ngIf="cot['cotestado_id']!=4">
+                                    <button type="button" class="btn btn-secondary" (click)="editar_cotizacion(cot)">Editar</button>
+                                </div>
+                                <div class="mt-2" *ngIf="cot['cotestado_id']!=4">
+                                    <button type="button" class="btn btn-secondary" (click)="editar_estado(cot)">Estado</button>
+                                </div>
+                                <div class="mt-2">
+                                    <button type="button" class="btn btn-secondary" (click)="link_detalle(cot)">Detalle</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                        
+                </table>
+            </div>
+        </div>
+   
+    </div>
+
+    <div class="col-4">
+        <app-registro-cotizacion [cotizaciones_arr]="cotizaciones" *ngIf="!loading && operacion =='guardar'" (cotizacion_form)="cotizaciones = $event"></app-registro-cotizacion>
+        <app-editar-cotizacion [cotizacion_id]="cotizacion_id" [cotizaciones_arr]="cotizaciones" *ngIf="!loading && operacion =='editar'" (cotizacion_form)="cotizaciones = $event" (operacion_form)="operacion = $event"></app-editar-cotizacion>
+        <app-editar-cotizacion-estado [cotizacion_id]="cotizacion_id" [cotizaciones_arr]="cotizaciones" *ngIf="!loading && operacion =='estado'" (cotizacion_form)="cotizaciones = $event" (operacion_form)="operacion = $event"></app-editar-cotizacion-estado>
+    </div>
+ 
+
+

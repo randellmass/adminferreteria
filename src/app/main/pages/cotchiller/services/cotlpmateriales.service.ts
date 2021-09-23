@@ -121,7 +121,7 @@ export class CotlpmaterialesService {
 
     } 
 
-    update(equipo_id:any,equipo:any)
+    update(listado_id:any,listado:any)
     {
 
           return new Promise<any>( resolve =>{
@@ -131,7 +131,7 @@ export class CotlpmaterialesService {
               'Authorization': `Bearer ${ this.authService.token }` 
               });
 
-                this.http.put(`${ URL}/cot_productos/${ equipo_id }`, equipo ,{ headers })
+                this.http.put(`${ URL}/cot_lp_capacidades/${ listado_id }`, listado ,{ headers })
                 .subscribe( resp =>{
 
                       if(resp['res'])
@@ -156,7 +156,11 @@ export class CotlpmaterialesService {
     } 
 
 
-    destroy(equipo_id:any,costo_id:any)
+   
+
+    //LISTADO MATERIALES DETALLE
+
+    store_detalle_lpmateriales(listado_id:any, detalle:any)
     {
 
           return new Promise<any>( resolve =>{
@@ -166,7 +170,41 @@ export class CotlpmaterialesService {
               'Authorization': `Bearer ${ this.authService.token }` 
               });
 
-                this.http.delete(`${ URL}/equipos/${ equipo_id }/costo/${ costo_id}`,{ headers })
+                this.http.post(`${ URL}/cot_lp_capacidades/${ listado_id }/detalles`, detalle ,{ headers })
+                .subscribe( resp =>{
+
+                      if(resp['res'])
+                      {
+                          resolve(
+                          {
+                            res:true,
+                            data:resp['data']
+                          });
+                      }else{
+                          resolve(
+                          {
+                            res:false,
+                            data:resp['mensaje']
+                          });
+                      }
+
+                });
+
+          }); 
+
+    }
+
+    destroy_detalle_lpmateriales(equipo_id:any,detalle_id:any)
+    {
+
+          return new Promise<any>( resolve =>{
+
+              const headers = new HttpHeaders({
+              'Accept': 'application/json', 
+              'Authorization': `Bearer ${ this.authService.token }` 
+              });
+
+                this.http.delete(`${ URL}/cot_lp_capacidades/${ equipo_id }/detalles/${ detalle_id}`,{ headers })
                 .subscribe( resp =>{
 
                       if(resp['res'])

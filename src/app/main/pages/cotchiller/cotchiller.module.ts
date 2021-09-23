@@ -15,6 +15,11 @@ import { ListadoLpmaterialComponent } from './pages/listado-lpmaterial/listado-l
 import { RegistroLpmaterialComponent } from './pages/registro-lpmaterial/registro-lpmaterial.component';
 import { RegistroLpmaterialDetalleComponent } from './pages/registro-lpmaterial-detalle/registro-lpmaterial-detalle.component';
 import { ListadoLpmaterialDetalleComponent } from './pages/listado-lpmaterial-detalle/listado-lpmaterial-detalle.component';
+import { ListadoCotizacionDetalleComponent } from './pages/listado-cotizacion-detalle/listado-cotizacion-detalle.component';
+import { RegistroCotizacionDetalleComponent } from './pages/registro-cotizacion-detalle/registro-cotizacion-detalle.component';
+import { EditarCotizacionCostoComponent } from './pages/editar-cotizacion-costo/editar-cotizacion-costo.component';
+import { EditarCotizacionComponent } from './pages/editar-cotizacion/editar-cotizacion.component';
+import { EditarCotizacionEstadoComponent } from './pages/editar-cotizacion-estado/editar-cotizacion-estado.component';
 
 
 @NgModule({
@@ -29,7 +34,7 @@ import { ListadoLpmaterialDetalleComponent } from './pages/listado-lpmaterial-de
         ListadoLpmaterialComponent, 
         RegistroLpmaterialComponent, 
         RegistroLpmaterialDetalleComponent, 
-        ListadoLpmaterialDetalleComponent],
+        ListadoLpmaterialDetalleComponent, ListadoCotizacionDetalleComponent, RegistroCotizacionDetalleComponent, EditarCotizacionCostoComponent, EditarCotizacionComponent, EditarCotizacionEstadoComponent],
   imports: [
     CommonModule,
     CotchillerRoutingModule,

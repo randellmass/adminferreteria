@@ -30,16 +30,25 @@ export class ListadoLpmaterialComponent implements OnInit {
       
     }
 
-    editar_producto(producto:any)
+    async editarListado(index:number,item_listado:any,estado_id:any,observacion:any)
     {
-      this.operacion = "editar";
-      this.equipo_id = producto;
+        const form_editar ={
+          "estado_id":estado_id,
+          "observacion":observacion,
+        }
 
+        const editar = await this.cotlpMaterialesService.update(item_listado['id'],form_editar,);
+
+        if (editar['res']) {
+            this.lpMateriales[index] = editar['data'];
+        } else {
+           // this.errors= editar['data'];
+        }
     }
 
-    link_componentes(equipo:any)
+    link_detalle(listado:any)
     {
-        //this.router.navigate(['main/cotchiller/componente',equipo['id']]);
+        this.router.navigate(['main/cotchiller/lpmaterial-detalle',listado['id']]);
     }
 
 

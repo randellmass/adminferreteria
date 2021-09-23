@@ -16,6 +16,7 @@ export class RegistroProductoCotComponent implements OnInit {
  
     form_equipo:FormGroup = this.fb.group({
         cotcapacidad_id: ['',Validators.required],
+        cotvoltaje_id: ['',Validators.required],
         cotcircuito_id: ['',Validators.required],
         equipo_id: ['',Validators.required],
         observacion: [''],
@@ -28,6 +29,7 @@ export class RegistroProductoCotComponent implements OnInit {
     loading:boolean = false;
     errors:any = []; 
     capacidades:any[]=[];
+    voltajes:any[]=[];
     circuitos:any[]=[];
     equipos:any[] =[];
   
@@ -49,8 +51,12 @@ export class RegistroProductoCotComponent implements OnInit {
         const rest_capacidad = await this.cotProductoService.index_capacidades();
         this.capacidades = rest_capacidad['data'];
 
+        const rest_voltaje = await this.cotProductoService.index_voltajes();
+        this.voltajes = rest_voltaje['data'];
+
         const rest_circuito = await this.cotProductoService.index_circuitos();
         this.circuitos = rest_circuito['data'];
+
         this.loading= false;
     }
 
@@ -64,7 +70,7 @@ export class RegistroProductoCotComponent implements OnInit {
       const registro = await this.cotProductoService.store(this.form_equipo.value);
       if(registro['res'])
       {
-          this.equipos_arr.push(registro['data']);
+          this.equipos_arr.unshift(registro['data']);
           this.equipo_form.emit(this.equipos_arr);
           this.errors = [];
           this.form_equipo.reset();

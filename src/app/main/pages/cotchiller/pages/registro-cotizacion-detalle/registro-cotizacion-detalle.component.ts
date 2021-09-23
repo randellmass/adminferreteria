@@ -1,20 +1,21 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EquiposService } from '../../../equipos/services/equipos.service';
-import { CotlpmaterialesService } from '../../services/cotlpmateriales.service';
+import { CotchillerService } from '../../services/cotchiller.service';
 import { CotproductoService } from '../../services/cotproducto.service';
 
 @Component({
-  selector: 'app-registro-lpmaterial-detalle',
-  templateUrl: './registro-lpmaterial-detalle.component.html',
-  styleUrls: ['./registro-lpmaterial-detalle.component.css']
+  selector: 'app-registro-cotizacion-detalle',
+  templateUrl: './registro-cotizacion-detalle.component.html',
+  styleUrls: ['./registro-cotizacion-detalle.component.css']
 })
-export class RegistroLpmaterialDetalleComponent implements OnInit {
+export class RegistroCotizacionDetalleComponent implements OnInit {
 
-    @Input() producto_id:any[];
-    @Input() compntes_arr:any[];
-    @Output() compnte_form = new EventEmitter<any>();
-
+    @Input() cotizacion_id:any[];
+    @Input() materiales_arr:any[];
+    @Output() material_form = new EventEmitter<any>();
+    @Output() cot_form = new EventEmitter<any>();
+  
  
     form_compnte:FormGroup = this.fb.group({
         cottipoaccesorio_id: ['',Validators.required],
@@ -33,8 +34,8 @@ export class RegistroLpmaterialDetalleComponent implements OnInit {
     
     constructor(private fb:FormBuilder,
                 private cotProductoService:CotproductoService,
-                private equiposService:EquiposService,
-                private cotLPMaterialesService:CotlpmaterialesService) { }
+                private cotchillerService:CotchillerService,
+                private equiposService:EquiposService) { }
 
     ngOnInit(): void {
         this.cargar_select();
@@ -60,12 +61,18 @@ export class RegistroLpmaterialDetalleComponent implements OnInit {
         return;
       }
 
-      const registro = await this.cotLPMaterialesService.store_detalle_lpmateriales(this.producto_id['id'], this.form_compnte.value);
+      const registro = await this.cotchillerService.store_detalle_cotizacion(this.cotizacion_id['id'], this.form_compnte.value);
       if(registro['res'])
       {
-          console.log(registro['data']);
-          this.compntes_arr.push(registro['data']);
-          this.compnte_form.emit(this.compntes_arr);
+          const result_cot = await this.cotchillerService.show(this.cotizacion_id['id']);
+          if(result_cot['res'])
+          {
+               const cot = result_cot['data'];
+               this.cot_form.emit(this.cotizacion_id['id']);
+          }
+        
+          this.materiales_arr.push(registro['data']);
+          this.material_form.emit(this.materiales_arr);
           this.errors = [];
           this.form_compnte.reset();
       }else{
@@ -82,5 +89,6 @@ export class RegistroLpmaterialDetalleComponent implements OnInit {
         this.equipos = eq['data'];
         this.loading= false;
     }
+
 
 }
