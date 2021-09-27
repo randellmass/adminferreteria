@@ -30,7 +30,7 @@ export class ListadoLpmaterialComponent implements OnInit {
       
     }
 
-    async editarListado(index:number,item_listado:any,estado_id:any,observacion:any)
+    /*async editarListado(index:number,item_listado:any,estado_id:any,observacion:any)
     {
         const form_editar ={
           "estado_id":estado_id,
@@ -49,7 +49,7 @@ export class ListadoLpmaterialComponent implements OnInit {
     link_detalle(listado:any)
     {
         this.router.navigate(['main/cotchiller/lpmaterial-detalle',listado['id']]);
-    }
+    }*/
 
 
 }

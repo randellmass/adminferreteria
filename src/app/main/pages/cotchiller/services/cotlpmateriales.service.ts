@@ -25,7 +25,7 @@ export class CotlpmaterialesService {
               'Authorization': `Bearer ${ this.authService.token }` 
             });
       
-            this.http.get(`${ URL}/cot_lp_capacidades`,{ headers })
+            this.http.get(`${ URL}/cot_listado_master`,{ headers })
             .subscribe( resp =>{
               
                 if(resp['res'])
@@ -97,7 +97,7 @@ export class CotlpmaterialesService {
               'Authorization': `Bearer ${ this.authService.token }` 
               });
 
-                this.http.post(`${ URL}/cot_lp_capacidades`, listado ,{ headers })
+                this.http.post(`${ URL}/cot_listado_master`, listado ,{ headers })
                 .subscribe( resp =>{
 
                       if(resp['res'])

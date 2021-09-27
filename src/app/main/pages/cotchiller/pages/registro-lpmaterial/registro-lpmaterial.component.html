@@ -2,42 +2,21 @@
     <div class="card-body">
         <h4 class="card-subtitle">Registro Listado</h4>
 
-        <form class="cmxform" (ngSubmit)="agregarListado()" [formGroup]="formListado" *ngIf="!loading" >
-            <fieldset>
-
-
-                <div class="row">
-                            
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <label for="">Capacidad:</label>
-                            <select class="form-control" formControlName="cotcapacidad_id">
-                                <option value="" selected>*Escoja Capacidad</option>
-                                <option [value]="capacidad['id']" *ngFor="let capacidad of capacidades">{{ capacidad['valor']}}</option>
-                            </select>
-                            <label class="error mt-2 text-danger" 
-                                    for="cotcapacidad_id" 
-                                    *ngIf="campoNoValido('cotcapacidad_id')">*Escoja capacidad</label>
-                        </div>
-                    </div>
-   
+  
+        <div class="row">
                     
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <label for="">Observacion:</label>
-                            <input type="text" 
-                                    class="form-control" 
-                                    formControlName="observacion">
-                
-                        </div>
-                        
-                    </div>
-   
+            <div class="col">
+                <div class="form-group">
+                    <label for="">Subir Excel:</label>
+                    <input type="file" class="form-control" (change)="cargarexcel($event)" required >
                 </div>
+            </div>
             
-                <button type="submit" class="btn btn-inverse-primary">Agregar</button>
-            </fieldset>
-        </form>
+
+        </div>
+        <app-loading *ngIf="loading" ></app-loading>
+            
+
 
         <div class="row mt-5" *ngIf="errors.length>0">
             <div class="col-12">
