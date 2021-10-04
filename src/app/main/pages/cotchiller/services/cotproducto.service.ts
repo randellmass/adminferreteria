@@ -403,6 +403,40 @@ export class CotproductoService {
 
     }
 
+    store_producto_compnte_xls(equipo_id:any,compnte:any)
+    {
+
+          return new Promise<any>( resolve =>{
+
+              const headers = new HttpHeaders({
+              'Accept': 'application/json', 
+              'Authorization': `Bearer ${ this.authService.token }` 
+              });
+
+                this.http.post(`${ URL}/cot_productos/${ equipo_id}/compntesxls`, compnte ,{ headers })
+                .subscribe( resp =>{
+
+                      if(resp['res'])
+                      {
+                          resolve(
+                          {
+                            res:true,
+                            data:resp['data']
+                          });
+                      }else{
+                          resolve(
+                          {
+                            res:false,
+                            data:resp['mensaje']
+                          });
+                      }
+
+                });
+
+          }); 
+
+    }
+
     destroy_producto_compnte(equipo_id:any,compnte_id:any)
     {
 
@@ -414,6 +448,40 @@ export class CotproductoService {
               });
 
                 this.http.delete(`${ URL}/cot_productos/${ equipo_id }/compntes/${ compnte_id}`,{ headers })
+                .subscribe( resp =>{
+
+                      if(resp['res'])
+                      {
+                          resolve(
+                          {
+                            res:true,
+                            data:resp['data']
+                          });
+                      }else{
+                          resolve(
+                          {
+                            res:false,
+                            data:resp['mensaje']
+                          });
+                      }
+
+                });
+
+          }); 
+
+    }
+
+    destroy_todos_compntes(equipo_id:any)
+    {
+
+          return new Promise<any>( resolve =>{
+
+              const headers = new HttpHeaders({
+              'Accept': 'application/json', 
+              'Authorization': `Bearer ${ this.authService.token }` 
+              });
+
+                this.http.delete(`${ URL}/compntesxls/${ equipo_id }`,{ headers })
                 .subscribe( resp =>{
 
                       if(resp['res'])

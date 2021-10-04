@@ -150,7 +150,7 @@
                             <label for="">Compresor:</label>
                             <select class="form-control" formControlName="compresor_id">
                                 <option value="" selected>*Escoja compresor</option>
-                                <option [value]="compresor['equipo_id']" *ngFor="let compresor of compresores">{{ compresor['equipo']['modelo'] }} - {{ compresor['equipo']['nombre'] }}</option>
+                                <option [value]="compresor['equipo']['id']" *ngFor="let compresor of compresores">{{ compresor['equipo']['referencia'] }} - {{ compresor['equipo']['descripcion1'] }}</option>
                             </select>
                             <label class="error mt-2 text-danger" 
                                 for="compresor_id" 
@@ -163,7 +163,7 @@
                         <div class="form-group">
                             <label for="">Compresor:</label>
                             <select class="form-control" formControlName="compresor_id">
-                                <option [value]="compresor_cot['id']" >{{ compresor_cot['modelo'] }} - {{ compresor_cot['nombre'] }}</option>
+                                <option [value]="compresor_cot['id']" >{{ compresor_cot['referencia'] }} - {{ compresor_cot['descripcion1'] }}</option>
                             </select>
                             <label class="error mt-2 text-danger" 
                                 for="compresor_id" 
@@ -177,7 +177,7 @@
                             <label for="">Intercambiador:</label>
                             <select class="form-control" formControlName="intercambiador_id">
                                 <option value="" selected>*Escoja intercambiador</option>
-                                <option [value]="intercambiador['equipo_id']" *ngFor="let intercambiador of intercambiadores">{{ intercambiador['equipo']['modelo'] }} - {{ intercambiador['equipo']['nombre'] }}</option>
+                                <option [value]="intercambiador['equipo']['id']" *ngFor="let intercambiador of intercambiadores">{{ intercambiador['equipo']['referencia'] }} - {{ intercambiador['equipo']['descripcion1'] }}</option>
                             </select>
                             <label class="error mt-2 text-danger" 
                                 for="intercambiador_id" 
@@ -190,7 +190,7 @@
                         <div class="form-group">
                             <label for="">Intercambiador:</label>
                             <select class="form-control" formControlName="intercambiador_id">
-                                <option [value]="intercambiador_cot['id']">{{ intercambiador_cot['modelo'] }} - {{ intercambiador_cot['nombre'] }}</option>
+                                <option [value]="intercambiador_cot['id']">{{ intercambiador_cot['referencia'] }} - {{ intercambiador_cot['descripcion1'] }}</option>
                             </select>
                             <label class="error mt-2 text-danger" 
                                 for="intercambiador_id" 
@@ -217,6 +217,7 @@
                 <button type="submit" class="btn btn-inverse-primary">Editar</button> | <button type="button" class="btn btn-secondary" (click)="editarcancelar()">Cancelar</button>
             </fieldset>
         </form>
+        <app-loading *ngIf="loading"></app-loading>
 
         <div class="row mt-5" *ngIf="errors.length>0">
             <div class="col-12">

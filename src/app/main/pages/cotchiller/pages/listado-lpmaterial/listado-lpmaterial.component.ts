@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {DataTable} from "simple-datatables";
+
 import { CotlpmaterialesService } from '../../services/cotlpmateriales.service';
 
 @Component({
@@ -30,6 +32,25 @@ export class ListadoLpmaterialComponent implements OnInit {
       
     }
 
+    buscar_en_listado(termino:string)
+    {
+        if (termino!="")
+        {
+            const consulta = this.lpMateriales.find( item =>{
+                return item['codigo'] ==termino
+            });  
+
+            if(consulta){
+               const i = this.lpMateriales.indexOf(consulta);
+               if(i !==-1){
+                this.lpMateriales.splice( i, 1 );
+                this.lpMateriales.unshift(consulta);
+                }
+              
+            }
+        }
+    }
+
     /*async editarListado(index:number,item_listado:any,estado_id:any,observacion:any)
     {
         const form_editar ={
@@ -51,5 +72,27 @@ export class ListadoLpmaterialComponent implements OnInit {
         this.router.navigate(['main/cotchiller/lpmaterial-detalle',listado['id']]);
     }*/
 
+    /*ngAfterViewChecked() {
+      
+      if(this.loading==false)
+      {
+        this.crear_tabla();
+        //console.log("after view");
+      }
+    }
+
+    crear_tabla()
+    {
+        const dataTable = new DataTable("#order-listing", {
+          searchable: true,
+          fixedHeight: true, 
+          labels: {
+            placeholder: "Buscar...",
+            perPage: "{select} Cantidad por pagina",
+            noRows: "No entries to found",
+            info: "Showing {start} to {end} of {rows} entries",
+          },
+        });
+    }*/
 
 }

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ListadoCotizacionDetalleComponent } from './pages/listado-cotizacion-detalle/listado-cotizacion-detalle.component';
 import { ListadoCotizacionComponent } from './pages/listado-cotizacion/listado-cotizacion.component';
-import { ListadoLpmaterialDetalleComponent } from './pages/listado-lpmaterial-detalle/listado-lpmaterial-detalle.component';
 import { ListadoLpmaterialComponent } from './pages/listado-lpmaterial/listado-lpmaterial.component';
 import { ListadoProductoCompnteCotComponent } from './pages/listado-producto-compnte-cot/listado-producto-compnte-cot.component';
 import { ListadoProductoCotComponent } from './pages/listado-producto-cot/listado-producto-cot.component';
@@ -25,9 +24,6 @@ const routes: Routes = [
          },
          {  
             path:'lpmateriales', component:ListadoLpmaterialComponent
-         },
-         {  
-            path:'lpmaterial-detalle/:id', component:ListadoLpmaterialDetalleComponent
          },
          {
             path:'**', redirectTo:'listado'

@@ -1,7 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import * as XLSX from 'xlsx';
+
 import { EquiposService } from '../../../equipos/services/equipos.service';
+import { CotlpmaterialesService } from '../../services/cotlpmateriales.service';
 import { CotproductoService } from '../../services/cotproducto.service';
+
+type AOA = any[][];
 
 @Component({
   selector: 'app-registro-producto-compnte-cot',
@@ -17,20 +23,23 @@ export class RegistroProductoCompnteCotComponent implements OnInit {
  
     form_compnte:FormGroup = this.fb.group({
         cottipoaccesorio_id: ['',Validators.required],
-        equipo_id: ['',Validators.required],
+        cotlmaster_id: ['',Validators.required],
         cantidad: ['',Validators.required],
     });
 
     form_buscar_equipo:FormGroup = this.fb.group({
-      buscarEquipo : ['',[Validators.required]]
+      buscar_lm : ['',[Validators.required]]
     });
 
     loading:boolean = false;
     errors:any = []; 
     tipoAccesorios:any[]=[];
     equipos:any[]=[];
+    data: AOA =[];
+    lp_form:any[] =[];
     
     constructor(private fb:FormBuilder,
+                private cotListadomasterService:CotlpmaterialesService,
                 private cotProductoService:CotproductoService,
                 private equiposService:EquiposService) { }
 
@@ -76,10 +85,94 @@ export class RegistroProductoCompnteCotComponent implements OnInit {
     async buscar_equipo()
     {
         this.loading= true;
-        const eq = await this.equiposService.buscar_equipo(this.form_buscar_equipo.value);
+        const eq = await this.cotListadomasterService.buscar_producto_listado_master(this.form_buscar_equipo.value);
+
         this.equipos = eq['data'];
         this.loading= false;
     }
+
+    async cargarexcel(evt:any)
+      {
+          this.errors =[];
+          this.loading = true;   
+          const target: DataTransfer = <DataTransfer>(evt.target);
+          const tipoFile = evt.target.files[0].type;
+      
+          if (tipoFile != "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+          {
+              this.errors = ['Archivo no compatible - verifique'];
+              this.loading = false;  
+              return false;
+          }
+            
+            if (target.files.length !== 1) throw new Error('Cannot use multiple files');
+            const reader: FileReader = new FileReader();
+            reader.onload = (e: any) => {
+              /* read workbook */
+              const bstr: string = e.target.result;
+              const wb: XLSX.WorkBook = XLSX.read(bstr, {type: 'binary'});
+      
+              /* grab first sheet */
+              const wsname: string = wb.SheetNames[0];
+              const ws: XLSX.WorkSheet = wb.Sheets[wsname];
+      
+              /* save data */
+              this.data = <AOA>(XLSX.utils.sheet_to_json(ws, {header: 1}));
+              this.subirData(this.data);
+              
+            };
+            reader.readAsBinaryString(target.files[0]);
+          
+      }
+
+
+      async subirData(data:any[])
+      {
+          this.loading = true;  
+          let sw:number=0;
+
+          if((data[0][0]!="codigo") || (data[0][1]!="cantidad") )
+          {
+               this.errors = ['Archivo no tiene la estructura - verifique'];
+               this.loading = false;  
+               sw=1;
+               return false;
+               
+          }
+          
+          data.forEach((item:any,indice:number) =>{
+            if ((indice!=0) && (sw==0) )
+            {
+          
+                const item_var = {
+                  "codigo": item[0],
+                  "cantidad": item[1],
+               }
+    
+                this.lp_form.push(item_var);
+            }
+          });
+
+          //console.log(this.lp_form);
+          if(sw==0)
+          {
+
+              const form_xls = {
+                "array_compntes": this.lp_form
+              }
+    
+              const subir = await this.cotProductoService.store_producto_compnte_xls(this.producto_id['id'],form_xls);
+              if (subir['res'])
+              {
+                  this.compntes_arr = subir['data'];
+                  this.compnte_form.emit(this.compntes_arr);
+              }
+    
+              this.loading = false;  
+          }
+
+          
+      }
 
 
 }

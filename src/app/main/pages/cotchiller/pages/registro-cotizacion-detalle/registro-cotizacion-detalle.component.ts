@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EquiposService } from '../../../equipos/services/equipos.service';
 import { CotchillerService } from '../../services/cotchiller.service';
+import { CotlpmaterialesService } from '../../services/cotlpmateriales.service';
 import { CotproductoService } from '../../services/cotproducto.service';
 
 @Component({
@@ -19,12 +20,12 @@ export class RegistroCotizacionDetalleComponent implements OnInit {
  
     form_compnte:FormGroup = this.fb.group({
         cottipoaccesorio_id: ['',Validators.required],
-        equipo_id: ['',Validators.required],
+        cotlmaster_id: ['',Validators.required],
         cantidad: ['',Validators.required],
     });
 
     form_buscar_equipo:FormGroup = this.fb.group({
-      buscarEquipo : ['',[Validators.required]]
+        buscar_lm : ['',[Validators.required]]
     });
 
     loading:boolean = false;
@@ -35,7 +36,7 @@ export class RegistroCotizacionDetalleComponent implements OnInit {
     constructor(private fb:FormBuilder,
                 private cotProductoService:CotproductoService,
                 private cotchillerService:CotchillerService,
-                private equiposService:EquiposService) { }
+                private cotListadomasterService:CotlpmaterialesService) { }
 
     ngOnInit(): void {
         this.cargar_select();
@@ -50,6 +51,7 @@ export class RegistroCotizacionDetalleComponent implements OnInit {
         this.loading= true;
         const rest_tipoaccesorio = await this.cotProductoService.index_tipo_accesorios();
         this.tipoAccesorios = rest_tipoaccesorio['data'];
+        console.log(this.tipoAccesorios);
 
         this.loading= false;
     }
@@ -85,8 +87,8 @@ export class RegistroCotizacionDetalleComponent implements OnInit {
     async buscar_equipo()
     {
         this.loading= true;
-        const eq = await this.equiposService.buscar_equipo(this.form_buscar_equipo.value);
-        this.equipos = eq['data'];
+          const eq = await this.cotListadomasterService.buscar_producto_listado_master(this.form_buscar_equipo.value);
+          this.equipos = eq['data'];
         this.loading= false;
     }
 

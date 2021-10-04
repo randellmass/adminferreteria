@@ -136,6 +136,7 @@ export class RegistroCotizacionComponent implements OnInit {
 
       async agregarCotizacion(){
 
+        this.loading = true;
         if(this.formCotizacion.invalid){
           this.formCotizacion.markAllAsTouched();
           return;
@@ -152,6 +153,7 @@ export class RegistroCotizacionComponent implements OnInit {
             //console.log(registro['data']);
             this.errors = registro['data'];
         }
+        this.loading = false;
 
       }
 
@@ -162,8 +164,8 @@ export class RegistroCotizacionComponent implements OnInit {
           const eq = await this.cotProductoService.buscar_producto_x_capacidad_y_circuito(form);
           if(eq['res']){
 
-              this.equipos = eq['data']
-              //console.log(this.equipos);
+              this.equipos = eq['data'];
+              console.log(this.equipos);
               if((this.equipos.length ==0) && (this.formCotizacion.controls['cotcapacidad_id'].valid ==true && this.formCotizacion.controls['cotvoltaje_id'].valid ==true && this.formCotizacion.controls['cotcircuito_id'].valid ==true  ) )
               {
                   this.compresores=[];

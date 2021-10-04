@@ -51,7 +51,7 @@ export class CotlpmaterialesService {
       
     } 
 
-    show(listado_id:any)
+    /*show(listado_id:any)
     {
                  
           return new Promise<any>( resolve =>{
@@ -85,7 +85,7 @@ export class CotlpmaterialesService {
       
             }); 
       
-    }
+    }*/
 
     store(listado:any)
     {
@@ -98,6 +98,40 @@ export class CotlpmaterialesService {
               });
 
                 this.http.post(`${ URL}/cot_listado_master`, listado ,{ headers })
+                .subscribe( resp =>{
+
+                      if(resp['res'])
+                      {
+                          resolve(
+                          {
+                            res:true,
+                            data:resp['data']
+                          });
+                      }else{
+                          resolve(
+                          {
+                            res:false,
+                            data:resp['mensaje']
+                          });
+                      }
+
+                });
+
+          }); 
+
+    } 
+
+    buscar_producto_listado_master(buscar:any)
+    {
+
+          return new Promise<any>( resolve =>{
+
+              const headers = new HttpHeaders({
+              'Accept': 'application/json', 
+              'Authorization': `Bearer ${ this.authService.token }` 
+              });
+
+                this.http.post(`${ URL}/cotlistado_master/buscar`, buscar ,{ headers })
                 .subscribe( resp =>{
 
                       if(resp['res'])
@@ -160,7 +194,7 @@ export class CotlpmaterialesService {
 
     //LISTADO MATERIALES DETALLE
 
-    store_detalle_lpmateriales(listado_id:any, detalle:any)
+    /*store_detalle_lpmateriales(listado_id:any, detalle:any)
     {
 
           return new Promise<any>( resolve =>{
@@ -226,5 +260,5 @@ export class CotlpmaterialesService {
 
           }); 
 
-    }
+    }*/
 }
