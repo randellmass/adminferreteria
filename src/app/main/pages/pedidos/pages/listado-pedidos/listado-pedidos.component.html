@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-8">
+    <div class="col-12">
 
         <div class="row mb-2">
             <div class="col-6">
@@ -14,13 +14,22 @@
                 <div class="card">
                     <div class="card-body">
                         <form class="d-flex" [formGroup]="formBuscarPedido" (ngSubmit)="buscar_pedido()">
-                            <input class="form-control me-2"
-                                formControlName="buscarPedido"
-                                type="search" 
-                                placeholder="Buscar Pedidos" aria-label="Search">
+                                <select class="form-control  me-2" formControlName="buscarTipo">
+                                    <option value="" selected>*Escoja Tipo</option>
+                                    <option [value]="tipo['id']" *ngFor="let tipo of tipos">{{ tipo['nombre'] }}</option>
+                                </select>
+              
+                                <input class="form-control me-2"
+                                    formControlName="buscarPedido"
+                                    type="search" 
+                                    placeholder="Buscar Pedidos" aria-label="Search">
                             <button class="btn btn-outline-primary"
                                     type="submit">Buscar</button>
+
                         </form>
+                        <div class="error mt-2 text-danger" 
+                                for="buscarTipo" 
+                                *ngIf="campoNoValido('buscarTipo')">*Escoja tipo: </div>
                     </div>
                 </div>
             </div>
@@ -31,19 +40,25 @@
 
                 <div class="card">
                     <div class="card-body">
+
+                        <div>
+                            <button type="button" class="btn btn-inverse-primary mb-2" (click)="crear_pedido()">CrearPedido</button>
+                        </div>
                         
                         <table *ngIf="!loading" class="table table-bordered table-hover table-responsive">
                             <thead>
                                 <tr>
                                     <th>Documento</th>
-                                    <th>Descripición</th>
+                                    <th>Cliente</th>
+                                    <th>Productos</th>
+                                    <th>Descripción</th>
                                     <th>Estado</th>
                                     <th>Opción</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let pedido of pedidos">
-                                    <td>{{ pedido['documento']}}</td>
+                                    <td>{{ pedido['pedidotipo_nombre']}} - {{ pedido['documento']}}</td>
                                     <td>
                                         <div class="mb-2"><strong>Cliente:</strong>&nbsp;{{ pedido['tercero_documento']}} - {{ pedido['tercero_nombre']}}</div>
                                         <div class="mb-2"><strong>F.Recibido:</strong>&nbsp;{{ pedido['fecha_recibido']}}</div>
@@ -52,8 +67,27 @@
                                         <div class="mb-2"><strong>Vendedor:</strong>&nbsp;{{ pedido['vendedor_email']}}</div>
                                     </td>
                                     <td>
-                                        {{ pedido['pedidoestado_nombre']}}
+                                        <table class="table2">
+                                            <thead>
+                                                <tr>
+                                                    <td>Código</td>
+                                                    <td>Referencia</td>
+                                                    <td>Cantidad</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let orden of pedido['ordenes']">
+                                                    <td>{{ orden['equipo_codificacion']}}</td>
+                                                    <td>{{ orden['equipo_modelo']}}</td>
+                                                    <td>{{ orden['cantidad']}}</td>
+                                                </tr>
+                                            </tbody>
+
+                                        </table>
+                                        
                                     </td>
+                                    <td>{{ pedido['observacion']}}</td>
+                                    <td>{{ pedido['pedidoestado_nombre']}}</td>
                                     <td>
                                         <div>
                                             <button type="button" class="btn btn-inverse-dark mb-2" (click)="editar_pedido(pedido)">Editar</button>
@@ -84,12 +118,6 @@
 
             </div>
         </div>
-    </div>
-
-
-    <div class="col-4">
-        <app-registro-pedidos [pedidos_array] = "pedidos" *ngIf="!loading && operacion =='guardar'" (pedido_nuevo)="pedidos = $event"></app-registro-pedidos>
-        <app-editar-pedidos [pedido_id]="pedido_id" [pedidos_array] = "pedidos" *ngIf="!loading && operacion =='editar'" (pedido_nuevo)="pedidos = $event" (operacion_form)="operacion = $event"></app-editar-pedidos>
     </div>
 
 </div>

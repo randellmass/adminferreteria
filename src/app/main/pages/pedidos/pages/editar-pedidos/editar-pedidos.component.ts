@@ -1,7 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { EquiposService } from '../../../equipos/services/equipos.service';
-import { TercerosService } from '../../../terceros/services/terceros.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UsuariosService } from '../../../usuarios/services/usuarios.service';
 import { PedidosService } from '../../services/pedidos.service';
 
@@ -12,14 +11,11 @@ import { PedidosService } from '../../services/pedidos.service';
 })
 export class EditarPedidosComponent implements OnInit {
 
-    @Input() pedidos_array:any[];
-    @Input() pedido_id:any;
-    @Output() pedido_nuevo = new EventEmitter<any>();
-    @Output() operacion_form = new EventEmitter<string>();
-
+  
     formPedido:FormGroup = this.fb.group({
-        documento: ['',[Validators.required]],
-        tercero_id: ['',[Validators.required]],
+        pedidotipo_id: [{value: '', disabled: true},[Validators.required]],
+        documento: [{value: '', disabled: true},[Validators.required]],
+        tercero_id: [{value: '', disabled: true},[Validators.required]],
         observacion: [''],
         fecha_recibido: ['',[Validators.required]],
         fecha_entrega: [''],
@@ -39,16 +35,20 @@ export class EditarPedidosComponent implements OnInit {
     equipos:any[] =[];
     vendedores:any[] =[];
     pedidoEstados:any[] =[];
+
     
     constructor(private fb:FormBuilder,
                 private pedidosService:PedidosService,
-                private equiposService:EquiposService,
                 private usuariosService:UsuariosService,
-                private tercerosService:TercerosService) { }
+                private activatedRoute:ActivatedRoute,
+                private router:Router) { }
 
     ngOnInit(): void {
-       this.cargarSelectForm();
-       this.cargarDatosForm();
+
+       this.activatedRoute.params.subscribe( param =>{
+          this.cargarSelectForm(param['id']);
+       }); 
+
     }
 
     campoNoValido(campo:string){
@@ -57,22 +57,20 @@ export class EditarPedidosComponent implements OnInit {
 
     cargarDatosForm(){
       this.formPedido.reset({
-          ...this.pedido_id
+          ...this.pedido
       });
     }
 
-    async cargarSelectForm(){
+    async cargarSelectForm(pedido_id:any){
 
       this.loading=true;
-        const tercero_list = await this.tercerosService.index();
-        this.terceros = tercero_list['data'];
-
-        /*const buscarEquipo = {
-            'buscarEquipo':this.pedido_id['equipo_codificacion']
+ 
+        const result_pedido = await this.pedidosService.show(pedido_id);
+        if (result_pedido['res'])
+        {
+            this.pedido = result_pedido['data'];
+            console.log(this.pedido);
         }
-
-        const equipos_list = await this.equiposService.buscar_equipo(buscarEquipo);
-        this.equipos = equipos_list['data'];*/
 
         const vendedores_list = await this.usuariosService.listado_Usuarios();
         this.vendedores = vendedores_list;
@@ -82,6 +80,7 @@ export class EditarPedidosComponent implements OnInit {
 
       this.loading=false;
       
+      this.cargarDatosForm();
     }
 
     async editar_pedido(){
@@ -90,21 +89,13 @@ export class EditarPedidosComponent implements OnInit {
           return;
         }
       
-        const pedido_reg = await this.pedidosService.update(this.pedido_id['id'],this.formPedido.value);
+        const pedido_reg = await this.pedidosService.update(this.pedido['id'],this.formPedido.value);
         if (pedido_reg['res'])
         {
             this.pedido = pedido_reg['data'];
-     
-            const i = this.pedidos_array.indexOf( this.pedido_id );
- 
-            if ( i !== -1 ) {
-              this.pedidos_array[i] = this.pedido;
-            }
-            
-            this.pedido_nuevo.emit(this.pedidos_array);
-            this.operacion_form.emit("guardar");
             this.errors =[];
             this.formPedido.reset();
+            this.router.navigateByUrl('main/pedidos');
         }else{
             this.errors = pedido_reg['data'];
         }
@@ -113,7 +104,7 @@ export class EditarPedidosComponent implements OnInit {
     }
 
     cancelar_editar(){
-      this.operacion_form.emit("guardar");
+      this.router.navigateByUrl('main/pedidos');
     }
 
 }

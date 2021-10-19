@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { EquiposService } from '../../../equipos/services/equipos.service';
 import { TercerosService } from '../../../terceros/services/terceros.service';
@@ -12,12 +13,35 @@ import { PedidosService } from '../../services/pedidos.service';
   styleUrls: ['./registro-pedidos.component.css']
 })
 export class RegistroPedidosComponent implements OnInit {
+  
+    ValidarConcepto(concepto:any,documento:string)
+    {
+      return (formGroup:AbstractControl):ValidationErrors | null =>{
 
-    @Input() pedidos_array:any[];
-    @Output() pedido_nuevo = new EventEmitter<any>();
+          const conceptoV = formGroup.get(concepto).value;
+          const documentoV = formGroup.get(documento).value;
 
+          if(conceptoV == 1)
+          {
+            this.oculto_tipo = false;  
+            if(documentoV=="")
+              {
+                formGroup.get(documento).setErrors({cruzar:true});
+                return { cruzar:true }
+              }else{
+                formGroup.get(documento).setErrors(null);
+              }
+          }else{
+            this.oculto_tipo =true;
+          }
+    
+          return null;
+      }
+    }
+  
     formPedido:FormGroup = this.fb.group({
-        documento: ['',[Validators.required]],
+        pedidotipo_id: ['',[Validators.required]],
+        documento: [''],
         tercero_id: ['',[Validators.required]],
         fecha_recibido: ['',[Validators.required]],
         fecha_entrega: [''],
@@ -28,6 +52,9 @@ export class RegistroPedidosComponent implements OnInit {
         op_electrica:[''],
         op_refri:[''],
         vendedor: ['',[Validators.required]],
+    },
+    {
+      validators:[ this.ValidarConcepto('pedidotipo_id','documento')]
     });
 
     form_buscar_equipo:FormGroup = this.fb.group({
@@ -40,14 +67,14 @@ export class RegistroPedidosComponent implements OnInit {
 
     loading:boolean = true;
     errors:any =[];
-    pedido:any;
     terceros:any[] =[];
-    equipos:any[] =[];
+    tipos:any[] =[];
     vendedores:any[] =[];
+    oculto_tipo:boolean=true;
     
     constructor(private fb:FormBuilder,
+                private router:Router,
                 private pedidosService:PedidosService,
-                private equiposService:EquiposService,
                 private usuariosService:UsuariosService,
                 private tercerosService:TercerosService) { }
 
@@ -62,8 +89,11 @@ export class RegistroPedidosComponent implements OnInit {
     async cargarSelectForm(){
 
       this.loading=true;
-        //const tercero_list = await this.tercerosService.index();
-        //this.terceros = tercero_list['data'];
+        const list_tipos = await this.pedidosService.index_pedido_tipos();
+        if (list_tipos['res'])
+        {
+            this.tipos = list_tipos['data'];
+        }
 
         const vendedores_list = await this.usuariosService.listado_Usuarios();
         this.vendedores = vendedores_list;
@@ -82,12 +112,7 @@ export class RegistroPedidosComponent implements OnInit {
         const pedido_reg = await this.pedidosService.store(this.formPedido.value);
         if (pedido_reg['res'])
         {
-            this.pedido = pedido_reg['data'];
-            this.pedidos_array.unshift(this.pedido);
-            
-            this.pedido_nuevo.emit(this.pedidos_array);
-            this.errors =[];
-            this.formPedido.reset();
+          this.router.navigateByUrl('main/pedidos');
         }else{
             this.errors = pedido_reg['data'];
         }
@@ -95,11 +120,12 @@ export class RegistroPedidosComponent implements OnInit {
 
     }
 
-    async buscar_tercero(){
-      this.loading= true;
-      const eq = await this.tercerosService.search_tercero(this.form_buscar_tercero.value);
-      this.terceros = eq['data'];
-      this.loading= false;
+    async buscar_tercero()
+    {
+        this.loading= true;
+        const eq = await this.tercerosService.search_tercero(this.form_buscar_tercero.value);
+        this.terceros = eq['data'];
+        this.loading= false;
     }
 
 }

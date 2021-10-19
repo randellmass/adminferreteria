@@ -48,7 +48,13 @@ export class SidebarComponent implements OnInit {
             {
                "nombre":"Categorias",
                "url":"/main/categorias"
-            },
+            }
+          ]
+      },
+      {
+         "categoria":"Produccion",
+         "icon":"mdi mdi-television",
+         "enlaces":[
             {
                "nombre":"Terceros",
                "url":"/main/tercero"
@@ -57,7 +63,7 @@ export class SidebarComponent implements OnInit {
                "nombre":"Pedidos",
                "url":"/main/pedidos"
             }
-          ]
+         ]
       },
       {
          "categoria":"CotizacionChiller",
@@ -136,7 +142,13 @@ export class SidebarComponent implements OnInit {
             {
                "nombre":"Categorias",
                "url":"/main/categorias"
-            },
+            }
+          ]
+      },
+      {
+         "categoria":"Produccion",
+         "icon":"mdi mdi-television",
+         "enlaces":[
             {
                "nombre":"Terceros",
                "url":"/main/tercero"
@@ -145,7 +157,7 @@ export class SidebarComponent implements OnInit {
                "nombre":"Pedidos",
                "url":"/main/pedidos"
             }
-          ]
+         ]
       },
       {
           "categoria":"Tablas-Maestras",

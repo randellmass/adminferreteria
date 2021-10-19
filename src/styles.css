@@ -195,6 +195,16 @@
 	white-space: normal;
 }
 
+
+.table2 td, .table2 th {
+	white-space: normal;
+    padding: 5px;
+    line-height: 1;
+    white-space: nowrap;
+    height: 20px;
+    border: 1px solid #d3d2d2;
+}
+
 /*fondo biblioteca dashboard usuarios*/
 #fondo_biblioteca{
 	width: 100%;

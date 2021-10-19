@@ -23,7 +23,7 @@
                                 <table *ngIf="pedido" class="table table-bordered table-hover table-responsive">
                                     <tr>
                                         <td>Documento:</td>
-                                        <td>{{ pedido['documento']}}</td>
+                                        <td>{{ pedido['pedidotipo_nombre']}} - {{ pedido['documento']}}</td>
                                         <td>Estado:</td>
                                         <td>{{ pedido['pedidoestado_nombre']}}</td>
                                     </tr>
@@ -110,6 +110,11 @@
             <div class="card-body">
                 <h4 class="card-subtitle">Filtrar Pedido</h4>
                     <form class="d-flex" [formGroup]="formBuscarPedido" (ngSubmit)="buscar_pedido()">
+                        <select class="form-control  me-2" formControlName="buscarTipo">
+                            <option value="" selected>*Escoja Tipo</option>
+                            <option [value]="tipo['id']" *ngFor="let tipo of tipos">{{ tipo['nombre'] }}</option>
+                        </select>
+
                         <input class="form-control me-2"
                             formControlName="buscarPedido"
                             type="search" 
@@ -117,6 +122,9 @@
                         <button class="btn btn-outline-primary"
                                 type="submit">Buscar</button>
                     </form>
+                    <div class="error mt-2 text-danger" 
+                                for="buscarTipo" 
+                                *ngIf="campoNoValido('buscarTipo')">*Escoja tipo: </div>
 
                     <div class="row mt-5" *ngIf="errors.length>0">
                         <div class="col-12">

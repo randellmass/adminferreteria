@@ -9,7 +9,7 @@
                         <table *ngIf="pedido" class="table table-responsive">
                             <tr>
                                 <td>Documento:</td>
-                                <td>{{ pedido['documento']}}</td>
+                                <td>{{ pedido['pedidotipo_nombre']}} - {{ pedido['documento']}}</td>
                                 <td>F.Recibido:</td>
                                 <td>{{ pedido['fecha_recibido']}}</td>
                             </tr>

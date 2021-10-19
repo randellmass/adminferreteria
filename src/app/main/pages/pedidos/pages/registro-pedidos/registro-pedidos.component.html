@@ -1,15 +1,21 @@
-<div class="card mb-2">
-    <div class="card-body">
-        <h4 class="card-subtitle">Filtrar Tercero</h4>
-            <form class="d-flex" [formGroup]="form_buscar_tercero" (ngSubmit)="buscar_tercero()">
-                <input class="form-control me-2"
-                    formControlName="buscarTercero"
-                    type="search" 
-                    placeholder="Buscar" aria-label="Search">
-                <button class="btn btn-outline-primary"
-                        type="submit">Buscar</button>
-            </form>
+<div class="row">    
+
+    <div class="col-lg-6">
+        <div class="card mb-2">
+            <div class="card-body">
+                <h4 class="card-subtitle">Filtrar Tercero</h4>
+                    <form class="d-flex" [formGroup]="form_buscar_tercero" (ngSubmit)="buscar_tercero()">
+                        <input class="form-control me-2"
+                            formControlName="buscarTercero"
+                            type="search" 
+                            placeholder="Buscar" aria-label="Search">
+                        <button class="btn btn-outline-primary"
+                                type="submit">Buscar</button>
+                    </form>
+            </div>
+        </div>
     </div>
+
 </div>
 
 <div class="card">
@@ -22,7 +28,21 @@
 
                 <div class="row">
 
-                    <div class="col-lg-12">
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label for="">Tipo:</label>
+                            <select class="form-control" formControlName="pedidotipo_id">
+                                <option value="" selected>*Escoja Tipo</option>
+                                <option [value]="tipo['id']" *ngFor="let tipo of tipos">{{ tipo['nombre'] }}</option>
+                            </select>
+                            <label class="error mt-2 text-danger" 
+                                for="pedidotipo_id" 
+                            *ngIf="campoNoValido('pedidotipo_id')">*Escoja tipo: </label>
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-lg-3" *ngIf="!oculto_tipo">
                         <div class="form-group">
                             <label for="">Documento:</label>
                             <input type="text" 
@@ -32,10 +52,9 @@
                                 for="documento" 
                             *ngIf="campoNoValido('documento')">*Digite documento: </label>
                         </div>
-                        
                     </div>
-
-                    <div class="col-lg-12">
+         
+                    <div class="col-lg-6">
                         <div class="form-group">
                             <label for="">Terceros:</label>
                             <select class="form-control" formControlName="tercero_id">
@@ -52,24 +71,9 @@
 
                 </div>
                     
-                <div class="row">
-
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <label for="">Observacion:</label>
-                            <input type="text" 
-                                    class="form-control" 
-                                    formControlName="observacion">
-              
-                        </div>
-                        
-                    </div>
-       
-                </div>
-
                 <div class="row">    
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-3">
                         <div class="form-group">
                             <label for="">Fecha Recibido:</label>
                             <input type="date" 
@@ -82,7 +86,7 @@
                         
                     </div>
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-3">
                         <div class="form-group">
                             <label for="">Fecha Entrega:</label>
                             <input type="date" 
@@ -92,11 +96,8 @@
                         </div>
                         
                     </div>
-                </div>
 
-                <div class="row">    
-
-                    <div class="col-lg-6">
+                    <div class="col-lg-3">
                         <div class="form-group">
                             <label for="">Op Ensamble:</label>
                             <input type="text" 
@@ -106,7 +107,7 @@
                         
                     </div>
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-3">
                         <div class="form-group">
                             <label for="">Op Laminado:</label>
                             <input type="text" 
@@ -120,7 +121,7 @@
 
                 <div class="row">    
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-3">
                         <div class="form-group">
                             <label for="">Op Serpertin</label>
                             <input type="text" 
@@ -130,7 +131,7 @@
                         
                     </div>
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-3">
                         <div class="form-group">
                             <label for="">Op Electrica:</label>
                             <input type="text" 
@@ -140,11 +141,8 @@
                         </div>
                         
                     </div>
-                </div>
-
-                <div class="row">
-
-                    <div class="col-lg-6">
+             
+                    <div class="col-lg-3">
                         <div class="form-group">
                             <label for="">Op Refri:</label>
                             <input type="text" 
@@ -155,7 +153,7 @@
                         
                     </div>
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-3">
                         <div class="form-group">
                             <label for="">Vendedor:</label>
                             <select class="form-control" formControlName="vendedor">
@@ -165,6 +163,21 @@
                             <label class="error mt-2 text-danger" 
                                 for="vendedor" 
                             *ngIf="campoNoValido('vendedor')">*Escoja Vendedor: </label>
+                        </div>
+                        
+                    </div>
+       
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Observacion:</label>
+                            <textarea rows="5"
+                                      class="form-control" 
+                                      formControlName="observacion">
+                            </textarea>
                         </div>
                         
                     </div>

@@ -11,12 +11,14 @@ import { PedidosService } from '../../services/pedidos.service';
 export class ListadoPedidosComponent implements OnInit {
 
     formBuscarPedido:FormGroup = this.fb.group({
-      buscarPedido : ['',[Validators.required]]
+      buscarPedido : [''],
+      buscarTipo : ['',[Validators.required]]
     });
 
     errors:any=[];
     loading:boolean = false;
     pedidos:any[] =[];
+    tipos:any[] =[];
     pedido_id:any;
     operacion:string="guardar";
     
@@ -28,6 +30,9 @@ export class ListadoPedidosComponent implements OnInit {
         this.listado_pedidos();
     }
 
+    campoNoValido(campo:string){
+      return this.formBuscarPedido.controls[campo].touched && this.formBuscarPedido.controls[campo].errors;
+    }
 
     async listado_pedidos(){
       this.loading= true;
@@ -37,16 +42,31 @@ export class ListadoPedidosComponent implements OnInit {
         {
           this.errors="";  
           this.pedidos = result_ter['data'];  
+     
         } else {
           this.errors = result_ter['data']; 
+        }
+
+        const result_tipos = await this.pedidosService.index_pedido_tipos();
+        if (result_tipos['res'])
+        {
+          this.errors="";  
+          this.tipos = result_tipos['data'];  
+     
+        } else {
+          this.errors = result_tipos['data']; 
         }
 
         this.loading= false; 
     }
 
+    crear_pedido(){
+        this.router.navigate(['main/pedidos/registro']);
+
+    }
+
     editar_pedido(pedido:any){
-        this.operacion = "editar";
-        this.pedido_id = pedido;
+      this.router.navigate(['main/pedidos/editar/',pedido['id']]);
 
     }
 
@@ -60,9 +80,17 @@ export class ListadoPedidosComponent implements OnInit {
 
     async buscar_pedido()
     {
+      if(this.formBuscarPedido.invalid)
+      {
+          this.formBuscarPedido.markAllAsTouched();
+          return;
+      }
+      
       this.loading= true;
       const pedido_result = await this.pedidosService.search_pedido_admin(this.formBuscarPedido.value);
-      if (pedido_result['res']) {
+      
+      if (pedido_result['res'])
+      {
         this.pedidos = pedido_result['data'];
         console.log(this.pedidos);
         this.errors = [];

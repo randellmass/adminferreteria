@@ -20,10 +20,10 @@ const routes: Routes = [
         path:'pedido', component:VercomercialPedidoComponent
       },
       {
-        path:'', redirectTo:'listado'
+        path:'', redirectTo:'listado', pathMatch:'full'
       },
       {
-        path:'**', redirectTo:'listado'
+        path:'**', redirectTo:'listado', pathMatch:'full'
       }
     ]
   },
