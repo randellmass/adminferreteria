@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegistroOrdenComponent } from './pages/registro-orden/registro-orden.component';
 import { ListadoOrdenComponent } from './pages/listado-orden/listado-orden.component';
 import { VerPedidosComponent } from './pages/ver-pedidos/ver-pedidos.component';
+import { InformePedidosComponent } from './pages/informe-pedidos/informe-pedidos.component';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { VerPedidosComponent } from './pages/ver-pedidos/ver-pedidos.component';
       RegistroPedidosComponent, 
       EditarPedidosComponent, 
       RegistroOrdenComponent, 
-      ListadoOrdenComponent, VerPedidosComponent],
+      ListadoOrdenComponent, VerPedidosComponent, InformePedidosComponent],
   imports: [
     CommonModule,
     PedidosRoutingModule,

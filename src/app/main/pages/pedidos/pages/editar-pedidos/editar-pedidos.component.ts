@@ -25,6 +25,8 @@ export class EditarPedidosComponent implements OnInit {
         op_electrica:[''],
         op_refri:[''],
         vendedor: ['',[Validators.required]],
+        almacen_id: ['',[Validators.required]],
+        valor_costo: [''],
         pedidoestado_id: ['',[Validators.required]],
     });
 
@@ -32,7 +34,7 @@ export class EditarPedidosComponent implements OnInit {
     errors:any =[];
     pedido:any;
     terceros:any[] =[];
-    equipos:any[] =[];
+    almacenes:any[] =[];
     vendedores:any[] =[];
     pedidoEstados:any[] =[];
 
@@ -69,7 +71,12 @@ export class EditarPedidosComponent implements OnInit {
         if (result_pedido['res'])
         {
             this.pedido = result_pedido['data'];
-            console.log(this.pedido);
+        }
+
+        const result_almacenes = await this.pedidosService.index_almacenes();
+        if (result_almacenes['res'])
+        {
+            this.almacenes = result_almacenes['data'];
         }
 
         const vendedores_list = await this.usuariosService.listado_Usuarios();

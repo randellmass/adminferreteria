@@ -11,6 +11,7 @@ import { CotchillerService } from '../../services/cotchiller.service';
 export class EditarCotizacionCostoComponent implements OnInit {
 
     @Input() cotizacion_id:any[];
+    @Input() orden_id:any[];
     @Output() cot_form = new EventEmitter<any>();
     
  
@@ -35,7 +36,7 @@ export class EditarCotizacionCostoComponent implements OnInit {
 
     cargar_cotizacion_form(){
         this.formCosto.reset({
-            ...this.cotizacion_id
+            ...this.orden_id
         });
     }
 
@@ -52,7 +53,7 @@ export class EditarCotizacionCostoComponent implements OnInit {
         return;
       }
 
-      const registro = await this.cotchillerService.update_costo(this.cotizacion_id['id'], this.formCosto.value);
+      const registro = await this.cotchillerService.update_costo(this.orden_id['id'], this.formCosto.value);
       if(registro['res'])
       {
           this.cot_form.emit(this.cotizacion_id['id']);

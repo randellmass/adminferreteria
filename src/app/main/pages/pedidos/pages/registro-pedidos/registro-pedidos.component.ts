@@ -52,6 +52,8 @@ export class RegistroPedidosComponent implements OnInit {
         op_electrica:[''],
         op_refri:[''],
         vendedor: ['',[Validators.required]],
+        almacen_id: ['',[Validators.required]],
+        valor_costo: [''],
     },
     {
       validators:[ this.ValidarConcepto('pedidotipo_id','documento')]
@@ -69,6 +71,7 @@ export class RegistroPedidosComponent implements OnInit {
     errors:any =[];
     terceros:any[] =[];
     tipos:any[] =[];
+    almacenes:any[] =[];
     vendedores:any[] =[];
     oculto_tipo:boolean=true;
     
@@ -95,8 +98,15 @@ export class RegistroPedidosComponent implements OnInit {
             this.tipos = list_tipos['data'];
         }
 
+        const list_almacenes = await this.pedidosService.index_almacenes();
+        if (list_almacenes['res'])
+        {
+            this.almacenes = list_almacenes['data'];
+        }
+
         const vendedores_list = await this.usuariosService.listado_Usuarios();
         this.vendedores = vendedores_list;
+        //console.log(this.vendedores);
 
   
       this.loading=false;

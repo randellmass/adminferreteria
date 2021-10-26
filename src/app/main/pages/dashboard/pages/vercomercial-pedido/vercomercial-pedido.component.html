@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-8">
+    <div class="col-6">
 
         <div class="row mb-2">
             <div class="col-12">
@@ -105,10 +105,9 @@
     </div>
 
 
-    <div class="col-4">
+    <div class="col-6">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-subtitle">Filtrar Pedido</h4>
                     <form class="d-flex" [formGroup]="formBuscarPedido" (ngSubmit)="buscar_pedido()">
                         <select class="form-control  me-2" formControlName="buscarTipo">
                             <option value="" selected>*Escoja Tipo</option>
@@ -120,7 +119,7 @@
                             type="search" 
                             placeholder="Buscar" aria-label="Search">
                         <button class="btn btn-outline-primary"
-                                type="submit">Buscar</button>
+                                type="submit">BuscarPedido</button>
                     </form>
                     <div class="error mt-2 text-danger" 
                                 for="buscarTipo" 

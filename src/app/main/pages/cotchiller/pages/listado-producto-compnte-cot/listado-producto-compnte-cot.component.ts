@@ -15,6 +15,7 @@ export class ListadoProductoCompnteCotComponent implements OnInit {
     loading:boolean = true;
     compntes:any[]=[];
     operacion:string="guardar";
+    totalCosto:number =0;
     
     constructor(private cotproductoService:CotproductoService,
                 private activatedRoute:ActivatedRoute) { }
@@ -35,6 +36,13 @@ export class ListadoProductoCompnteCotComponent implements OnInit {
 
           this.producto = equipo1['data'];
           this.compntes = equipo1['data']['compntes'];
+
+          let sumaCosto=0;
+          this.compntes.forEach( item =>{
+              sumaCosto+= item['cantidad'] * item['equipo']['costo'];
+          });
+
+          this.totalCosto = sumaCosto;
         }
          
       this.loading=false;

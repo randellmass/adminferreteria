@@ -18,6 +18,8 @@ import { EditarCotizacionCostoComponent } from './pages/editar-cotizacion-costo/
 import { EditarCotizacionComponent } from './pages/editar-cotizacion/editar-cotizacion.component';
 import { EditarCotizacionEstadoComponent } from './pages/editar-cotizacion-estado/editar-cotizacion-estado.component';
 import { ListadoCotizacionDetalleComponent } from './pages/listado-cotizacion-detalle/listado-cotizacion-detalle.component';
+import { ListadoCotizacionOrdenComponent } from './pages/listado-cotizacion-orden/listado-cotizacion-orden.component';
+import { RegistroCotizacionOrdenComponent } from './pages/registro-cotizacion-orden/registro-cotizacion-orden.component';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import { ListadoCotizacionDetalleComponent } from './pages/listado-cotizacion-de
         EditarCotizacionCostoComponent, 
         EditarCotizacionComponent, 
         EditarCotizacionEstadoComponent,
-        ListadoCotizacionDetalleComponent],
+        ListadoCotizacionDetalleComponent,
+        ListadoCotizacionOrdenComponent,
+        RegistroCotizacionOrdenComponent],
   imports: [
     CommonModule,
     CotchillerRoutingModule,

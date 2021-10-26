@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { EditarPedidosComponent } from './pages/editar-pedidos/editar-pedidos.component';
+import { InformePedidosComponent } from './pages/informe-pedidos/informe-pedidos.component';
 import { ListadoOrdenComponent } from './pages/listado-orden/listado-orden.component';
 import { ListadoPedidosComponent } from './pages/listado-pedidos/listado-pedidos.component';
 import { RegistroPedidosComponent } from './pages/registro-pedidos/registro-pedidos.component';
@@ -13,6 +14,9 @@ const routes: Routes = [
     children: [
       {
          path:'listado', component:ListadoPedidosComponent
+      },
+      {
+         path:'informe', component:InformePedidosComponent
       },
       {
          path:'registro', component:RegistroPedidosComponent

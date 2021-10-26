@@ -1,0 +1,138 @@
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-subtitle">Registro Cotización</h4>
+
+        <form class="cmxform" (ngSubmit)="agregarCotizacion()" [formGroup]="formCotizacion" *ngIf="!loading" >
+            <fieldset>
+                    
+
+                <div class="row">
+
+                            
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Capacidad Equipo Cotizar:</label>
+                            <select class="form-control" formControlName="cotcapacidad_id">
+                                <option value="" selected>*Escoja Capacidad</option>
+                                <option [value]="capacidad['id']" *ngFor="let capacidad of capacidades">{{ capacidad['valor']}}</option>
+                            </select>
+                            <label class="error mt-2 text-danger" 
+                                    for="cotcapacidad_id" 
+                                    *ngIf="campoNoValido('cotcapacidad_id')">*Escoja capacidad</label>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Voltaje Equipo Cotizar:</label>
+                            <select class="form-control" formControlName="cotvoltaje_id">
+                                <option value="" selected>*Escoja voltaje</option>
+                                <option [value]="voltaje['id']" *ngFor="let voltaje of voltajes">{{ voltaje['nombre']}}</option>
+                            </select>
+                            <label class="error mt-2 text-danger" 
+                                    for="cotvoltaje_id" 
+                                    *ngIf="campoNoValido('cotvoltaje_id')">*Escoja voltaje</label>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Circuitos Equipo Cotizar:</label>
+                            <select class="form-control" formControlName="cotcircuito_id">
+                                <option value="" selected>*Escoja Circuito</option>
+                                <option [value]="circuito['id']" *ngFor="let circuito of circuitos">{{ circuito['nombre']}}</option>
+                            </select>
+                            <label class="error mt-2 text-danger" 
+                                    for="cotcircuito_id" 
+                                    *ngIf="campoNoValido('cotcircuito_id')">*Escoja Circuitos</label>
+                        </div>
+                    </div>
+
+           
+                    <div class="col-lg-12" *ngIf="!oculto_producto" >
+                        <div class="form-group">
+                            <label for="">Producto:</label>
+                            <select class="form-control" formControlName="cotproducto_id">
+                                <option value="" selected>*Escoja equipo</option>
+                                <option [value]="equipo['id']" *ngFor="let equipo of equipos">{{ equipo['equipo']['modelo'] }} - {{ equipo['equipo']['nombre'] }}</option>
+                            </select>
+                            <label class="error mt-2 text-danger" 
+                                for="cotproducto_id" 
+                            *ngIf="campoNoValido('cotproducto_id')">*Escoja Equipo: </label>
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-lg-12" *ngIf="!oculto_producto" >
+                        <div class="form-group">
+                            <label for="">Compresor:</label>
+                            <select class="form-control" formControlName="compresor_id">
+                                <option value="" selected>*Escoja compresor</option>
+                                <option [value]="compresor['equipo']['id']" *ngFor="let compresor of compresores">{{ compresor['equipo']['referencia'] }} - {{ compresor['equipo']['descripcion1'] }}</option>
+                            </select>
+                            <label class="error mt-2 text-danger" 
+                                for="compresor_id" 
+                            *ngIf="campoNoValido('compresor_id')">*Escoja compresor: </label>
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-lg-12" *ngIf="!oculto_producto" >
+                        <div class="form-group">
+                            <label for="">Intercambiador:</label>
+                            <select class="form-control" formControlName="intercambiador_id">
+                                <option value="" selected>*Escoja intercambiador</option>
+                                <option [value]="intercambiador['equipo']['id']" *ngFor="let intercambiador of intercambiadores">{{ intercambiador['equipo']['referencia'] }} - {{ intercambiador['equipo']['descripcion1'] }}</option>
+                            </select>
+                            <label class="error mt-2 text-danger" 
+                                for="intercambiador_id" 
+                            *ngIf="campoNoValido('intercambiador_id')">*Escoja intercambiador: </label>
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Cantidad Equipos:</label>
+                            <input type="number" 
+                                    class="form-control" 
+                                    formControlName="cantidad"
+                                    placeholder="*Cantidad Equipos">
+                            <label class="error mt-2 text-danger" 
+                                    for="cantidad" 
+                                    *ngIf="campoNoValido('cantidad')">*Digite Cantidad Equipos</label>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Observacion Equipo Cotizar:</label>
+                            <textarea class="form-control" 
+                                    formControlName="observacion_cliente" 
+                                    rows="5">
+                            </textarea>
+                        </div>
+                        
+                    </div>
+
+                </div>
+            
+                <button type="submit" class="btn btn-inverse-primary">Agregar</button>
+            </fieldset>
+        </form>
+        <app-loading *ngIf="loading"></app-loading>
+
+        <div class="row mt-5" *ngIf="errors.length>0">
+            <div class="col-12">
+                <div class="alert alert-danger " role="alert">
+                    <ul>
+                        <li *ngFor="let error of errors" >{{ error }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

@@ -8,46 +8,52 @@
                         <h4 class="card-subtitle">Pedido</h4>
                         <table *ngIf="pedido" class="table table-bordered table-hover table-responsive">
                             <tr>
-                                <td>Documento:</td>
+                                <td><strong>Documento:</strong></td>
                                 <td>{{ pedido['pedidotipo_nombre']}} - {{ pedido['documento']}}</td>
-                                <td>Estado:</td>
+                                <td><strong>Estado:</strong></td>
                                 <td>{{ pedido['pedidoestado_nombre']}}</td>
                             </tr>
                             <tr>
-                                <td>F.Entrega:</td>
+                                <td><strong>F.Entrega:</strong></td>
                                 <td>{{ pedido['fecha_entrega']}}</td>
-                                <td>F.Recibido:</td>
+                                <td><strong>F.Recibido:</strong></td>
                                 <td>{{ pedido['fecha_recibido']}}</td>
                             </tr>
                             <tr>
-                                <td>Fecha actual:</td>
+                                <td><strong>Fecha actual:</strong></td>
                                 <td>{{ pedido['fecha_actual'] }}</td>
-                                <td>Dias Entrega:</td>
+                                <td><strong>Dias Entrega:</strong></td>
                                 <td>{{ pedido['dias_entrega']}}</td>
                             </tr>
 
                             <tr>
-                                <td>Op ensamble:</td>
+                                <td><strong>Op ensamble:</strong></td>
                                 <td>{{ pedido['op_ensamble']}}</td>
-                                <td>Op laminado:</td>
+                                <td><strong>Op laminado:</strong></td>
                                 <td>{{ pedido['op_laminado']}}</td>
                             </tr>
 
                             <tr>
-                                <td>Op serpertin:</td>
+                                <td><strong>Op serpertin:</strong></td>
                                 <td>{{ pedido['op_serpertin']}}</td>
-                                <td>Op electrica:</td>
+                                <td><strong>Op electrica:</strong></td>
                                 <td>{{ pedido['op_electrica']}}</td>
                             </tr>
 
                             <tr>
-                                <td>Op refri:</td>
+                                <td><strong>Op refri:</strong></td>
                                 <td>{{ pedido['op_refri']}}</td>
                                 <td>&nbsp;</td>
                                 <td>&nbsp;</td>
                             </tr>
                             <tr>
-                                <td colspan="4">Observacion:</td>
+                                <td><strong>Almácen:</strong></td>
+                                <td>{{ pedido['almacen_nombre']}}</td>
+                                <td><strong>Valor Costo:</strong></td>
+                                <td>{{ pedido['valor_costo'] | number }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"><strong>Observacion:</strong></td>
                             </tr>
                             <tr>
                                 <td colspan="4">{{ pedido['observacion']}}</td>
@@ -68,12 +74,12 @@
                         
                         <table *ngIf="!loading" class="table table-bordered table-hover table-responsive">
                             <tr>
-                                <td>Cliente:</td>
+                                <td><strong>Cliente:</strong></td>
                                 <td>{{ pedido['tercero_documento']}} - {{ pedido['tercero_nombre']}}</td>
                             </tr>
 
                             <tr>
-                                <td>Asesor:</td>
+                                <td><strong>Asesor:</strong></td>
                                 <td>{{ pedido['vendedor_email']}}</td>
                             </tr>
 

@@ -123,6 +123,42 @@ export class CotchillerService {
       
     }
 
+    show_orden_materiales(cot_id:any,orden_id:any)
+    {
+                 
+          return new Promise<any>( resolve =>{
+            
+            const headers = new HttpHeaders({
+              'Accept': 'application/json', 
+              'Authorization': `Bearer ${ this.authService.token }` 
+            });
+      
+            this.http.get(`${ URL}/cot_clientes/${ cot_id }/orden/${ orden_id }`,{ headers })
+            .subscribe( resp =>{
+              
+                if(resp['res'])
+                {
+                    resolve(
+                      {
+                        res:true,
+                        data: resp['data']
+                      }
+                    );
+                }else{
+                    resolve(
+                      {
+                        res:false,
+                        data: resp['mensaje']
+                      }
+                    );
+                }
+            
+              });
+      
+            }); 
+      
+    }
+
     store(cotizacion:any)
     {
 
@@ -191,7 +227,7 @@ export class CotchillerService {
 
     } 
 
-    update_costo(cot:any,costo:any)
+    update_costo(orden_id:any,costo:any)
     {
 
           return new Promise<any>( resolve =>{
@@ -201,7 +237,7 @@ export class CotchillerService {
               'Authorization': `Bearer ${ this.authService.token }` 
               });
 
-                this.http.post(`${ URL}/cot_clientes/costo/${ cot }`, costo ,{ headers })
+                this.http.post(`${ URL}/cot_clientes/costo/${ orden_id }`, costo ,{ headers })
                 .subscribe( resp =>{
 
                       if(resp['res'])
@@ -294,7 +330,42 @@ export class CotchillerService {
 
     } 
 
-    destroy_detalle_cotizacion(cotizacion_id:any,compnte_id:any)
+        //Registro detalle de cotizacion
+    store_orden(cotizacion_id:any,orden:any)
+    {
+  
+            return new Promise<any>( resolve =>{
+  
+                const headers = new HttpHeaders({
+                'Accept': 'application/json', 
+                'Authorization': `Bearer ${ this.authService.token }` 
+                });
+  
+                  this.http.post(`${ URL}/cot_clientes/${ cotizacion_id }/orden`, orden,{ headers })
+                  .subscribe( resp =>{
+  
+                        if(resp['res'])
+                        {
+                            resolve(
+                            {
+                              res:true,
+                              data:resp['data']
+                            });
+                        }else{
+                            resolve(
+                            {
+                              res:false,
+                              data:resp['mensaje']
+                            });
+                        }
+  
+                  });
+  
+            }); 
+  
+    } 
+
+    destroy_detalle_cotizacion(orden_id:any,compnte_id:any)
     {
 
           return new Promise<any>( resolve =>{
@@ -304,7 +375,41 @@ export class CotchillerService {
               'Authorization': `Bearer ${ this.authService.token }` 
               });
 
-                this.http.delete(`${ URL}/cot_clientes/${ cotizacion_id }/detalle/${ compnte_id }`, { headers })
+                this.http.delete(`${ URL}/cot_clientes/${ orden_id }/detalle/${ compnte_id }`, { headers })
+                .subscribe( resp =>{
+
+                      if(resp['res'])
+                      {
+                          resolve(
+                          {
+                            res:true,
+                            data:resp['data']
+                          });
+                      }else{
+                          resolve(
+                          {
+                            res:false,
+                            data:resp['mensaje']
+                          });
+                      }
+
+                });
+
+          }); 
+
+    } 
+
+    destroy_orden_cotizacion(cotizacion_id:any,cotclienteorden_id:any)
+    {
+
+          return new Promise<any>( resolve =>{
+
+              const headers = new HttpHeaders({
+              'Accept': 'application/json', 
+              'Authorization': `Bearer ${ this.authService.token }` 
+              });
+
+                this.http.delete(`${ URL}/cot_clientes/${ cotizacion_id }/orden/${ cotclienteorden_id }`, { headers })
                 .subscribe( resp =>{
 
                       if(resp['res'])

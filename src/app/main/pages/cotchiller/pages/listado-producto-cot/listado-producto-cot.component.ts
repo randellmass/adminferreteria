@@ -26,7 +26,7 @@ export class ListadoProductoCotComponent implements OnInit {
       this.loading=true;
         const equipo1 = await this.cotproductoService.index();
          
-        console.log(equipo1['data']);
+        //console.log(equipo1['data']);
   
         this.equipos = equipo1['data'];
       this.loading=false;

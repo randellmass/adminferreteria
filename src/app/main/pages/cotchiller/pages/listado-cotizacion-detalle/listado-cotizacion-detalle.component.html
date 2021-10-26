@@ -1,4 +1,4 @@
-<div class="row mt-2">
+<div class="row">
     <div class="col-8">
         <app-loading *ngIf="loading"></app-loading>
 
@@ -13,33 +13,12 @@
                    
                             <tbody >
                                 <tr>
-                                    <td scope="row"><strong>Capacidad:</strong></td>
-                                    <td>{{ cotizacion['capacidad']['valor'] | number}}</td>
-                                    <td ><strong>Voltaje:</strong></td>
-                                    <td>{{ cotizacion['voltaje']['nombre'] }}</td>
-                                </tr>
-                                <tr>
-                                    <td ><strong>Circuitos:</strong></td>
-                                    <td>{{ cotizacion['circuito']['nombre'] }}</td>
-                                    <td scope="row"><strong>Cliente:</strong></td>
+                                    <td ><strong>Cliente:</strong></td>
                                     <td>{{ cotizacion['tercero_documento'] }} - {{ cotizacion['tercero_nombre'] }}</td>
-                                </tr>
-                                <tr>
-                                    <td scope="row"><strong>Cantidad:</strong></td>
-                                    <td>{{ cotizacion['cantidad'] }}</td>
-                                    <td scope="row"><strong>Fecha Registro:</strong></td>
-                                    <td>{{ cotizacion['created_at'] | date:'YYYY-MM-dd' }}</td>
-                                </tr>
-                                <tr>
                                     <td scope="row"><strong>Estado:</strong></td>
-                                    <td>{{ cotizacion['estado']['nombre'] }}</td>
-                                    <td scope="row"><strong>Fecha Aprobada:</strong></td>
-                                    <td>{{ cotizacion['fecha_aprobada'] | date:'YYYY-MM-dd' }}</td>
+                                    <td>{{ cotizacion['estado']['nombre']}}</td>
                                 </tr>
-                                <tr>
-                                    <td scope="row"><strong>Producto:</strong></td>
-                                    <td colspan="3">{{ cotizacion['producto']['equipo']['modelo'] }} - {{ cotizacion['producto']['equipo']['nombre'] }}</td>
-                                </tr>
+                            
                                 <tr>
                                     <td scope="row"><strong>Asesor:</strong></td>
                                     <td colspan="3">
@@ -49,28 +28,38 @@
                                        <ng-template #sinAsignar>Sin Asignar</ng-template>
                                      </td>
                                 </tr>
+                                <tr>
+                                    <td scope="row"><strong>Producto:</strong></td>
+                                    <td colspan="3">
+                                        <div class="mb-2" *ngIf="orden['producto']">{{ orden['producto']['equipo']['modelo'] }} - {{ orden['producto']['equipo']['nombre'] }}</div>
+                                        <div class="mb-2"><strong>Capacidad:&nbsp;</strong>{{ orden['capacidad']['valor'] | number}}</div>
+                                        <div class="mb-2"><strong>Voltaje:&nbsp;</strong>{{ orden['voltaje']['nombre']}}</div>
+                                        <div class="mb-2"><strong>Circuito:&nbsp;</strong>{{ orden['circuito']['nombre'] }}</div>
+                                        <div class="mb-2" *ngIf="orden['compresor']"><strong>Compresor:&nbsp;</strong>{{ orden['compresor']['referencia'] }} - {{ orden['compresor']['descripcion1'] }}</div>
+                                        <div class="mb-2" *ngIf="orden['intercambiador']"><strong>Intercambiador:&nbsp;</strong>{{ orden['intercambiador']['referencia'] }} - {{ orden['intercambiador']['descripcion1'] }}</div>
+                                    </td>
+                                </tr>
                     
                             </tbody>
                         </table>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Costo Mate</th>
-                                    <th>%MO</th>
-                                    <th>%CIF</th>
-                                    <th>%PVP</th>
-                                    <th>CostoVenta</th>
-                                </tr>
-                            </thead>
+                        <table class="table table-bordered table-responsive">
+                   
                             <tbody>
                                 <tr>
-                                    <td>{{ cotizacion['valor_costo'] | number }}</td>
-                                    <td>{{ cotizacion['mo']| number  }}</td>
-                                    <td>{{ cotizacion['cif'] | number }}</td>
-                                    <td>{{ cotizacion['pvp']| number  }}</td>
-                                    <td>{{ cotizacion['valor_venta'] | number }}</td>
+                                    <td><strong>Valor Costo</strong></td>
+                                    <td><strong>Mo</strong></td>
+                                    <td><strong>Cif</strong></td>
+                                    <td><strong>Pvp</strong></td>
+                                    <td><strong>Valor venta</strong></td>
                                 </tr>
-                           </tbody>
+                                <tr>
+                                    <td>{{ orden['valor_costo'] | number}}</td>
+                                    <td>{{ orden['mo'] | number}}</td>
+                                    <td>{{ orden['cif'] | number}}</td>
+                                    <td>{{ orden['pvp'] | number}}</td>
+                                    <td>{{ orden['valor_venta'] | number}}</td>
+                                </tr>
+                            </tbody>
                         </table>
                         
                     </div>
@@ -121,8 +110,8 @@
     </div>
 
     <div class="col-4">
-        <app-registro-cotizacion-detalle [cotizacion_id]="cotizacion" [materiales_arr]="materiales" *ngIf="!loading && operacion =='guardar' && cotizacion['cotestado_id']!=4" (material_form)="materiales= $event" (cot_form)="show_cotizacion($event)" ></app-registro-cotizacion-detalle>
-        <app-editar-cotizacion-costo [cotizacion_id]="cotizacion" *ngIf="!loading && operacion =='guardar' && cotizacion['cotestado_id']!=4" (cot_form)="show_cotizacion($event)"></app-editar-cotizacion-costo>
+        <app-registro-cotizacion-detalle [cotizacion_id]="cotizacion" [orden_id]="orden" [materiales_arr]="materiales" *ngIf="!loading && operacion =='guardar' && cotizacion['cotestado_id']!=4" (material_form)="materiales= $event" (cot_form)="show_cotizacion_materiales($event)" ></app-registro-cotizacion-detalle>
+        <app-editar-cotizacion-costo [cotizacion_id]="cotizacion" [orden_id]="orden" *ngIf="!loading && operacion =='guardar' && cotizacion['cotestado_id']!=4" (cot_form)="show_cotizacion_materiales($event)"></app-editar-cotizacion-costo>
     </div>
 </div>
  

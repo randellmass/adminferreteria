@@ -62,6 +62,10 @@ export class SidebarComponent implements OnInit {
             {
                "nombre":"Pedidos",
                "url":"/main/pedidos"
+            },
+            {
+               "nombre":"Informe",
+               "url":"/main/pedidos/informe"
             }
          ]
       },
@@ -156,6 +160,10 @@ export class SidebarComponent implements OnInit {
             {
                "nombre":"Pedidos",
                "url":"/main/pedidos"
+            },
+            {
+               "nombre":"Informe",
+               "url":"/main/pedidos/informe"
             }
          ]
       },

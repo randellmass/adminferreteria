@@ -1,4 +1,4 @@
-<div class="row mt-2">
+<div class="row">
     <div class="col-8">
 
         <div class="card" *ngIf="producto">
@@ -49,6 +49,8 @@
                             <th>Producto</th>
                             <th>Unidad</th>
                             <th>Cantidad</th>
+                            <th>Costo</th>
+                            <th>Total</th>
                             <th>Opcion</th>
                         </tr>
                     </thead>
@@ -59,12 +61,20 @@
                             <td>{{ item['equipo']['codigo']}} - {{ item['equipo']['referencia']}} - {{ item['equipo']['descripcion1']}}</td>
                             <td>{{ item['equipo']['unidad']}}</td>
                             <td>{{ item['cantidad'] | number }}</td>
+                            <td>{{ item['equipo']['costo'] | number }}</td>
+                            <td>{{ item['cantidad'] * item['equipo']['costo'] | number }}</td>
                             <td>
                                 <button type="button" class="btn btn-inverse-danger" (click)="eliminar_compnte(item)">Quitar</button>
                             </td>
                         </tr>
                     </tbody>
-                        
+                    <tfoot>
+                        <tr>
+                            <td colspan="6" align="right">Total Costo:</td>
+                            <td>{{ totalCosto | number }}</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </tfoot>   
                 </table>
             </div>
         </div>

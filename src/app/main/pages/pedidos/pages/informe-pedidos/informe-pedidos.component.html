@@ -2,37 +2,15 @@
     <div class="col-12">
 
         <div class="row mb-2">
-            <div class="col-6">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-subtitle">Pedidos Producción</h5>
+                        <h5 class="card-subtitle">Informe Pedidos Producción</h5>
                     </div>
                 </div>
             </div>
 
-            <div class="col-6">
-                <div class="card">
-                    <div class="card-body">
-                        <form class="d-flex" [formGroup]="formBuscarPedido" (ngSubmit)="buscar_pedido()">
-                                <select class="form-control  me-2" formControlName="buscarTipo">
-                                    <option value="" selected>*Escoja Tipo</option>
-                                    <option [value]="tipo['id']" *ngFor="let tipo of tipos">{{ tipo['nombre'] }}</option>
-                                </select>
-              
-                                <input class="form-control me-2"
-                                    formControlName="buscarPedido"
-                                    type="search" 
-                                    placeholder="Buscar Pedidos" aria-label="Search">
-                            <button class="btn btn-outline-primary"
-                                    type="submit">Buscar</button>
-
-                        </form>
-                        <div class="error mt-2 text-danger" 
-                                for="buscarTipo" 
-                                *ngIf="campoNoValido('buscarTipo')">*Escoja tipo: </div>
-                    </div>
-                </div>
-            </div>
+         
         </div>
 
         <div class="row">
@@ -41,11 +19,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <div>
-                            <button type="button" class="btn btn-inverse-primary mb-2" (click)="crear_pedido()">CrearPedido</button>
-                        </div>
-                        
-                        <table *ngIf="!loading" class="table table-bordered table-hover table-responsive">
+                        <table *ngIf="!loading" class="table table-bordered table-hover table-responsive" id="order-listing">
                             <thead>
                                 <tr>
                                     <th>Documento</th>
@@ -54,7 +28,6 @@
                                     <th>Descripción</th>
                                     <th>Costo</th>
                                     <th>Estado</th>
-                                    <th>Opción</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -91,30 +64,10 @@
                                     <td>{{ pedido['observacion']}}</td>
                                     <td>{{ pedido['valor_costo'] | number}}</td>
                                     <td>{{ pedido['pedidoestado_nombre']}}</td>
-                                    <td>
-                                        <div>
-                                            <button type="button" class="btn btn-inverse-dark mb-2" (click)="editar_pedido(pedido)">Editar</button>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="btn btn-inverse-primary mb-2" (click)="ordenes_pedido(pedido)">Items</button>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="btn btn-inverse-success" (click)="ver_pedido(pedido)">Ver+</button>
-                                        </div>
-                                    </td>
+                     
                                 </tr>
                             </tbody>
                         </table>
-
-                        <div class="row mt-5" *ngIf="errors.length>0">
-                            <div class="col-12">
-                            <div class="alert alert-danger " role="alert">
-                                <ul>
-                                    <li *ngFor="let error of errors" >{{ error }}</li>
-                                </ul>
-                            </div>
-                            </div>
-                        </div>
                         
                     </div>
                 </div>
@@ -124,6 +77,3 @@
     </div>
 
 </div>
-
-
-

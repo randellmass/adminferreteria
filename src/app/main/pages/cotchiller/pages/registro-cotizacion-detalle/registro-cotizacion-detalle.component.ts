@@ -13,6 +13,7 @@ import { CotproductoService } from '../../services/cotproducto.service';
 export class RegistroCotizacionDetalleComponent implements OnInit {
 
     @Input() cotizacion_id:any[];
+    @Input() orden_id:any;
     @Input() materiales_arr:any[];
     @Output() material_form = new EventEmitter<any>();
     @Output() cot_form = new EventEmitter<any>();
@@ -51,7 +52,7 @@ export class RegistroCotizacionDetalleComponent implements OnInit {
         this.loading= true;
         const rest_tipoaccesorio = await this.cotProductoService.index_tipo_accesorios();
         this.tipoAccesorios = rest_tipoaccesorio['data'];
-        console.log(this.tipoAccesorios);
+        //console.log(this.tipoAccesorios);
 
         this.loading= false;
     }
@@ -63,15 +64,10 @@ export class RegistroCotizacionDetalleComponent implements OnInit {
         return;
       }
 
-      const registro = await this.cotchillerService.store_detalle_cotizacion(this.cotizacion_id['id'], this.form_compnte.value);
+      const registro = await this.cotchillerService.store_detalle_cotizacion(this.orden_id['id'], this.form_compnte.value);
       if(registro['res'])
       {
-          const result_cot = await this.cotchillerService.show(this.cotizacion_id['id']);
-          if(result_cot['res'])
-          {
-               const cot = result_cot['data'];
-               this.cot_form.emit(this.cotizacion_id['id']);
-          }
+          this.cot_form.emit(this.cotizacion_id['id']);
         
           this.materiales_arr.push(registro['data']);
           this.material_form.emit(this.materiales_arr);

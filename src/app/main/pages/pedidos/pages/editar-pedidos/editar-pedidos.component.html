@@ -161,7 +161,35 @@
                         
                     </div>
        
-                    <div class="col-lg-9">
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label for="">Almácen:</label>
+                            <select class="form-control" formControlName="almacen_id">
+                                <option value="" selected>*Escoja almácen</option>
+                                <option [value]="almacen['id']" *ngFor="let almacen of almacenes">{{ almacen['nombre'] }}</option>
+                            </select>
+                            <label class="error mt-2 text-danger" 
+                                for="almacen_id" 
+                            *ngIf="campoNoValido('almacen_id')">*Escoja almácen: </label>
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label for="">Valor Costo:</label>
+                            <input type="number" 
+                                    class="form-control" 
+                                    formControlName="valor_costo">
+              
+                        </div>
+                        
+                    </div>
+       
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
                         <div class="form-group">
                             <label for="">Observacion:</label>
                             <textarea rows="5"
@@ -169,11 +197,10 @@
                                 formControlName="observacion">
                             </textarea>
                             
-              
+                
                         </div>
-                        
+           
                     </div>
-       
                 </div>
             
                 <button type="submit" class="btn btn-primary">Editar</button> |

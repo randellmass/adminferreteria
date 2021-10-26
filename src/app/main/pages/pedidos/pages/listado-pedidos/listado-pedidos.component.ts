@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { PedidosService } from '../../services/pedidos.service';
 
 @Component({
@@ -92,7 +93,7 @@ export class ListadoPedidosComponent implements OnInit {
       if (pedido_result['res'])
       {
         this.pedidos = pedido_result['data'];
-        console.log(this.pedidos);
+        //console.log(this.pedidos);
         this.errors = [];
       } else {
         this.pedidos= null;
@@ -101,5 +102,5 @@ export class ListadoPedidosComponent implements OnInit {
       this.loading= false;
     }
     
-
+   
 }
