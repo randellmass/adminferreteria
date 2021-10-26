@@ -25,7 +25,8 @@
                                     <th>Documento</th>
                                     <th>Cliente</th>
                                     <th>Productos</th>
-                                    <th>Descripción</th>
+                                    <th>Observación interna</th>
+                                    <th>Observación publica</th>
                                     <th>Costo</th>
                                     <th>Estado</th>
                                 </tr>
@@ -61,7 +62,8 @@
                                         </table>
                                         
                                     </td>
-                                    <td>{{ pedido['observacion']}}</td>
+                                    <td>{{ pedido['observacion_interna']}}</td>
+                                    <td>{{ pedido['observacion_publica']}}</td>
                                     <td>{{ pedido['valor_costo'] | number}}</td>
                                     <td>{{ pedido['pedidoestado_nombre']}}</td>
                      

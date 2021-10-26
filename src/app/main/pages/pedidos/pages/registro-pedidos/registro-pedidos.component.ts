@@ -21,7 +21,7 @@ export class RegistroPedidosComponent implements OnInit {
           const conceptoV = formGroup.get(concepto).value;
           const documentoV = formGroup.get(documento).value;
 
-          if(conceptoV == 1)
+          if( (conceptoV == 1) || (conceptoV == 2) || (conceptoV == 3))
           {
             this.oculto_tipo = false;  
             if(documentoV=="")
@@ -45,12 +45,8 @@ export class RegistroPedidosComponent implements OnInit {
         tercero_id: ['',[Validators.required]],
         fecha_recibido: ['',[Validators.required]],
         fecha_entrega: [''],
-        observacion: [''],
-        op_ensamble:[''],
-        op_laminado:[''],
-        op_serpertin:[''],
-        op_electrica:[''],
-        op_refri:[''],
+        observacion_interna: [''],
+        observacion_publica: [''],
         vendedor: ['',[Validators.required]],
         almacen_id: ['',[Validators.required]],
         valor_costo: [''],

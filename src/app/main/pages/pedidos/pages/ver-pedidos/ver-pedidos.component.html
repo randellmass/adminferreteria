@@ -25,38 +25,17 @@
                                 <td><strong>Dias Entrega:</strong></td>
                                 <td>{{ pedido['dias_entrega']}}</td>
                             </tr>
-
                             <tr>
-                                <td><strong>Op ensamble:</strong></td>
-                                <td>{{ pedido['op_ensamble']}}</td>
-                                <td><strong>Op laminado:</strong></td>
-                                <td>{{ pedido['op_laminado']}}</td>
-                            </tr>
-
-                            <tr>
-                                <td><strong>Op serpertin:</strong></td>
-                                <td>{{ pedido['op_serpertin']}}</td>
-                                <td><strong>Op electrica:</strong></td>
-                                <td>{{ pedido['op_electrica']}}</td>
-                            </tr>
-
-                            <tr>
-                                <td><strong>Op refri:</strong></td>
-                                <td>{{ pedido['op_refri']}}</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
+                                <td colspan="4"><strong>Observación interna:</strong></td>
                             </tr>
                             <tr>
-                                <td><strong>Almácen:</strong></td>
-                                <td>{{ pedido['almacen_nombre']}}</td>
-                                <td><strong>Valor Costo:</strong></td>
-                                <td>{{ pedido['valor_costo'] | number }}</td>
+                                <td colspan="4">{{ pedido['observacion_interna']}}</td>
                             </tr>
                             <tr>
-                                <td colspan="4"><strong>Observacion:</strong></td>
+                                <td colspan="4"><strong>Observación publica:</strong></td>
                             </tr>
                             <tr>
-                                <td colspan="4">{{ pedido['observacion']}}</td>
+                                <td colspan="4">{{ pedido['observacion_publica']}}</td>
                             </tr>
                             
                         </table>
@@ -102,14 +81,25 @@
                                 <tr>
                                     <th>Item</th>
                                     <th>Cantidad</th>
-                                    <th>No.Solidwork</th>
+                                    <th>Descripción</th>
+                                    <th>Observación interna</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let item of ordenes">
                                     <td>{{ item['equipo_codificacion']}} - {{ item['equipo_modelo']}} -{{ item['equipo_nombre']}}</td>
                                     <td>{{ item['cantidad']}}</td>
-                                    <td>{{ item['solidwork']}}</td>
+                                    <td>
+                                        <div><strong>No.Solidwork:</strong>  {{ item['solidwork'] }} </div>   
+                                        <div class="mt-2"><strong>Op. Ensamble:</strong>  {{ item['op_ensamble'] }} </div>   
+                                        <div class="mt-2"><strong>Op. Laminado:</strong>  {{ item['op_laminado'] }} </div>   
+                                        <div class="mt-2"><strong>Op. Serpertin:</strong>  {{ item['op_serpertin'] }} </div>   
+                                        <div class="mt-2"><strong>Op. Eléctrica:</strong>  {{ item['op_electrica'] }} </div>   
+                                        <div class="mt-2"><strong>Op. Refri:</strong>  {{ item['op_refri'] }} </div> 
+                                    </td>
+                                    <td>
+                                        {{ item['observacion_interna']}}
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

@@ -20,7 +20,12 @@ export class RegistroOrdenComponent implements OnInit {
         equipo_id: ['',[Validators.required]],
         cantidad: ['',[Validators.required]],
         solidwork: [''],
-        observacion: [''],
+        op_ensamble:[''],
+        op_laminado:[''],
+        op_serpertin:[''],
+        op_electrica:[''],
+        op_refri:[''],
+        observacion_interna: [''],
     });
 
     form_buscar_equipo:FormGroup = this.fb.group({
