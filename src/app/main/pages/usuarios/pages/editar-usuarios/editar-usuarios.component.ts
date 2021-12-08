@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ImagesSubirService } from 'src/app/main/shared/service/images-subir.service';
 
 import { UsuariosService } from '../../services/usuarios.service';
 
@@ -16,10 +17,17 @@ export class EditarUsuariosComponent implements OnInit {
   errors:any=[];
   user1:any="";
 
+  imgTemp:any= "";
+  imagen_servidor:any = null;
+  imagenCargar:File = null;
+
+  loading:boolean = false;
+
   constructor(private fb:FormBuilder,
               private usuariosService:UsuariosService,
               private router:Router,
-              private activatedRoute:ActivatedRoute) { }
+              private activatedRoute:ActivatedRoute,
+              public imagesSubirService:ImagesSubirService) { }
 
   campoNoValido(campo:string){
     return this.form_usuarios.controls[campo].touched && this.form_usuarios.controls[campo].errors;
@@ -51,9 +59,16 @@ export class EditarUsuariosComponent implements OnInit {
 
   async buscar_individual_usuario(usuario_id:number){
 
-    this.user1 = await this.usuariosService.individual_usuario(usuario_id);
-    //console.log(this.user1);
-    this.valores_formulario();
+    this.loading = true;
+      this.user1 = await this.usuariosService.individual_usuario(usuario_id);
+      //console.log(this.user1);
+      if(this.user1['imagen'])
+      {
+          this.imagen_servidor = this.user1['imagen'];
+      }
+
+      this.loading = false;
+      this.valores_formulario();
   }
 
   valores_formulario(){
@@ -81,9 +96,30 @@ export class EditarUsuariosComponent implements OnInit {
       }
       
       if(editar['res']){
+
+        if(this.imagenCargar)
+        {
+          await this.imagesSubirService.subir_imagen(this.imagenCargar,'usuario',this.user1.id);
+          this.imagenCargar=null;
+          this.imagesSubirService.imgTemp ="";
+          this.imagen_servidor =null;
+       }
+
         this.form_usuarios.reset();
         this.router.navigateByUrl('main/usuarios');
       }
+  }
+
+  file_imagen(file:File){
+   
+    this.imagenCargar = file;
+   
+    if(!file){
+      return;
+    }
+
+    this.imagesSubirService.imagen64(file);
+
   }
 
 }

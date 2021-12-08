@@ -58,98 +58,105 @@ export class ListadoCotizacionComponent implements OnInit {
 
       pdfcotizacion(cotizacion:any)
       {
-          PdfMakeWrapper.setFonts(pdfFonts);
-          const pdf = new PdfMakeWrapper();
-     
-          pdf.pageMargins([ 25, 25, 25, 25 ]);
-          pdf.defaultStyle({
-            fontSize: 8
-          });
-          pdf.add(new Txt('---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------').alignment('center').end);
-          pdf.add(new Table([
-            [ '',
-              [ 
-                new Txt('PRECOTIZACION').bold().end,
-                new Txt('No. COT-2021').bold().end
-              ]
-            ],
-            ]).widths([350,'*']).layout('noBorders').end);
-          pdf.add(' ');
-          pdf.add(' ');
-          pdf.add(new Table([
-            [ 
-              [ 
-                new Txt('NOMBRE:').bold().end,
-                new Txt('DIRECCION:').bold().end,
-                new Txt('CIUDAD:').bold().end,
-                new Txt('TEL/CELULAR:').bold().end
+          //console.log(cotizacion);
+          if(cotizacion['ordenes'].length>0)
+          {
+            
+            PdfMakeWrapper.setFonts(pdfFonts);
+            const pdf = new PdfMakeWrapper();
+  
+            const asesor = (cotizacion['asesor'])?`${cotizacion['asesor']['name']} - ${cotizacion['asesor']['email']}`:'sin Asignar'
+       
+            pdf.pageMargins([ 25, 25, 25, 25 ]);
+            pdf.defaultStyle({
+              fontSize: 8
+            });
+            pdf.add(new Txt('---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------').alignment('center').end);
+            pdf.add(new Table([
+              [ '',
+                [ 
+                  new Txt('PRECOTIZACION').bold().end,
+                  new Txt(`No. COT-${ cotizacion['id']}`).bold().end
+                ]
               ],
-              [ 
-                new Txt('Cliente1').end,
-                new Txt('Calle30').end,
-                new Txt('Barranquilla').end,
-                new Txt('3014490363').end
-              ],
-              [ 
-                new Txt('NIT:').bold().end,
-                new Txt('CONTACTO:').bold().end,
-                new Txt('EMAIL:').bold().end,
-              ],
-              [ 
-                new Txt('8998989').end,
-                new Txt('Nombre Contacto').end,
-                new Txt('Barranquilla').end,
-              ],
-              [ 
-                new Txt('FECHA VENCE:').bold().end,
-                new Txt('FORMA PAGO:').bold().end,
-                new Txt('ASESOR:').bold().end,
-              ],
-              [ 
-                new Txt('8998989').end,
-                new Txt('Nombre Contacto').end,
-                new Txt('Barranquilla').end,
-              ]
-            ]
-            ]).widths([55,120,45,120,55,'*']).layout('noBorders').end);
-
+              ]).widths([350,'*']).layout('noBorders').end);
+            pdf.add(' ');
             pdf.add(' ');
             pdf.add(new Table([
               [ 
-                  new Txt('ITEM').bold().end,
-                  new Txt('DESCRIPCIÓN').bold().end,
-                  new Txt('REFERENCIA').bold().end,
-                  new Txt('UM').bold().end,
-                  new Txt('CANTIDAD').bold().end,
-                  new Txt('VALOR BRUTO').bold().end,
-                  new Txt('DESCUENTO').bold().end,
-                  new Txt('IVA').bold().end
+                [ 
+                  new Txt('NOMBRE:').bold().end,
+                  new Txt('NIT/ CC:').bold().end,
+                  new Txt('DIRECCION:').bold().end,
+                  new Txt('TEL./ CEL.:').bold().end,
+                  new Txt('EMAIL:').bold().end,
+                ],
+                [ 
+                  new Txt(cotizacion['tercero_nombre']).end,
+                  new Txt(cotizacion['tercero_documento']).end,
+                  new Txt(cotizacion['tercero_direccion']).end,
+                  new Txt(cotizacion['tercero_celular']).end,
+                  new Txt(cotizacion['tercero_email']).end
+                ],
+                [ 
+                  new Txt('FECHA VENCE:').bold().end,
+                  new Txt('FORMA PAGO:').bold().end,
+                  new Txt('ASESOR:').bold().end,
+                ],
+                [ 
+                  new Txt('0000-00-00').end,
+                  new Txt('Por definir').end,
+                  new Txt(asesor).end,
+                ]
               ]
-            ]).widths('*').end);
+              ]).widths([55,200,55,'*']).layout('noBorders').end);
+  
+              pdf.add(' ');
+              pdf.add(new Table([
+                [ 
+                    new Txt('ITEM').bold().end,
+                    new Txt('REFERENCIA').bold().end,
+                    new Txt('DESCRIPCIÓN').bold().end,
+                    new Txt('UM').bold().end,
+                    new Txt('CANT').bold().end,
+                    new Txt('VALOR BRUTO').bold().end,
+                    new Txt('DESCUENTO').bold().end,
+                    new Txt('IVA').bold().end
+                ],
+                ...this.extractDataTabla(cotizacion['ordenes'])
+              ]).widths([30,80,150,20,25,80,60,30]).end);
+  
+            /*pdf.add(' ');
+            pdf.add(new Table([
+                [ 'Cant.', 'Descripción'],
+                ...this.extractDataTabla()
+                ]).widths([40,'*']).end);
+            pdf.add(' ');
+            pdf.add(' ');
+            pdf.add(' ');
+            pdf.add(' ');
+            pdf.add(' ');
+            pdf.add(new Txt('---------------------------------------------------------------------------------').alignment('center').end);
+            pdf.add(new Txt(`GENERADO: ${usuario.name}`).alignment('center').end);*/
+  
+            pdf.create().open();
+          }
 
-          /*pdf.add(' ');
-          pdf.add(new Table([
-              [ 'Cant.', 'Descripción'],
-              ...this.extractDataTabla()
-              ]).widths([40,'*']).end);
-          pdf.add(' ');
-          pdf.add(' ');
-          pdf.add(' ');
-          pdf.add(' ');
-          pdf.add(' ');
-          pdf.add(new Txt('---------------------------------------------------------------------------------').alignment('center').end);
-          pdf.add(new Txt(`GENERADO: ${usuario.name}`).alignment('center').end);*/
-
-          pdf.create().open();
       }
 
-      extractDataTabla()
+      extractDataTabla(ordenes:any[])
       {
-         /*   return this.movimientos.map( item => [
-                item['cantidad'],
-                item['producto_nombre'],
+            return ordenes.map( item => [
+                item['producto']['equipo']['codificacion'],
+                item['producto']['equipo']['modelo'],
+                item['producto']['equipo']['nombre'],
+                'UND',
+                new Intl.NumberFormat().format(item['cantidad']),
+                new Intl.NumberFormat().format(Math.ceil(item['valor_venta'])),
+                '0',
+                '0',
             ]);
-            */
+            
       }
 
 }

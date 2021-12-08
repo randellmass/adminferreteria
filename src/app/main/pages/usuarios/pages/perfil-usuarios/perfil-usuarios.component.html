@@ -63,6 +63,20 @@
                                 
                             </div>
                         </div> 
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Imágen:</label>
+                                <div>
+                                    <img *ngIf="!imagesSubirService.imgTemp" [src]="imagen_servidor | imagen:'thumb'" alt="" width="100px">
+                                    <img *ngIf="imagesSubirService.imgTemp" [src]="imagesSubirService.imgTemp" alt="" width="100px">
+                                </div>
+                                <input type="file"
+                                    accept="image/png,image/jpeg" 
+                                    class="form-control" 
+                                    (change)="file_imagen($event.target.files[0])">
+                            </div>
+                        </div>
                         
                         
                     </div>

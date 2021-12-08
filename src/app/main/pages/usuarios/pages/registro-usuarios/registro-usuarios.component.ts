@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsuariosService } from '../../services/usuarios.service';
 import { Router } from '@angular/router';
+import { ImagesSubirService } from 'src/app/main/shared/service/images-subir.service';
 
 @Component({
   selector: 'app-registro-usuarios',
@@ -13,10 +14,14 @@ export class RegistroUsuariosComponent implements OnInit {
   form_usuarios:FormGroup;
   roles:any=[];
   errors:any=[];
+
+  imgTemp:any= "";
+  imagen:File = null;
   
   constructor(private fb:FormBuilder,
               private usuariosService:UsuariosService,
-              private router:Router) { }
+              private router:Router,
+              public imagesSubirService:ImagesSubirService) { }
 
   campoNoValido(campo:string){
       return this.form_usuarios.controls[campo].touched && this.form_usuarios.controls[campo].errors;
@@ -56,10 +61,31 @@ export class RegistroUsuariosComponent implements OnInit {
     }
     
     if(registro['res']){
+
+       //subimos la foto
+       if(this.imagen)
+       {
+          await this.imagesSubirService.subir_imagen(this.imagen,'usuario',registro['data']['id']);
+          this.imagesSubirService.imgTemp ="";
+       }
+
       this.form_usuarios.reset();
       this.router.navigateByUrl('main/usuarios');
     }
 
+
+  }
+
+  file_imagen(file:File)
+  {
+   
+    this.imagen = file;
+   
+    if(!file){
+      return;
+    }
+
+    this.imagesSubirService.imagen64(file);
 
   }
 

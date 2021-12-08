@@ -11,6 +11,7 @@ import { RegistroOrdenComponent } from './pages/registro-orden/registro-orden.co
 import { ListadoOrdenComponent } from './pages/listado-orden/listado-orden.component';
 import { VerPedidosComponent } from './pages/ver-pedidos/ver-pedidos.component';
 import { InformePedidosComponent } from './pages/informe-pedidos/informe-pedidos.component';
+import { EditarOrdenComponent } from './pages/editar-orden/editar-orden.component';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { InformePedidosComponent } from './pages/informe-pedidos/informe-pedidos
       RegistroPedidosComponent, 
       EditarPedidosComponent, 
       RegistroOrdenComponent, 
-      ListadoOrdenComponent, VerPedidosComponent, InformePedidosComponent],
+      ListadoOrdenComponent, VerPedidosComponent, InformePedidosComponent, EditarOrdenComponent],
   imports: [
     CommonModule,
     PedidosRoutingModule,

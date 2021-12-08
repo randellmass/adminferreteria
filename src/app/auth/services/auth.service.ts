@@ -106,7 +106,8 @@ export class AuthService {
   return new Promise<boolean>(resolve =>{
 
     this.http.get(`${ URL }/usertoken`,{ headers }).subscribe( resp =>{
-          
+        
+        //console.log(resp)
         if( resp['res']){
              this.usuario = resp['user'];
               
@@ -115,6 +116,8 @@ export class AuthService {
               this.router.navigateByUrl('auth');
              resolve(false);
           }
+    }, error => {
+      this.router.navigateByUrl('auth');
     });
     
   });

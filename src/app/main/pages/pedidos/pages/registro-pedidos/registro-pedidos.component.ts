@@ -114,13 +114,15 @@ export class RegistroPedidosComponent implements OnInit {
           this.formPedido.markAllAsTouched();
           return;
         }
-      
+        this.loading = true;
         const pedido_reg = await this.pedidosService.store(this.formPedido.value);
         if (pedido_reg['res'])
         {
+          this.loading = false;
           this.router.navigateByUrl('main/pedidos');
         }else{
             this.errors = pedido_reg['data'];
+            this.loading = false;
         }
 
 

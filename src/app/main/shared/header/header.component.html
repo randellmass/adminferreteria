@@ -15,7 +15,7 @@
       <li class="nav-item dropdown d-none d-xl-inline-block">
         <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
           <span class="profile-text">{{ usuario.name }}</span>
-          <img class="img-xs rounded-circle" src="../../../assets/images/faces/face8.jpg" alt="Profile image"> </a>
+          <img class="img-xs rounded-circle" [src]="usuario.imagen | imagen:'thumb'" alt="Profile image"> </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
           <a class="dropdown-item mt-2" routerLink="/main/usuarios/perfil" routerLinkActive="router-link-active" > Perfil </a>
           <a class="dropdown-item" (click)="logout()" > Salir </a>

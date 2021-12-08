@@ -24,10 +24,10 @@ export class EquiposDetallesComponent implements OnInit {
       const dataEquipo = await this.dashboardEquipoService.equipo_detalle(equipo_id);
 
       if (dataEquipo['res']) {
-          console.log(dataEquipo['data']);
+          //console.log(dataEquipo['data']);
           this.equipo = dataEquipo['data'];
       } else {
-          console.log(dataEquipo['data']);
+          //TODO::error sino hay registro
       }
 
 

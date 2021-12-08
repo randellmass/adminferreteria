@@ -1,22 +1,8 @@
-<div class="card mb-2">
-    <div class="card-body">
-        <h4 class="card-subtitle">Filtrar producto</h4>
-            <form class="d-flex" [formGroup]="form_buscar_equipo" (ngSubmit)="buscar_equipo()">
-                <input class="form-control me-2"
-                    formControlName="buscarEquipo"
-                    type="search" 
-                    placeholder="Buscar" aria-label="Search">
-                <button class="btn btn-outline-primary"
-                        type="submit">Buscar</button>
-            </form>
-    </div>
-</div>
-
 <div class="card">
     <div class="card-body">
-        <h4 class="card-subtitle">Registro Orden</h4>
+        <h4 class="card-subtitle">Editar Orden</h4>
 
-        <form class="cmxform" (ngSubmit)="agregar_orden()" [formGroup]="formOrden" >
+        <form class="cmxform" (ngSubmit)="editar_orden()" [formGroup]="formOrden" >
             <fieldset>
 
 
@@ -26,8 +12,7 @@
                         <div class="form-group">
                             <label for="">Producto:</label>
                             <select class="form-control" formControlName="equipo_id">
-                                <option value="" selected>*Escoja equipo</option>
-                                <option [value]="equipo['id']" *ngFor="let equipo of equipos">{{ equipo['codificacion']}} - {{ equipo['modelo']}} - {{ equipo['nombre']}}</option>
+                                <option [value]="orden_id['equipo_id']">{{ orden_id['equipo_codificacion']}} - {{ orden_id['equipo_modelo']}} - {{ orden_id['equipo_nombre']}}</option>
                             </select>
                             <label class="error mt-2 text-danger" 
                                 for="equipo_id" 
@@ -143,9 +128,9 @@
                     </div>
        
                 </div>
-
             
-                <button type="submit" class="btn btn-inverse-primary"  [disabled]="loading">Agregar</button>
+                <button type="submit" class="btn btn-inverse-primary"  [disabled]="loading">Editar</button>&nbsp;||&nbsp;<button type="submit" class="btn btn-inverse-secundary" (click)="cancelar_editar()">Cancelar</button>
+
             </fieldset>
         </form>
 
@@ -161,4 +146,3 @@
 
     </div>
 </div>
-

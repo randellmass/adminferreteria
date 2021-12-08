@@ -15,6 +15,7 @@ export class ListadoOrdenComponent implements OnInit {
     pedido:any;
     ordenes:any[]=[];
     pedido_id:any;
+    orden_id:any;
     operacion:string="guardar";
     
     constructor(private pedidosService:PedidosService,
@@ -63,6 +64,10 @@ export class ListadoOrdenComponent implements OnInit {
    
     }
 
+    editar_orden(orden:any){
+      this.operacion = "editar"
+      this.orden_id = orden;
+    }
    
 
 }

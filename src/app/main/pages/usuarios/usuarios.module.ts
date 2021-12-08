@@ -7,17 +7,20 @@ import { RegistroUsuariosComponent } from './pages/registro-usuarios/registro-us
 import { EditarUsuariosComponent } from './pages/editar-usuarios/editar-usuarios.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PerfilUsuariosComponent } from './pages/perfil-usuarios/perfil-usuarios.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
   declarations: [
       ListadoUsuariosComponent, 
       RegistroUsuariosComponent, 
-      EditarUsuariosComponent, PerfilUsuariosComponent],
+      EditarUsuariosComponent, 
+      PerfilUsuariosComponent],
   imports: [
     CommonModule,
     UsuariosRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule,
   ]
 })
 export class UsuariosModule { }

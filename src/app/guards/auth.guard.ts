@@ -22,8 +22,10 @@ export class AuthGuard implements CanLoad{
   canLoad(route: Route, segments: UrlSegment[]): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     //console.log('guard');
     if (this.authService.token!=null) {
+      
         return true;
     } else {
+      
       return this.authService.validatoken();
     }
    //return false;

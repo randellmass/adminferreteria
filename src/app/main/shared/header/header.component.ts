@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
 
     this.usuario = this.authService.usuario;
-    
+    //console.log(this.usuario);
   }
 
   async logout(){

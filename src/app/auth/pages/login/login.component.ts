@@ -53,12 +53,14 @@ export class LoginComponent implements OnInit {
     }else{
       this.loading = true;
       const valido = await this.authService.login(this.forma_login.get('email').value, this.forma_login.get('password').value);
-      this.loading = false;
+      //console.log(valido)
       if(valido['res']){
         this.error="";
         this.router.navigateByUrl('');
+        this.loading = false;
       }else{
         this.error = valido['data'];
+        this.loading = false;
       }
     }
   }

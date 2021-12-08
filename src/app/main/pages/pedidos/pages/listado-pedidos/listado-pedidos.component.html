@@ -37,6 +37,7 @@
 
         <div class="row">
             <div class="col-12">
+                
 
                 <div class="card">
                     <div class="card-body">
@@ -44,6 +45,8 @@
                         <div>
                             <button type="button" class="btn btn-inverse-primary mb-2" (click)="crear_pedido()">CrearPedido</button>
                         </div>
+
+                        <app-loading *ngIf="loading"></app-loading>
                         
                         <table *ngIf="!loading" class="table table-bordered table-hover table-responsive">
                             <thead>

@@ -20,12 +20,29 @@ export class VercomercialPedidoComponent implements OnInit {
   errors:any =[];
   tipos:any[] =[];
   pedido:any = null;
+
+  resul_tipos = [
+    {
+     'id':1,
+     'nombre':'PDV'
+    },
+    {
+     'id':2,
+     'nombre':'PDC'
+    },
+    {
+     'id':3,
+     'nombre':'OC'
+    }
+  ];
+  
   
   constructor(private fb:FormBuilder,
               private pedidosService:PedidosService) { }
 
   ngOnInit(): void {
-      this.listado_tipos();
+     // this.listado_tipos();
+     this.tipos = this.resul_tipos;
   }
 
   campoNoValido(campo:string){
@@ -33,7 +50,7 @@ export class VercomercialPedidoComponent implements OnInit {
   }
 
 
-  async listado_tipos(){
+  /*async listado_tipos(){
     this.loading= true;
 
 
@@ -48,7 +65,7 @@ export class VercomercialPedidoComponent implements OnInit {
       }
 
       this.loading= false; 
-  }
+  }*/
 
   async buscar_pedido()
   {

@@ -59,7 +59,12 @@
                                         {{ item['observacion_interna'] }}
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-inverse-danger" (click)="eliminar_orden(item)">Quitar</button>
+                                        <div class="mb-2">
+                                            <button type="button" class="btn btn-inverse-secundary" (click)="editar_orden(item)">Editar</button>
+                                        </div>
+                                        <div>
+                                            <button type="button" class="btn btn-inverse-danger" (click)="eliminar_orden(item)" [disabled]="operacion=='editar'">Quitar</button>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
@@ -85,10 +90,7 @@
 
     <div class="col-4">
         <app-registro-orden [pedido]="pedido" [ordenes_array] = "ordenes" *ngIf="!loading && operacion =='guardar'" (orden_nuevo)="ordenes = $event"></app-registro-orden>
+        <app-editar-orden [orden_id]="orden_id" [pedido]="pedido" [ordenes_array] = "ordenes" *ngIf="!loading && operacion =='editar'" (orden_nuevo)="ordenes = $event" (operacion_editar)="operacion = $event"></app-editar-orden>
     </div>
 
 </div>
-
-
-
-

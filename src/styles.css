@@ -209,7 +209,7 @@
 #fondo_biblioteca{
 	width: 100%;
 	height: 100px;
-	background-image: url('./assets/images/biblioteca1.jpg');
+	background-image: url('./assets/images/dashboard.png');
 	background-size: 100%;
 	background-position: center;
 	border-radius: 8px;
@@ -230,5 +230,9 @@
 .table td, .jsgrid .jsgrid-table td, .table th, .jsgrid .jsgrid-table th {
     vertical-align: top;
 	font-size: 12px;
+}
+
+.navbar.default-layout{
+	background:linear-gradient(120deg, #33b0e6, #227fae, #2a97c9);
 }
 

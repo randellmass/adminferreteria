@@ -65,8 +65,12 @@ export class RegistroFamiliasComponent implements OnInit {
 
           
           //subimos la foto
-            await this.imagesSubirService.subir_imagen(this.imagen,'familia',registro['data']['id']);
-            this.imagesSubirService.imgTemp ="";
+          if(this.imagen)
+          {
+              await this.imagesSubirService.subir_imagen(this.imagen,'familia',registro['data']['id']);
+              this.imagesSubirService.imgTemp ="";
+
+          }
          
           this.form_familia.reset();
           this.router.navigateByUrl('main/categorias');

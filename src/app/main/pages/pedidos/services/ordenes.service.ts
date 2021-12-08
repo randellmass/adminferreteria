@@ -80,6 +80,38 @@ export class OrdenesService {
 
     } 
 
+    update(pedido_id:any,orden_id:any,orden:any)
+    {
+      
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+
+        this.http.put(`${ URL}/pedidos/${ pedido_id }/orden/${ orden_id }`, orden ,{ headers })
+        .subscribe( resp =>{
+          
+              if(resp['res'])
+              {
+                  resolve({
+                      res:true,
+                      data: resp['data']
+                  });
+              }else{
+                  resolve({
+                      res:false,
+                      data:resp['mensaje']
+                  });
+              }
+        
+          });
+
+        }); 
+
+    } 
+
     destroy(pedido_id:any,equipo_id:any)
     {
       
