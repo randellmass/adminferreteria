@@ -82,7 +82,6 @@ export class TercerosService {
 
     } 
 
-
     update(tercero_id:string,tercero:any)
     {
       

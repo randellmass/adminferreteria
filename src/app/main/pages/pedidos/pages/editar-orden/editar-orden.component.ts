@@ -38,7 +38,6 @@ export class EditarOrdenComponent implements OnInit {
 
     ngOnInit(): void {
       this.cargar_orden();
-      console.log(this.orden_id);
     }
 
     campoNoValido(campo:string){

@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~11.0.5",
     "@angular/platform-browser-dynamic": "~11.0.5",
     "@angular/router": "~11.0.5",
+    "angularx-qrcode": "^11.0.0",
     "pdfmake": "^0.2.2",
     "pdfmake-wrapper": "^2.1.2",
     "rxjs": "~6.6.0",

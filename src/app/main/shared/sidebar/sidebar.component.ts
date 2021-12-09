@@ -117,6 +117,17 @@ export class SidebarComponent implements OnInit {
             }
           ]
       },
+      {
+          "categoria":"Eventos",
+          "icon":"mdi mdi-settingst",
+          "enlaces":[
+            {
+               "nombre":"Fiesta",
+               "url":"/main/evento"
+            },
+
+          ]
+      },
 
     ]; 
 
@@ -187,6 +198,17 @@ export class SidebarComponent implements OnInit {
                "nombre":"Tipo Unidades",
                "url":"/main/unidades"
             }
+          ]
+      },
+      {
+          "categoria":"Eventos",
+          "icon":"mdi mdi-settingst",
+          "enlaces":[
+            {
+               "nombre":"Fiesta",
+               "url":"/main/evento"
+            },
+
           ]
       },
 
