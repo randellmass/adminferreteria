@@ -96,7 +96,7 @@
                             <label for="">InvitadoDe:</label>
                             <select class="form-control" formControlName="documentoDe">
                                 <option value="" selected>*Escoja InvitadoDe</option>
-                                <option [value]="invitado['documento']" *ngFor="let invitado of invitados">{{ invitado['documento'] }} - {{ invitado['nombre'] | uppercase }}</option>
+                                <option [value]="invitado['documento']" *ngFor="let invitado of terceros_array">{{ invitado['documento'] }} - {{ invitado['nombre'] | uppercase }}</option>
                             </select>
                         </div>
                         

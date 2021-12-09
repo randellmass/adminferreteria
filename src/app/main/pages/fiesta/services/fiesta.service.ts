@@ -331,7 +331,7 @@ export class FiestaService {
             'Authorization': `Bearer ${ this.authService.token }` 
           });
     
-          this.http.post(`${ URL}/fiesta/buscar`, tercero ,{ headers })
+          this.http.post(`${ URL}/fiesta_buscar`, tercero ,{ headers })
           .subscribe( resp =>{
             
               if(resp['res'])

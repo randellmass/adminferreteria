@@ -27,7 +27,6 @@ export class FiestaRegistroComponent implements OnInit {
     sucursales:any =[];
     tipos:any =[];
     tercero:any;
-    invitados:any[];
     
     constructor(private fb:FormBuilder,
                 private fiestaService:FiestaService) { }
@@ -55,13 +54,6 @@ export class FiestaRegistroComponent implements OnInit {
             this.errors = result_tipos['data'];
         }
 
-        const result_invitados = await this.fiestaService.index();
-        if (result_invitados['res'])
-        {
-            this.invitados = result_invitados['data'];
-        } else {
-            this.errors = result_invitados['data'];
-        }
         this.loading = false;
     }
 
