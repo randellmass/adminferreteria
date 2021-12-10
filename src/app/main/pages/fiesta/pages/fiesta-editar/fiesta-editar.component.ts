@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { FiestaService } from '../../services/fiesta.service';
 
 @Component({
@@ -8,11 +9,6 @@ import { FiestaService } from '../../services/fiesta.service';
   styleUrls: ['./fiesta-editar.component.css']
 })
 export class FiestaEditarComponent implements OnInit {
-
-      @Input() tercero_id:any;
-      @Input() terceros_array:any[];
-      @Output() tercero_nuevo = new EventEmitter<any>();
-      @Output() operacion_form = new EventEmitter<string>();
 
       formTercero:FormGroup = this.fb.group({
         fiestasucursal_id: ['',[Validators.required]],
@@ -26,18 +22,43 @@ export class FiestaEditarComponent implements OnInit {
       });
 
       errors:any =[];
-      tercero:any;
+      tercero_id:any;
       sucursales:any =[];
       tipos:any =[];
       estados:any =[];
       invitados:any =[];
-      
+      loading:boolean = false;
+
       constructor(private fb:FormBuilder,
-                  private fiestaService:FiestaService) { }
+                  private fiestaService:FiestaService,
+                  private activatedRoute:ActivatedRoute) { }
 
       ngOnInit(): void {
-          this.cargarSelec();
+          this.activatedRoute.params.subscribe( param =>{
+            this.cargar_tercero(param['id']);
+            
+        });
+        
+        this.cargarSelec();
    
+      }
+
+      async cargar_tercero(tercero_id:any){
+      
+        this.loading= true;
+  
+          const result_pedido = await this.fiestaService.show(tercero_id);
+          if (result_pedido['res'])
+          {
+            this.errors="";  
+            this.tercero_id = result_pedido['data'];  
+            //this.myAngularxQrCode = this.tercero_id['invitacion'];
+         
+          } else {
+            this.errors = result_pedido['data']; 
+          }
+  
+          this.loading= false; 
       }
 
       async cargarSelec()
@@ -95,29 +116,20 @@ export class FiestaEditarComponent implements OnInit {
             this.formTercero.markAllAsTouched();
             return;
           }
+          this.loading= true;
         
           const tercero_reg = await this.fiestaService.update(this.tercero_id['id'],this.formTercero.value);
           if (tercero_reg['res'])
           {
-              this.tercero = tercero_reg['data'];
-
-              const i = this.terceros_array.indexOf( this.tercero_id );
- 
-              if ( i !== -1 ) {
-                this.terceros_array[i] = this.tercero;
-              }
-              
-              this.tercero_nuevo.emit(this.terceros_array);
-              this.errors =[];
-              this.formTercero.reset();
-              this.operacion_form.emit("guardar");
+              this.loading= false;
           }else{
               this.errors = tercero_reg['data'];
+              this.loading= false;
           }
       }
 
       cancelar_editar(){
-        this.operacion_form.emit("guardar");
+
       }
 
 }

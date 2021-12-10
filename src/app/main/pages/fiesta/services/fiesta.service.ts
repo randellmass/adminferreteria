@@ -352,4 +352,68 @@ export class FiestaService {
         }); 
     
       } 
+
+      search_x_sucursal(sucursal:any)
+      {
+      
+        return new Promise<any>( resolve =>{
+          
+          const headers = new HttpHeaders({
+            'Accept': 'application/json', 
+            'Authorization': `Bearer ${ this.authService.token }` 
+          });
+    
+          this.http.post(`${ URL}/fiesta_buscar_sucursal`, sucursal ,{ headers })
+          .subscribe( resp =>{
+            
+              if(resp['res'])
+              {
+                  resolve({
+                      res:true,
+                      data:resp['data']
+                  });
+              }else{
+                  resolve({
+                    res:false,
+                    mensaje:resp['mensaje']
+                  });
+              }
+          
+          });
+    
+        }); 
+    
+      } 
+
+      search_terceros_todos()
+      {
+      
+        return new Promise<any>( resolve =>{
+          
+          const headers = new HttpHeaders({
+            'Accept': 'application/json', 
+            'Authorization': `Bearer ${ this.authService.token }` 
+          });
+    
+          this.http.get(`${ URL}/fiesta_buscar_todos`, { headers })
+          .subscribe( resp =>{
+            
+              if(resp['res'])
+              {
+                  resolve({
+                      res:true,
+                      data:resp['data']
+                  });
+              }else{
+                  resolve({
+                    res:false,
+                    mensaje:resp['mensaje']
+                  });
+              }
+          
+          });
+    
+        }); 
+    
+      } 
 }

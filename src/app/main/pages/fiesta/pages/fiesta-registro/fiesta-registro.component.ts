@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FiestaService } from '../../services/fiesta.service';
 
 @Component({
@@ -8,9 +9,6 @@ import { FiestaService } from '../../services/fiesta.service';
   styleUrls: ['./fiesta-registro.component.css']
 })
 export class FiestaRegistroComponent implements OnInit {
-
-    @Input() terceros_array:any[];
-    @Output() tercero_nuevo = new EventEmitter<any>();
 
     formTercero:FormGroup = this.fb.group({
         fiestasucursal_id: ['',[Validators.required]],
@@ -26,10 +24,11 @@ export class FiestaRegistroComponent implements OnInit {
     errors:any =[];
     sucursales:any =[];
     tipos:any =[];
-    tercero:any;
+    terceros_array:any[];
     
     constructor(private fb:FormBuilder,
-                private fiestaService:FiestaService) { }
+                private fiestaService:FiestaService,
+                private router:Router) { }
 
     ngOnInit(): void {
        this.cargarSelec()
@@ -54,6 +53,14 @@ export class FiestaRegistroComponent implements OnInit {
             this.errors = result_tipos['data'];
         }
 
+        const result_terceros= await this.fiestaService.search_terceros_todos();
+        if (result_terceros['res'])
+        {
+            this.terceros_array = result_terceros['data'];
+        } else {
+            this.errors = result_terceros['data'];
+        }
+
         this.loading = false;
     }
 
@@ -71,13 +78,8 @@ export class FiestaRegistroComponent implements OnInit {
         const tercero_reg = await this.fiestaService.store(this.formTercero.value);
         if (tercero_reg['res'])
         {
-            this.tercero = tercero_reg['data'];
-            this.terceros_array.unshift(this.tercero);
-            
-            this.tercero_nuevo.emit(this.terceros_array);
-            this.errors =[];
-            this.formTercero.reset();
             this.loading = false;
+            this.router.navigate(['main/evento/listado']);
         }else{
             this.errors = tercero_reg['data'];
             this.loading = false;
