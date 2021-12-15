@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FiestaEditarComponent } from './pages/fiesta-editar/fiesta-editar.component';
+import { FiestaIngresoComponent } from './pages/fiesta-ingreso/fiesta-ingreso.component';
 
 import { FiestaListadoComponent } from './pages/fiesta-listado/fiesta-listado.component';
 import { FiestaQrComponent } from './pages/fiesta-qr/fiesta-qr.component';
@@ -21,13 +22,16 @@ const routes: Routes = [
            path:'crear', component: FiestaRegistroComponent
         },
         {
+           path:'ingreso', component: FiestaIngresoComponent
+        },
+        {
             path:'editar/:id', component: FiestaEditarComponent
         },
         {
            path:'qr/:id', component: FiestaQrComponent
         },
         {
-          path:'**', redirectTo:'listado'
+          path:'**', redirectTo:'ingreso'
         }
      ]
   }

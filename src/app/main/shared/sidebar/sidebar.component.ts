@@ -123,9 +123,12 @@ export class SidebarComponent implements OnInit {
           "enlaces":[
             {
                "nombre":"Fiesta",
-               "url":"/main/evento"
+               "url":"/main/evento/listado"
             },
-
+            {
+               "nombre":"Ingreso",
+               "url":"/main/evento/ingreso"
+            },
           ]
       },
 
@@ -206,7 +209,11 @@ export class SidebarComponent implements OnInit {
           "enlaces":[
             {
                "nombre":"Fiesta",
-               "url":"/main/evento"
+               "url":"/main/evento/listado"
+            },
+            {
+               "nombre":"Ingreso",
+               "url":"/main/evento/ingreso"
             },
 
           ]

@@ -10,10 +10,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { QRCodeModule } from 'angularx-qrcode';
 import { FiestaQrComponent } from './pages/fiesta-qr/fiesta-qr.component';
+import { FiestaIngresoComponent } from './pages/fiesta-ingreso/fiesta-ingreso.component';
 
 
 @NgModule({
-  declarations: [FiestaListadoComponent, FiestaRegistroComponent, FiestaEditarComponent, FiestaVerComponent, FiestaQrComponent],
+  declarations: [FiestaListadoComponent, FiestaRegistroComponent, FiestaEditarComponent, FiestaVerComponent, FiestaQrComponent, FiestaIngresoComponent],
   imports: [
     CommonModule,
     FiestaRoutingModule,

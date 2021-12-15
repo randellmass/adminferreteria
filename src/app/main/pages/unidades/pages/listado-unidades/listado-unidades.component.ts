@@ -60,7 +60,7 @@ export class ListadoUnidadesComponent implements OnInit {
 
       }
 
-      async item_v(index,item:any,item_name:any,item_sele:any){
+      async item_v(index:any,item:any,item_name:any,item_sele:any){
  
          const form_editar ={
             "nombre":item_name,

@@ -11,8 +11,10 @@ const URL = environment.URL;
 })
 export class FiestaService {
 
+      terceros:any[] = [];
+
       constructor(private http:HttpClient,
-                private authService:AuthService) { }
+                  private authService:AuthService) { }
 
 
       index()
@@ -115,6 +117,14 @@ export class FiestaService {
                   );
               }
           
+            },error =>{
+
+              resolve(
+                {
+                  res:false,
+                  data: ['error - codigo qr no existe']
+                }
+              );
             });
 
           }); 

@@ -56,6 +56,9 @@ export class LoginComponent implements OnInit {
       //console.log(valido)
       if(valido['res']){
         this.error="";
+
+        console.log(this.authService.usuario);
+
         this.router.navigateByUrl('');
         this.loading = false;
       }else{

@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+   
+        <div class="card">
+            <div class="card-body">
+    
+                <form (ngSubmit)="buscar_tercero()" [formGroup]="formBuscar" >
+                    
+                    <div class="form-group">
+                        <label for="">Buscar x Cedula/nombre:</label>
+                        <input type="text" 
+                                class="form-control" 
+                                formControlName="termino"
+                                placeholder="Buscar cedula/nombre...">
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row mt-2">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+        <app-loading *ngIf="loading"></app-loading>
+
+        
+
+                <a [routerLink]="['/main/evento/crear']" class="btn btn-secondary">Nuevo</a>
+
+                <h4 class="card-subtitle">Invitados</h4>
+
+                <div class="mt-2" *ngFor="let tercero of terceros;let i=index">
+                    <div class="card">
+                        <div class="card-body">
+                            <div><strong>Sucursal: </strong>{{ tercero['fiestasucursal_nombre'] | uppercase}}</div> 
+                            <div><strong>Tipo: </strong>{{ tercero['fiestatipo_nombre'] | uppercase}}</div> 
+                            <div><strong>Documento: </strong>{{ tercero['documento'] }}</div> 
+                            <div><strong>Nombre: </strong>{{ tercero['nombre'] | uppercase }}</div> 
+                            <div><strong>Invitado: </strong>{{ tercero['documentoDe']}} -{{ tercero['documentoDeNombre']}}</div> 
+                            <div><strong>Cupos: </strong>{{ tercero['cupos'] }}</div> 
+                            <div *ngIf="tercero['fiestaestado_id']==4"><strong class="mr-2">Estado:</strong><label class="badge badge-success">{{ tercero['fiestaestado_nombre'] | uppercase}}</label></div>
+                            <div *ngIf="tercero['fiestaestado_id']==2"><strong class="mr-2">Estado:</strong><label class="badge badge-warning">{{ tercero['fiestaestado_nombre'] | uppercase}}</label></div>
+                            <div *ngIf="tercero['fiestaestado_id']==3"><strong class="mr-2">Estado:</strong><label class="badge badge-dark">{{ tercero['fiestaestado_nombre'] | uppercase}}</label></div>
+                            <div *ngIf="tercero['fiestaestado_id']==1"><strong class="mr-2">Estado:</strong><label class="badge badge-danger">{{ tercero['fiestaestado_nombre'] | uppercase}}</label></div>
+                            <div class="mt-2" *ngIf="tercero['fiestaestado_id'] ==2 || tercero['fiestaestado_id'] ==3">
+                                <button type="button" class="btn btn-block btn-success" (click)="ingreso_tercero(i,tercero)">Dar Ingreso</button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+
+                <div class="row mt-5" *ngIf="errors.length>0">
+                    <div class="col-12">
+                      <div class="alert alert-danger " role="alert">
+                         <ul>
+                             <li *ngFor="let error of errors" >{{ error }}</li>
+                         </ul>
+                      </div>
+                    </div>
+                </div>
+                
+         
+       
+    </div>
+  
+</div>
