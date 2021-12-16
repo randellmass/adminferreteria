@@ -12,12 +12,13 @@
                     <div *ngIf="tercero_id['fiestaestado_id']==2"><strong class="mr-2">Estado:</strong><label class="badge badge-warning">{{ tercero_id['fiestaestado_nombre'] | uppercase}}</label></div>
                     <div *ngIf="tercero_id['fiestaestado_id']==3"><strong class="mr-2">Estado:</strong><label class="badge badge-dark">{{ tercero_id['fiestaestado_nombre'] | uppercase}}</label></div>
                     <div *ngIf="tercero_id['fiestaestado_id']==1"><strong class="mr-2">Estado:</strong><label class="badge badge-danger">{{ tercero_id['fiestaestado_nombre'] | uppercase}}</label></div>
+                    <div *ngIf="tercero_id['fiestaestado_id']==5"><strong class="mr-2">Estado:</strong><label class="badge badge-info">{{ tercero_id['fiestaestado_nombre'] | uppercase}}</label></div>
                     <div><strong>Documento:</strong> {{ tercero_id['documento']}}</div>
                     <div><strong>Nombre:</strong> {{ tercero_id['nombre'] | uppercase}}</div>
                     <div><strong>Cupos:</strong> {{ tercero_id['cupos']}}</div>
                     <div><strong>Contácto:</strong> {{ tercero_id['contacto']}}</div>
                     <div><strong>InvitadoDe:</strong> {{ tercero_id['documentoDe']}} -  {{ tercero_id['documentoDeNombre']}}</div>
-                    <qrcode [qrdata]="myAngularxQrCode" [width]="400" [errorCorrectionLevel]="'M'" [margin]=4></qrcode>
+                    <qrcode *ngIf="tercero_id['fiestaestado_id']!=5" [qrdata]="myAngularxQrCode" [width]="400" [errorCorrectionLevel]="'M'" [margin]=4></qrcode>
                 </div>
 
             </div>
