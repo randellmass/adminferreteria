@@ -16,6 +16,7 @@ export class UsuariosGuard implements CanLoad {
     //console.log(this.authService.usuario.rol_id);
     if ((this.authService.usuario.rol_id == 6) || (this.authService.usuario.rol_id == 3))
     {
+     
       this.router.navigateByUrl('main/dashboard');
       return false;
     } else {

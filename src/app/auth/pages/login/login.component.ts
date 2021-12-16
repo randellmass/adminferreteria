@@ -57,9 +57,12 @@ export class LoginComponent implements OnInit {
       if(valido['res']){
         this.error="";
 
-        //console.log(this.authService.usuario);
+        if(this.authService.usuario.rol_id ==7){
+          this.router.navigateByUrl('main/evento/ingreso');
+        }else{
+          this.router.navigateByUrl('');
+        };
 
-        this.router.navigateByUrl('');
         this.loading = false;
       }else{
         this.error = valido['data'];

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
@@ -11,7 +12,8 @@ export class SidebarComponent implements OnInit {
   usuario:any = {};
   menu:any[];
 
-  constructor(private authService:AuthService) { }
+  constructor(private authService:AuthService,
+               private router:Router) { }
 
   ngOnInit(): void {
 
@@ -19,6 +21,16 @@ export class SidebarComponent implements OnInit {
     this.menu = this.cargar_menu(this.authService.usuario.rol_id);
     //console.log(this.menu);
   }
+
+   async logout(){
+      const cerrar = await this.authService.salir_usuario();
+      
+      if(cerrar){
+      this.router.navigateByUrl('/auth');
+   
+      }
+
+   }
 
   cargar_menu(rol_id:number){
 
@@ -239,9 +251,30 @@ export class SidebarComponent implements OnInit {
      
     ]; 
 
+    const menu_thumano = [
+      {
+         "categoria":"Eventos",
+         "icon":"mdi mdi-settingst",
+         "enlaces":[
+           {
+              "nombre":"Fiesta",
+              "url":"/main/evento/listado"
+           },
+           {
+              "nombre":"Ingreso",
+              "url":"/main/evento/ingreso"
+           },
+
+         ]
+     },
+     
+    ]; 
+
     if (rol_id==1) {
       return menu_item_administrador;
-    } else if((rol_id!=1) && (rol_id!=3) && (rol_id!=6)) {
+    }else if (rol_id==7) {
+         return menu_thumano;
+    } else if((rol_id!=1) && (rol_id!=3) && (rol_id!=6) && (rol_id!=7)) {
       return menu_item_implementador;
     }else{
       return menu_item_comercial;

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 import { DashboardEquiposService } from '../../services/dashboard-equipos.service';
 
@@ -57,9 +59,15 @@ export class EquiposListadoComponent implements OnInit {
     }
   ]
 
-  constructor(private dashboardEquiposService:DashboardEquiposService) { }
+  constructor(private dashboardEquiposService:DashboardEquiposService,
+              private authService: AuthService,
+              private router:Router) { }
 
   ngOnInit(): void {
+      if(this.authService.usuario.rol_id==7){
+         this.router.navigate(['main/evento/ingreso']);
+      }
+
       this.listo_dashboard_inicio();
   }
 

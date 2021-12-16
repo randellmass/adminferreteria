@@ -18,6 +18,7 @@ export class AdminGuard implements CanLoad {
     //console.log(this.authService.usuario.rol_id);
     if ((this.authService.usuario.rol_id != 1))
     {
+   
       this.router.navigateByUrl('main/dashboard');
       return false;
     } else {
