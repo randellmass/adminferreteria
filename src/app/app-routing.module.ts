@@ -14,6 +14,10 @@ const routes:Routes = [
       loadChildren: () => import('../app/auth/auth.module').then(m => m.AuthModule)
     },
     { 
+      path: 'products',
+      loadChildren: () => import('../app/documents/documents.module').then(m => m.DocumentsModule)
+    },
+    { 
       path: '**', pathMatch:'full', redirectTo:'main'
     }
 ];

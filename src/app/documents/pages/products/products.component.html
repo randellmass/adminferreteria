@@ -4,7 +4,7 @@
         <div class="card" *ngIf="equipo">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-lg-6 col-md-6 col-xs-12">
                         <h4 class="card-subtitle">Equipo</h4>
 
                         <table class="table table-bordered">
@@ -31,19 +31,19 @@
                         </table>
 
                     </div>
-                    <div class="col-6">
+                    <div class="col-lg-6 col-md-6 col-xs-12">
                         <h4 class="card-subtitle">Imágen</h4>
                          <img [ngStyle]="{width: '400px'}" [src]="equipo['imagen'] | imagen" alt="" class="img img-thumbnail">   
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
         <div class="card mt-2" *ngIf="equipo">
             <div class="card-body">
                 
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-lg-8 col-md-8 col-xs-12">
                         <h4 class="card-subtitle">Caracteristicas</h4>
                         <table class="table table-bordered table-hover">
                             <thead class="thead-light">
@@ -64,7 +64,7 @@
 
                     </div>
 
-                    <div class="col-4">
+                    <div class="col-lg-4 col-md-4 col-xs-12">
                         <h4 class="card-subtitle">Archivos</h4>
                         <ul class="list-group">
                             <li class="list-group-item" *ngFor="let archivo of equipo['files']"><a [href]="archivo['url']| imagen" target="_blank">{{ archivo['nombre'] | uppercase}}</a></li>
@@ -76,26 +76,8 @@
             </div>
         </div>
 
-        <div class="card mt-2" *ngIf="equipo">
-            <div class="card-body">
-                
-                <div class="row">
-                    <div class="col-8">
-                        <h4 class="card-subtitle">Link Qr</h4>
-                   
-                        <qrcode class="mt-4" [qrdata]="myAngularxQrCode" [width]="400" [errorCorrectionLevel]="'M'" [margin]=4></qrcode>
-
-                    </div>
-
-                    <div class="col-4">
-          
-                    </div>
-     
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>
+
 
 
