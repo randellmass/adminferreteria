@@ -41,7 +41,7 @@ export class FiestaVerComponent implements OnInit {
           this.errors="";  
           this.tercero_id = result_pedido['data'];  
           //this.myAngularxQrCode = this.tercero_id['invitacion'];
-          this.myAngularxQrCode = `${ URL}/${ this.tercero_id['invitacion']}`;  ;
+          this.myAngularxQrCode = `${ URL}/${ this.tercero_id['invitacion']}`; 
        
         } else {
           this.errors = result_pedido['data']; 
