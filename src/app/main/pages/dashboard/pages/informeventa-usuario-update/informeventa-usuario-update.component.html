@@ -1,0 +1,87 @@
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-subtitle">Editar Informe</h4>
+
+        <form class="cmxform" (ngSubmit)="editar_presupuesto()" [formGroup]="formPresupuesto" >
+            <fieldset>
+
+              
+                <div class="row">
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>Informe:</label>
+                            <select formControlName="infor_v_semana_id" 
+                                    class="form-control"
+                                    disabled>
+                                <option value="" selected>Seleccionar</option>
+                                <option value="{{ semana['id']}}" *ngFor="let semana of semanas">{{ semana['nombre'] }}</option>
+                            </select>
+                            <label class="error mt-2 text-danger" 
+                                    for="infor_v_semana_id" 
+                                    *ngIf="campoNoValido('infor_v_semana_id')">*Escoja informe fecha</label>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>Presupuesto Valor:</label>
+                            <input type="number" 
+                                   formControlName="presupuesto_valor"
+                                   class="form-control"
+                                   placeholder="Digite valor asignado" />
+                            <label class="error mt-2 text-danger" 
+                                    for="presupuesto_valor" 
+                                    *ngIf="campoNoValido('presupuesto_valor')">*Digite valor</label>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>Venta real:</label>
+                            <input type="number" 
+                                   formControlName="venta_real"
+                                   class="form-control"
+                                   placeholder="Digite valor venta" />
+                            <label class="error mt-2 text-danger" 
+                                    for="venta_real" 
+                                    *ngIf="campoNoValido('venta_real')">*Digite valor</label>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>Estado:</label>
+                            <select formControlName="infor_v_estado_id" 
+                                    class="form-control">
+                                <option value="" selected>Seleccionar</option>
+                                <option value="{{ estado['id']}}" *ngFor="let estado of estados">{{ estado['nombre'] }}</option>
+                            </select>
+                            <label class="error mt-2 text-danger" 
+                                    for="infor_v_estado_id" 
+                                    *ngIf="campoNoValido('infor_v_estado_id')">*Escoja estado</label>
+                        </div>
+                    </div>
+                
+                </div>
+            
+                <button type="submit" class="btn btn-primary">Editar</button>
+            </fieldset>
+        </form>
+
+        <div class="row mt-5" *ngIf="errors.length>0">
+            <div class="col-12">
+                <div class="alert alert-danger " role="alert">
+                    <ul>
+                        <li *ngFor="let error of errors" >{{ error }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+

@@ -46,6 +46,10 @@ export class SidebarComponent implements OnInit {
             {
                "nombre":"PedidoProduccion",
                "url":"/main/dashboard/pedido"
+            },
+            {
+               "nombre":"InformeVentas",
+               "url":"/main/dashboard/informe"
             }
           ]
       },
@@ -158,6 +162,10 @@ export class SidebarComponent implements OnInit {
             {
                "nombre":"PedidoProduccion",
                "url":"/main/dashboard/pedido"
+            },
+            {
+               "nombre":"InformeVentas",
+               "url":"/main/dashboard/informe"
             }
           ]
       },
@@ -245,6 +253,10 @@ export class SidebarComponent implements OnInit {
             {
                "nombre":"PedidoProduccion",
                "url":"/main/dashboard/pedido"
+            },
+            {
+               "nombre":"InformeVentas",
+               "url":"/main/dashboard/informe"
             }
           ]
       }

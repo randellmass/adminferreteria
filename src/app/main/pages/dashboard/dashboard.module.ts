@@ -8,12 +8,17 @@ import { EquiposDetallesComponent } from './pages/equipos-detalles/equipos-detal
 import { VercomercialPedidoComponent } from './pages/vercomercial-pedido/vercomercial-pedido.component';
 import { SharedModule } from '../../shared/shared.module';
 import { QRCodeModule } from 'angularx-qrcode';
+import { InformeventaUsuarioIndexComponent } from './pages/informeventa-usuario-index/informeventa-usuario-index.component';
+import { InformeventaUsuarioStoreComponent } from './pages/informeventa-usuario-store/informeventa-usuario-store.component';
+import { InformeventaUsuarioUpdateComponent } from './pages/informeventa-usuario-update/informeventa-usuario-update.component';
+import { InformeventaUsuarioDetalleIndexComponent } from './pages/informeventa-usuario-detalle-index/informeventa-usuario-detalle-index.component';
+import { InformeventaUsuarioCotIndexComponent } from './pages/informeventa-usuario-cot-index/informeventa-usuario-cot-index.component';
 
 
 @NgModule({
   declarations: [
     EquiposListadoComponent, 
-    EquiposDetallesComponent, VercomercialPedidoComponent],
+    EquiposDetallesComponent, VercomercialPedidoComponent, InformeventaUsuarioIndexComponent, InformeventaUsuarioStoreComponent, InformeventaUsuarioUpdateComponent, InformeventaUsuarioDetalleIndexComponent, InformeventaUsuarioCotIndexComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
