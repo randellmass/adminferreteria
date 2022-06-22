@@ -1,2 +1,22 @@
-<p>informeventa-usuario-detalle-index works!</p>
-<app-informeventa-usuario-cot-index></app-informeventa-usuario-cot-index>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-subtitle">Informe usuario </h4>
+        
+        <table class="table table-responsive" *ngIf="presupuesto">
+            <tr>
+                <td><strong>Reporte:</strong></td>
+                <td>{{ presupuesto['infor_v_semana_nombre']}}</td>
+                <td><strong>PresupuestoValor:</strong></td>
+                <td>{{ presupuesto['presupuesto_valor'] | number }}</td>
+            </tr>
+            <tr>
+                <td><strong>VentaReal:</strong></td>
+                <td>{{ presupuesto['venta_real'] | number}}</td>
+                <td><strong>Estado:</strong></td>
+                <td>{{ presupuesto['infor_v_estado_nombre']}}</td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+<app-informeventa-usuario-cot-index [presupuesto_id]="presupuesto['id']" *ngIf="presupuesto"></app-informeventa-usuario-cot-index>

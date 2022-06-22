@@ -48,7 +48,7 @@ export class InformeventaUsuarioUpdateComponent implements OnInit {
       });
     }
 
-    async cargarSelectForm(presupueso_id:any){
+    async cargarSelectForm(presupuesto_id:any){
 
       this.loading=true;
  
@@ -64,7 +64,7 @@ export class InformeventaUsuarioUpdateComponent implements OnInit {
             this.estados = result_estados['data'];
         }
 
-        const result_informe = await this.informeVentaService.show_prespuesto_usuario(presupueso_id);
+        const result_informe = await this.informeVentaService.show_prespuesto_usuario(presupuesto_id);
         if (result_informe['res'])
         {
             this.presupuesto = result_informe['data'];

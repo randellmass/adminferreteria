@@ -55,7 +55,8 @@ export class InformeventaUsuarioStoreComponent implements OnInit {
   }
 
 
-  async agregar_presupuesto(){
+  async agregar_presupuesto()
+  {
         if(this.formPresupuesto.invalid){
           this.formPresupuesto.markAllAsTouched();
           return;
@@ -72,6 +73,6 @@ export class InformeventaUsuarioStoreComponent implements OnInit {
         }
 
   
-    }
+  }
 
 }

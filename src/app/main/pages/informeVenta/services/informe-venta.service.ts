@@ -154,6 +154,41 @@ export class InformeVentaService {
   
     } 
 
+    index_info_v_cotizaciones(presupuesto_id:any)
+    {
+     
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+  
+        this.http.get(`${ URL}/presupuesto/${ presupuesto_id }/cotizacion`,{ headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+                resolve({
+                    res:true,
+                    data:resp['data']
+                });
+            }else{
+                resolve(
+                  {
+                    res:false,
+                    data:resp['mensaje']
+                  }
+                );
+            }
+        
+         });
+  
+       }); 
+     
+  
+    } 
+
     store_presupuesto_usuario(presupuesto:any)
     {
      
