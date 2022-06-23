@@ -24,9 +24,7 @@ export class InformeventaUsuarioCotIndexComponent implements OnInit {
   errors:any =[];
 
   constructor(private fb:FormBuilder,
-              private informeVentaService:InformeVentaService,
-              private activatedRoute:ActivatedRoute,
-              private router:Router) { }
+              private informeVentaService:InformeVentaService) { }
 
   ngOnInit(): void {
     this.cargarinforme_cotizaciones(this.presupuesto_id);
@@ -76,25 +74,26 @@ export class InformeventaUsuarioCotIndexComponent implements OnInit {
           this.errors= editar['data'];
           this.loading=false;
       }
+
   }
 
-  async agregar_presupuesto(){
-    if(this.formCotizacion.invalid){
-      this.formCotizacion.markAllAsTouched();
-      return;
-    }
-  
-    const informe_reg = await this.informeVentaService.store_presupuesto_usuario_cot(this.presupuesto_id,this.formCotizacion.value);
-    if (informe_reg['res'])
-    {
-      this.cotizaciones.push(informe_reg['data']);  
-      this.errors=[];
-      this.formCotizacion.reset();
-    }else{
-        this.errors = informe_reg['data'];
-    }
+  async agregar_cotizacion()
+  {
+      if(this.formCotizacion.invalid){
+        this.formCotizacion.markAllAsTouched();
+        return;
+      }
+    
+      const informe_reg = await this.informeVentaService.store_presupuesto_usuario_cot(this.presupuesto_id,this.formCotizacion.value);
+      if (informe_reg['res'])
+      {
+        this.cotizaciones.push(informe_reg['data']);  
+        this.errors=[];
+        this.formCotizacion.reset();
+      }else{
+          this.errors = informe_reg['data'];
+      }
 
-
-}
+  }//agregar_cotizacion
 
 }

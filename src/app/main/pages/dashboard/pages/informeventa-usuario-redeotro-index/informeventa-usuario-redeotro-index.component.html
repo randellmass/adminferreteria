@@ -5,7 +5,7 @@
             
             <div class="card-body">
                 
-                <h4 class="card-subtitle">Listado Cotizaciones</h4>
+                <h4 class="card-subtitle">Listado Cotizaciones Redes y otros</h4>
                 <table class="table table-responsive">
                     <thead>
                         <tr>
@@ -15,11 +15,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let cot of cotizaciones; let i=index">
-                            <td scope="row">{{ cot['infor_v_cot_concepto_nombre']}}</td>
+                        <tr *ngFor="let cot of redesOtro; let i=index">
+                            <td scope="row">{{ cot['infor_v_otro_concepto_nombre']}}</td>
                             <td><input type="number" [name]="i" [value]="cot['cantidad']" #cantidad class="form-control"></td>
                             <td>
-                                <button type="button" (click)="update_concepto_cot(i,cantidad.value,cot)" class="btn btn-secondary">Actualizar</button>
+                                <button type="button" (click)="update_concepto_redesotro(i,cantidad.value,cot)" class="btn btn-secondary">Actualizar</button>
                             </td>
                         </tr>
                
@@ -34,7 +34,7 @@
             <div class="card-body">
                 <h4 class="card-subtitle">Registro No Cotizaciones</h4>
 
-                    <form class="cmxform" (ngSubmit)="agregar_cotizacion()" [formGroup]="formCotizacion" >
+                    <form class="cmxform" (ngSubmit)="agregar_redesotro()" [formGroup]="formRedesOtro" >
                         <fieldset>
             
                         
@@ -43,14 +43,14 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label>Concepto:</label>
-                                        <select formControlName="infor_v_cot_concepto_id" 
+                                        <select formControlName="infor_v_otro_concepto_id" 
                                                 class="form-control">
                                             <option value="" selected>Seleccionar</option>
                                             <option value="{{ concepto['id']}}" *ngFor="let concepto of conceptos">{{ concepto['nombre'] }}</option>
                                         </select>
                                         <label class="error mt-2 text-danger" 
-                                                for="infor_v_cot_concepto_id" 
-                                                *ngIf="campoNoValido('infor_v_cot_concepto_id')">*Escoja Concepto</label>
+                                                for="infor_v_otro_concepto_id" 
+                                                *ngIf="campoNoValido('infor_v_otro_concepto_id')">*Escoja Concepto</label>
                                     </div>
                                 </div>
             
@@ -88,6 +88,7 @@
         </div>
     </div>
 </div>
+
 
 
 
