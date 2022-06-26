@@ -5,31 +5,29 @@
             
             <div class="card-body">
                 
-                <h4 class="card-subtitle">Listado de Analisis</h4>
+                <h4 class="card-subtitle">Listado Toneladas vendidas </h4>
                 <table class="table table-responsive">
                     <thead>
                         <tr>
-                            <th>Concepto</th>
-                            <th>CC/Nit:</th>
-                            <th>Nombre:</th>
-                            <th>Teléfono:</th>
                             <th>Factura:</th>
-                            <th>Valor:</th>
+                            <th>CC/Nit::</th>
+                            <th>Cliente:</th>
+                            <th>Cantidad:</th>
+                            <th>Toneladas:</th>
                             <th>Comentarios:</th>
                             <th>Opción</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of analisis; let i=index">
-                            <td scope="row">{{ item['infor_v_analisis_concepto_nombre']}}</td>
+                        <tr *ngFor="let item of toneladas; let i=index">
+                            <td scope="row">{{ item['factura']}}</td>
                             <td>{{ item['cliente_documento'] }}</td>
                             <td>{{ item['cliente_nombre'] }}</td>
-                            <td>{{ item['telefono'] }}</td>
-                            <td>{{ item['documento'] }}</td>
-                            <td>{{ item['valor'] |number }}</td>
+                            <td>{{ item['cantidad'] }}</td>
+                            <td>{{ item['toneladas'] }}</td>
                             <td>{{ item['comentarios'] }}</td>
                             <td>
-                                <button type="button" (click)="delete_concepto_analisis(item)" class="btn btn-secondary">Quitar</button>
+                                <button type="button" (click)="delete_concepto_tonelada(item)" class="btn btn-secondary">Quitar</button>
                             </td>
                         </tr>
                
@@ -42,9 +40,9 @@
     <div class="col-md-4">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-subtitle">Registro Analisis Cotizaciones</h4>
+                <h4 class="card-subtitle">Registro Toneladas</h4>
 
-                    <form class="cmxform" (ngSubmit)="agregar_analisis()" [formGroup]="formAnalisis" >
+                    <form class="cmxform" (ngSubmit)="agregar_tonelada()" [formGroup]="formTonelada" >
                         <fieldset>
             
                         
@@ -52,15 +50,14 @@
             
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label>Concepto:</label>
-                                        <select formControlName="infor_v_analisi_id" 
-                                                class="form-control">
-                                            <option value="" selected>Seleccionar</option>
-                                            <option value="{{ concepto['id']}}" *ngFor="let concepto of conceptos">{{ concepto['nombre'] }}</option>
-                                        </select>
+                                        <label>Factura:</label>
+                                        <input type="text" 
+                                            formControlName="factura"
+                                            class="form-control"
+                                            placeholder="Digite factura" />
                                         <label class="error mt-2 text-danger" 
-                                                for="infor_v_analisi_id" 
-                                                *ngIf="campoNoValido('infor_v_analisi_id')">*Escoja Concepto</label>
+                                                for="factura" 
+                                                *ngIf="campoNoValido('factura')">*Digite factura:</label>
                                     </div>
                                 </div>
 
@@ -70,64 +67,49 @@
                                         <input type="text" 
                                             formControlName="cliente_documento"
                                             class="form-control"
-                                            placeholder="Digite valor" />
+                                            placeholder="Digite CC / Nit" />
                                         <label class="error mt-2 text-danger" 
                                                 for="cliente_documento" 
-                                                *ngIf="campoNoValido('cliente_documento')">*Digite CC/ Nit:</label>
+                                                *ngIf="campoNoValido('cliente_documento')">*Digite CC / Nit:</label>
                                     </div>
                                 </div>
 
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label>Nombre:</label>
+                                        <label>Cliente:</label>
                                         <input type="text" 
                                             formControlName="cliente_nombre"
                                             class="form-control"
-                                            placeholder="Digite nombre" />
+                                            placeholder="Digite Nombre" />
                                         <label class="error mt-2 text-danger" 
                                                 for="cliente_nombre" 
-                                                *ngIf="campoNoValido('cliente_nombre')">*Digite Nombre:</label>
+                                                *ngIf="campoNoValido('cliente_nombre')">*Digite nombre:</label>
                                     </div>
                                 </div>
 
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label>Factura/Pedido/Cotización:</label>
-                                        <input type="text" 
-                                            formControlName="documento"
-                                            class="form-control"
-                                            placeholder="Digite Factura/Pedido" />
-                                        <label class="error mt-2 text-danger" 
-                                                for="documento" 
-                                                *ngIf="campoNoValido('documento')">*Digite Factura/Pedido/Cotización:</label>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label>Celular/Teléfono:</label>
-                                        <input type="text" 
-                                            formControlName="telefono"
-                                            class="form-control"
-                                            placeholder="Digite Celular/Teléfono" />
-                                        <label class="error mt-2 text-danger" 
-                                                for="telefono" 
-                                                *ngIf="campoNoValido('telefono')">*Digite Celular/Teléfono</label>
-                                    </div>
-                                </div>
-
-            
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label>Valor Venta:</label>
+                                        <label>Cantidad:</label>
                                         <input type="number" 
-                                            formControlName="valor"
+                                            formControlName="cantidad"
                                             class="form-control"
-                                            placeholder="Digite valor" />
+                                            placeholder="Digite cantidad" />
                                         <label class="error mt-2 text-danger" 
-                                                for="valor" 
-                                                *ngIf="campoNoValido('valor')">*Digite valor</label>
+                                                for="cantidad" 
+                                                *ngIf="campoNoValido('cantidad')">*Digite cantidad:</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Toneladas:</label>
+                                        <input type="number" 
+                                            formControlName="toneladas"
+                                            class="form-control"
+                                            placeholder="Digite toneladas" />
+                                        <label class="error mt-2 text-danger" 
+                                                for="toneladas" 
+                                                *ngIf="campoNoValido('toneladas')">*Digite toneladas:</label>
                                     </div>
                                 </div>
 
@@ -167,3 +149,6 @@
         </div>
     </div>
 </div>
+
+
+

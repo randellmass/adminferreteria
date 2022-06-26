@@ -1,0 +1,124 @@
+<div class="row mt-2">
+    <div class="col-md-8">
+        <div class="card">
+            <app-loading *ngIf="loading"></app-loading>
+            
+            <div class="card-body">
+                
+                <h4 class="card-subtitle">Listado Backorder</h4>
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Concepto:</th>
+                            <th>Descripción:</th>
+                            <th>Referencia:</th>
+                            <th>Comentarios:</th>
+                            <th>Opción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of backorders; let i=index">
+                            <td scope="row">{{ item['infor_v_back_concepto_nombre']}}</td>
+                            <td>{{ item['descripcion'] }}</td>
+                            <td>{{ item['referencia'] }}</td>
+                            <td>{{ item['comentarios'] }}</td>
+                            <td>
+                                <button type="button" (click)="delete_concepto_backorder(item)" class="btn btn-secondary">Quitar</button>
+                            </td>
+                        </tr>
+               
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-subtitle">Registro Backorder</h4>
+
+                    <form class="cmxform" (ngSubmit)="agregar_backorder()" [formGroup]="formBackorder" >
+                        <fieldset>
+            
+                        
+                            <div class="row">
+            
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Concepto:</label>
+                                        <select formControlName="infor_v_back_concepto_id" 
+                                                class="form-control">
+                                            <option value="" selected>Seleccionar</option>
+                                            <option value="{{ concepto['id']}}" *ngFor="let concepto of conceptos">{{ concepto['nombre'] }}</option>
+                                        </select>
+                                        <label class="error mt-2 text-danger" 
+                                                for="infor_v_back_concepto_id" 
+                                                *ngIf="campoNoValido('infor_v_back_concepto_id')">*Escoja Concepto</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Descripción:</label>
+                                        <input type="text" 
+                                            formControlName="descripcion"
+                                            class="form-control"
+                                            placeholder="Digite descripción" />
+                                        <label class="error mt-2 text-danger" 
+                                                for="descripcion" 
+                                                *ngIf="campoNoValido('descripcion')">*Digite descripción:</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Referencia:</label>
+                                        <input type="text" 
+                                            formControlName="referencia"
+                                            class="form-control"
+                                            placeholder="Digite referencia" />
+                                        <label class="error mt-2 text-danger" 
+                                                for="referencia" 
+                                                *ngIf="campoNoValido('referencia')">*Digite referencia:</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Comentarios:</label>
+                                        <textarea 
+                                                rows="5"
+                                                formControlName="comentarios"
+                                                class="form-control"
+                                                placeholder="Digite Celular/Teléfono"></textarea>
+                      
+                                        <label class="error mt-2 text-danger" 
+                                                for="comentarios" 
+                                                *ngIf="campoNoValido('comentarios')">*Digite Comentarios.</label>
+                                    </div>
+                                </div>
+            
+                            
+                            </div>
+                        
+                            <button type="submit" class="btn btn-primary">Agregar</button>
+                        </fieldset>
+                    </form>
+
+                    <div class="row mt-2" *ngIf="errors.length>0">
+                        <div class="col-12">
+                          <div class="alert alert-danger " role="alert">
+                             <ul>
+                                 <li *ngFor="let error of errors" >{{ error }}</li>
+                             </ul>
+                          </div>
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

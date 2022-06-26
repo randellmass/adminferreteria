@@ -15,12 +15,15 @@ import { InformeventaUsuarioDetalleIndexComponent } from './pages/informeventa-u
 import { InformeventaUsuarioCotIndexComponent } from './pages/informeventa-usuario-cot-index/informeventa-usuario-cot-index.component';
 import { InformeventaUsuarioRedeotroIndexComponent } from './pages/informeventa-usuario-redeotro-index/informeventa-usuario-redeotro-index.component';
 import { InformeventaUsuarioAnalisisIndexComponent } from './pages/informeventa-usuario-analisis-index/informeventa-usuario-analisis-index.component';
+import { InformeventaUsuarioPostventaIndexComponent } from './pages/informeventa-usuario-postventa-index/informeventa-usuario-postventa-index.component';
+import { InformeventaUsuarioBackorderIndexComponent } from './pages/informeventa-usuario-backorder-index/informeventa-usuario-backorder-index.component';
+import { InformeventaUsuarioToneladaIndexComponent } from './pages/informeventa-usuario-tonelada-index/informeventa-usuario-tonelada-index.component';
 
 
 @NgModule({
   declarations: [
     EquiposListadoComponent, 
-    EquiposDetallesComponent, VercomercialPedidoComponent, InformeventaUsuarioIndexComponent, InformeventaUsuarioStoreComponent, InformeventaUsuarioUpdateComponent, InformeventaUsuarioDetalleIndexComponent, InformeventaUsuarioCotIndexComponent, InformeventaUsuarioRedeotroIndexComponent, InformeventaUsuarioAnalisisIndexComponent],
+    EquiposDetallesComponent, VercomercialPedidoComponent, InformeventaUsuarioIndexComponent, InformeventaUsuarioStoreComponent, InformeventaUsuarioUpdateComponent, InformeventaUsuarioDetalleIndexComponent, InformeventaUsuarioCotIndexComponent, InformeventaUsuarioRedeotroIndexComponent, InformeventaUsuarioAnalisisIndexComponent, InformeventaUsuarioPostventaIndexComponent, InformeventaUsuarioBackorderIndexComponent, InformeventaUsuarioToneladaIndexComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

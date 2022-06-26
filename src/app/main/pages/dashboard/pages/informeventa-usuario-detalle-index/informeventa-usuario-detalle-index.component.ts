@@ -14,6 +14,16 @@ export class InformeventaUsuarioDetalleIndexComponent implements OnInit {
   loading:boolean = false;
   errors:any =[];
 
+  cotizaciones:any = [];
+  sumaCotizaciones:number=0;
+  sumaRedesOtro:number=0;
+  redesotros:any = [];
+  cotanalisis:any = [];
+  postventas:any = [];
+  backorders:any = [];
+  toneladas:any = [];
+
+
   constructor(private informeVentaService:InformeVentaService,
               private activatedRoute:ActivatedRoute,
               private router:Router) { }
@@ -32,12 +42,40 @@ export class InformeventaUsuarioDetalleIndexComponent implements OnInit {
       if (result_informe['res'])
       {
           this.presupuesto = result_informe['data'];
+          this.cotizaciones = this.presupuesto['cotizaciones'];
+          this.redesotros = this.presupuesto['redesotros'];
+          this.cotanalisis = this.presupuesto['cotanalisis'];
+          this.postventas = this.presupuesto['postventas'];
+          this.backorders = this.presupuesto['backorders'];
+          this.toneladas = this.presupuesto['toneladas'];
 
+          this.cotizaciones.forEach(cot =>  {
+              this.sumaCotizaciones+=cot['cantidad'];
+          });
+
+          this.redesotros.forEach(cot =>  {
+              this.sumaRedesOtro+=cot['cantidad'];
+          });
+
+          //calculo de porcentaje cotizaciones
+          this.cotizaciones =  this.cotizaciones.map( cot => {
+              const porcentaje = (cot['cantidad']/this.sumaCotizaciones)*100;
+              return {...cot, "porcentaje": porcentaje }
+          });
+
+          this.redesotros =  this.redesotros.map( redotro => {
+            const porcentaje = (redotro['cantidad']/this.sumaRedesOtro)*100;
+            return {...redotro, "porcentaje": porcentaje }
+        });
+
+     
+      }else{
+         this.errors = result_informe['data'];
       }
 
 
     this.loading=false;
-
+    
   }
 
 }

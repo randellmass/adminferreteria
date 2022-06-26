@@ -63,7 +63,7 @@ export class InformeventaUsuarioAnalisisIndexComponent implements OnInit {
 
       this.loading=true;
 
-      const quitar = await this.informeVentaService.delete_presupuesto_usuario_analisis(this.presupuesto_id,analisis_item['infor_v_analisis_concepto_id']);
+      const quitar = await this.informeVentaService.delete_presupuesto_usuario_analisis(this.presupuesto_id,analisis_item['id']);
       
       if (quitar['res']) 
       {

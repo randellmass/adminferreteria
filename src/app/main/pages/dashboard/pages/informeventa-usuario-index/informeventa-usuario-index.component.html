@@ -28,6 +28,7 @@
                             <th>Informe</th>
                             <th>Presupuesto</th>
                             <th>Venta Real</th>
+                            <th>Usuario</th>
                             <th>Estado</th>
                             <th>Opción</th>
                         </tr>
@@ -37,6 +38,7 @@
                             <td>{{ informe['infor_v_semana_nombre']}}</td>
                             <td>{{ informe['presupuesto_valor'] | number }}</td>
                             <td>{{ informe['venta_real'] | number }}</td>
+                            <td>{{ informe['user_email'] }}</td>
                             <td>{{ informe['infor_v_estado_nombre']}}</td>
                             <td>
                                 <button (click)="update_presupuesto(informe['id'])" class="btn btn-primary" >Editar</button>
