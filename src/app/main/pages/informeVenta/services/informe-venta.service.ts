@@ -329,6 +329,76 @@ export class InformeVentaService {
   
     } 
 
+    index_info_v_presupuesto_admin()
+    {
+     
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+  
+        this.http.get(`${ URL}/admin/presupuesto`,{ headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+                resolve({
+                    res:true,
+                    data:resp['data']
+                });
+            }else{
+                resolve(
+                  {
+                    res:false,
+                    data:resp['mensaje']
+                  }
+                );
+            }
+        
+         });
+  
+       }); 
+     
+  
+    }
+
+    index_info_v_semana_tipos()
+    {
+     
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+  
+        this.http.get(`${ URL}/inforvsemanatipos`,{ headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+                resolve({
+                    res:true,
+                    data:resp['data']
+                });
+            }else{
+                resolve(
+                  {
+                    res:false,
+                    data:resp['mensaje']
+                  }
+                );
+            }
+        
+         });
+  
+       }); 
+     
+  
+    }
+
     index_info_v_redesotro(presupuesto_id:any)
     {
      
@@ -749,6 +819,41 @@ export class InformeVentaService {
   
     }
 
+    store_info_v_semana(semana:any)
+    {
+     
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+
+  
+        this.http.post(`${ URL}/inforvsemanas`, semana ,{ headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+              resolve(
+                {
+                  res:true,
+                  data:resp['data']
+                });
+            }else{
+                resolve(
+                {
+                  res:false,
+                  data:resp['mensaje']
+                });
+            }
+        
+         });
+  
+       }); 
+  
+    }
+
     show_prespuesto_usuario(prespuesto_id:number)
     {
      
@@ -760,6 +865,41 @@ export class InformeVentaService {
         });
   
         this.http.get(`${ URL}/presupuesto/${ prespuesto_id }`,{ headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+              resolve(
+                {
+                  res:true,
+                  data:resp['data']
+                });
+            }else{
+                resolve(
+                {
+                  res:false,
+                  data:resp['mensaje']
+                });
+            }
+        
+         });
+  
+       }); 
+     
+  
+    } 
+
+    show_prespuesto_admin(prespuesto_id:number)
+    {
+     
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+  
+        this.http.get(`${ URL}/admin/presupuesto/${ prespuesto_id }`,{ headers })
         .subscribe( resp =>{
           
             if(resp['res'])
@@ -999,6 +1139,40 @@ export class InformeVentaService {
         });
   
         this.http.delete(`${ URL}/presupuesto/${ presupuesto_id }/tonelada/${ tonelada_id }`, { headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+              resolve(
+                {
+                  res:true,
+                  data:resp['data']
+                });
+            }else{
+                resolve(
+                {
+                  res:false,
+                  data:resp['mensaje']
+                });
+            }
+        
+         });
+  
+       }); 
+  
+    } 
+
+    update_info_v_semana(semana_id:number,semana:any)
+    {
+     
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+  
+        this.http.put(`${ URL}/inforvsemanas/${ semana_id }`, semana ,{ headers })
         .subscribe( resp =>{
           
             if(resp['res'])

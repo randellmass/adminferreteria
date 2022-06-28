@@ -147,6 +147,16 @@ export class SidebarComponent implements OnInit {
             },
           ]
       },
+      {
+          "categoria":"InformeVentas",
+          "icon":"mdi mdi-settingst",
+          "enlaces":[
+            {
+               "nombre":"Informes",
+               "url":"/main/informeventas/listado"
+            }
+          ]
+      },
 
     ]; 
 

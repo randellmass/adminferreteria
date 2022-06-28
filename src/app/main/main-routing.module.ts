@@ -73,6 +73,11 @@ const routes: Routes = [
           canLoad: [UsuariosGuard], 
           loadChildren: () => import('./pages/fiesta/fiesta.module').then(m =>m.FiestaModule)
         },
+        { 
+          path: 'informeventas',
+          canLoad: [UsuariosGuard], 
+          loadChildren: () => import('./pages/informeVenta/informeventa.module').then(m =>m.InformeventaModule)
+        },
         {
           path:'**',  redirectTo:'dashboard'
         }

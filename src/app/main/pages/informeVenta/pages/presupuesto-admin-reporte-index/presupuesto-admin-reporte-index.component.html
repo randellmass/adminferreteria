@@ -1,0 +1,250 @@
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-subtitle">Informe usuario </h4>
+        
+        <table class="table table-responsive" *ngIf="presupuesto">
+            <tr>
+                <td><strong>Reporte:</strong></td>
+                <td>{{ presupuesto['infor_v_semana_nombre']}}</td>
+                <td><strong>PresupuestoValor:</strong></td>
+                <td>{{ presupuesto['presupuesto_valor'] | number }}</td>
+            </tr>
+            <tr>
+                <td><strong>VentaReal:</strong></td>
+                <td>{{ presupuesto['venta_real'] | number}}</td>
+                <td><strong>Estado:</strong></td>
+                <td>{{ presupuesto['infor_v_estado_nombre']}}</td>
+            </tr>
+            <tr>
+                <td><strong>Usuario:</strong></td>
+                <td>{{ presupuesto['user_email']}}</td>
+            </tr>
+        </table>
+
+        <div class="row mt-2" *ngIf="errors.length>0">
+            <div class="col-12">
+              <div class="alert alert-danger " role="alert">
+                 <ul>
+                     <li *ngFor="let error of errors" >{{ error }}</li>
+                 </ul>
+              </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-md-6">
+        <div class="card">
+            <app-loading *ngIf="loading"></app-loading>
+            
+            <div class="card-body">
+                
+                <h4 class="card-subtitle">Listado Cotizaciones</h4>
+                <table class="table table-responsive table-bordered ">
+                    <thead>
+                        <tr>
+                            <th>Concepto</th>
+                            <th>Cantidad</th>
+                            <th>Porcentaje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cot of cotizaciones; let i=index">
+                            <td scope="row">{{ cot['infor_v_cot_concepto_nombre']}}</td>
+                            <td class="text-right">{{ cot['cantidad'] | number}}</td>
+                            <td class="text-right">{{ cot['porcentaje'] | number:'1.0-0' }} %</td>
+                        </tr>
+               
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="text-right font-weight-bold">Total:</td>
+                            <td class="text-right">{{ sumaCotizaciones | number }}</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <app-loading *ngIf="loading"></app-loading>
+            
+            <div class="card-body">
+                
+                <h4 class="card-subtitle">Listado Cotizaciones Redes y otros</h4>
+                <table class="table table-responsive table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Concepto</th>
+                            <th>Cantidad</th>
+                            <th>Porcentaje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cot of redesotros; let i=index">
+                            <td scope="row">{{ cot['infor_v_otro_concepto_nombre']}}</td>
+                            <td class="text-right">{{ cot['cantidad'] | number}}</td>
+                            <td class="text-right">{{ cot['porcentaje'] | number:'1.0-0' }} %</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="text-right font-weight-bold">Total:</td>
+                            <td class="text-right">{{ sumaRedesOtro | number }}</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-md-12">
+        <div class="card">
+            <app-loading *ngIf="loading"></app-loading>
+            
+            <div class="card-body">
+                
+                <h4 class="card-subtitle">Listado de Analisis</h4>
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Concepto</th>
+                            <th>CC/Nit:</th>
+                            <th>Nombre:</th>
+                            <th>Teléfono:</th>
+                            <th>Factura:</th>
+                            <th>Valor:</th>
+                            <th>Comentarios:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of cotanalisis; let i=index">
+                            <td scope="row">{{ item['infor_v_analisis_concepto_nombre']}}</td>
+                            <td>{{ item['cliente_documento'] }}</td>
+                            <td>{{ item['cliente_nombre'] }}</td>
+                            <td>{{ item['telefono'] }}</td>
+                            <td>{{ item['documento'] }}</td>
+                            <td>{{ item['valor'] |number }}</td>
+                            <td>{{ item['comentarios'] }}</td>
+                        </tr>
+               
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-md-12">
+        <div class="card">
+            <app-loading *ngIf="loading"></app-loading>
+            
+            <div class="card-body">
+                
+                <h4 class="card-subtitle">Listado PostVenta</h4>
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Concepto</th>
+                            <th>CC/Nit:</th>
+                            <th>Nombre:</th>
+                            <th>Teléfono:</th>
+                            <th>Documento:</th>
+                            <th>FechaReporte:</th>
+                            <th>Comentarios:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of postventas; let i=index">
+                            <td scope="row">{{ item['infor_v_postv_concepto_nombre']}}</td>
+                            <td>{{ item['cliente_documento'] }}</td>
+                            <td>{{ item['cliente_nombre'] }}</td>
+                            <td>{{ item['telefono'] }}</td>
+                            <td>{{ item['documento'] }}</td>
+                            <td>{{ item['fecha_reporte'] }}</td>
+                            <td>{{ item['comentarios'] }}</td>
+                            <td>
+                        </tr>
+               
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-md-6">
+        <div class="card">
+            
+            <app-loading *ngIf="loading"></app-loading>
+            
+            <div class="card-body">
+                
+                <h4 class="card-subtitle">Listado Backorder</h4>
+                <table class="table table-responsive">
+                    <thead>
+                    <tr>
+                        <th>Concepto:</th>
+                        <th>Descripción:</th>
+                        <th>Referencia:</th>
+                        <th>Comentarios:</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of backorders; let i=index">
+                            <td scope="row">{{ item['infor_v_back_concepto_nombre']}}</td>
+                            <td>{{ item['descripcion'] }}</td>
+                            <td>{{ item['referencia'] }}</td>
+                            <td>{{ item['comentarios'] }}</td>
+                        </tr>
+               
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <app-loading *ngIf="loading"></app-loading>
+            
+            <div class="card-body">
+                
+                <h4 class="card-subtitle">Listado Toneladas vendidas </h4>
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Factura:</th>
+                            <th>CC/Nit::</th>
+                            <th>Cliente:</th>
+                            <th>Cantidad:</th>
+                            <th>Toneladas:</th>
+                            <th>Comentarios:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of toneladas; let i=index">
+                            <td scope="row">{{ item['factura']}}</td>
+                            <td>{{ item['cliente_documento'] }}</td>
+                            <td>{{ item['cliente_nombre'] }}</td>
+                            <td>{{ item['cantidad'] }}</td>
+                            <td>{{ item['toneladas'] }}</td>
+                            <td>{{ item['comentarios'] }}</td>
+                        </tr>
+               
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

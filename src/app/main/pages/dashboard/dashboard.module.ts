@@ -18,6 +18,7 @@ import { InformeventaUsuarioAnalisisIndexComponent } from './pages/informeventa-
 import { InformeventaUsuarioPostventaIndexComponent } from './pages/informeventa-usuario-postventa-index/informeventa-usuario-postventa-index.component';
 import { InformeventaUsuarioBackorderIndexComponent } from './pages/informeventa-usuario-backorder-index/informeventa-usuario-backorder-index.component';
 import { InformeventaUsuarioToneladaIndexComponent } from './pages/informeventa-usuario-tonelada-index/informeventa-usuario-tonelada-index.component';
+import { InformeventaModule } from '../informeVenta/informeventa.module';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { InformeventaUsuarioToneladaIndexComponent } from './pages/informeventa-
     SharedModule,
     ReactiveFormsModule,
     QRCodeModule,
+    InformeventaModule
   ]
 })
 export class DashboardModule { }

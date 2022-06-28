@@ -1,1 +1,57 @@
-<p>presupuesto-admin-index works!</p>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <ul class="nav nav-tabs bg-light">
+                    <li class="nav-item">
+                       <a class="nav-link" routerLink="/main/informeventas/semana/listado"  aria-current="page" >Crear Informe</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<app-loading *ngIf="loading"></app-loading>  
+
+<div class="row mt-2">
+    <div class="col-12">
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-subtitle">Informes de ventas</h4>
+                
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Informe</th>
+                            <th>Presupuesto</th>
+                            <th>Venta Real</th>
+                            <th>Usuario</th>
+                            <th>Estado</th>
+                            <th>Opción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let informe of informes">
+                            <td>{{ informe['infor_v_semana_nombre']}}</td>
+                            <td>{{ informe['presupuesto_valor'] | number }}</td>
+                            <td>{{ informe['venta_real'] | number }}</td>
+                            <td>{{ informe['user_email'] }}</td>
+                            <td>{{ informe['infor_v_estado_nombre']}}</td>
+                            <td>
+                                <button (click)="update_presupuesto(informe['id'])" class="btn btn-primary" >Editar</button>
+                                <button (click)="presupuesto_detalle(informe['id'])" class="btn btn-dark" >Informe</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+       
+    </div>
+</div>
+
+
+
