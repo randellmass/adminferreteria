@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { environment } from 'src/environments/environment.prod';
@@ -1195,5 +1195,60 @@ export class InformeVentaService {
        }); 
   
     } 
+
+    generar_token_siesa()
+    {
+     const formData = new FormData();
+     formData.append('username',"sistemas");
+     formData.append('password',"r3fr1n0rt3");
+     formData.append('client_id',"sbhlYrAa00S9HbSkW8ZrDwmkSqBjkrav2ELzwE4L");
+     formData.append('client_secret',"NlH6gXshIypsvMhr34ZcpyhdihakEUA2lIWYlDMOtUyEVZ9rIvFvVnGIw2R7gBG9LUQ9HEBYax1JVXOUFm1mCCkq8VlJxnyWq6yTjeZ31VFvX6Ss8k3UiAmgmGUcYjue");
+     formData.append('grant_type',"password");
+
+      return new Promise<any>( resolve =>{
+        
+        this.http.post(`http://siesacrm.siesacloud.com:9027/webservices/auth/token/`,formData)
+        .subscribe( resp =>{
+          
+                resolve({
+                    res:true,
+                    data:resp
+                });
+        
+         });
+  
+       }); 
+     
+  
+    }
+    
+    enviar_post_siesa_garantia_cliente(tokenSiesa:any)
+    {
+     const formData = new FormData();
+    
+      return new Promise<any>( resolve =>{
+
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/x-www-form-urlencoded', 
+          'Authorization': `Bearer ${ tokenSiesa }`,
+        });
+
+        const params = new HttpParams();
+        params.append('company','3');
+        
+        this.http.post(`http://siesacrm.siesacloud.com:9027/webservices/cstm_garantia_clientes/create/`, formData, {headers})
+        .subscribe( resp =>{
+          
+                resolve({
+                    res:true,
+                    data:resp
+                });
+        
+         }, error => console.log(error));
+  
+       }); 
+     
+  
+    }
 
 }

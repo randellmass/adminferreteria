@@ -36,6 +36,24 @@ export class InformeventaUsuarioIndexComponent implements OnInit {
       this.errors = listado['data'];
       
     }
+
+    const token = await this.informeVentaService.generar_token_siesa();
+    
+    if (token['res'])
+    {
+      console.log(token['data']['access_token']);
+
+      const listado_g = await this.informeVentaService.enviar_post_siesa_garantia_cliente(token['data']['access_token']);
+      console.log(listado_g);
+      
+      //console.log(this.informes);
+    } else {  
+      console.log(token['data']);
+      
+    }
+
+
+
     this.loading = false;
   }
 
