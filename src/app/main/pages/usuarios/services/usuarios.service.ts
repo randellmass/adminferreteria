@@ -30,9 +30,15 @@ export class UsuariosService {
         
           if(resp['res'])
           {
-              resolve(resp['data']);
+            resolve({
+              res:true,
+              data:resp['data']
+            });
           }else{
-              resolve(false);
+              resolve({
+                res:false,
+                data:resp['mensaje']
+              });
           }
       
         });

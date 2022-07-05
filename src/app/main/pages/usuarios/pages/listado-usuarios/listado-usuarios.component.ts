@@ -12,6 +12,7 @@ export class ListadoUsuariosComponent implements OnInit, AfterViewChecked {
 
   usuarios:any = [];
   loading:boolean = false;
+  errors:any = [];
   
   
   constructor(private usuariosService:UsuariosService)
@@ -29,7 +30,13 @@ export class ListadoUsuariosComponent implements OnInit, AfterViewChecked {
 
     this.loading= true;
 
-     this.usuarios = await this.usuariosService.listado_Usuarios();
+     const query = await this.usuariosService.listado_Usuarios();
+      if(query['res']){
+          this.usuarios = query['data'];
+      }else{
+         this.errors = query['data'];
+      }
+     
      //console.log(this.usuarios);
 
      this.loading=false;

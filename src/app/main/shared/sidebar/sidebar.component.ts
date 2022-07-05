@@ -130,7 +130,11 @@ export class SidebarComponent implements OnInit {
             {
                "nombre":"Tipo Unidades",
                "url":"/main/unidades"
-            }
+            },
+            {
+               "nombre":"Bodegas",
+               "url":"/main/bodegas"
+            },
           ]
       },
       {
