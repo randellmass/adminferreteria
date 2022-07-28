@@ -1059,6 +1059,40 @@ export class InformeVentaService {
   
     }
 
+    update_presupuesto_admin(presupuesto_id:number,presupuesto:any)
+    {
+     
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+  
+        this.http.put(`${ URL}/admin/presupuesto/${ presupuesto_id }`, presupuesto ,{ headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+              resolve(
+                {
+                  res:true,
+                  data:resp['data']
+                });
+            }else{
+                resolve(
+                {
+                  res:false,
+                  data:resp['mensaje']
+                });
+            }
+        
+         });
+  
+       }); 
+  
+    } 
+
     delete_presupuesto_usuario_analisis(presupuesto_id:number,analisis_id:any)
     {
      

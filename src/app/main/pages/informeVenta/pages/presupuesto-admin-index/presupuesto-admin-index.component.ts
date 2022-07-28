@@ -40,7 +40,7 @@ export class PresupuestoAdminIndexComponent implements OnInit {
   }
 
   update_presupuesto(presupuesto_id:any){
-      this.router.navigateByUrl(`main/dashboard/informe/update/${presupuesto_id}`);
+      this.router.navigateByUrl(`main/informeventas/update/${presupuesto_id}`);
   }
 
   presupuesto_detalle(presupuesto_id:any){
