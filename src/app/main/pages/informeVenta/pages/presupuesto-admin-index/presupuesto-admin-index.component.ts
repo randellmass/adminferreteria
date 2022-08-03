@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { InformeVentaService } from '../../services/informe-venta.service';
+import { AlmacenService } from '../../../almacen/services/almacen.service';
+import { UsuariosService } from '../../../usuarios/services/usuarios.service';
 
 @Component({
   selector: 'app-presupuesto-admin-index',
@@ -10,12 +13,25 @@ import { InformeVentaService } from '../../services/informe-venta.service';
 })
 export class PresupuestoAdminIndexComponent implements OnInit {
 
+  
+  FormConsultas:FormGroup = this.fb.group({
+     almacen_id: [''],
+     user_id:[''],
+     semana_id:['']
+  });
+  
   informes:any =[];
+  bodegas:any =[];
+  semanas:any =[];
+  usuarios:any =[];
   loading:boolean = false;
   errors:any =[];
 
   constructor( private informeVentaService: InformeVentaService,
-               private router:Router) { }
+               private almacenService:AlmacenService,
+               private usuariosService: UsuariosService,
+               private router:Router,
+               private fb:FormBuilder) { }
 
   ngOnInit(): void {
     this.index_prepuestos();
@@ -36,6 +52,44 @@ export class PresupuestoAdminIndexComponent implements OnInit {
         this.errors = listado['data'];
         
       }
+
+      const almacenes = await this.almacenService.index_almacenes();
+      
+      if (almacenes['res'])
+      {
+        this.bodegas = almacenes['data'];
+
+        //console.log(this.bodegas);
+      } else {  
+        this.errors = almacenes['data'];
+        
+      }
+
+
+      const listsemanas = await this.informeVentaService.index_info_v_semanas();
+      
+      if (listsemanas['res'])
+      {
+        this.semanas = listsemanas['data'];
+        //console.log(this.semanas);
+        this.semanas = this.semanas.filter( (item:any) => item['estado_id']==1);
+    
+      } else {  
+        this.errors = listado['data'];
+      }
+
+
+      const listado_usuarios = await this.usuariosService.listado_Usuarios();
+    
+      if (listado_usuarios['res'])
+      {
+          this.usuarios = listado_usuarios['data'];
+          //console.log(this.usuarios);
+      } else {  
+          this.errors = listado_usuarios['data'];
+        
+      }
+
       this.loading = false;
   }
 
