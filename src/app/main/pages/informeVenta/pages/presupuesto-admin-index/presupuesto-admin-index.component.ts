@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { InformeVentaService } from '../../services/informe-venta.service';
@@ -99,6 +99,50 @@ export class PresupuestoAdminIndexComponent implements OnInit {
 
   presupuesto_detalle(presupuesto_id:any){
     this.router.navigateByUrl(`main/informeventas/detalle/${presupuesto_id}`);
+  }
+
+  async consulta_informe(){
+    
+    const { almacen_id, user_id, semana_id } = this.FormConsultas.value;
+    
+    const formData = new FormData();
+
+    if((semana_id!="") && (almacen_id=="") && (user_id==""))
+    {
+        formData.append('informe_id','2');
+        formData.append('infor_v_semana_id',semana_id);
+    }
+
+    if((semana_id=="") && (almacen_id=="") && (user_id!=""))
+    {
+        formData.append('informe_id','3');
+        formData.append('user_id',user_id);
+    }
+
+    if((semana_id!="") && (almacen_id!="") && (user_id==""))
+    {
+        formData.append('informe_id','1');
+        formData.append('almacen_id',almacen_id);
+        formData.append('infor_v_semana_id',semana_id);
+    }
+
+    if((semana_id!="") && (almacen_id=="") && (user_id!=""))
+    {
+        formData.append('informe_id','4');
+        formData.append('user_id',user_id);
+        formData.append('infor_v_semana_id',semana_id);
+    }
+
+    const consulta = await this.informeVentaService.consultas_informe_ventas(formData);
+
+    if(consulta['res'])
+    {
+        this.informes = consulta['data'];   
+        this.errors = [];
+    }else{
+        this.errors = consulta['data'];
+    }
+
   }
 
 }

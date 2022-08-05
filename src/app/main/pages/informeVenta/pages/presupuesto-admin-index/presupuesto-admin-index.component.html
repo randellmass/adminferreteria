@@ -22,7 +22,7 @@
             <div class="card-body">
 
                 <h5>Consultas:</h5>
-                <form class="form-inline" [formGroup]="FormConsultas">
+                <form class="form-inline" [formGroup]="FormConsultas" (ngSubmit)="consulta_informe()">
                     <div class="form-group mr-2">
                        <select class="form-control" 
                                 formControlName="almacen_id">
@@ -50,6 +50,17 @@
                     <button class="btn btn-outline-dark">Consultar</button>
            
                 </form>
+
+
+                <div class="row mt-2" *ngIf="errors.length>0">
+                    <div class="col-12">
+                      <div class="alert alert-danger " role="alert">
+                         <ul>
+                             <li *ngFor="let error of errors" >{{ error }}</li>
+                         </ul>
+                      </div>
+                    </div>
+                </div>
 
            </div>
         </div>
