@@ -158,6 +158,10 @@ export class SidebarComponent implements OnInit {
             {
                "nombre":"Informes",
                "url":"/main/informeventas/listado"
+            },
+            {
+               "nombre":"Resumen",
+               "url":"/main/informeventas/resumen"
             }
           ]
       },

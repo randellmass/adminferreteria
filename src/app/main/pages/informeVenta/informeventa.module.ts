@@ -8,10 +8,11 @@ import { PresupuestoAdminDetalleIndexComponent } from './pages/presupuesto-admin
 import { SemanaIndexComponent } from './pages/semana-index/semana-index.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PresupuestoAdminUpdateComponent } from './pages/presupuesto-admin-update/presupuesto-admin-update.component';
+import { PresupuestoAdminResumenIndexComponent } from './pages/presupuesto-admin-resumen-index/presupuesto-admin-resumen-index.component';
 
 
 @NgModule({
-  declarations: [PresupuestoAdminIndexComponent, PresupuestoAdminReporteIndexComponent, PresupuestoAdminDetalleIndexComponent, SemanaIndexComponent, PresupuestoAdminUpdateComponent],
+  declarations: [PresupuestoAdminIndexComponent, PresupuestoAdminReporteIndexComponent, PresupuestoAdminDetalleIndexComponent, SemanaIndexComponent, PresupuestoAdminUpdateComponent, PresupuestoAdminResumenIndexComponent],
   imports: [
     CommonModule,
     InformeventaRoutingModule,
