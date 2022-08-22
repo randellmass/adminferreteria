@@ -13,7 +13,7 @@ export class InformeventaUsuarioUpdateComponent implements OnInit {
 
 
   formPresupuesto:FormGroup = this.fb.group({
-    infor_v_semana_id: ['',[Validators.required]],
+    infor_v_semana_id: [{value:'',disabled:true},[Validators.required]],
     presupuesto_valor: ['',[Validators.required]],
     venta_real: ['',Validators.required],
     infor_v_estado_id: ['',[Validators.required]]

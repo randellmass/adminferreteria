@@ -12,8 +12,7 @@
                         <div class="form-group">
                             <label>Informe:</label>
                             <select formControlName="infor_v_semana_id" 
-                                    class="form-control"
-                                    disabled>
+                                    class="form-control">
                                 <option value="" selected>Seleccionar</option>
                                 <option value="{{ semana['id']}}" *ngFor="let semana of semanas">{{ semana['nombre'] }}</option>
                             </select>
@@ -88,5 +87,5 @@
 <app-informeventa-usuario-postventa-index [presupuesto_id]="presupuesto['id']" *ngIf="presupuesto"></app-informeventa-usuario-postventa-index>
 <app-informeventa-usuario-backorder-index [presupuesto_id]="presupuesto['id']" *ngIf="presupuesto"></app-informeventa-usuario-backorder-index>
 <app-informeventa-usuario-tonelada-index [presupuesto_id]="presupuesto['id']" *ngIf="presupuesto"></app-informeventa-usuario-tonelada-index>
-
+<app-informeventa-usuario-cotdir-index [presupuesto]="presupuesto" *ngIf="presupuesto"></app-informeventa-usuario-cotdir-index>
 

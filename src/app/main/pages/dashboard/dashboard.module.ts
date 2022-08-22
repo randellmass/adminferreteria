@@ -19,12 +19,15 @@ import { InformeventaUsuarioPostventaIndexComponent } from './pages/informeventa
 import { InformeventaUsuarioBackorderIndexComponent } from './pages/informeventa-usuario-backorder-index/informeventa-usuario-backorder-index.component';
 import { InformeventaUsuarioToneladaIndexComponent } from './pages/informeventa-usuario-tonelada-index/informeventa-usuario-tonelada-index.component';
 import { InformeventaModule } from '../informeVenta/informeventa.module';
+import { InformeventaUsuarioCotdirIndexComponent } from './pages/informeventa-usuario-cotdir-index/informeventa-usuario-cotdir-index.component';
+import { InformeventaUsuarioPostvdirIndexComponent } from './pages/informeventa-usuario-postvdir-index/informeventa-usuario-postvdir-index.component';
+import { InformeventaUsuarioActividaddirIndexComponent } from './pages/informeventa-usuario-actividaddir-index/informeventa-usuario-actividaddir-index.component';
 
 
 @NgModule({
   declarations: [
     EquiposListadoComponent, 
-    EquiposDetallesComponent, VercomercialPedidoComponent, InformeventaUsuarioIndexComponent, InformeventaUsuarioStoreComponent, InformeventaUsuarioUpdateComponent, InformeventaUsuarioDetalleIndexComponent, InformeventaUsuarioCotIndexComponent, InformeventaUsuarioRedeotroIndexComponent, InformeventaUsuarioAnalisisIndexComponent, InformeventaUsuarioPostventaIndexComponent, InformeventaUsuarioBackorderIndexComponent, InformeventaUsuarioToneladaIndexComponent],
+    EquiposDetallesComponent, VercomercialPedidoComponent, InformeventaUsuarioIndexComponent, InformeventaUsuarioStoreComponent, InformeventaUsuarioUpdateComponent, InformeventaUsuarioDetalleIndexComponent, InformeventaUsuarioCotIndexComponent, InformeventaUsuarioRedeotroIndexComponent, InformeventaUsuarioAnalisisIndexComponent, InformeventaUsuarioPostventaIndexComponent, InformeventaUsuarioBackorderIndexComponent, InformeventaUsuarioToneladaIndexComponent, InformeventaUsuarioCotdirIndexComponent, InformeventaUsuarioPostvdirIndexComponent, InformeventaUsuarioActividaddirIndexComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

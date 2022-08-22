@@ -187,6 +187,41 @@ export class InformeVentaService {
   
     } 
 
+    index_info_v_cot_dir_conceptos()
+    {
+     
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+  
+        this.http.get(`${ URL}/inforvcotdirconceptos`,{ headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+                resolve({
+                    res:true,
+                    data:resp['data']
+                });
+            }else{
+                resolve(
+                  {
+                    res:false,
+                    data:resp['mensaje']
+                  }
+                );
+            }
+        
+         });
+  
+       }); 
+     
+  
+    } 
+
     index_info_v_redesotro_conceptos()
     {
      
@@ -292,6 +327,41 @@ export class InformeVentaService {
   
     } 
 
+    index_info_v_postventa_dir_conceptos()
+    {
+     
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+  
+        this.http.get(`${ URL}/inforvpostvdirconceptos`,{ headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+                resolve({
+                    res:true,
+                    data:resp['data']
+                });
+            }else{
+                resolve(
+                  {
+                    res:false,
+                    data:resp['mensaje']
+                  }
+                );
+            }
+        
+         });
+  
+       }); 
+     
+  
+    } 
+
     index_info_v_backorder_conceptos()
     {
      
@@ -338,6 +408,40 @@ export class InformeVentaService {
         });
   
         this.http.get(`${ URL}/presupuesto/${ presupuesto_id }/cotizacion`,{ headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+                resolve({
+                    res:true,
+                    data:resp['data']
+                });
+            }else{
+                resolve(
+                  {
+                    res:false,
+                    data:resp['mensaje']
+                  }
+                );
+            }
+        
+         });
+  
+       }); 
+     
+  
+    } 
+    index_info_v_cotizaciones_director(presupuesto_id:any)
+    {
+     
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+  
+        this.http.get(`${ URL}/presupuesto/${ presupuesto_id }/cotdirector`,{ headers })
         .subscribe( resp =>{
           
             if(resp['res'])
@@ -677,6 +781,41 @@ export class InformeVentaService {
   
     }
 
+    store_presupuesto_usuario_cot_dir(presupuesto_id:any,cotdirector:any)
+    {
+     
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+
+  
+        this.http.post(`${ URL}/presupuesto/${ presupuesto_id }/cotdirector`, cotdirector ,{ headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+              resolve(
+                {
+                  res:true,
+                  data:resp['data']
+                });
+            }else{
+                resolve(
+                {
+                  res:false,
+                  data:resp['mensaje']
+                });
+            }
+        
+         });
+  
+       }); 
+  
+    }
+
     store_presupuesto_usuario_redesotro(presupuesto_id:any,redesotro:any)
     {
      
@@ -782,6 +921,41 @@ export class InformeVentaService {
   
     }
 
+    store_presupuesto_usuario_postventa_dir(presupuesto_id:any,postvdir:any)
+    {
+     
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+
+  
+        this.http.post(`${ URL}/presupuesto/${ presupuesto_id }/postvdirector`, postvdir ,{ headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+              resolve(
+                {
+                  res:true,
+                  data:resp['data']
+                });
+            }else{
+                resolve(
+                {
+                  res:false,
+                  data:resp['mensaje']
+                });
+            }
+        
+         });
+  
+       }); 
+  
+    }
+
     store_presupuesto_usuario_backorder(presupuesto_id:any,backorder:any)
     {
      
@@ -829,6 +1003,41 @@ export class InformeVentaService {
 
   
         this.http.post(`${ URL}/presupuesto/${ presupuesto_id }/tonelada`, tonelada ,{ headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+              resolve(
+                {
+                  res:true,
+                  data:resp['data']
+                });
+            }else{
+                resolve(
+                {
+                  res:false,
+                  data:resp['mensaje']
+                });
+            }
+        
+         });
+  
+       }); 
+  
+    }
+
+    store_presupuesto_usuario_actividad(presupuesto_id:any,actividaddir:any)
+    {
+     
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+
+  
+        this.http.post(`${ URL}/presupuesto/${ presupuesto_id }/actividaddirector`, actividaddir ,{ headers })
         .subscribe( resp =>{
           
             if(resp['res'])
