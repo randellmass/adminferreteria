@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { DashboardRoutingModule } from './dashboard-routing.module';
-import { EquiposListadoComponent } from './pages/equipos-listado/equipos-listado.component';
-import { EquiposDetallesComponent } from './pages/equipos-detalles/equipos-detalles.component';
-import { VercomercialPedidoComponent } from './pages/vercomercial-pedido/vercomercial-pedido.component';
 import { SharedModule } from '../../shared/shared.module';
 import { QRCodeModule } from 'angularx-qrcode';
+
+import { VercomercialPedidoComponent } from './pages/vercomercial-pedido/vercomercial-pedido.component';
+import { EquiposDetallesComponent } from './pages/equipos-detalles/equipos-detalles.component';
+import { EquiposListadoComponent } from './pages/equipos-listado/equipos-listado.component';
+import { DashboardRoutingModule } from './dashboard-routing.module';
 import { InformeventaUsuarioIndexComponent } from './pages/informeventa-usuario-index/informeventa-usuario-index.component';
 import { InformeventaUsuarioStoreComponent } from './pages/informeventa-usuario-store/informeventa-usuario-store.component';
 import { InformeventaUsuarioUpdateComponent } from './pages/informeventa-usuario-update/informeventa-usuario-update.component';
@@ -34,7 +35,7 @@ import { InformeventaUsuarioActividaddirIndexComponent } from './pages/informeve
     SharedModule,
     ReactiveFormsModule,
     QRCodeModule,
-    InformeventaModule
+    InformeventaModule,
   ]
 })
 export class DashboardModule { }

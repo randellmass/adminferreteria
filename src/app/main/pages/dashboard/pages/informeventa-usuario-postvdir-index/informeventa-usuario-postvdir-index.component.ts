@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlmacenService } from '../../../almacen/services/almacen.service';
+import { InformeVentaService } from '../../../informeVenta/services/informe-venta.service';
 
 @Component({
   selector: 'app-informeventa-usuario-postvdir-index',
@@ -7,9 +10,101 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InformeventaUsuarioPostvdirIndexComponent implements OnInit {
 
-  constructor() { }
+  @Input() presupuesto:any;
+
+  formPostVenta:FormGroup = this.fb.group({
+    infor_v_cot_dir_concepto_id: ['',[Validators.required]],
+    user_venta_id: ['',[Validators.required]],
+    cantidad: ['',[Validators.required]],
+    observacion: [''],
+  });
+  
+  postventas:any[];
+  conceptos:any[];
+  usuarios:any[];
+  loading:boolean = false;
+  errors:any =[];
+
+  constructor(private fb:FormBuilder,
+              private informeVentaService:InformeVentaService,
+              private almacenService: AlmacenService) { }
 
   ngOnInit(): void {
+    this.cargarinforme_cotizaciones(this.presupuesto['id']);
   }
+
+  campoNoValido(campo:string){
+    return this.formPostVenta.controls[campo].touched && this.formPostVenta.controls[campo].errors;
+  }
+
+  async cargarinforme_cotizaciones(presupuesto_id:any){
+
+    this.loading=true;
+
+      const result_conceptos = await this.informeVentaService.index_info_v_cot_dir_conceptos();
+      if (result_conceptos['res'])
+      {
+          this.conceptos = result_conceptos['data'];
+      }
+
+      const result_usuarios = await this.almacenService.index_usuarios_almacenes(this.presupuesto['almacen_id']);
+      if (result_usuarios['res'])
+      {
+          this.usuarios = result_usuarios['data'];
+      }
+
+      const result_informe = await this.informeVentaService.index_info_v_cotizaciones_director(presupuesto_id);
+      if (result_informe['res'])
+      {
+          this.postventas = result_informe['data'];
+      }
+
+    this.loading=false;
+
+  }
+
+  async update_concepto_cot(index:number,cantidad:any,observacion:any,cotizacion:any)
+  {
+
+      const form_editar ={
+        "cantidad":cantidad,
+        "observacion": observacion,
+        "infor_v_estado_id":1,
+      }
+      this.loading=true;
+
+      const editar = await this.informeVentaService.update_presupuesto_usuario_cot_dir(this.presupuesto['id'],cotizacion['id'],form_editar);
+
+      if (editar['res']) 
+      {
+          this.postventas[index] = editar['data'];
+          this.loading=false;
+      } else {
+          this.errors= editar['data'];
+          this.loading=false;
+      }
+
+  }
+
+  async agregar_cotizacion()
+  {
+      if(this.formPostVenta.invalid){
+        this.formPostVenta.markAllAsTouched();
+        return;
+      }
+    
+      const informe_reg = await this.informeVentaService.store_presupuesto_usuario_cot_dir(this.presupuesto['id'],this.formPostVenta.value);
+
+      if (informe_reg['res'])
+      {
+        this.postventas.push(informe_reg['data']);  
+        this.errors=[];
+        this.formPostVenta.reset();
+      }else{
+          this.errors = informe_reg['data'];
+      }
+
+  }//agregar_cotizacion
+
 
 }

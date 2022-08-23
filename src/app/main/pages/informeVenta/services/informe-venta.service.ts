@@ -1234,6 +1234,40 @@ export class InformeVentaService {
   
     }
 
+    update_presupuesto_usuario_cot_dir(presupuesto_id:number,cotdir_id:any,cotdir:any)
+    {
+     
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+  
+        this.http.put(`${ URL}/presupuesto/${ presupuesto_id }/cotdirector/${ cotdir_id }`, cotdir ,{ headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+              resolve(
+                {
+                  res:true,
+                  data:resp['data']
+                });
+            }else{
+                resolve(
+                {
+                  res:false,
+                  data:resp['mensaje']
+                });
+            }
+        
+         });
+  
+       }); 
+  
+    }
+
     update_presupuesto_usuario_redesotro(presupuesto_id:number,redesotro_id:any,redesotro:any)
     {
      

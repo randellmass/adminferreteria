@@ -64,22 +64,22 @@ export class InformeventaUsuarioCotdirIndexComponent implements OnInit {
 
   }
 
-  async update_concepto_cot(index:number,cantidad:any,cotizacion:any)
+  async update_concepto_cot(index:number,cantidad:any,observacion:any,cotizacion:any)
   {
 
       const form_editar ={
         "cantidad":cantidad,
+        "observacion": observacion,
         "infor_v_estado_id":1,
       }
       this.loading=true;
 
-      const editar = await this.informeVentaService.update_presupuesto_usuario_cot(this.presupuesto['id'],cotizacion['id'],form_editar);
+      const editar = await this.informeVentaService.update_presupuesto_usuario_cot_dir(this.presupuesto['id'],cotizacion['id'],form_editar);
 
       if (editar['res']) 
       {
           this.cotizaciones[index] = editar['data'];
           this.loading=false;
-          this.formCotizacion.reset();
       } else {
           this.errors= editar['data'];
           this.loading=false;

@@ -81,11 +81,116 @@
 
     </div>
 </div>
-<app-informeventa-usuario-cot-index [presupuesto_id]="presupuesto['id']" *ngIf="presupuesto"></app-informeventa-usuario-cot-index>
-<app-informeventa-usuario-redeotro-index [presupuesto_id]="presupuesto['id']" *ngIf="presupuesto"></app-informeventa-usuario-redeotro-index>
-<app-informeventa-usuario-analisis-index [presupuesto_id]="presupuesto['id']" *ngIf="presupuesto"></app-informeventa-usuario-analisis-index>
-<app-informeventa-usuario-postventa-index [presupuesto_id]="presupuesto['id']" *ngIf="presupuesto"></app-informeventa-usuario-postventa-index>
-<app-informeventa-usuario-backorder-index [presupuesto_id]="presupuesto['id']" *ngIf="presupuesto"></app-informeventa-usuario-backorder-index>
-<app-informeventa-usuario-tonelada-index [presupuesto_id]="presupuesto['id']" *ngIf="presupuesto"></app-informeventa-usuario-tonelada-index>
-<app-informeventa-usuario-cotdir-index [presupuesto]="presupuesto" *ngIf="presupuesto"></app-informeventa-usuario-cotdir-index>
 
+<div class="accordion basic-accordion mt-3" id="accordion" role="tablist">
+    <div class="card">
+        <div class="card-header" role="tab" id="headingOne">
+            <h6 class="mb-0">
+                <a data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    <i class="card-icon mdi mdi-checkbox-marked-circle-outline"></i>Resumen Cotizaciones: </a>
+                </h6>
+            </div>
+            <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <app-informeventa-usuario-cot-index [presupuesto_id]="presupuesto['id']" *ngIf="presupuesto"></app-informeventa-usuario-cot-index>
+                </div>
+            </div>
+    </div>
+    <div class="card">
+      <div class="card-header" role="tab" id="headingTwo">
+        <h6 class="mb-0">
+          <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <i class="card-icon mdi mdi-account-multiple-outline"></i>Resumen Ventas Redes Sociales, Web y otros.</a>
+        </h6>
+      </div>
+      <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+        <div class="card-body">
+            <app-informeventa-usuario-redeotro-index [presupuesto_id]="presupuesto['id']" *ngIf="presupuesto"></app-informeventa-usuario-redeotro-index>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" role="tab" id="headingThree">
+        <h6 class="mb-0">
+          <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            <i class="card-icon mdi mdi-message-text-outline"></i>Análisis de Cotizaciones </a>
+        </h6>
+      </div>
+      <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
+        <div class="card-body"> 
+            <app-informeventa-usuario-analisis-index [presupuesto_id]="presupuesto['id']" *ngIf="presupuesto"></app-informeventa-usuario-analisis-index>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" role="tab" id="headingFour">
+        <h6 class="mb-0">
+          <a class="collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            <i class="card-icon mdi mdi-account-multiple-outline"></i>Post Venta</a>
+        </h6>
+      </div>
+      <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion">
+        <div class="card-body">
+            <app-informeventa-usuario-postventa-index [presupuesto_id]="presupuesto['id']" *ngIf="presupuesto"></app-informeventa-usuario-postventa-index>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" role="tab" id="headingFive">
+          <h6 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+              <i class="card-icon mdi mdi-account-multiple-outline"></i>BlackOrder</a>
+          </h6>
+        </div>
+        <div id="collapseFive" class="collapse" role="tabpanel" aria-labelledby="headingFive" data-parent="#accordion">
+          <div class="card-body">
+              <app-informeventa-usuario-backorder-index [presupuesto_id]="presupuesto['id']" *ngIf="presupuesto"></app-informeventa-usuario-backorder-index>
+          </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" role="tab" id="headingSix">
+          <h6 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+              <i class="card-icon mdi mdi-account-multiple-outline"></i>Toneladas Vendidas</a>
+          </h6>
+        </div>
+        <div id="collapseSix" class="collapse" role="tabpanel" aria-labelledby="headingSix" data-parent="#accordion">
+          <div class="card-body">
+              <app-informeventa-usuario-tonelada-index [presupuesto_id]="presupuesto['id']" *ngIf="presupuesto"></app-informeventa-usuario-tonelada-index>
+          </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" role="tab" id="headingSeven">
+          <h6 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+              <i class="card-icon mdi mdi-account-multiple-outline"></i>Informe cotizaciones Director</a>
+          </h6>
+        </div>
+        <div id="collapseSeven" class="collapse" role="tabpanel" aria-labelledby="headingSeven" data-parent="#accordion">
+          <div class="card-body">
+              <app-informeventa-usuario-cotdir-index [presupuesto]="presupuesto" *ngIf="presupuesto"></app-informeventa-usuario-cotdir-index>
+          </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" role="tab" id="headingEight">
+          <h6 class="mb-0">
+            <a class="collapsed" data-toggle="collapse" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+              <i class="card-icon mdi mdi-account-multiple-outline"></i>Informe PostVenta Director</a>
+          </h6>
+        </div>
+        <div id="collapseEight" class="collapse" role="tabpanel" aria-labelledby="headingEight" data-parent="#accordion">
+          <div class="card-body">
+              <app-informeventa-usuario-postvdir-index [presupuesto]="presupuesto" *ngIf="presupuesto"></app-informeventa-usuario-postvdir-index>
+          </div>
+        </div>
+    </div>
+
+</div>

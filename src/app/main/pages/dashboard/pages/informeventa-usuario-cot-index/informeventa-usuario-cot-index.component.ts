@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 
 import { InformeVentaService } from '../../../informeVenta/services/informe-venta.service';
 
@@ -95,5 +94,8 @@ export class InformeventaUsuarioCotIndexComponent implements OnInit {
       }
 
   }//agregar_cotizacion
+
+
+ 
 
 }
