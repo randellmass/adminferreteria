@@ -13,9 +13,8 @@ export class InformeventaUsuarioPostvdirIndexComponent implements OnInit {
   @Input() presupuesto:any;
 
   formPostVenta:FormGroup = this.fb.group({
-    infor_v_cot_dir_concepto_id: ['',[Validators.required]],
+    infor_v_postv_dir_concepto_id: ['',[Validators.required]],
     user_venta_id: ['',[Validators.required]],
-    cantidad: ['',[Validators.required]],
     observacion: [''],
   });
   
@@ -41,7 +40,7 @@ export class InformeventaUsuarioPostvdirIndexComponent implements OnInit {
 
     this.loading=true;
 
-      const result_conceptos = await this.informeVentaService.index_info_v_cot_dir_conceptos();
+      const result_conceptos = await this.informeVentaService.index_info_v_postventa_dir_conceptos();
       if (result_conceptos['res'])
       {
           this.conceptos = result_conceptos['data'];
@@ -53,7 +52,7 @@ export class InformeventaUsuarioPostvdirIndexComponent implements OnInit {
           this.usuarios = result_usuarios['data'];
       }
 
-      const result_informe = await this.informeVentaService.index_info_v_cotizaciones_director(presupuesto_id);
+      const result_informe = await this.informeVentaService.index_info_v_postventa_director(presupuesto_id);
       if (result_informe['res'])
       {
           this.postventas = result_informe['data'];
@@ -63,7 +62,7 @@ export class InformeventaUsuarioPostvdirIndexComponent implements OnInit {
 
   }
 
-  async update_concepto_cot(index:number,cantidad:any,observacion:any,cotizacion:any)
+  async update_concepto_postvdir(index:number,cantidad:any,observacion:any,cotizacion:any)
   {
 
       const form_editar ={
@@ -73,7 +72,7 @@ export class InformeventaUsuarioPostvdirIndexComponent implements OnInit {
       }
       this.loading=true;
 
-      const editar = await this.informeVentaService.update_presupuesto_usuario_cot_dir(this.presupuesto['id'],cotizacion['id'],form_editar);
+      const editar = await this.informeVentaService.update_presupuesto_usuario_postv_dir(this.presupuesto['id'],cotizacion['id'],form_editar);
 
       if (editar['res']) 
       {
@@ -86,14 +85,14 @@ export class InformeventaUsuarioPostvdirIndexComponent implements OnInit {
 
   }
 
-  async agregar_cotizacion()
+  async agregar_postvdir()
   {
       if(this.formPostVenta.invalid){
         this.formPostVenta.markAllAsTouched();
         return;
       }
     
-      const informe_reg = await this.informeVentaService.store_presupuesto_usuario_cot_dir(this.presupuesto['id'],this.formPostVenta.value);
+      const informe_reg = await this.informeVentaService.store_presupuesto_usuario_postventa_dir(this.presupuesto['id'],this.formPostVenta.value);
 
       if (informe_reg['res'])
       {

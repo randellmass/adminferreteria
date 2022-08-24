@@ -641,6 +641,41 @@ export class InformeVentaService {
   
     }
 
+    index_info_v_postventa_director(presupuesto_id:any)
+    {
+     
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+  
+        this.http.get(`${ URL}/presupuesto/${ presupuesto_id }/postvdirector`,{ headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+                resolve({
+                    res:true,
+                    data:resp['data']
+                });
+            }else{
+                resolve(
+                  {
+                    res:false,
+                    data:resp['mensaje']
+                  }
+                );
+            }
+        
+         });
+  
+       }); 
+     
+  
+    }
+
     index_info_v_backorder(presupuesto_id:any)
     {
      
@@ -1245,6 +1280,40 @@ export class InformeVentaService {
         });
   
         this.http.put(`${ URL}/presupuesto/${ presupuesto_id }/cotdirector/${ cotdir_id }`, cotdir ,{ headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+              resolve(
+                {
+                  res:true,
+                  data:resp['data']
+                });
+            }else{
+                resolve(
+                {
+                  res:false,
+                  data:resp['mensaje']
+                });
+            }
+        
+         });
+  
+       }); 
+  
+    }
+
+    update_presupuesto_usuario_postv_dir(presupuesto_id:number,postvdir_id:any,postvdir:any)
+    {
+     
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+  
+        this.http.put(`${ URL}/presupuesto/${ presupuesto_id }/postvdirector/${ postvdir_id }`, postvdir ,{ headers })
         .subscribe( resp =>{
           
             if(resp['res'])
