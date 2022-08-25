@@ -193,4 +193,18 @@
         </div>
     </div>
 
+    <div class="card">
+      <div class="card-header" role="tab" id="headingNine">
+        <h6 class="mb-0">
+          <a class="collapsed" data-toggle="collapse" href="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+            <i class="card-icon mdi mdi-message-text-outline"></i>Actividades informe Director</a>
+        </h6>
+      </div>
+      <div id="collapseNine" class="collapse" role="tabpanel" aria-labelledby="headingNine" data-parent="#accordion">
+        <div class="card-body">
+            <app-informeventa-usuario-actividaddir-index [presupuesto]="presupuesto" *ngIf="presupuesto"></app-informeventa-usuario-actividaddir-index>
+        </div>
+      </div>
+    </div>
+
 </div>

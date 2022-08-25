@@ -69,7 +69,7 @@ export class InformeventaUsuarioCotdirIndexComponent implements OnInit {
 
       const form_editar ={
         "cantidad":cantidad,
-        "observacion": observacion,
+        "observacion":observacion,
         "infor_v_estado_id":1,
       }
       this.loading=true;
@@ -80,6 +80,7 @@ export class InformeventaUsuarioCotdirIndexComponent implements OnInit {
       {
           this.cotizaciones[index] = editar['data'];
           this.loading=false;
+          this.formCotizacion.reset();
       } else {
           this.errors= editar['data'];
           this.loading=false;

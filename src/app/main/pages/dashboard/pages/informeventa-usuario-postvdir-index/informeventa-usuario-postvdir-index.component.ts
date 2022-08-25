@@ -62,11 +62,10 @@ export class InformeventaUsuarioPostvdirIndexComponent implements OnInit {
 
   }
 
-  async update_concepto_postvdir(index:number,cantidad:any,observacion:any,cotizacion:any)
+  async update_concepto_postvdir(index:number,observacion:any,cotizacion:any)
   {
 
       const form_editar ={
-        "cantidad":cantidad,
         "observacion": observacion,
         "infor_v_estado_id":1,
       }

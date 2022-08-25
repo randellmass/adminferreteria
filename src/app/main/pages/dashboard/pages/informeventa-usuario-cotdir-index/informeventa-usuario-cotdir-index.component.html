@@ -27,13 +27,14 @@
                                     <textarea 
                                         rows="5"
                                         class="form-control"
+                                        [ngStyle]="{width:'200px',padding:'5px'}"
                                         [name]="i" #observacion>{{ cot['observacion']}}</textarea>
                                 </div>
                                     
                             </td>
                             <td><input type="number" [name]="i" [value]="cot['cantidad']" #cantidad class="form-control"></td>
                               <td>
-                                <button type="button" (click)="update_concepto_cot(i,cantidad.value,observacion.value,cot)" class="btn btn-outline-secondary btn-fw"><i class="mdi mdi-content-save"></i>Guardar</button>
+                                <button type="button" (click)="update_concepto_cot(i,cantidad.value,observacion.value,cot)" class="btn btn-outline-success btn-fw"><i class="mdi mdi-content-save"></i>Guardar</button>
                             </td>
                         </tr>
                

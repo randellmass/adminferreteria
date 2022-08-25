@@ -15,7 +15,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let postv of postventas; let i=index">
-                            <td scope="row">{{ postv['infor_v_cot_dir_concepto_nombre']}}</td>
+                            <td scope="row">{{ postv['infor_v_postv_dir_concepto_nombre']}}</td>
                             <td scope="row">
                                 <div class="mb-2">
                                     {{ postv['user_venta_nombre']}}
@@ -25,12 +25,13 @@
                                     <textarea 
                                         rows="5"
                                         class="form-control"
+                                        [ngStyle]="{width:'200px',padding:'5px'}"
                                         [name]="i" #observacion>{{ postv['observacion']}}</textarea>
                                 </div>
                                     
                             </td>
                             <td>
-                                <button type="button" (click)="update_concepto_postvdir(i,cantidad.value,observacion.value,postv)" class="btn btn-outline-secondary btn-fw"><i class="mdi mdi-content-save"></i>Guardar</button>
+                                <button type="button" (click)="update_concepto_postvdir(i,observacion.value,postv)" class="btn btn-outline-success btn-fw"><i class="mdi mdi-content-save"></i>Guardar</button>
                             </td>
                         </tr>
                

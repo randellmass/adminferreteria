@@ -431,6 +431,7 @@ export class InformeVentaService {
      
   
     } 
+
     index_info_v_cotizaciones_director(presupuesto_id:any)
     {
      
@@ -722,6 +723,41 @@ export class InformeVentaService {
         });
   
         this.http.get(`${ URL}/presupuesto/${ presupuesto_id }/tonelada`,{ headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+                resolve({
+                    res:true,
+                    data:resp['data']
+                });
+            }else{
+                resolve(
+                  {
+                    res:false,
+                    data:resp['mensaje']
+                  }
+                );
+            }
+        
+         });
+  
+       }); 
+     
+  
+    }
+
+    index_info_v_actividades_director(presupuesto_id:any)
+    {
+     
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+  
+        this.http.get(`${ URL}/presupuesto/${ presupuesto_id }/actividaddirector`,{ headers })
         .subscribe( resp =>{
           
             if(resp['res'])
@@ -1337,6 +1373,40 @@ export class InformeVentaService {
   
     }
 
+    update_presupuesto_usuario_actividad_dir(presupuesto_id:number,actividad_id:any,actividad:any)
+    {
+     
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+  
+        this.http.put(`${ URL}/presupuesto/${ presupuesto_id }/actividaddirector/${ actividad_id }`, actividad ,{ headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+              resolve(
+                {
+                  res:true,
+                  data:resp['data']
+                });
+            }else{
+                resolve(
+                {
+                  res:false,
+                  data:resp['mensaje']
+                });
+            }
+        
+         });
+  
+       }); 
+  
+    }
+
     update_presupuesto_usuario_redesotro(presupuesto_id:number,redesotro_id:any,redesotro:any)
     {
      
@@ -1518,6 +1588,40 @@ export class InformeVentaService {
         });
   
         this.http.delete(`${ URL}/presupuesto/${ presupuesto_id }/tonelada/${ tonelada_id }`, { headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+              resolve(
+                {
+                  res:true,
+                  data:resp['data']
+                });
+            }else{
+                resolve(
+                {
+                  res:false,
+                  data:resp['mensaje']
+                });
+            }
+        
+         });
+  
+       }); 
+  
+    } 
+
+    delete_presupuesto_usuario_actividad(presupuesto_id:number,actividad_id:any)
+    {
+     
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+  
+        this.http.delete(`${ URL}/presupuesto/${ presupuesto_id }/actividaddirector/${ actividad_id }`, { headers })
         .subscribe( resp =>{
           
             if(resp['res'])
