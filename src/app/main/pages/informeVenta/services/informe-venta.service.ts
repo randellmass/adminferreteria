@@ -1645,6 +1645,74 @@ export class InformeVentaService {
   
     } 
 
+    delete_presupuesto_cot_director(presupuesto_id:number,cotdir_id:any)
+    {
+     
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+  
+        this.http.delete(`${ URL}/presupuesto/${ presupuesto_id }/cotdirector/${ cotdir_id }`, { headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+              resolve(
+                {
+                  res:true,
+                  data:resp['data']
+                });
+            }else{
+                resolve(
+                {
+                  res:false,
+                  data:resp['mensaje']
+                });
+            }
+        
+         });
+  
+       }); 
+  
+    } 
+
+    delete_presupuesto_postv_director(presupuesto_id:number,postv_id:any)
+    {
+     
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+  
+        this.http.delete(`${ URL}/presupuesto/${ presupuesto_id }/postvdirector/${ postv_id }`, { headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+              resolve(
+                {
+                  res:true,
+                  data:resp['data']
+                });
+            }else{
+                resolve(
+                {
+                  res:false,
+                  data:resp['mensaje']
+                });
+            }
+        
+         });
+  
+       }); 
+  
+    } 
+
     update_info_v_semana(semana_id:number,semana:any)
     {
      

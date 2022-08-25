@@ -84,6 +84,26 @@ export class InformeventaUsuarioPostvdirIndexComponent implements OnInit {
 
   }
 
+  async delete_postv_director(postvdir:any)
+  {
+
+      this.loading=true;
+
+      const quitar = await this.informeVentaService.delete_presupuesto_postv_director(this.presupuesto['id'],postvdir['id']);
+      
+      if (quitar['res']) 
+      {
+          this.postventas = this.postventas.filter( item => item['id'] !== postvdir['id']);
+          
+          this.loading=false;
+      } else {
+          this.errors= quitar['data'];
+          this.loading=false;
+      }
+
+  }
+
+
   async agregar_postvdir()
   {
       if(this.formPostVenta.invalid){

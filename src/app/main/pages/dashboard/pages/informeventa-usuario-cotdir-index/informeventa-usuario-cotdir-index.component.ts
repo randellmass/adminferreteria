@@ -88,6 +88,25 @@ export class InformeventaUsuarioCotdirIndexComponent implements OnInit {
 
   }
 
+  async delete_cot_director(cotdir:any)
+  {
+
+      this.loading=true;
+
+      const quitar = await this.informeVentaService.delete_presupuesto_cot_director(this.presupuesto['id'],cotdir['id']);
+      
+      if (quitar['res']) 
+      {
+          this.cotizaciones = this.cotizaciones.filter( item => item['id'] !== cotdir['id']);
+          
+          this.loading=false;
+      } else {
+          this.errors= quitar['data'];
+          this.loading=false;
+      }
+
+  }
+
   async agregar_cotizacion()
   {
       if(this.formCotizacion.invalid){

@@ -5,7 +5,6 @@
             
             <div class="card-body">
                 
-                <h4 class="card-subtitle">Listado Backorder</h4>
                 <table class="table table-responsive">
                     <thead>
                         <tr>
@@ -23,7 +22,7 @@
                             <td>{{ item['referencia'] }}</td>
                             <td>{{ item['comentarios'] }}</td>
                             <td>
-                                <button type="button" (click)="delete_concepto_backorder(item)" class="btn btn-secondary">Quitar</button>
+                                <button type="button" (click)="delete_concepto_backorder(item)" class="btn btn-outline-danger btn-sm"><i class="mdi mdi-delete"></i>Quitar</button>
                             </td>
                         </tr>
                
@@ -36,9 +35,8 @@
     <div class="col-md-4">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-subtitle">Registro Backorder</h4>
-
-                    <form class="cmxform" (ngSubmit)="agregar_backorder()" [formGroup]="formBackorder" >
+             
+                    <form class="cmxform mt-2" (ngSubmit)="agregar_backorder()" [formGroup]="formBackorder" >
                         <fieldset>
             
                         
@@ -102,7 +100,7 @@
                             
                             </div>
                         
-                            <button type="submit" class="btn btn-primary">Agregar</button>
+                            <button type="submit" class="btn btn-outline-primary">Agregar</button>
                         </fieldset>
                     </form>
 

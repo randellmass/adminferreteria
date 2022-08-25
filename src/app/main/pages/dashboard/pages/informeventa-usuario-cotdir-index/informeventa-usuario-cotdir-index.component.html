@@ -5,7 +5,6 @@
             
             <div class="card-body">
                 
-                <h4 class="card-subtitle">Informe Cotizaciones Director</h4>
                 <table class="table table-responsive">
                     <thead>
                         <tr>
@@ -32,9 +31,10 @@
                                 </div>
                                     
                             </td>
-                            <td><input type="number" [name]="i" [value]="cot['cantidad']" #cantidad class="form-control"></td>
+                            <td><input type="number" [name]="i" [value]="cot['cantidad']" #cantidad class="form-control" [ngStyle]="{width:'80px'}"></td>
                               <td>
-                                <button type="button" (click)="update_concepto_cot(i,cantidad.value,observacion.value,cot)" class="btn btn-outline-success btn-fw"><i class="mdi mdi-content-save"></i>Guardar</button>
+                                <button type="button" (click)="update_concepto_cot(i,cantidad.value,observacion.value,cot)" class="btn btn-outline-success btn-sm"><i class="mdi mdi-content-save"></i>Guardar</button>
+                                <button type="button" (click)="delete_cot_director(cot)" class="btn btn-outline-danger btn-sm"><i class="mdi mdi-delete"></i>Quitar</button>
                             </td>
                         </tr>
                
@@ -47,9 +47,8 @@
     <div class="col-md-4">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-subtitle">Registro Director informe</h4>
-
-                    <form class="cmxform" (ngSubmit)="agregar_cotizacion()" [formGroup]="formCotizacion" >
+           
+                    <form class="cmxform mt-2" (ngSubmit)="agregar_cotizacion()" [formGroup]="formCotizacion" >
                         <fieldset>
             
                         

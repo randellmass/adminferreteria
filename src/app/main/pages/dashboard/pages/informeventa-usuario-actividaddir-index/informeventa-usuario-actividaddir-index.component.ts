@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
                                                                   
-import { AlmacenService } from '../../../almacen/services/almacen.service';
 import { InformeVentaService } from '../../../informeVenta/services/informe-venta.service';
 
 @Component({
@@ -26,8 +25,7 @@ export class InformeventaUsuarioActividaddirIndexComponent implements OnInit {
   errors:any =[];
 
   constructor(private fb:FormBuilder,
-              private informeVentaService:InformeVentaService,
-              private almacenService: AlmacenService) { }
+              private informeVentaService:InformeVentaService) { }
 
   ngOnInit(): void {
     this.cargarinforme_actividades(this.presupuesto['id']);

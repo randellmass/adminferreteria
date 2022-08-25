@@ -28,7 +28,7 @@
                             <td>{{ item['valor'] |number }}</td>
                             <td>{{ item['comentarios'] }}</td>
                             <td>
-                                <button type="button" (click)="delete_concepto_analisis(item)" class="btn btn-secondary">Quitar</button>
+                                <button type="button" (click)="delete_concepto_analisis(item)" class="btn btn-outline-danger btn-sm"><i class="mdi mdi-delete"></i>Quitar</button>
                             </td>
                         </tr>
                
@@ -42,7 +42,7 @@
         <div class="card">
             <div class="card-body">
      
-                    <form class="cmxform" (ngSubmit)="agregar_analisis()" [formGroup]="formAnalisis" >
+                    <form class="cmxform mt-2" (ngSubmit)="agregar_analisis()" [formGroup]="formAnalisis" >
                         <fieldset>
                         
                             <div class="row">
@@ -146,7 +146,7 @@
                             
                             </div>
                         
-                            <button type="submit" class="btn btn-primary">Agregar</button>
+                            <button type="submit" class="btn btn-outline-primary">Agregar</button>
                         </fieldset>
                     </form>
 
