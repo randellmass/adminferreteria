@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { InformeVentaService } from '../../services/informe-venta.service';
 
 @Component({
@@ -25,6 +24,9 @@ export class PresupuestoAdminReporteIndexComponent implements OnInit {
   postventas:any = [];
   backorders:any = [];
   toneladas:any = [];
+  cotdirector:any = [];
+  postvdirector:any = [];
+  actividadesdirector:any = [];
 
 
   constructor(private informeVentaService:InformeVentaService) { }
@@ -54,6 +56,9 @@ export class PresupuestoAdminReporteIndexComponent implements OnInit {
           this.postventas = this.presupuesto['postventas'];
           this.backorders = this.presupuesto['backorders'];
           this.toneladas = this.presupuesto['toneladas'];
+          this.cotdirector = this.presupuesto['cotdirector'];
+          this.postvdirector = this.presupuesto['postvdirector'];
+          this.actividadesdirector = this.presupuesto['actividadesdirector'];
 
           this.cotizaciones.forEach(cot =>  {
               this.sumaCotizaciones+=cot['cantidad'];

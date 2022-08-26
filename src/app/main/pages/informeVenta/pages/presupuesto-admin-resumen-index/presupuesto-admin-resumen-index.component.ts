@@ -38,6 +38,10 @@ export class PresupuestoAdminResumenIndexComponent implements OnInit {
   postventas: any = [];
   backorders: any = [];
   toneladas: any = [];
+  cotdirector:any = [];
+  postvdirector:any = [];
+  actividadesdirector:any =[];
+
 
   constructor(private informeVentaService: InformeVentaService,
     private almacenService: AlmacenService,
@@ -136,6 +140,9 @@ export class PresupuestoAdminResumenIndexComponent implements OnInit {
     this.postventas = [];
     this.backorders = [];
     this.toneladas = [];
+    this.cotdirector = [];
+    this.postvdirector = [];
+    this.actividadesdirector = [];
 
     this.informes.forEach(presupuesto => {
       this.cotizaciones = this.cotizaciones.concat(presupuesto['cotizaciones']);
@@ -144,6 +151,9 @@ export class PresupuestoAdminResumenIndexComponent implements OnInit {
       this.postventas = this.postventas.concat(presupuesto['postventas']);
       this.backorders = this.backorders.concat(presupuesto['backorders']);
       this.toneladas = this.toneladas.concat(presupuesto['toneladas']);
+      this.cotdirector = this.cotdirector.concat(presupuesto['cotdirector']);
+      this.postvdirector = this.postvdirector.concat(presupuesto['postvdirector']);
+      this.actividadesdirector = this.actividadesdirector.concat(presupuesto['actividadesdirector']);
     });
 
     //saco los conceptos de cotizaciones
