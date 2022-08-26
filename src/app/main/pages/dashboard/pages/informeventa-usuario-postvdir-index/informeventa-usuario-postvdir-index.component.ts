@@ -115,7 +115,7 @@ export class InformeventaUsuarioPostvdirIndexComponent implements OnInit {
 
       if (informe_reg['res'])
       {
-        this.postventas.push(informe_reg['data']);  
+        this.cargarinforme_cotizaciones(this.presupuesto['id']);
         this.errors=[];
         this.formPostVenta.reset();
       }else{

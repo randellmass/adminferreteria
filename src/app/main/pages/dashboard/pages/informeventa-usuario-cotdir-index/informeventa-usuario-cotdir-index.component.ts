@@ -118,7 +118,7 @@ export class InformeventaUsuarioCotdirIndexComponent implements OnInit {
 
       if (informe_reg['res'])
       {
-        this.cotizaciones.push(informe_reg['data']);  
+        this.cargarinforme_cotizaciones(this.presupuesto['id']);
         this.errors=[];
         this.formCotizacion.reset();
       }else{
