@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PresupuestoAdminDetalleIndexComponent } from './pages/presupuesto-admin-detalle-index/presupuesto-admin-detalle-index.component';
 
+import { PresupuestoAdminConfigComponent } from './pages/presupuesto-admin-config/presupuesto-admin-config.component';
+import { PresupuestoAdminDetalleIndexComponent } from './pages/presupuesto-admin-detalle-index/presupuesto-admin-detalle-index.component';
 import { PresupuestoAdminIndexComponent } from './pages/presupuesto-admin-index/presupuesto-admin-index.component';
 import { PresupuestoAdminResumenIndexComponent } from './pages/presupuesto-admin-resumen-index/presupuesto-admin-resumen-index.component';
 import { PresupuestoAdminUpdateComponent } from './pages/presupuesto-admin-update/presupuesto-admin-update.component';
@@ -25,6 +26,9 @@ const routes: Routes = [
       },
       {
         path:'resumen', component:PresupuestoAdminResumenIndexComponent
+      },
+      {
+        path:'config', component:PresupuestoAdminConfigComponent
       },
       {
         path:'', redirectTo:'listado', pathMatch:'full'

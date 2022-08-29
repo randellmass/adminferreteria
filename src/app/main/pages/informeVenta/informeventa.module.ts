@@ -9,10 +9,11 @@ import { PresupuestoAdminReporteIndexComponent } from './pages/presupuesto-admin
 import { PresupuestoAdminDetalleIndexComponent } from './pages/presupuesto-admin-detalle-index/presupuesto-admin-detalle-index.component';
 import { PresupuestoAdminUpdateComponent } from './pages/presupuesto-admin-update/presupuesto-admin-update.component';
 import { PresupuestoAdminResumenIndexComponent } from './pages/presupuesto-admin-resumen-index/presupuesto-admin-resumen-index.component';
+import { PresupuestoAdminConfigComponent } from './pages/presupuesto-admin-config/presupuesto-admin-config.component';
 
 
 @NgModule({
-  declarations: [PresupuestoAdminIndexComponent, PresupuestoAdminReporteIndexComponent, PresupuestoAdminDetalleIndexComponent, SemanaIndexComponent, PresupuestoAdminUpdateComponent, PresupuestoAdminResumenIndexComponent],
+  declarations: [PresupuestoAdminIndexComponent, PresupuestoAdminReporteIndexComponent, PresupuestoAdminDetalleIndexComponent, SemanaIndexComponent, PresupuestoAdminUpdateComponent, PresupuestoAdminResumenIndexComponent, PresupuestoAdminConfigComponent],
   imports: [
     CommonModule,
     InformeventaRoutingModule,

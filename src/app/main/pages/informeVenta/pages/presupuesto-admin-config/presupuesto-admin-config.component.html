@@ -1,58 +1,27 @@
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <ul class="nav nav-tabs bg-light">
-                    <li class="nav-item">
-                       <a class="nav-link" routerLink="/main/informeventas/semana/listado"  aria-current="page" >Crear Informe</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="/main/informeventas/config"  aria-current="page" >Crear conceptos Informe</a>
-                     </li>
-                </ul>
-            </div>
-
-        </div>
-    </div>
-</div>
-
 <app-loading *ngIf="loading"></app-loading>  
 
-<div class="row mt-2" *ngIf="bodegas">
+<div class="row mt-2" *ngIf="!loading">
     <div class="col-12">
 
         <div class="card">
             <div class="card-body">
+                <form [formGroup]="FormConsultas">
+                    <div class="row">
+                        <div class="col-md-4">
 
-                <h5>Consultas:</h5>
-                <form class="form-inline" [formGroup]="FormConsultas" (ngSubmit)="consulta_informe()">
-                    <div class="form-group mr-2">
-                       <select class="form-control" 
-                                formControlName="almacen_id">
-                            <option value="" selected>Escoja Bodega</option>
-                            <option value="{{ bodega['almacen_id'] }}" *ngFor="let bodega of bodegas">{{ bodega['almacen_nombre']}}</option>
-                       </select>
+                            <div class="form-group">
+                                <label for="">Concepto a Configurar:</label>
+                                <select formControlName="conceptosForm" 
+                                        class="form-control">
+                                    <option value="">Escoja Concepto</option>
+                                    <option [value]="option['id']" *ngFor="let option of tipoConceptos">{{ option['nombre']}}</option>
+                                </select>
+        
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group mr-2">
-                        <select class="form-control" 
-                                 formControlName="user_id">
-                             <option value=""  selected>Escoja Usuario</option>
-                             <option value="{{ usuario['id'] }}" *ngFor="let usuario of usuarios">{{ usuario['email']}}</option>
-                
-                        </select>
-                    </div>
-
-                    <div class="form-group mr-4">
-                        <select class="form-control" 
-                                 formControlName="semana_id">
-                             <option value="" selected>Escoja semana</option>
-                             <option value="{{ semana['id'] }}" *ngFor="let semana of semanas">{{ semana['nombre']}}</option>
-                        </select>
-                    </div>
-
-                    <button class="btn btn-outline-dark">Consultar</button>
-           
                 </form>
+
 
 
                 <div class="row mt-2" *ngIf="errors.length>0">
@@ -108,6 +77,7 @@
     
     </div>
 </div>
+
 
 
 
