@@ -22,52 +22,32 @@
                     </div>
                 </form>
 
-
-
-                <div class="row mt-2" *ngIf="errors.length>0">
-                    <div class="col-12">
-                      <div class="alert alert-danger " role="alert">
-                         <ul>
-                             <li *ngFor="let error of errors" >{{ error }}</li>
-                         </ul>
-                      </div>
-                    </div>
-                </div>
-
            </div>
         </div>
     </div>
 </div>
 
-<div class="row mt-2" *ngIf="informes">
-    <div class="col-12">
+<div class="row mt-2" *ngIf="concepto_id!=0">
+    <div class="col-md-6">
 
         <div class="card">
             <div class="card-body">
 
-                <h4 class="card-subtitle">Informes de ventas</h4>
+                <h4 class="card-subtitle">Conceptos informe ventas</h4>
                 
                 <table class="table table-bordered table-hover table-responsive">
                     <thead>
                         <tr>
-                            <th>Informe</th>
-                            <th>Presupuesto</th>
-                            <th>Venta Real</th>
-                            <th>Usuario</th>
-                            <th>Estado</th>
+                            <th>Nombre</th>
                             <th>Opción</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let informe of informes">
-                            <td>{{ informe['infor_v_semana_nombre']}}</td>
-                            <td>{{ informe['presupuesto_valor'] | number }}</td>
-                            <td>{{ informe['venta_real'] | number }}</td>
-                            <td>{{ informe['user_email'] }}</td>
-                            <td>{{ informe['infor_v_estado_nombre']}}</td>
+                        <tr *ngFor="let item of conceptos">
+                            <td>{{ item['nombre']}}</td>
                             <td>
-                                <button (click)="update_presupuesto(informe['id'])" class="btn btn-primary" >Editar</button>
-                                <button (click)="presupuesto_detalle(informe['id'])" class="btn btn-dark" >Informe</button>
+                                <button (click)="update_presupuesto(item['id'])" class="btn btn-primary" >Editar</button>
+                                <button (click)="presupuesto_detalle(item['id'])" class="btn btn-dark" >Informe</button>
                             </td>
                         </tr>
                     </tbody>
@@ -75,6 +55,42 @@
             </div>
         </div>
     
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-subtitle">Conceptos informe ventas</h4>
+       
+                <form [formGroup]="FormConceptos" (ngSubmit)="agregar_concepto()">
+                    
+                    <div class="form-group">
+                        <label>Nombre:</label>
+                        <input type="text" 
+                                formControlName="nombre"
+                                class="form-control"
+                                placeholder="Digite nombre concepto" />
+                        <label class="error mt-2 text-danger" 
+                                for="nombre" 
+                                *ngIf="campoNoValido('nombre')">*Digite nombre concepto</label>
+                    </div>
+             
+                    <button type="submit" class="btn btn-outline-primary">Agregar</button>
+                </form>
+
+                <div class="row mt-2" *ngIf="errors.length>0">
+                    <div class="col-12">
+                    <div class="alert alert-danger " role="alert">
+                        <ul>
+                            <li *ngFor="let error of errors" >{{ error }}</li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 </div>
 

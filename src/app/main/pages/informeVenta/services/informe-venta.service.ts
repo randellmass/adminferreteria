@@ -1802,7 +1802,6 @@ export class InformeVentaService {
   
     }
 
-
     consultas_informe_ventas(dataconsulta:any)
     {
      
@@ -1837,5 +1836,42 @@ export class InformeVentaService {
        }); 
   
     }
+
+    //conceptos registro
+    store_analisis_concepto(concepto:any)
+    {
+     
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+
+  
+        this.http.post(`${ URL}/inforvanalisisconceptos`, concepto ,{ headers })
+        .subscribe( resp =>{
+          
+            if(resp['res'])
+            {
+              resolve(
+                {
+                  res:true,
+                  data:resp['data']
+                });
+            }else{
+                resolve(
+                {
+                  res:false,
+                  data:resp['mensaje']
+                });
+            }
+        
+         });
+  
+       }); 
+  
+    } 
+
 
 }
