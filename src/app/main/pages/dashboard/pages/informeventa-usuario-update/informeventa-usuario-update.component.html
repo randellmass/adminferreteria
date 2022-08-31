@@ -82,7 +82,7 @@
     </div>
 </div>
 
-<div class="accordion basic-accordion mt-3" id="accordion" role="tablist" *ngIf="!loading">
+<div class="accordion basic-accordion mt-3" id="accordion" role="tablist" *ngIf="!loading && presupuesto['infor_v_estado_id']==1">
     <div class="card" *ngIf="presupuesto['user_rol_id']==2">
         <div class="card-header" role="tab" id="headingOne">
             <h6 class="mb-0">

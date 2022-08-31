@@ -43,11 +43,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of conceptos">
-                            <td>{{ item['nombre']}}</td>
+                        <tr *ngFor="let item of conceptos;let i = index">
                             <td>
-                                <button (click)="update_presupuesto(item['id'])" class="btn btn-primary" >Editar</button>
-                                <button (click)="presupuesto_detalle(item['id'])" class="btn btn-dark" >Informe</button>
+                                <input type="text"
+                                       class="form-control"
+                                       [value]="item['nombre']"
+                                       #concepto_edit />
+                            </td>
+                            <td>
+                                <button (click)="update_concepto(i,concepto_edit.value,item)" class="btn btn-outline-success">Editar</button>
                             </td>
                         </tr>
                     </tbody>

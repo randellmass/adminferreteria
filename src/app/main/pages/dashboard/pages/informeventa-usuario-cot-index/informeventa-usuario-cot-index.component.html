@@ -18,7 +18,9 @@
                             <td scope="row">{{ cot['infor_v_cot_concepto_nombre']}}</td>
                             <td><input type="number" [name]="i" [value]="cot['cantidad']" #cantidad class="form-control" [ngStyle]="{width:'90px'}"></td>
                             <td>
-                                <button type="button" (click)="update_concepto_cot(i,cantidad.value,cot)" class="btn btn-outline-success btn-sm"><i class="mdi mdi-content-save"></i>Guardar</button>
+                                <button type="button" 
+                                        (click)="update_concepto_cot(i,cantidad.value,cot)" 
+                                        class="btn btn-outline-success btn-sm"><i class="mdi mdi-content-save"></i>Guardar</button>
                             </td>
                         </tr>
                
