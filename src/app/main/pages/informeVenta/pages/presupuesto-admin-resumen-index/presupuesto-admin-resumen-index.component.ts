@@ -145,15 +145,20 @@ export class PresupuestoAdminResumenIndexComponent implements OnInit {
     this.actividadesdirector = [];
 
     this.informes.forEach(presupuesto => {
-      this.cotizaciones = this.cotizaciones.concat(presupuesto['cotizaciones']);
-      this.redesotros = this.redesotros.concat(presupuesto['redesotros']);
-      this.cotanalisis = this.cotanalisis.concat(presupuesto['cotanalisis']);
-      this.postventas = this.postventas.concat(presupuesto['postventas']);
-      this.backorders = this.backorders.concat(presupuesto['backorders']);
-      this.toneladas = this.toneladas.concat(presupuesto['toneladas']);
-      this.cotdirector = this.cotdirector.concat(presupuesto['cotdirector']);
-      this.postvdirector = this.postvdirector.concat(presupuesto['postvdirector']);
-      this.actividadesdirector = this.actividadesdirector.concat(presupuesto['actividadesdirector']);
+
+      //se suben los informes finalizado o revisados
+      if ((presupuesto['infor_v_estado_id']==2) || (presupuesto['infor_v_estado_id']==3))
+      {
+        this.cotizaciones = this.cotizaciones.concat(presupuesto['cotizaciones']);
+        this.redesotros = this.redesotros.concat(presupuesto['redesotros']);
+        this.cotanalisis = this.cotanalisis.concat(presupuesto['cotanalisis']);
+        this.postventas = this.postventas.concat(presupuesto['postventas']);
+        this.backorders = this.backorders.concat(presupuesto['backorders']);
+        this.toneladas = this.toneladas.concat(presupuesto['toneladas']);
+        this.cotdirector = this.cotdirector.concat(presupuesto['cotdirector']);
+        this.postvdirector = this.postvdirector.concat(presupuesto['postvdirector']);
+        this.actividadesdirector = this.actividadesdirector.concat(presupuesto['actividadesdirector']);
+      }//if ((presupuesto['infor_v_estado_id']==2) || (presupuesto['infor_v_estado_id']==3))
     });
 
     //saco los conceptos de cotizaciones
