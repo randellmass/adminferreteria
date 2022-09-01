@@ -45,8 +45,6 @@ export class PresupuestoAdminResumenIndexComponent implements OnInit {
 
   constructor(private informeVentaService: InformeVentaService,
     private almacenService: AlmacenService,
-    private usuariosService: UsuariosService,
-    private router: Router,
     private fb: FormBuilder) { }
 
   ngOnInit(): void {

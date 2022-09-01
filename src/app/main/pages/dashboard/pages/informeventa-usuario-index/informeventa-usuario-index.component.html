@@ -20,6 +20,21 @@
 
         <div class="card">
             <div class="card-body">
+                <h5>Consultas Resumen informe de ventas:</h5>
+                <form class="form-inline" [formGroup]="FormConsultas" (ngSubmit)="consulta_informe()">
+                 
+                    <div class="form-group mr-4">
+                        <select class="form-control" 
+                                 formControlName="infor_v_semana_id">
+                             <option value="" selected>Escoja semana</option>
+                             <option value="{{ semana['id'] }}" *ngFor="let semana of semanas">{{ semana['nombre']}}</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-outline-dark">Consultar</button>
+           
+                </form>    
+
                 <h4 class="card-subtitle">Informes de ventas</h4>
                 
                 <table class="table table-bordered table-hover table-responsive">

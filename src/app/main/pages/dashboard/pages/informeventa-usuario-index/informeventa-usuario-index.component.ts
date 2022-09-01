@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { InformeVentaService } from '../../../informeVenta/services/informe-venta.service';
 
@@ -10,11 +11,17 @@ import { InformeVentaService } from '../../../informeVenta/services/informe-vent
 })
 export class InformeventaUsuarioIndexComponent implements OnInit {
 
+  FormConsultas: FormGroup = this.fb.group({
+    infor_v_semana_id: ['']
+  });
+  
   informes:any =[];
+  semanas: any = [];
   loading:boolean = false;
   errors:any =[];
 
   constructor( private informeVentaService: InformeVentaService,
+               private fb: FormBuilder,
                private router:Router) { }
 
   ngOnInit(): void {
@@ -37,6 +44,17 @@ export class InformeventaUsuarioIndexComponent implements OnInit {
       
     }
 
+    const listsemanas = await this.informeVentaService.index_info_v_semanas();
+
+    if (listsemanas['res']) {
+      this.semanas = listsemanas['data'];
+      //console.log(this.semanas);
+      this.semanas = this.semanas.filter((item: any) => item['estado_id'] == 1);
+
+    } else {
+      this.errors = listsemanas['data'];
+    }
+
     this.loading = false;
   }
 
@@ -46,6 +64,22 @@ export class InformeventaUsuarioIndexComponent implements OnInit {
 
   presupuesto_detalle(presupuesto_id:any){
     this.router.navigateByUrl(`main/dashboard/informe/detalle/${presupuesto_id}`);
+  }
+
+  async consulta_informe() {
+
+    this.loading = true;
+    const consulta = await this.informeVentaService.consultas_informe_ventas_asesor(this.FormConsultas.value);
+
+    if (consulta['res']) {
+      this.informes = consulta['data'];
+      this.errors = [];
+      this.loading = false;
+    } else {
+      this.errors = consulta['data'];
+      this.loading = false;
+    }
+
   }
 
 }
