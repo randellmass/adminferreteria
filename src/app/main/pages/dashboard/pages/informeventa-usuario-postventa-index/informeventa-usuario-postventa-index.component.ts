@@ -13,12 +13,11 @@ export class InformeventaUsuarioPostventaIndexComponent implements OnInit {
 
   formPostVenta:FormGroup = this.fb.group({
     infor_v_postv_concepto_id: ['',[Validators.required]],
-    cliente_documento: ['',[Validators.required]],
     cliente_nombre: ['',[Validators.required]],
     documento: ['',],
     telefono: ['',],
     fecha_reporte: ['',],
-    comentarios: ['',[Validators.required]],
+    comentarios: [''],
   });
   
   postventas:any[];

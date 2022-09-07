@@ -9,7 +9,6 @@
                     <thead>
                         <tr>
                             <th>Factura:</th>
-                            <th>CC/Nit::</th>
                             <th>Cliente:</th>
                             <th>Cantidad:</th>
                             <th>Toneladas:</th>
@@ -20,7 +19,6 @@
                     <tbody>
                         <tr *ngFor="let item of toneladas; let i=index">
                             <td scope="row">{{ item['factura']}}</td>
-                            <td>{{ item['cliente_documento'] }}</td>
                             <td>{{ item['cliente_nombre'] }}</td>
                             <td>{{ item['cantidad'] }}</td>
                             <td>{{ item['toneladas'] }}</td>
@@ -56,19 +54,6 @@
                                         <label class="error mt-2 text-danger" 
                                                 for="factura" 
                                                 *ngIf="campoNoValido('factura')">*Digite factura:</label>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label>CC/Nit:</label>
-                                        <input type="text" 
-                                            formControlName="cliente_documento"
-                                            class="form-control"
-                                            placeholder="Digite CC / Nit" />
-                                        <label class="error mt-2 text-danger" 
-                                                for="cliente_documento" 
-                                                *ngIf="campoNoValido('cliente_documento')">*Digite CC / Nit:</label>
                                     </div>
                                 </div>
 

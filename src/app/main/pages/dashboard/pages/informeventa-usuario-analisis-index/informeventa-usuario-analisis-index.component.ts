@@ -14,12 +14,11 @@ export class InformeventaUsuarioAnalisisIndexComponent implements OnInit {
 
   formAnalisis:FormGroup = this.fb.group({
     infor_v_analisi_id: ['',[Validators.required]],
-    cliente_documento: ['',[Validators.required]],
     cliente_nombre: ['',[Validators.required]],
     documento: ['',[Validators.required]],
     telefono: ['',[Validators.required]],
     valor: ['',[Validators.required]],
-    comentarios: ['',[Validators.required]],
+    comentarios: [''],
   });
   
   analisis:any[];

@@ -109,7 +109,7 @@
         </div>
       </div>
     </div>
-    <div class="card" *ngIf="presupuesto['user_rol_id']==2">
+    <div class="card">
       <div class="card-header" role="tab" id="headingThree">
         <h6 class="mb-0">
           <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -123,7 +123,7 @@
       </div>
     </div>
 
-    <div class="card" *ngIf="presupuesto['user_rol_id']==2">
+    <div class="card">
       <div class="card-header" role="tab" id="headingFour">
         <h6 class="mb-0">
           <a class="collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
@@ -175,20 +175,6 @@
         <div id="collapseSeven" class="collapse" role="tabpanel" aria-labelledby="headingSeven" data-parent="#accordion">
           <div class="card-body">
               <app-informeventa-usuario-cotdir-index [presupuesto]="presupuesto" *ngIf="presupuesto"></app-informeventa-usuario-cotdir-index>
-          </div>
-        </div>
-    </div>
-
-    <div class="card" *ngIf="presupuesto['user_rol_id']==1">
-        <div class="card-header" role="tab" id="headingEight">
-          <h6 class="mb-0">
-            <a class="collapsed" data-toggle="collapse" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-              <i class="card-icon mdi mdi-account-multiple-outline"></i>Informe PostVenta Director</a>
-          </h6>
-        </div>
-        <div id="collapseEight" class="collapse" role="tabpanel" aria-labelledby="headingEight" data-parent="#accordion">
-          <div class="card-body">
-              <app-informeventa-usuario-postvdir-index [presupuesto]="presupuesto" *ngIf="presupuesto"></app-informeventa-usuario-postvdir-index>
           </div>
         </div>
     </div>

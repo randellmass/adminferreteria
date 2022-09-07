@@ -25,7 +25,6 @@ export class PresupuestoAdminReporteIndexComponent implements OnInit {
   backorders:any = [];
   toneladas:any = [];
   cotdirector:any = [];
-  postvdirector:any = [];
   actividadesdirector:any = [];
 
 
@@ -57,7 +56,6 @@ export class PresupuestoAdminReporteIndexComponent implements OnInit {
           this.backorders = this.presupuesto['backorders'];
           this.toneladas = this.presupuesto['toneladas'];
           this.cotdirector = this.presupuesto['cotdirector'];
-          this.postvdirector = this.presupuesto['postvdirector'];
           this.actividadesdirector = this.presupuesto['actividadesdirector'];
 
           this.cotizaciones.forEach(cot =>  {

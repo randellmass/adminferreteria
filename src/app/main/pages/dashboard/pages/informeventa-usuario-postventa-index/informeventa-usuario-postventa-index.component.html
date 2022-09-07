@@ -9,7 +9,6 @@
                     <thead>
                         <tr>
                             <th>Concepto</th>
-                            <th>CC/Nit:</th>
                             <th>Nombre:</th>
                             <th>Teléfono:</th>
                             <th>Documento:</th>
@@ -21,7 +20,6 @@
                     <tbody>
                         <tr *ngFor="let item of postventas; let i=index">
                             <td scope="row">{{ item['infor_v_postv_concepto_nombre']}}</td>
-                            <td>{{ item['cliente_documento'] }}</td>
                             <td>{{ item['cliente_nombre'] }}</td>
                             <td>{{ item['telefono'] }}</td>
                             <td>{{ item['documento'] }}</td>
@@ -59,19 +57,6 @@
                                         <label class="error mt-2 text-danger" 
                                                 for="infor_v_postv_concepto_id" 
                                                 *ngIf="campoNoValido('infor_v_postv_concepto_id')">*Escoja Concepto</label>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label>CC/Nit:</label>
-                                        <input type="text" 
-                                            formControlName="cliente_documento"
-                                            class="form-control"
-                                            placeholder="Digite valor" />
-                                        <label class="error mt-2 text-danger" 
-                                                for="cliente_documento" 
-                                                *ngIf="campoNoValido('cliente_documento')">*Digite CC/ Nit:</label>
                                     </div>
                                 </div>
 

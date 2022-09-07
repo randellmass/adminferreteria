@@ -13,7 +13,6 @@ export class InformeventaUsuarioToneladaIndexComponent implements OnInit {
 
       formTonelada:FormGroup = this.fb.group({
         factura: ['',[Validators.required]],
-        cliente_documento: ['',[Validators.required]],
         cliente_nombre: ['',[Validators.required]],
         cantidad: ['',[Validators.required]],
         toneladas: ['',[Validators.required]],

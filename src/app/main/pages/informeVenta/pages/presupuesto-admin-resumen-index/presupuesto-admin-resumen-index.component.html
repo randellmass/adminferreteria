@@ -127,7 +127,6 @@
                     <thead>
                         <tr>
                             <th>Concepto</th>
-                            <th>CC/Nit:</th>
                             <th>Nombre:</th>
                             <th>Teléfono:</th>
                             <th>Factura:</th>
@@ -138,7 +137,6 @@
                     <tbody>
                         <tr *ngFor="let item of cotanalisis; let i=index">
                             <td scope="row">{{ item['infor_v_analisis_concepto_nombre']}}</td>
-                            <td>{{ item['cliente_documento'] }}</td>
                             <td>{{ item['cliente_nombre'] }}</td>
                             <td>{{ item['telefono'] }}</td>
                             <td>{{ item['documento'] }}</td>
@@ -165,7 +163,6 @@
                     <thead>
                         <tr>
                             <th>Concepto</th>
-                            <th>CC/Nit:</th>
                             <th>Nombre:</th>
                             <th>Teléfono:</th>
                             <th>Documento:</th>
@@ -176,7 +173,6 @@
                     <tbody>
                         <tr *ngFor="let item of postventas; let i=index">
                             <td scope="row">{{ item['infor_v_postv_concepto_nombre']}}</td>
-                            <td>{{ item['cliente_documento'] }}</td>
                             <td>{{ item['cliente_nombre'] }}</td>
                             <td>{{ item['telefono'] }}</td>
                             <td>{{ item['documento'] }}</td>
@@ -235,7 +231,6 @@
                     <thead>
                         <tr>
                             <th>Factura:</th>
-                            <th>CC/Nit::</th>
                             <th>Cliente:</th>
                             <th>Cantidad:</th>
                             <th>Toneladas:</th>
@@ -245,7 +240,6 @@
                     <tbody>
                         <tr *ngFor="let item of toneladas; let i=index">
                             <td scope="row">{{ item['factura']}}</td>
-                            <td>{{ item['cliente_documento'] }}</td>
                             <td>{{ item['cliente_nombre'] }}</td>
                             <td>{{ item['cantidad'] }}</td>
                             <td>{{ item['toneladas'] }}</td>
@@ -283,36 +277,6 @@
                             <td scope="row">{{ cot['user_venta_nombre']}}</td>
                             <td>{{ cot['cantidad'] | number }}</td>
                             <td>{{ cot['observacion']}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row mt-2" *ngIf="!loading">
-    <div class="col-md-12">
-        <div class="card">
-            <app-loading *ngIf="loading"></app-loading>
-            
-            <div class="card-body">
-                
-                <h4 class="card-subtitle">Informe PostVenta director</h4>
-               
-                <table class="table table-responsive">
-                    <thead>
-                        <tr>
-                            <th>Concepto</th>
-                            <th>Asesor</th>
-                            <th>Comentarios</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let postv of postvdirector let i=index">
-                            <td scope="row">{{ postv['infor_v_postv_dir_concepto_nombre']}}</td>
-                            <td scope="row">{{ postv['user_venta_nombre']}}</td>
-                            <td>{{ postv['observacion']}}</td>
                         </tr>
                     </tbody>
                 </table>

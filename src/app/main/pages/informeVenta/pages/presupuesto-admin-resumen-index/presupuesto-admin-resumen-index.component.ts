@@ -39,7 +39,6 @@ export class PresupuestoAdminResumenIndexComponent implements OnInit {
   backorders: any = [];
   toneladas: any = [];
   cotdirector:any = [];
-  postvdirector:any = [];
   actividadesdirector:any =[];
 
 
@@ -139,7 +138,6 @@ export class PresupuestoAdminResumenIndexComponent implements OnInit {
     this.backorders = [];
     this.toneladas = [];
     this.cotdirector = [];
-    this.postvdirector = [];
     this.actividadesdirector = [];
 
     this.informes.forEach(presupuesto => {
@@ -154,7 +152,6 @@ export class PresupuestoAdminResumenIndexComponent implements OnInit {
         this.backorders = this.backorders.concat(presupuesto['backorders']);
         this.toneladas = this.toneladas.concat(presupuesto['toneladas']);
         this.cotdirector = this.cotdirector.concat(presupuesto['cotdirector']);
-        this.postvdirector = this.postvdirector.concat(presupuesto['postvdirector']);
         this.actividadesdirector = this.actividadesdirector.concat(presupuesto['actividadesdirector']);
       }//if ((presupuesto['infor_v_estado_id']==2) || (presupuesto['infor_v_estado_id']==3))
     });
