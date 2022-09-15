@@ -14,10 +14,7 @@ export class InformeventaUsuarioCotdirIndexComponent implements OnInit {
   @Input() presupuesto:any;
 
   formCotizacion:FormGroup = this.fb.group({
-    infor_v_cot_dir_concepto_id: ['',[Validators.required]],
-    user_venta_id: ['',[Validators.required]],
     cantidad: ['',[Validators.required]],
-    observacion: [''],
   });
   
   cotizaciones:any[];
@@ -27,8 +24,7 @@ export class InformeventaUsuarioCotdirIndexComponent implements OnInit {
   errors:any =[];
 
   constructor(private fb:FormBuilder,
-              private informeVentaService:InformeVentaService,
-              private almacenService: AlmacenService) { }
+              private informeVentaService:InformeVentaService) { }
 
   ngOnInit(): void {
     this.cargarinforme_cotizaciones(this.presupuesto['id']);
@@ -42,34 +38,21 @@ export class InformeventaUsuarioCotdirIndexComponent implements OnInit {
 
     this.loading=true;
 
-      const result_conceptos = await this.informeVentaService.index_info_v_cot_dir_conceptos();
-      if (result_conceptos['res'])
-      {
-          this.conceptos = result_conceptos['data'];
-      }
-
-      const result_usuarios = await this.almacenService.index_usuarios_almacenes(this.presupuesto['almacen_id']);
-      if (result_usuarios['res'])
-      {
-          this.usuarios = result_usuarios['data'];
-      }
-
-      const result_informe = await this.informeVentaService.index_info_v_cotizaciones_director(presupuesto_id);
-      if (result_informe['res'])
-      {
+    const result_informe = await this.informeVentaService.index_info_v_cotizaciones_director(presupuesto_id);
+    if (result_informe['res'])
+    {
           this.cotizaciones = result_informe['data'];
-      }
+    }
 
     this.loading=false;
 
   }
 
-  async update_concepto_cot(index:number,cantidad:any,observacion:any,cotizacion:any)
+  async update_cot(index:number,cantidad:any,cotizacion:any)
   {
 
       const form_editar ={
         "cantidad":cantidad,
-        "observacion":observacion,
         "infor_v_estado_id":1,
       }
       this.loading=true;
@@ -88,43 +71,7 @@ export class InformeventaUsuarioCotdirIndexComponent implements OnInit {
 
   }
 
-  async delete_cot_director(cotdir:any)
-  {
-
-      this.loading=true;
-
-      const quitar = await this.informeVentaService.delete_presupuesto_cot_director(this.presupuesto['id'],cotdir['id']);
-      
-      if (quitar['res']) 
-      {
-          this.cotizaciones = this.cotizaciones.filter( item => item['id'] !== cotdir['id']);
-          
-          this.loading=false;
-      } else {
-          this.errors= quitar['data'];
-          this.loading=false;
-      }
-
-  }
-
-  async agregar_cotizacion()
-  {
-      if(this.formCotizacion.invalid){
-        this.formCotizacion.markAllAsTouched();
-        return;
-      }
-    
-      const informe_reg = await this.informeVentaService.store_presupuesto_usuario_cot_dir(this.presupuesto['id'],this.formCotizacion.value);
-
-      if (informe_reg['res'])
-      {
-        this.cargarinforme_cotizaciones(this.presupuesto['id']);
-        this.errors=[];
-        this.formCotizacion.reset();
-      }else{
-          this.errors = informe_reg['data'];
-      }
-
-  }//agregar_cotizacion
+ 
+  
 
 }

@@ -1305,7 +1305,7 @@ export class InformeVentaService {
   
     }
 
-    update_presupuesto_usuario_cot_dir(presupuesto_id:number,cotdir_id:any,cotdir:any)
+    update_presupuesto_usuario_cot_dir(presupuesto_id:number,cotizacion_id:any,cotdir:any)
     {
      
       return new Promise<any>( resolve =>{
@@ -1315,7 +1315,7 @@ export class InformeVentaService {
           'Authorization': `Bearer ${ this.authService.token }` 
         });
   
-        this.http.put(`${ URL}/presupuesto/${ presupuesto_id }/cotdirector/${ cotdir_id }`, cotdir ,{ headers })
+        this.http.put(`${ URL}/presupuesto/${ presupuesto_id }/cotdirector/${ cotizacion_id }`, cotdir ,{ headers })
         .subscribe( resp =>{
           
             if(resp['res'])
