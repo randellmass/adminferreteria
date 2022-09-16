@@ -14,8 +14,8 @@ export class InformeventaUsuarioStoreComponent implements OnInit {
 
   formPresupuesto:FormGroup = this.fb.group({
     infor_v_semana_id: ['',[Validators.required]],
-    presupuesto_valor: ['',[Validators.required]],
-    venta_real: ['',Validators.required],
+    presupuesto_valor: ['0',[Validators.required]],
+    venta_real: ['0',Validators.required],
   });
 
   semanas:any =[];
@@ -46,7 +46,8 @@ export class InformeventaUsuarioStoreComponent implements OnInit {
     if (listado['res'])
     {
       this.semanas = listado['data'];
-      //console.log(this.semanas);
+      
+      this.semanas = this.semanas.filter( item => item['estado_id']==1);
     } else {  
       this.errors = listado['data'];
       

@@ -16,11 +16,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let informe of semanas">
-                            <td>{{ informe['nombre']}}</td>
-                            <td>{{ informe['estado_nombre']}}</td>
+                        <tr *ngFor="let semana_list of semanas">
+                            <td>{{ semana_list['nombre']}}</td>
+                            <td>{{ semana_list['estado_nombre']}}</td>
                             <td>
-                                <button (click)="update_presupuesto(informe['id'])" class="btn btn-primary" >Editar</button>
+                                <button (click)="select_editar(semana_list)" class="btn btn-outline-success" >Editar</button>
                             </td>
                         </tr>
                     </tbody>
@@ -31,7 +31,7 @@
     </div>
 
     <div class="col-md-4">
-        <div class="card">
+        <div class="card mb-4" *ngIf="operacion == 'guardar'">
             <div class="card-body">
                 <h4 class="card-subtitle">Registro Presupuesto</h4>
 
@@ -84,7 +84,7 @@
                             
                             </div>
                         
-                            <button type="submit" class="btn btn-primary">Agregar</button>
+                            <button type="submit" class="btn btn-outline-primary">Agregar</button>
                         </fieldset>
                     </form>
 
@@ -100,6 +100,7 @@
 
             </div>
         </div>
+        <app-semana-update [semana]="semana" [semanas_arr]="semanas" *ngIf="!loading && operacion =='editar'" (semana_form)="semanas= $event" (operacion_form)="operacion = $event"></app-semana-update>
     </div>
 </div>
 

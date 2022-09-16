@@ -49,8 +49,7 @@ export class InformeventaUsuarioIndexComponent implements OnInit {
     if (listsemanas['res']) {
       this.semanas = listsemanas['data'];
       //console.log(this.semanas);
-      this.semanas = this.semanas.filter((item: any) => item['estado_id'] == 1);
-
+ 
     } else {
       this.errors = listsemanas['data'];
     }

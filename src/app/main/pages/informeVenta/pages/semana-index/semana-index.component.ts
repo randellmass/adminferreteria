@@ -21,6 +21,8 @@ export class SemanaIndexComponent implements OnInit {
   semanaTipos:any =[];
   loading:boolean = false;
   errors:any =[];
+  operacion:string="guardar";
+  semana:any;
 
   constructor( private informeVentaService: InformeVentaService,
                private router:Router,
@@ -64,6 +66,13 @@ export class SemanaIndexComponent implements OnInit {
 
   update_presupuesto(presupuesto_id:any){
       this.router.navigateByUrl(`main/dashboard/informe/update/${presupuesto_id}`);
+  }
+
+
+  async select_editar(semana:any)
+  {
+      this.operacion = "editar";
+      this.semana = semana;
   }
 
 
