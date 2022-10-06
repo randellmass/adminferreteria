@@ -53,7 +53,13 @@
                             <td >{{ equipo['nombre'] | uppercase}}</td>
                             <td>{{ equipo['modelo'] | uppercase}}</td>
                             <td>{{ equipo['serie'] | uppercase}}</td>
-                            <td>{{ equipo['user_reg_nombre'] | uppercase}}</td>
+                            <td>
+                                <div><strong>Creado:</strong></div>
+                                <div>{{ equipo['user_reg_nombre'] | uppercase}}</div>
+                                <div class="mt-2"><strong>Actualizado:</strong></div>
+                                <div>{{ equipo['user_act_nombre'] | uppercase}}</div>
+                                <div class="mt-2">{{ equipo['updated_at'] | date:'YYYY-MM-dd hh:ss'}}</div>
+                            </td>
                             <td *ngIf="equipo['equipo_estado_id']==2"><label class="badge badge-success">{{ equipo['equipo_estado_nombre'] | uppercase}}</label></td>
                             <td *ngIf="equipo['equipo_estado_id']==1"><label class="badge badge-warning">{{ equipo['equipo_estado_nombre'] | uppercase}}</label></td>
                             <td *ngIf="equipo['equipo_estado_id']==3"><label class="badge badge-danger">{{ equipo['equipo_estado_nombre'] | uppercase}}</label></td>
