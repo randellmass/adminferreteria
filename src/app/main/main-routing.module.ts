@@ -83,6 +83,11 @@ const routes: Routes = [
           canLoad: [UsuariosGuard], 
           loadChildren: () => import('./pages/almacen/almacen.module').then(m =>m.AlmacenModule)
         },
+        { 
+          path: 'despachos',
+          canLoad: [UsuariosGuard], 
+          loadChildren: () => import('./pages/despachos/despachos.module').then(m =>m.DespachosModule)
+        },
         {
           path:'**',  redirectTo:'dashboard'
         }

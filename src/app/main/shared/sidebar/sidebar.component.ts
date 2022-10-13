@@ -165,6 +165,20 @@ export class SidebarComponent implements OnInit {
             }
           ]
       },
+      {
+          "categoria":"Logistica",
+          "icon":"mdi mdi-settingst",
+          "enlaces":[
+            {
+               "nombre":"Despachos",
+               "url":"/main/despachos/listado"
+            },
+            {
+               "nombre":"Pedidos",
+               "url":"/main/despachos/pedidos"
+            }
+          ]
+      }
 
     ]; 
 
