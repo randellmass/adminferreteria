@@ -4,7 +4,7 @@
             <app-loading *ngIf="loading"></app-loading>
             
             
-            <div class="card-body">
+            <div class="card-body" *ngIf="!loading">
                 <h3 class="card-subtitle">Listado Despachos</h3>
                 
                 <table class="table table-responsive table-bordered">
@@ -39,96 +39,85 @@
 
     <div class="col-md-4">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body" *ngIf="!loading">
      
-                    <!-- <form class="cmxform mt-2" (ngSubmit)="agregar_analisis()" [formGroup]="formAnalisis" >
+                    <form class="cmxform mt-2" (ngSubmit)="agregar_despacho()" [formGroup]="formDespacho" >
                         <fieldset>
                         
                             <div class="row">
             
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label>Concepto:</label>
-                                        <select formControlName="infor_v_analisi_id" 
+                                        <label>Placa:</label>
+                                        <select formControlName="vehiculo_id" 
                                                 class="form-control">
                                             <option value="" selected>Seleccionar</option>
-                                            <option value="{{ concepto['id']}}" *ngFor="let concepto of conceptos">{{ concepto['nombre'] }}</option>
+                                            <option value="{{ vehiculo['id']}}" *ngFor="let vehiculo of vehiculos">{{ vehiculo['placa'] }}</option>
                                         </select>
                                         <label class="error mt-2 text-danger" 
-                                                for="infor_v_analisi_id" 
-                                                *ngIf="campoNoValido('infor_v_analisi_id')">*Escoja Concepto</label>
+                                                for="vehiculo_id" 
+                                                *ngIf="campoNoValido('vehiculo_id')">*Escoja placa</label>
                                     </div>
                                 </div>
 
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label>Nombre:</label>
-                                        <input type="text" 
-                                            formControlName="cliente_nombre"
-                                            class="form-control"
-                                            placeholder="Digite nombre" />
+                                        <label>Ciudad:</label>
+                                        <select formControlName="ciudad_id" 
+                                                class="form-control">
+                                            <option value="" selected>Seleccionar</option>
+                                            <option value="{{ ciudad['id']}}" *ngFor="let ciudad of ciudades">{{ ciudad['nombre'] }}</option>
+                                        </select>
                                         <label class="error mt-2 text-danger" 
-                                                for="cliente_nombre" 
-                                                *ngIf="campoNoValido('cliente_nombre')">*Digite Nombre:</label>
+                                                for="ciudad_id" 
+                                                *ngIf="campoNoValido('ciudad_id')">*Escoja ciudad</label>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label>Factura/Pedido/Cotización:</label>
-                                        <input type="text" 
-                                            formControlName="documento"
-                                            class="form-control"
-                                            placeholder="Digite Factura/Pedido" />
-                                        <label class="error mt-2 text-danger" 
-                                                for="documento" 
-                                                *ngIf="campoNoValido('documento')">*Digite Factura/Pedido/Cotización:</label>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label>Celular/Teléfono:</label>
-                                        <input type="text" 
-                                            formControlName="telefono"
-                                            class="form-control"
-                                            placeholder="Digite Celular/Teléfono" />
-                                        <label class="error mt-2 text-danger" 
-                                                for="telefono" 
-                                                *ngIf="campoNoValido('telefono')">*Digite Celular/Teléfono</label>
-                                    </div>
-                                </div>
-
+                                <div class="row">
             
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label>Usuario:</label>
+                                            <select formControlName="conductor_id" 
+                                                    class="form-control">
+                                                <option value="" selected>Seleccionar</option>
+                                                <option value="{{ user['id']}}" *ngFor="let user of usuarios">{{ user['email'] }}</option>
+                                            </select>
+                                            <label class="error mt-2 text-danger" 
+                                                    for="conductor_id" 
+                                                    *ngIf="campoNoValido('conductor_id')">*Escoja usuario</label>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label>Valor Venta:</label>
+                                        <label>Auxiliar:</label>
+                                        <input type="text" 
+                                            formControlName="auxiliar"
+                                            class="form-control"
+                                            placeholder="Digite auxiliar" />
+                                        <label class="error mt-2 text-danger" 
+                                                for="auxiliar" 
+                                                *ngIf="campoNoValido('auxiliar')">*Digite Auxiliar:</label>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Kilometraje inicial:</label>
                                         <input type="number" 
-                                            formControlName="valor"
+                                            formControlName="kilometraje_inicial"
                                             class="form-control"
-                                            placeholder="Digite valor" />
+                                            placeholder="Digite Kilometraje vehiculo" />
                                         <label class="error mt-2 text-danger" 
-                                                for="valor" 
-                                                *ngIf="campoNoValido('valor')">*Digite valor</label>
+                                                for="kilometraje_inicial" 
+                                                *ngIf="campoNoValido('kilometraje_inicial')">*Digite kilometraje actual</label>
                                     </div>
                                 </div>
-
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label>Comentarios:</label>
-                                        <textarea 
-                                                rows="5"
-                                                formControlName="comentarios"
-                                                class="form-control"
-                                                placeholder="Digite Celular/Teléfono"></textarea>
-                      
-                                        <label class="error mt-2 text-danger" 
-                                                for="comentarios" 
-                                                *ngIf="campoNoValido('comentarios')">*Digite Comentarios.</label>
-                                    </div>
-                                </div>
-            
                             
                             </div>
                         
@@ -144,7 +133,7 @@
                              </ul>
                           </div>
                         </div>
-                    </div> -->
+                    </div>
 
             </div>
         </div>
