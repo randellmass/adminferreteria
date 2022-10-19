@@ -10,10 +10,11 @@ import { SharedModule } from '../../shared/shared.module';
 import { DespachoAdminDetalleIndexComponent } from './pages/despacho-admin-detalle-index/despacho-admin-detalle-index.component';
 import { DespachoAdminPedidoUpdateComponent } from './pages/despacho-admin-pedido-update/despacho-admin-pedido-update.component';
 import { DespachoAdminDetalleUpdateComponent } from './pages/despacho-admin-detalle-update/despacho-admin-detalle-update.component';
+import { DespachoAdminUpdateComponent } from './pages/despacho-admin-update/despacho-admin-update.component';
 
 
 @NgModule({
-  declarations: [DespachoAdminIndexComponent, DespachoAdminPedidoIndexComponent, DespachoAdminDetalleIndexComponent, DespachoAdminPedidoUpdateComponent, DespachoAdminDetalleUpdateComponent],
+  declarations: [DespachoAdminIndexComponent, DespachoAdminPedidoIndexComponent, DespachoAdminDetalleIndexComponent, DespachoAdminPedidoUpdateComponent, DespachoAdminDetalleUpdateComponent, DespachoAdminUpdateComponent],
   imports: [
     CommonModule,
     DespachosRoutingModule,

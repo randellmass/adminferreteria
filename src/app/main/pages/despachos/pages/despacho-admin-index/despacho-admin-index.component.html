@@ -27,6 +27,7 @@
                             <td>{{ item['despacho_estado_nombre'] }}</td>
                             <td>
                                 <button type="button" (click)="despacho_detalle(item['id'])" class="btn btn-outline-primary btn-sm">Pedidos</button>
+                                <button type="button" (click)="despacho_editar(item)" class="btn btn-outline-dark btn-sm">Editar</button>
                             </td>
                         </tr>
                
@@ -38,8 +39,10 @@
     </div>
 
     <div class="col-md-4">
-        <div class="card">
+        <div class="card" *ngIf="!loading && operacion=='guardar'">
             <div class="card-body" *ngIf="!loading">
+
+                    <h4 class="card-subtitle">Crear Despacho</h4>
      
                     <form class="cmxform mt-2" (ngSubmit)="agregar_despacho()" [formGroup]="formDespacho" >
                         <fieldset>
@@ -137,6 +140,14 @@
 
             </div>
         </div>
+        <app-despacho-admin-update
+                *ngIf="!loading && operacion=='editar'" 
+                [despachos_arr]="despachos" 
+                [despacho_id]="despacho_id" 
+                (despacho_form)="despachos = $event" 
+                (operacion_editar)="operacion = $event">
+        </app-despacho-admin-update>
+
     </div>
 </div>
 

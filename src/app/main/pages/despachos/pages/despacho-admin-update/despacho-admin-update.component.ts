@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-
 import { UsuariosService } from '../../../usuarios/services/usuarios.service';
 import { DespachosService } from '../../services/despachos.service';
 
 @Component({
-  selector: 'app-despacho-admin-index',
-  templateUrl: './despacho-admin-index.component.html',
-  styleUrls: ['./despacho-admin-index.component.css']
+  selector: 'app-despacho-admin-update',
+  templateUrl: './despacho-admin-update.component.html',
+  styleUrls: ['./despacho-admin-update.component.css']
 })
-export class DespachoAdminIndexComponent implements OnInit {
+export class DespachoAdminUpdateComponent implements OnInit {
+
+  @Input() despachos_arr:any[];
+  @Input() despacho_id:any;
+  @Output() despacho_form = new EventEmitter<any>();
+  @Output() operacion_editar = new EventEmitter<any>();
 
   formDespacho:FormGroup = this.fb.group({
     vehiculo_id: ['',[Validators.required]],
@@ -18,24 +21,29 @@ export class DespachoAdminIndexComponent implements OnInit {
     conductor_id: ['',[Validators.required]],
     auxiliar: ['',[Validators.required]],
     kilometraje_inicial: ['',[Validators.required]],
+    kilometraje_final: ['',[Validators.required]],
+    despacho_estado_id: ['',[Validators.required]],
   });
-  
+
+   
   despachos:any[];
-  despacho_id:any;
   ciudades:any[];
   usuarios:any[];
   vehiculos:any[];
+  estados:any[];
+  operacion:string;
   loading:boolean = false;
   errors:any =[];
-  operacion:string="guardar";
 
-  constructor(private fb:FormBuilder,
-              private despachosService: DespachosService,
-              private usuariosService: UsuariosService,
-              private router:Router) { }
+  constructor(
+        private fb:FormBuilder,
+        private despachosService: DespachosService,
+        private usuariosService: UsuariosService
+  ) { }
 
   ngOnInit(): void {
     this.index_despachos();
+    this.cargar_despacho();
   }
 
   campoNoValido(campo:string){
@@ -91,46 +99,61 @@ export class DespachoAdminIndexComponent implements OnInit {
     }
 
 
+  
+    const listado_estados = await this.despachosService.index_despacho_estados();
+    
+    if (listado_estados['res'])
+    {
+        this.estados = listado_estados['data'];
+        //console.log(this.almacenes);
+    } else {  
+        this.errors = listado_estados['data'];
+      
+    }
+   
 
     this.loading = false;
   }
 
-  despacho_detalle(despacho_id:any){
-    this.router.navigateByUrl(`main/despachos/detalle/${despacho_id}`);
+  cargar_despacho(){
+    this.formDespacho.reset({
+        ...this.despacho_id
+    });
   }
 
-  async despacho_editar(despacho_id:any)
+
+ cancelar_editar(){
+    this.operacion_editar.emit('guardar');
+  }
+
+  async editar_despacho()
   {
-      this.operacion = "editar";
+      if(this.formDespacho.invalid){
+        this.formDespacho.markAllAsTouched();
+        return;
+      }
+
       this.loading = true;
-      this.despacho_id = despacho_id
-      this.loading = false;
 
-  }
+      const orden_reg = await this.despachosService.update_despachos(this.despacho_id['id'],this.formDespacho.value);
+      if (orden_reg['res'])
+      {
+        const i = this.despachos_arr.indexOf( this.despacho_id );
 
-
-  async agregar_despacho()
-  {
-        if(this.formDespacho.invalid){
-          this.formDespacho.markAllAsTouched();
-          return;
-        }
-        this.loading = true;
-
-        const despacho_reg = await this.despachosService.store_despachos(this.formDespacho.value);
-        if (despacho_reg['res'])
-        {
+          if ( i !== -1 ) {
+            this.despachos_arr[i] = orden_reg['data'];
+          }  
+            this.operacion_editar.emit('guardar');
             
-            this.despachos.unshift(despacho_reg['data']);  
-            this.errors=[];
+            this.errors = [];
             this.formDespacho.reset();
-            this.loading = false;
-        }else{
-            this.errors = despacho_reg['data'];
-            this.loading = false;
-        }
+          this.loading = false;
+      }else{
+          this.errors = orden_reg['data'];
+          this.loading = false;
+      }
 
-  
-  }
+
+    }
 
 }

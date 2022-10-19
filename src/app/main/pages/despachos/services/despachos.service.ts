@@ -85,6 +85,39 @@ export class DespachosService {
   
     }
 
+    update_despachos(despacho_id:any,despacho:any)
+    {
+      
+      return new Promise<any>( resolve =>{
+        
+        const headers = new HttpHeaders({
+          'Accept': 'application/json', 
+          'Authorization': `Bearer ${ this.authService.token }` 
+        });
+
+        this.http.put(`${ URL}/despachos/${ despacho_id }`, despacho ,{ headers })
+        .subscribe( resp =>{
+          
+                if(resp['res'])
+                {
+                    resolve({
+                        res:true,
+                        data: resp['data']
+                    });
+                }else{
+                    resolve({
+                        res:false,
+                        data:resp['mensaje']
+                    });
+                }
+        
+          });
+
+        }); 
+
+    } 
+    
+
     index_despachos_pedido(despacho_id:any)
     {
      
