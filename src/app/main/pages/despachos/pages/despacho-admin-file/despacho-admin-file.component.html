@@ -1,1 +1,179 @@
-<p>despacho-admin-file works!</p>
+<div class="row mt-2">
+    <div class="col-md-12">
+        <div class="card">
+            <app-loading *ngIf="loading"></app-loading>
+            
+            
+            <div class="card-body" *ngIf="!loading">
+                <h3 class="card-subtitle">Pedido</h3>
+                
+                <table class="table table-responsive table-bordered">
+                    <tbody>
+                        <tr>
+                            <td>Fecha recibido:</td>
+                            <td>{{ pedido['fecha_recibido'] | date:'YYYY-MM-dd' }}</td>
+                            <td>Fecha Entrega:</td>
+                            <td>{{ pedido['fecha_entrega'] | date:'YYYY-MM-dd' }}</td>
+                            <td>Documento:</td>
+                            <td>{{ pedido['documento'] }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Cliente:</td>
+                            <td>{{ pedido['cliente'] }}</td>
+                            <td>Cliente Dirección:</td>
+                            <td>{{ pedido['cliente_direccion']}}</td>
+                            <td>Observaciones:</td>
+                            <td>{{ pedido['cliente_comentario'] }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>BodegaVenta:</td>
+                            <td>{{ pedido['almacen_venta_nombre'] }}</td>
+                            <td>Vendedor:</td>
+                            <td>{{ pedido['vendedor_nombre']}}</td>
+                            <td>Bodega Origen:</td>
+                            <td>{{ pedido['almacen_origen_nombre'] }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>BodegaDestino:</td>
+                            <td>{{ pedido['almacen_destino_nombre'] }}</td>
+                            <td>Esatdo:</td>
+                            <td>{{ pedido['despacho_estado_nombre']}}</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+               
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+    </div>
+
+   
+</div>
+<div class="row mt-3">
+    <div class="col-md-4">
+        <div class="card" *ngIf="!loading && operacion=='guardar'">
+            <div class="card-body" *ngIf="!loading">
+
+                    <h4 class="card-subtitle">Crear Despacho</h4>
+     
+                    <!-- <form class="cmxform mt-2" (ngSubmit)="agregar_despacho()" [formGroup]="formDespacho" >
+                        <fieldset>
+                        
+                            <div class="row">
+            
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Placa:</label>
+                                        <select formControlName="vehiculo_id" 
+                                                class="form-control">
+                                            <option value="" selected>Seleccionar</option>
+                                            <option value="{{ vehiculo['id']}}" *ngFor="let vehiculo of vehiculos">{{ vehiculo['placa'] }}</option>
+                                        </select>
+                                        <label class="error mt-2 text-danger" 
+                                                for="vehiculo_id" 
+                                                *ngIf="campoNoValido('vehiculo_id')">*Escoja placa</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Ciudad:</label>
+                                        <select formControlName="ciudad_id" 
+                                                class="form-control">
+                                            <option value="" selected>Seleccionar</option>
+                                            <option value="{{ ciudad['id']}}" *ngFor="let ciudad of ciudades">{{ ciudad['nombre'] }}</option>
+                                        </select>
+                                        <label class="error mt-2 text-danger" 
+                                                for="ciudad_id" 
+                                                *ngIf="campoNoValido('ciudad_id')">*Escoja ciudad</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+            
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label>Usuario:</label>
+                                            <select formControlName="conductor_id" 
+                                                    class="form-control">
+                                                <option value="" selected>Seleccionar</option>
+                                                <option value="{{ user['id']}}" *ngFor="let user of usuarios">{{ user['email'] }}</option>
+                                            </select>
+                                            <label class="error mt-2 text-danger" 
+                                                    for="conductor_id" 
+                                                    *ngIf="campoNoValido('conductor_id')">*Escoja usuario</label>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Auxiliar:</label>
+                                        <input type="text" 
+                                            formControlName="auxiliar"
+                                            class="form-control"
+                                            placeholder="Digite auxiliar" />
+                                        <label class="error mt-2 text-danger" 
+                                                for="auxiliar" 
+                                                *ngIf="campoNoValido('auxiliar')">*Digite Auxiliar:</label>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Kilometraje inicial:</label>
+                                        <input type="number" 
+                                            formControlName="kilometraje_inicial"
+                                            class="form-control"
+                                            placeholder="Digite Kilometraje vehiculo" />
+                                        <label class="error mt-2 text-danger" 
+                                                for="kilometraje_inicial" 
+                                                *ngIf="campoNoValido('kilometraje_inicial')">*Digite kilometraje actual</label>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Fecha/hora Salida:</label>
+                                        <input type="datetime-local" 
+                                            formControlName="fecha_salida"
+                                            class="form-control"
+                                            placeholder="Digite fecha y hora salida" />
+                                        <label class="error mt-2 text-danger" 
+                                                for="fecha_salida" 
+                                                *ngIf="campoNoValido('fecha_salida')">*Digite fecha y hora salida"</label>
+                                    </div>
+                                </div>
+                            
+                            </div>
+                        
+                            <button type="submit" class="btn btn-outline-primary">Agregar</button>
+                        </fieldset>
+                    </form> -->
+
+                    <div class="row mt-2" *ngIf="errors.length>0">
+                        <div class="col-12">
+                          <div class="alert alert-danger " role="alert">
+                             <ul>
+                                 <li *ngFor="let error of errors" >{{ error }}</li>
+                             </ul>
+                          </div>
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+

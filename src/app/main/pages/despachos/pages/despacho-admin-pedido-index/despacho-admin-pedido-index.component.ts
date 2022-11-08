@@ -94,6 +94,11 @@ export class DespachoAdminPedidoIndexComponent implements OnInit {
       this.pedido_id = pedido_id;
   }
 
+  pedido_archivos(pedido:any)
+  {
+      this.router.navigateByUrl(`main/despachos/archivos/${pedido['id']}`);
+  }
+
   async agregar_pedido()
   {
         if(this.formPedido.invalid){

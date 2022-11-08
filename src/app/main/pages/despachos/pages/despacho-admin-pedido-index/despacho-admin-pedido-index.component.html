@@ -46,7 +46,12 @@
                             </td>
                             <td>{{ item['despacho_estado_nombre'] }}</td>
                             <td>
-                                <button type="button" (click)="pedido_editar(item)" class="btn btn-outline-dark btn-sm">Editar</button>
+                                <div>
+                                    <button type="button" (click)="pedido_editar(item)" class="btn btn-outline-dark btn-sm">Editar</button>
+                                </div>
+                                <div>
+                                    <button type="button" (click)="pedido_archivos(item)" class="btn btn-outline-info btn-sm">Arhivos</button>
+                                </div>
                             </td>
                         </tr>
                
