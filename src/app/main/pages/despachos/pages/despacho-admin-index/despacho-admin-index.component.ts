@@ -18,6 +18,7 @@ export class DespachoAdminIndexComponent implements OnInit {
     conductor_id: ['',[Validators.required]],
     auxiliar: ['',[Validators.required]],
     kilometraje_inicial: ['',[Validators.required]],
+    fecha_salida: ['',[Validators.required]],
   });
   
   despachos:any[];

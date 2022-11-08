@@ -112,7 +112,7 @@ export class FilesSubirService {
 
     } 
 
-    eliminar_file(archivo_id:number)
+  eliminar_file(archivo_id:number)
   {
 
     return new Promise<any>( resolve =>{

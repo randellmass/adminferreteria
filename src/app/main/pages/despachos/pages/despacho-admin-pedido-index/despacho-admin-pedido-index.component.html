@@ -27,8 +27,18 @@
                             <td scope="row">{{ item['fecha_recibido'] | date:'YYYY-MM-dd' }}</td>
                             <td>{{ item['fecha_entrega'] | date:'YYYY-MM-dd' }}</td>
                             <td>{{ item['documento'] }}</td>
-                            <td>{{ item['cliente'] }}</td>
-                            <td>{{ item['almacen_venta_nombre'] }}</td>
+                            <td>
+                                <div><strong>Cliente:</strong>{{ item['cliente'] }} </div>
+                                <div class="mt-1"><strong>Cel/Tel:</strong> {{ item['cliente_cel'] }} </div>
+                                <div class="mt-1"><strong>Dirección:</strong>{{ item['cliente_direccion'] }} </div>
+                                <div class="mt-1"><strong>Comentario:</strong>{{ item['cliente_comentario'] }} </div>
+                            </td>
+                            <td>
+                                <div><strong>Bodega:</strong></div>
+                                <div>{{ item['almacen_venta_nombre'] }} </div>
+                                <div class="mt-1"><strong>Vendedor:</strong></div>
+                                <div>{{ item['vendedor_nombre'] }} </div>
+                            </td>
                             <td>{{ item['almacen_origen_nombre'] }}</td>
                             <td>{{ item['almacen_destino_nombre'] }}</td>
                             <td>
@@ -90,7 +100,7 @@
                                     <input type="text" 
                                         formControlName="cliente"
                                         class="form-control"
-                                        placeholder="Digite fecha recibido" />
+                                        placeholder="Digite cliente" />
                                     <label class="error mt-2 text-danger" 
                                             for="cliente" 
                                             *ngIf="campoNoValido('cliente')">*Digite Cliente:</label>
@@ -104,10 +114,36 @@
                                     <input type="number" 
                                         formControlName="cliente_cel"
                                         class="form-control"
-                                        placeholder="Digite fecha recibido" />
+                                        placeholder="Digite Celular" />
                                     <label class="error mt-2 text-danger" 
                                             for="cliente_cel" 
                                             *ngIf="campoNoValido('cliente_cel')">*Digite no Celular/tel cliente:</label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Cliente Dirección:</label>
+                                    <input type="text" 
+                                        formControlName="cliente_direccion"
+                                        class="form-control"
+                                        placeholder="Digite dirección" />
+                                    <label class="error mt-2 text-danger" 
+                                            for="cliente_direccion" 
+                                            *ngIf="campoNoValido('cliente_direccion')">*Digite dirección:</label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Cliente observación:</label>
+                                    <input type="text" 
+                                        formControlName="cliente_comentario"
+                                        class="form-control"
+                                        placeholder="Digite observación" />
+                                    <label class="error mt-2 text-danger" 
+                                            for="cliente_comentario" 
+                                            *ngIf="campoNoValido('cliente_comentario')">*Digite observación:</label>
                                 </div>
                             </div>
         
@@ -123,6 +159,24 @@
                                             for="almacen_venta_id" 
                                             *ngIf="campoNoValido('almacen_venta_id')">*Escoja bodega venta </label>
                                 </div>
+                            </div>
+
+                            <div class="row">
+            
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Usuario:</label>
+                                        <select formControlName="vendedor_id" 
+                                                class="form-control">
+                                            <option value="" selected>Seleccionar</option>
+                                            <option value="{{ user['id']}}" *ngFor="let user of usuarios">{{ user['email'] }}</option>
+                                        </select>
+                                        <label class="error mt-2 text-danger" 
+                                                for="vendedor_id" 
+                                                *ngIf="campoNoValido('vendedor_id')">*Escoja vendedor</label>
+                                    </div>
+                                </div>
+                            
                             </div>
 
                             <div class="col-lg-12">

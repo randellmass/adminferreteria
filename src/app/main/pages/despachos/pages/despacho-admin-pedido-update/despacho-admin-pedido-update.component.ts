@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AlmacenService } from '../../../almacen/services/almacen.service';
+import { UsuariosService } from '../../../usuarios/services/usuarios.service';
 import { DespachosService } from '../../services/despachos.service';
 
 @Component({
@@ -22,13 +23,17 @@ export class DespachoAdminPedidoUpdateComponent implements OnInit {
     documento: ['',[Validators.required]],
     cliente: ['',[Validators.required]],
     cliente_cel: ['',[Validators.required]],
+    cliente_direccion: ['',[Validators.required]],
+    cliente_comentario: ['',],
     almacen_venta_id: ['',[Validators.required]],
+    vendedor_id: ['',[Validators.required]],
     almacen_origen_id: ['',[Validators.required]],
     almacen_destino_id: ['',[Validators.required]],
     despacho_estado_id: ['',[Validators.required]],
   });
 
   almacenes:any[];
+  usuarios:any[];
   estados:any[];
   operacion:string;
   loading:boolean = false;
@@ -37,6 +42,7 @@ export class DespachoAdminPedidoUpdateComponent implements OnInit {
 
   constructor(private fb:FormBuilder,
               private despachosService: DespachosService,
+              private usuariosService: UsuariosService,
               private almacenservice: AlmacenService) { }
 
     ngOnInit(): void {
@@ -70,6 +76,17 @@ export class DespachoAdminPedidoUpdateComponent implements OnInit {
           //console.log(this.almacenes);
       } else {  
           this.errors = listado_estados['data'];
+        
+      }
+
+      const listado_usuarios = await this.usuariosService.listado_Usuarios();
+      
+      if (listado_usuarios['res'])
+      {
+          this.usuarios = listado_usuarios['data'];
+          //console.log(this.almacenes);
+      } else {  
+          this.errors = listado_usuarios['data'];
         
       }
      

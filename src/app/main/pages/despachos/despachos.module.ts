@@ -11,10 +11,11 @@ import { DespachoAdminDetalleIndexComponent } from './pages/despacho-admin-detal
 import { DespachoAdminPedidoUpdateComponent } from './pages/despacho-admin-pedido-update/despacho-admin-pedido-update.component';
 import { DespachoAdminDetalleUpdateComponent } from './pages/despacho-admin-detalle-update/despacho-admin-detalle-update.component';
 import { DespachoAdminUpdateComponent } from './pages/despacho-admin-update/despacho-admin-update.component';
+import { DespachoAdminFileComponent } from './pages/despacho-admin-file/despacho-admin-file.component';
 
 
 @NgModule({
-  declarations: [DespachoAdminIndexComponent, DespachoAdminPedidoIndexComponent, DespachoAdminDetalleIndexComponent, DespachoAdminPedidoUpdateComponent, DespachoAdminDetalleUpdateComponent, DespachoAdminUpdateComponent],
+  declarations: [DespachoAdminIndexComponent, DespachoAdminPedidoIndexComponent, DespachoAdminDetalleIndexComponent, DespachoAdminPedidoUpdateComponent, DespachoAdminDetalleUpdateComponent, DespachoAdminUpdateComponent, DespachoAdminFileComponent],
   imports: [
     CommonModule,
     DespachosRoutingModule,

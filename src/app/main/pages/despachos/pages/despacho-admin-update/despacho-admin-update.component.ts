@@ -22,6 +22,8 @@ export class DespachoAdminUpdateComponent implements OnInit {
     auxiliar: ['',[Validators.required]],
     kilometraje_inicial: ['',[Validators.required]],
     kilometraje_final: ['',[Validators.required]],
+    fecha_salida: ['',[Validators.required]],
+    fecha_retorno: ['',[Validators.required]],
     despacho_estado_id: ['',[Validators.required]],
   });
 
