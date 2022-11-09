@@ -23,10 +23,12 @@ export class SubirArchivoComponent implements OnInit {
     nombre: ['',[Validators.required,Validators.minLength(3)]],
     file: ['',[Validators.required]]
   });
+  
 
   file:File;
   roles:any =[];
   archivo_tipos:any =[];
+  archivo:any;
   loading:boolean = true;
   errors:any =[];
   archivos:any=[];
@@ -59,19 +61,21 @@ export class SubirArchivoComponent implements OnInit {
       this.form_file.markAllAsTouched();
       return;
     }
-    
-     //subimos la foto
-     const archivo = await this.filesSubirService.subir_file(
-                                this.file,
-                                this.modelo,
-                                this.modelo_id,
-                                this.form_file.get('roles').value,
-                                this.form_file.get('archivo_tipo_id').value,
-                                this.form_file.get('nombre').value);
-     if (archivo['res'])
+
+      //subimos la foto
+      
+      this.archivo = await this.filesSubirService.subir_file(
+                                  this.file,
+                                  this.modelo,
+                                  this.modelo_id,
+                                  this.form_file.get('roles').value,
+                                  this.form_file.get('archivo_tipo_id').value,
+                                  this.form_file.get('nombre').value);
+     
+     if (this.archivo['res'])
      {
         //console.log(archivo['data']['files']);
-        this.archivos = archivo['data']['files'];
+        this.archivos = this.archivo['data']['files'];
 
         this.archivos_form.emit(this.archivos);
 

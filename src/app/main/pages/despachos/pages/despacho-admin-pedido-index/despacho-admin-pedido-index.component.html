@@ -18,6 +18,7 @@
                             <th>BOrigen:</th>
                             <th>BDestino:</th>
                             <th>QR</th>
+                            <th>Files</th>
                             <th>Estado:</th>
                             <th>Opción</th>
                         </tr>
@@ -44,13 +45,18 @@
                             <td>
                                 <qrcode class="mt-4" [qrdata]="item['qr']" [width]="100" [errorCorrectionLevel]="'M'" [margin]=1></qrcode>
                             </td>
+                            <td >
+                                <div [ngStyle]="{ width:'130px', marginTop:'8px' }" *ngFor="let archivo of item['files']">
+                                    <a [href]="archivo['url']|imagen" target="_blank" >{{ archivo['nombre']}}</a>
+                                </div>
+                            </td>
                             <td>{{ item['despacho_estado_nombre'] }}</td>
                             <td>
                                 <div>
                                     <button type="button" (click)="pedido_editar(item)" class="btn btn-outline-dark btn-sm">Editar</button>
                                 </div>
-                                <div>
-                                    <button type="button" (click)="pedido_archivos(item)" class="btn btn-outline-info btn-sm">Arhivos</button>
+                                <div class="mt-2">
+                                    <button type="button" (click)="pedido_archivos(item)" class="btn btn-outline-info btn-sm">Archivos</button>
                                 </div>
                             </td>
                         </tr>
