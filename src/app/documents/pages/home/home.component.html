@@ -1,1 +1,100 @@
-<p>home works!</p>
+<div class="row ">
+    <div class="col-md-8 col-xs-12 m-auto">
+
+        <div class="row ">
+            <div class="col-md-6 col-xs-12">
+
+                <div class="row mb-2">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-subtitle">Consulta Pedido</h4>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-xs-12">
+                <div class="card">
+                    <div class="card-body">
+                            <form class="d-flex" [formGroup]="formBuscarPedido" (ngSubmit)="buscar_pedido()">
+                    
+                                <input class="form-control me-2"
+                                    formControlName="buscarPedido"
+                                    type="search" 
+                                    placeholder="Digite su Nit/CC" aria-label="Search">
+                                <button class="btn btn-outline-primary"
+                                        type="submit">BuscarPedido</button>
+                            </form>
+                            <div class="error mt-2 text-danger" 
+                                        for="buscarPedido" 
+                                        *ngIf="campoNoValido('buscarPedido')">*Debe digitar Nit/CC: </div>
+
+                            <div class="row mt-5" *ngIf="errors.length>0">
+                                <div class="col-12">
+                                    <div class="alert alert-danger " role="alert">
+                                        <ul>
+                                            <li *ngFor="let error of errors" >{{ error }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                
+        
+                <div class="card">
+                    <div class="card-body">
+        
+           
+                        <app-loading *ngIf="loading"></app-loading>
+                        
+                        <table *ngIf="!loading && pedidos.length>0" class="table table-bordered table-hover table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Documento</th>
+                                    <th>Cliente</th>
+                                    <th>Observación:</th>
+                                    <th>Costo</th>
+                                    <th>Guia</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let pedido of pedidos">
+                                    <td>{{ pedido['documento']}}</td>
+                                    <td>
+                                        <div class="mb-2"><strong>Cliente:</strong>&nbsp;{{ pedido['tercero_documento']}} - {{ pedido['tercero_nombre']}}</div>
+                                        <div class="mb-2"><strong>F.Recibido:</strong>&nbsp;{{ pedido['fecha_recibido']}}</div>
+                                        <div class="mb-2"><strong>F.Entrega:</strong>&nbsp;{{ pedido['fecha_entrega']}}</div>
+                                        <div class="mb-2"><strong>Dias Entrega:</strong>&nbsp;{{ pedido['dias_entrega']}}</div>
+                                        <div class="mb-2"><strong>Vendedor:</strong>&nbsp;{{ pedido['vendedor_email']}}</div>
+                                        <div class="mb-2"><strong>Almácen:</strong>&nbsp;{{ pedido['almacen_nombre']}}</div>
+                                    </td>
+                                    <td>{{ pedido['observacion_publica']}}</td>
+                                    <td>{{ pedido['valor_costo'] | number}}</td>
+                                    <td>{{ pedido['guia']}}</td>
+                                    <td>{{ pedido['pedidoestado_nombre']}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                </div>
+        
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

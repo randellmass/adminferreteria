@@ -12,14 +12,12 @@ import { PedidosService } from '../../services/pedidos.service';
 export class ListadoPedidosComponent implements OnInit {
 
     formBuscarPedido:FormGroup = this.fb.group({
-      buscarPedido : [''],
-      buscarTipo : ['',[Validators.required]]
+      buscarPedido : ['',[Validators.required]]
     });
 
     errors:any=[];
     loading:boolean = false;
     pedidos:any[] =[];
-    tipos:any[] =[];
     pedido_id:any;
     operacion:string="guardar";
     
@@ -48,16 +46,6 @@ export class ListadoPedidosComponent implements OnInit {
           this.errors = result_ter['data']; 
         }
 
-        const result_tipos = await this.pedidosService.index_pedido_tipos();
-        if (result_tipos['res'])
-        {
-          this.errors="";  
-          this.tipos = result_tipos['data'];  
-     
-        } else {
-          this.errors = result_tipos['data']; 
-        }
-
         this.loading= false; 
     }
 
@@ -69,10 +57,6 @@ export class ListadoPedidosComponent implements OnInit {
     editar_pedido(pedido:any){
       this.router.navigate(['main/pedidos/editar/',pedido['id']]);
 
-    }
-
-    ordenes_pedido(pedido:any){
-        this.router.navigate(['main/pedidos/ordenes/',pedido['id']]);
     }
 
     ver_pedido(pedido:any){
@@ -93,7 +77,7 @@ export class ListadoPedidosComponent implements OnInit {
       if (pedido_result['res'])
       {
         this.pedidos = pedido_result['data'];
-        //console.log(this.pedidos);
+        // console.log(this.pedidos);
         this.errors = [];
       } else {
         this.pedidos= null;

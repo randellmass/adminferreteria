@@ -38,8 +38,7 @@ export class VerPedidosComponent implements OnInit {
         {
           this.errors="";  
           this.pedido = result_pedido['data'];  
-          this.ordenes = this.pedido['ordenes'];
-
+       
         } else {
           this.errors = result_pedido['data']; 
         }

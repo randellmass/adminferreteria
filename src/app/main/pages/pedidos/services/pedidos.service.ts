@@ -260,7 +260,6 @@ export class PedidosService {
         
         const headers = new HttpHeaders({
           'Accept': 'application/json', 
-          'Authorization': `Bearer ${ this.authService.token }` 
         });
   
         this.http.post(`${ URL}/pedido/buscarComercial`, pedido ,{ headers })

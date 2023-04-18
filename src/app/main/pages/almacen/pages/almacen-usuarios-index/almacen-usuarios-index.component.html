@@ -54,12 +54,7 @@
             
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label>Rol:</label>
-                                        <select formControlName="infor_v_rol_id" 
-                                                class="form-control">
-                                            <option value="" selected>Seleccionar</option>
-                                            <option value="{{ rol['id']}}" *ngFor="let rol of roles">{{ rol['nombre'] }}</option>
-                                        </select>
+                       
                                         <label class="error mt-2 text-danger" 
                                                 for="infor_v_rol_id" 
                                                 *ngIf="campoNoValido('infor_v_rol_id')">*Escoja Rol en punto de venta...</label>

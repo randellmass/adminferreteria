@@ -59,11 +59,11 @@ export class PresupuestoAdminReporteIndexComponent implements OnInit {
           this.actividadesdirector = this.presupuesto['actividadesdirector'];
 
           this.cotizaciones.forEach(cot =>  {
-              this.sumaCotizaciones+=cot['cantidad'];
+              this.sumaCotizaciones+=parseInt(cot['cantidad']);
           });
 
           this.redesotros.forEach(cot =>  {
-              this.sumaRedesOtro+=cot['cantidad'];
+              this.sumaRedesOtro+=parseInt(cot['cantidad']);
           });
 
           //calculo de porcentaje cotizaciones

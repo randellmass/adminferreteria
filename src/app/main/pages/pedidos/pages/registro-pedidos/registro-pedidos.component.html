@@ -30,20 +30,6 @@
 
                     <div class="col-lg-3">
                         <div class="form-group">
-                            <label for="">Tipo:</label>
-                            <select class="form-control" formControlName="pedidotipo_id">
-                                <option value="" selected>*Escoja Tipo</option>
-                                <option [value]="tipo['id']" *ngFor="let tipo of tipos">{{ tipo['nombre'] }}</option>
-                            </select>
-                            <label class="error mt-2 text-danger" 
-                                for="pedidotipo_id" 
-                            *ngIf="campoNoValido('pedidotipo_id')">*Escoja tipo: </label>
-                        </div>
-                        
-                    </div>
-
-                    <div class="col-lg-3" *ngIf="!oculto_tipo">
-                        <div class="form-group">
                             <label for="">Documento:</label>
                             <input type="text" 
                                     class="form-control" 
@@ -66,6 +52,18 @@
                             *ngIf="campoNoValido('tercero_id')">*Escoja tercero: </label>
                         </div>
                         
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label for="">Guia:</label>
+                            <input type="text" 
+                                    class="form-control" 
+                                    formControlName="guia">
+                            <label class="error mt-2 text-danger" 
+                                for="guia" 
+                            *ngIf="campoNoValido('guia')">*Digite guia: </label>
+                        </div>
                     </div>
 
 
@@ -117,7 +115,7 @@
                             <label for="">Almácen:</label>
                             <select class="form-control" formControlName="almacen_id">
                                 <option value="" selected>*Escoja almácen</option>
-                                <option [value]="almacen['id']" *ngFor="let almacen of almacenes">{{ almacen['nombre'] }}</option>
+                                <option [value]="almacen['almacen_id']" *ngFor="let almacen of almacenes">{{ almacen['almacen_nombre'] }}</option>
                             </select>
                             <label class="error mt-2 text-danger" 
                                 for="almacen_id" 

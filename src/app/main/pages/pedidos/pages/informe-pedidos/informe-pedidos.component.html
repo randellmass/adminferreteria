@@ -24,7 +24,6 @@
                                 <tr>
                                     <th>Documento</th>
                                     <th>Cliente</th>
-                                    <th>Productos</th>
                                     <th>Observación interna</th>
                                     <th>Observación publica</th>
                                     <th>Costo</th>
@@ -33,7 +32,7 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let pedido of pedidos">
-                                    <td>{{ pedido['pedidotipo_nombre']}} - {{ pedido['documento']}}</td>
+                                    <td>{{ pedido['documento']}}</td>
                                     <td>
                                         <div class="mb-2"><strong>Cliente:</strong>&nbsp;{{ pedido['tercero_documento']}} - {{ pedido['tercero_nombre']}}</div>
                                         <div class="mb-2"><strong>F.Recibido:</strong>&nbsp;{{ pedido['fecha_recibido']}}</div>
@@ -42,26 +41,7 @@
                                         <div class="mb-2"><strong>Vendedor:</strong>&nbsp;{{ pedido['vendedor_email']}}</div>
                                         <div class="mb-2"><strong>Almácen:</strong>&nbsp;{{ pedido['almacen_nombre']}}</div>
                                     </td>
-                                    <td>
-                                        <table class="table2">
-                                            <thead>
-                                                <tr>
-                                                    <td>Código</td>
-                                                    <td>Referencia</td>
-                                                    <td>Cantidad</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr *ngFor="let orden of pedido['ordenes']">
-                                                    <td>{{ orden['equipo_codificacion']}}</td>
-                                                    <td>{{ orden['equipo_modelo']}}</td>
-                                                    <td>{{ orden['cantidad']}}</td>
-                                                </tr>
-                                            </tbody>
-
-                                        </table>
-                                        
-                                    </td>
+                   
                                     <td>{{ pedido['observacion_interna']}}</td>
                                     <td>{{ pedido['observacion_publica']}}</td>
                                     <td>{{ pedido['valor_costo'] | number}}</td>

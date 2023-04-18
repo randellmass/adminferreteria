@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { EquiposService } from '../../../equipos/services/equipos.service';
 import { TercerosService } from '../../../terceros/services/terceros.service';
 import { UsuariosService } from '../../../usuarios/services/usuarios.service';
 import { PedidosService } from '../../services/pedidos.service';
@@ -14,33 +13,9 @@ import { PedidosService } from '../../services/pedidos.service';
 })
 export class RegistroPedidosComponent implements OnInit {
   
-    ValidarConcepto(concepto:any,documento:string)
-    {
-      return (formGroup:AbstractControl):ValidationErrors | null =>{
 
-          const conceptoV = formGroup.get(concepto).value;
-          const documentoV = formGroup.get(documento).value;
-
-          if( (conceptoV == 1) || (conceptoV == 2) || (conceptoV == 3))
-          {
-            this.oculto_tipo = false;  
-            if(documentoV=="")
-              {
-                formGroup.get(documento).setErrors({cruzar:true});
-                return { cruzar:true }
-              }else{
-                formGroup.get(documento).setErrors(null);
-              }
-          }else{
-            this.oculto_tipo =true;
-          }
-    
-          return null;
-      }
-    }
   
     formPedido:FormGroup = this.fb.group({
-        pedidotipo_id: ['',[Validators.required]],
         documento: [''],
         tercero_id: ['',[Validators.required]],
         fecha_recibido: ['',[Validators.required]],
@@ -50,14 +25,9 @@ export class RegistroPedidosComponent implements OnInit {
         vendedor: ['',[Validators.required]],
         almacen_id: ['',[Validators.required]],
         valor_costo: [''],
-    },
-    {
-      validators:[ this.ValidarConcepto('pedidotipo_id','documento')]
+        guia: [''],
     });
 
-    form_buscar_equipo:FormGroup = this.fb.group({
-      buscarEquipo : ['',[Validators.required]]
-    });
 
     form_buscar_tercero:FormGroup = this.fb.group({
       buscarTercero: ['',[Validators.required]]
@@ -66,7 +36,6 @@ export class RegistroPedidosComponent implements OnInit {
     loading:boolean = true;
     errors:any =[];
     terceros:any[] =[];
-    tipos:any[] =[];
     almacenes:any[] =[];
     vendedores:any[] =[];
     oculto_tipo:boolean=true;
@@ -88,21 +57,20 @@ export class RegistroPedidosComponent implements OnInit {
     async cargarSelectForm(){
 
       this.loading=true;
-        const list_tipos = await this.pedidosService.index_pedido_tipos();
-        if (list_tipos['res'])
-        {
-            this.tipos = list_tipos['data'];
-        }
+
 
         const list_almacenes = await this.pedidosService.index_almacenes();
         if (list_almacenes['res'])
         {
             this.almacenes = list_almacenes['data'];
+            // console.log(this.almacenes)
         }
 
         const vendedores_list = await this.usuariosService.listado_Usuarios();
-        this.vendedores = vendedores_list;
-        //console.log(this.vendedores);
+        if(vendedores_list['res']){
+          this.vendedores = vendedores_list['data'];
+          // console.log(this.vendedores);
+        }
 
   
       this.loading=false;

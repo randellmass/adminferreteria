@@ -7,7 +7,6 @@ import { RegistroPedidosComponent } from './pages/registro-pedidos/registro-pedi
 import { EditarPedidosComponent } from './pages/editar-pedidos/editar-pedidos.component';
 import { SharedModule } from '../../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RegistroOrdenComponent } from './pages/registro-orden/registro-orden.component';
 import { ListadoOrdenComponent } from './pages/listado-orden/listado-orden.component';
 import { VerPedidosComponent } from './pages/ver-pedidos/ver-pedidos.component';
 import { InformePedidosComponent } from './pages/informe-pedidos/informe-pedidos.component';
@@ -19,7 +18,6 @@ import { EditarOrdenComponent } from './pages/editar-orden/editar-orden.componen
       ListadoPedidosComponent, 
       RegistroPedidosComponent, 
       EditarPedidosComponent, 
-      RegistroOrdenComponent, 
       ListadoOrdenComponent, VerPedidosComponent, InformePedidosComponent, EditarOrdenComponent],
   imports: [
     CommonModule,

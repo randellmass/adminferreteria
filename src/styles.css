@@ -2,7 +2,7 @@
 /* You can add global styles to this file, and also import other style files */
 .navbar.default-layout .navbar-brand-wrapper .navbar-brand img{
     width: calc(280px - 130px);
-    height: 25px;
+    height: 50px;
 }
 
 
@@ -233,6 +233,6 @@
 }
 
 .navbar.default-layout{
-	background:linear-gradient(120deg, #33b0e6, #227fae, #2a97c9);
+	background:linear-gradient(120deg, #971f1f, #971f1f, #971f1f);
 }
 

@@ -13,8 +13,7 @@ export class EditarPedidosComponent implements OnInit {
 
   
     formPedido:FormGroup = this.fb.group({
-        pedidotipo_id: [{value: '', disabled: true},[Validators.required]],
-        documento: [{value: '', disabled: true},[Validators.required]],
+        documento: ['',[Validators.required]],
         tercero_id: [{value: '', disabled: true},[Validators.required]],
         observacion_interna: [''],
         observacion_publica: [''],
@@ -23,6 +22,7 @@ export class EditarPedidosComponent implements OnInit {
         vendedor: ['',[Validators.required]],
         almacen_id: ['',[Validators.required]],
         valor_costo: [''],
+        guia: ['',[Validators.required]],
         pedidoestado_id: ['',[Validators.required]],
     });
 
@@ -76,10 +76,14 @@ export class EditarPedidosComponent implements OnInit {
         }
 
         const vendedores_list = await this.usuariosService.listado_Usuarios();
-        this.vendedores = vendedores_list;
+        if(vendedores_list['res']){
+          this.vendedores = vendedores_list['data'];
+        }
 
         const estados_list = await this.pedidosService.index_pedido_estados();
-        this.pedidoEstados = estados_list['data'];
+        if(estados_list['res']){
+          this.pedidoEstados = estados_list['data'];
+        }
 
       this.loading=false;
       

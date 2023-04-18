@@ -16,7 +16,6 @@ export class InformePedidosComponent implements OnInit {
     errors:any=[];
     loading:boolean = false;
     pedidos:any[] =[];
-    tipos:any[] =[];
     pedido_id:any;
     operacion:string="guardar";
     

@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { EquiposService } from '../../../equipos/services/equipos.service';
 import { OrdenesService } from '../../services/ordenes.service';
 
 @Component({

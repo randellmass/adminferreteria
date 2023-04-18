@@ -2278,25 +2278,25 @@ fieldset:disabled a {
 
 .btn-primary, .wizard > .actions a {
   color: #fff;
-  background-color: #2196f3;
-  border-color: #2196f3; }
+  background-color: #971f1f;
+  border-color: #971f1f; }
   .btn-primary:hover, .wizard > .actions a:hover {
     color: #fff;
-    background-color: #0c83e2;
-    border-color: #0c7cd5; }
+    background-color: #971f1f;
+    border-color: #971f1f; }
   .btn-primary:focus, .wizard > .actions a:focus, .btn-primary.focus, .wizard > .actions a.focus {
     -webkit-box-shadow: 0 0 0 0.2rem rgba(33, 150, 243, 0.5);
     box-shadow: 0 0 0 0.2rem rgba(33, 150, 243, 0.5); }
   .btn-primary.disabled, .wizard > .actions a.disabled, .btn-primary:disabled, .wizard > .actions a:disabled {
     color: #fff;
-    background-color: #2196f3;
-    border-color: #2196f3; }
+    background-color: #971f1f;
+    border-color: #971f1f; }
   .btn-primary:not(:disabled):not(.disabled):active, .wizard > .actions a:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .wizard > .actions a:not(:disabled):not(.disabled).active,
   .show > .btn-primary.dropdown-toggle, .wizard > .actions
   .show > a.dropdown-toggle {
     color: #fff;
-    background-color: #0c7cd5;
-    border-color: #0b75c9; }
+    background-color: #971f1f;
+    border-color: #971f1f; }
     .btn-primary:not(:disabled):not(.disabled):active:focus, .wizard > .actions a:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .wizard > .actions a:not(:disabled):not(.disabled).active:focus,
     .show > .btn-primary.dropdown-toggle:focus, .wizard > .actions
     .show > a.dropdown-toggle:focus {
@@ -2483,26 +2483,26 @@ fieldset:disabled a {
       box-shadow: 0 0 0 0.2rem rgba(37, 44, 70, 0.5); }
 
 .btn-outline-primary, .wizard > .actions .disabled a {
-  color: #2196f3;
+  color: #971f1f;
   background-color: transparent;
   background-image: none;
-  border-color: #2196f3; }
+  border-color: #971f1f; }
   .btn-outline-primary:hover, .wizard > .actions .disabled a:hover {
     color: #fff;
-    background-color: #2196f3;
-    border-color: #2196f3; }
+    background-color: #971f1f;
+    border-color: #971f1f; }
   .btn-outline-primary:focus, .wizard > .actions .disabled a:focus, .btn-outline-primary.focus, .wizard > .actions .disabled a.focus {
     -webkit-box-shadow: 0 0 0 0.2rem rgba(33, 150, 243, 0.5);
     box-shadow: 0 0 0 0.2rem rgba(33, 150, 243, 0.5); }
   .btn-outline-primary.disabled, .wizard > .actions .disabled a.disabled, .btn-outline-primary:disabled, .wizard > .actions .disabled a:disabled {
-    color: #2196f3;
+    color: #971f1f;
     background-color: transparent; }
   .btn-outline-primary:not(:disabled):not(.disabled):active, .wizard > .actions .disabled a:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active, .wizard > .actions .disabled a:not(:disabled):not(.disabled).active,
   .show > .btn-outline-primary.dropdown-toggle, .wizard > .actions .disabled
   .show > a.dropdown-toggle {
     color: #fff;
-    background-color: #2196f3;
-    border-color: #2196f3; }
+    background-color: #971f1f;
+    border-color: #971f1f; }
     .btn-outline-primary:not(:disabled):not(.disabled):active:focus, .wizard > .actions .disabled a:not(:disabled):not(.disabled):active:focus, .btn-outline-primary:not(:disabled):not(.disabled).active:focus, .wizard > .actions .disabled a:not(:disabled):not(.disabled).active:focus,
     .show > .btn-outline-primary.dropdown-toggle:focus, .wizard > .actions .disabled
     .show > a.dropdown-toggle:focus {
@@ -8469,7 +8469,7 @@ input:focus {
       .navbar.default-layout .navbar-brand-wrapper .navbar-brand img {
         width: calc(255px - 130px);
         max-width: 100%;
-        height: 28px;
+        height: 50px;
         margin: auto;
         vertical-align: middle; }
     .navbar.default-layout .navbar-brand-wrapper .brand-logo-mini {
@@ -16642,7 +16642,7 @@ div.tagsinput {
             border-color: #e5e5e5; }
         .auth.theme-two .auto-form-wrapper form .form-group .input-group .input-group-prepend .input-group-text, .auth.theme-two .auto-form-wrapper form .form-group .asColorPicker-wrap .input-group-prepend .input-group-text, .auth.theme-two .auto-form-wrapper form .form-group .input-group .asColorPicker-trigger .input-group-text, .auth.theme-two .auto-form-wrapper form .form-group .asColorPicker-wrap .asColorPicker-trigger .input-group-text {
           border-radius: 6px 0 0 6px;
-          border-color: #e5e5e5;
+          border-color: #c9c8c8;
           border-right: none;
           color: #dfdfdf; }
       .auth.theme-two .auto-form-wrapper form .form-group .submit-btn {
@@ -16650,7 +16650,7 @@ div.tagsinput {
         font-size: 13px;
         padding: 11px 33px;
         font-weight: 600;
-        background-image: linear-gradient(120deg, #556cdc, #128bfc, #18bef1); }
+        background-image: linear-gradient(120deg, #971f1f, #971f1f, #971f1f); }
   .auth.theme-two .auto-form-wrapper .footer-text {
     font-size: 13px;
     margin-bottom: 0; }
@@ -16684,7 +16684,7 @@ div.tagsinput {
   .auth.theme-two .banner-section .slide-content {
     width: 100%; }
     .auth.theme-two .banner-section .slide-content.bg-1 {
-      background: url("../../images/auth/login_2.png") no-repeat center center;
+      background: url("../../images/auth/login_2.jpg") no-repeat center center;
       background-size: cover; }
     .auth.theme-two .banner-section .slide-content.bg-2 {
       background: url("../../images/auth/register_2.jpg") no-repeat center center;
@@ -16721,7 +16721,7 @@ div.tagsinput {
   .landing-page .navbar .navbar-collapse.show {
     display: block; }
   .landing-page .navbar .navbar-collapse .navbar-nav .nav-item .nav-link {
-    color: #ffffff;
+    color: #160a0ac7;
     padding-left: 1rem;
     padding-right: 1rem;
     font-size: 0.9375rem;
@@ -16737,7 +16737,7 @@ div.tagsinput {
           margin-right: 0; } }
 
 .landing-page .top-banner {
-  background: linear-gradient(120deg, #556cdc, #128bfc, #18bef1); }
+  background: linear-gradient(120deg, #e9e9ed, #e9e9ed, #e9e9ed); }
   .landing-page .top-banner .demo-image img {
     max-width: 500px; }
     @media (min-width: 992px) {

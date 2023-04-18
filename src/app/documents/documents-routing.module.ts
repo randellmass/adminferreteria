@@ -12,9 +12,6 @@ const routes: Routes = [
          path:'home', component:HomeComponent
       },
       {
-        path:'detail/:id', component:ProductsComponent
-      },
-      {
         path:'**', redirectTo:'home', pathMatch:'full'
       }
     ]

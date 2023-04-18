@@ -173,14 +173,14 @@ export class PresupuestoAdminResumenIndexComponent implements OnInit {
       this.cotxconceptos.forEach( (det,i) =>{
           if(item['infor_v_cot_concepto_id'] == det['infor_v_cot_concepto_id'])
           {
-            this.cotxconceptos[i] = {...det,"cantidad": det['cantidad']+ item['cantidad']}  
+            this.cotxconceptos[i] = {...det,"cantidad": parseInt(det['cantidad'])+ item['cantidad']}  
           } 
       });
 
     });
 
     this.cotxconceptos.forEach(cot => {
-      this.sumaCotizaciones += cot['cantidad'];
+      this.sumaCotizaciones += parseInt(cot['cantidad']);
     });
 
 
@@ -198,7 +198,7 @@ export class PresupuestoAdminResumenIndexComponent implements OnInit {
       this.redesotrosxconcepto.forEach( (det,i) =>{
           if(item['infor_v_otro_concepto_id'] == det['infor_v_otro_concepto_id'])
           {
-            this.redesotrosxconcepto[i] = {...det,"cantidad": det['cantidad']+ item['cantidad']}  
+            this.redesotrosxconcepto[i] = {...det,"cantidad": parseInt(det['cantidad'])+ item['cantidad']}  
           } 
       });
 
@@ -206,7 +206,7 @@ export class PresupuestoAdminResumenIndexComponent implements OnInit {
 
 
     this.redesotrosxconcepto.forEach(redotro => {
-      this.sumaRedesOtro += redotro['cantidad'];
+      this.sumaRedesOtro += parseInt(redotro['cantidad']);
     });
 
     //calculo de porcentaje cotizaciones

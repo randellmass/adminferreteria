@@ -5,7 +5,7 @@
             <div class="col-6">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-subtitle">Pedidos Producción</h5>
+                        <h5 class="card-subtitle">Pedidos</h5>
                     </div>
                 </div>
             </div>
@@ -14,11 +14,7 @@
                 <div class="card">
                     <div class="card-body">
                         <form class="d-flex" [formGroup]="formBuscarPedido" (ngSubmit)="buscar_pedido()">
-                                <select class="form-control  me-2" formControlName="buscarTipo">
-                                    <option value="" selected>*Escoja Tipo</option>
-                                    <option [value]="tipo['id']" *ngFor="let tipo of tipos">{{ tipo['nombre'] }}</option>
-                                </select>
-              
+                    
                                 <input class="form-control me-2"
                                     formControlName="buscarPedido"
                                     type="search" 
@@ -28,8 +24,8 @@
 
                         </form>
                         <div class="error mt-2 text-danger" 
-                                for="buscarTipo" 
-                                *ngIf="campoNoValido('buscarTipo')">*Escoja tipo: </div>
+                                for="buscarPedido" 
+                                *ngIf="campoNoValido('buscarPedido')">*buscarPedido: </div>
                     </div>
                 </div>
             </div>
@@ -53,17 +49,17 @@
                                 <tr>
                                     <th>Documento</th>
                                     <th>Cliente</th>
-                                    <th>Productos</th>
                                     <th>Observación Interna</th>
                                     <th>Observación Publica</th>
                                     <th>Costo</th>
                                     <th>Estado</th>
+                                    <th>Guia</th>
                                     <th>Opción</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let pedido of pedidos">
-                                    <td>{{ pedido['pedidotipo_nombre']}} - {{ pedido['documento']}}</td>
+                                    <td>{{ pedido['documento']}}</td>
                                     <td>
                                         <div class="mb-2"><strong>Cliente:</strong>&nbsp;{{ pedido['tercero_documento']}} - {{ pedido['tercero_nombre']}}</div>
                                         <div class="mb-2"><strong>F.Recibido:</strong>&nbsp;{{ pedido['fecha_recibido']}}</div>
@@ -72,36 +68,14 @@
                                         <div class="mb-2"><strong>Vendedor:</strong>&nbsp;{{ pedido['vendedor_email']}}</div>
                                         <div class="mb-2"><strong>Almácen:</strong>&nbsp;{{ pedido['almacen_nombre']}}</div>
                                     </td>
-                                    <td>
-                                        <table class="table2">
-                                            <thead>
-                                                <tr>
-                                                    <td>Código</td>
-                                                    <td>Referencia</td>
-                                                    <td>Cantidad</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr *ngFor="let orden of pedido['ordenes']">
-                                                    <td>{{ orden['equipo_codificacion']}}</td>
-                                                    <td>{{ orden['equipo_modelo']}}</td>
-                                                    <td>{{ orden['cantidad']}}</td>
-                                                </tr>
-                                            </tbody>
-
-                                        </table>
-                                        
-                                    </td>
                                     <td>{{ pedido['observacion_interna']}}</td>
                                     <td>{{ pedido['observacion_publica']}}</td>
                                     <td>{{ pedido['valor_costo'] | number}}</td>
+                                    <td>{{ pedido['guia']}}</td>
                                     <td>{{ pedido['pedidoestado_nombre']}}</td>
                                     <td>
                                         <div>
                                             <button type="button" class="btn btn-inverse-dark mb-2" (click)="editar_pedido(pedido)">Editar</button>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="btn btn-inverse-primary mb-2" (click)="ordenes_pedido(pedido)">Items</button>
                                         </div>
                                         <div>
                                             <button type="button" class="btn btn-inverse-success" (click)="ver_pedido(pedido)">Ver+</button>

@@ -21,7 +21,6 @@ export class AlmacenUsuariosIndexComponent implements OnInit {
   usuarios_almacen:any =[];
   almacen:any;
   usuarios:any =[];
-  roles:any =[];
   loading:boolean = false;
   errors:any =[];
 
@@ -45,58 +44,38 @@ export class AlmacenUsuariosIndexComponent implements OnInit {
   async show_almacen(almacen_id:number)
   {
     this.loading = true;
+    //TODO::buscar los almacenes
 
-    const almacen_show = await this.almacenService.show_almacen(almacen_id);
+    // const almacen_show = await this.almacenService.show_almacen(almacen_id);
     
-    if (almacen_show['res'])
-    {
-        this.almacen = almacen_show['data'];
-        this.index_usuarios_almacen(this.almacen['almacen_id']);
-        //console.log(this.almacenes);
-    } else {  
-        this.errors = almacen_show['data'];
+    // if (almacen_show['res'])
+    // {
+    //     this.almacen = almacen_show['data'];
+    //     this.index_usuarios_almacen(this.almacen['almacen_id']);
+    //     //console.log(this.almacenes);
+    // } else {  
+    //     this.errors = almacen_show['data'];
       
-    }
+    // }
     this.loading = false;
   }
 
   async index_usuarios_almacen(almacen_id:number)
   {
-    this.loading = true;
+    // this.loading = true;
 
-    const listado = await this.almacenService.index_usuarios_almacenes(almacen_id);
+    // const listado = await this.almacenService.index_usuarios_almacenes(almacen_id);
     
-    if (listado['res'])
-    {
-        this.usuarios_almacen = listado['data'];
-        //console.log(this.almacenes);
-    } else {  
-        this.errors = listado['data'];
+    // if (listado['res'])
+    // {
+    //     this.usuarios_almacen = listado['data'];
+    //     //console.log(this.almacenes);
+    // } else {  
+    //     this.errors = listado['data'];
       
-    }
+    // }
 
-    const listado_rol = await this.informeVentaService.index_usuario_roles();
-    
-    if (listado_rol['res'])
-    {
-        this.roles = listado_rol['data'];
-        //console.log(this.almacenes);
-    } else {  
-        this.errors = listado_rol['data'];
-      
-    }
-
-    const listado_usuarios = await this.usuariosService.listado_Usuarios();
-    
-    if (listado_usuarios['res'])
-    {
-        this.usuarios = listado_usuarios['data'];
-        //console.log(this.almacenes);
-    } else {  
-        this.errors = listado_usuarios['data'];
-      
-    }
-
+ 
     this.loading = false;
   }
 
@@ -122,20 +101,20 @@ export class AlmacenUsuariosIndexComponent implements OnInit {
   async delete_usuario_almacen(almacenUser:number)
   {
 
-      this.loading=true;
+      // this.loading=true;
 
-      const quitar = await this.almacenService.delete_usuario_almacen(this.almacen['almacen_id'],almacenUser['user_id']);
+      // const quitar = await this.almacenService.delete_usuario_almacen(this.almacen['almacen_id'],almacenUser['user_id']);
       
-      if (quitar['res']) 
-      {
-          this.usuarios_almacen = this.usuarios_almacen.filter( item => item['user_id'] !== almacenUser['user_id']);
+      // if (quitar['res']) 
+      // {
+      //     this.usuarios_almacen = this.usuarios_almacen.filter( item => item['user_id'] !== almacenUser['user_id']);
           
-          this.loading=false;
-          this.formUserRol.reset();
-      } else {
-          this.errors= quitar['data'];
-          this.loading=false;
-      }
+      //     this.loading=false;
+      //     this.formUserRol.reset();
+      // } else {
+      //     this.errors= quitar['data'];
+      //     this.loading=false;
+      // }
 
   }
 

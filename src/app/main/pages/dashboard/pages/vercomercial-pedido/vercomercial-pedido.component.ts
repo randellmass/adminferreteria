@@ -12,60 +12,23 @@ export class VercomercialPedidoComponent implements OnInit {
 
   formBuscarPedido:FormGroup = this.fb.group({
     buscarPedido : ['',[Validators.required]],
-    buscarTipo : ['',[Validators.required]]
   });
 
 
-  loading:boolean = true;
+  loading:boolean = false;
   errors:any =[];
-  tipos:any[] =[];
-  pedido:any = null;
+  pedidos:any[] = [];
 
-  resul_tipos = [
-    {
-     'id':1,
-     'nombre':'PDV'
-    },
-    {
-     'id':2,
-     'nombre':'PDC'
-    },
-    {
-     'id':3,
-     'nombre':'OC'
-    }
-  ];
-  
-  
   constructor(private fb:FormBuilder,
               private pedidosService:PedidosService) { }
 
   ngOnInit(): void {
-     // this.listado_tipos();
-     this.tipos = this.resul_tipos;
+
   }
 
   campoNoValido(campo:string){
     return this.formBuscarPedido.controls[campo].touched && this.formBuscarPedido.controls[campo].errors;
   }
-
-
-  /*async listado_tipos(){
-    this.loading= true;
-
-
-      const result_tipos = await this.pedidosService.index_pedido_tipos();
-      if (result_tipos['res'])
-      {
-        this.errors="";  
-        this.tipos = result_tipos['data'];  
-   
-      } else {
-        this.errors = result_tipos['data']; 
-      }
-
-      this.loading= false; 
-  }*/
 
   async buscar_pedido()
   {
@@ -76,14 +39,16 @@ export class VercomercialPedidoComponent implements OnInit {
       }
         
       this.loading= true;
-      const pedido_result = await this.pedidosService.search_pedido_comercial(this.formBuscarPedido.value);
+      const pedido_result = await this.pedidosService.search_pedido_admin(this.formBuscarPedido.value);
       if (pedido_result['res']) {
-        this.pedido = pedido_result['data'];
+        this.pedidos = pedido_result['data'];
         this.errors = [];
+        this.loading= false;
       } else {
-        this.pedido = null;
+        this.pedidos = [];
         this.errors =pedido_result['data'];
+        this.loading= false;
       }
-      this.loading= false;
+     
     }
 }

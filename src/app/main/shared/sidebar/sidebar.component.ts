@@ -40,35 +40,13 @@ export class SidebarComponent implements OnInit {
           "icon":"mdi mdi-television",
           "enlaces":[
             {
-               "nombre":"Listado Equipos",
-               "url":"/main/dashboard"
-            },
-            {
-               "nombre":"PedidoProduccion",
+               "nombre":"Pedidos",
                "url":"/main/dashboard/pedido"
             },
-            {
-               "nombre":"InformeVentas",
-               "url":"/main/dashboard/informe"
-            }
           ]
       },
       {
-          "categoria":"Operaciones",
-          "icon":"mdi mdi-cast",
-          "enlaces":[
-            {
-               "nombre":"Equipos",
-               "url":"/main/equipos"
-            },
-            {
-               "nombre":"Categorias",
-               "url":"/main/categorias"
-            }
-          ]
-      },
-      {
-         "categoria":"Produccion",
+         "categoria":"Operaciones",
          "icon":"mdi mdi-television",
          "enlaces":[
             {
@@ -82,24 +60,6 @@ export class SidebarComponent implements OnInit {
             {
                "nombre":"Informe",
                "url":"/main/pedidos/informe"
-            }
-         ]
-      },
-      {
-         "categoria":"CotizacionChiller",
-         "icon":"mdi mdi-television",
-         "enlaces":[
-           {
-              "nombre":"Cotizaciones",
-              "url":"/main/cotchiller/listado"
-           },
-           {
-              "nombre":"Productos",
-              "url":"/main/cotchiller/equipos"
-           },
-           {
-               "nombre":"listado Principal",
-               "url":"/main/cotchiller/lpmateriales"
             }
          ]
       },
@@ -112,74 +72,12 @@ export class SidebarComponent implements OnInit {
                "url":"/main/usuarios"
             },
             {
-               "nombre":"Fabricantes",
-               "url":"/main/fabricantes"
-            },
-            {
-               "nombre":"Grupos",
-               "url":"/main/grupos"
-            },
-            {
-               "nombre":"Familias",
-               "url":"/main/familias"
-            },
-            {
-               "nombre":"Caracteristicas equipos",
-               "url":"/main/caracteristicas"
-            },
-            {
-               "nombre":"Tipo Unidades",
-               "url":"/main/unidades"
-            },
-            {
                "nombre":"Bodegas",
                "url":"/main/bodegas"
             },
           ]
       },
-      {
-          "categoria":"Eventos",
-          "icon":"mdi mdi-settingst",
-          "enlaces":[
-            {
-               "nombre":"Fiesta",
-               "url":"/main/evento/listado"
-            },
-            {
-               "nombre":"Ingreso",
-               "url":"/main/evento/ingreso"
-            },
-          ]
-      },
-      {
-          "categoria":"InformeVentas",
-          "icon":"mdi mdi-settingst",
-          "enlaces":[
-            {
-               "nombre":"Informes",
-               "url":"/main/informeventas/listado"
-            },
-            {
-               "nombre":"Resumen",
-               "url":"/main/informeventas/resumen"
-            }
-          ]
-      },
-      {
-          "categoria":"Logistica",
-          "icon":"mdi mdi-settingst",
-          "enlaces":[
-            {
-               "nombre":"Despachos",
-               "url":"/main/despachos/listado"
-            },
-            {
-               "nombre":"Pedidos",
-               "url":"/main/despachos/pedidos"
-            }
-          ]
-      }
-
+   
     ]; 
 
     const menu_item_implementador = [
@@ -188,35 +86,13 @@ export class SidebarComponent implements OnInit {
           "icon":"mdi mdi-television",
           "enlaces":[
             {
-               "nombre":"Listado Equipos",
-               "url":"/main/dashboard"
-            },
-            {
-               "nombre":"PedidoProduccion",
+               "nombre":"Pedidos",
                "url":"/main/dashboard/pedido"
             },
-            {
-               "nombre":"InformeVentas",
-               "url":"/main/dashboard/informe"
-            }
           ]
       },
       {
-          "categoria":"Operaciones",
-          "icon":"mdi mdi-cast",
-          "enlaces":[
-            {
-               "nombre":"Equipos",
-               "url":"/main/equipos"
-            },
-            {
-               "nombre":"Categorias",
-               "url":"/main/categorias"
-            }
-          ]
-      },
-      {
-         "categoria":"Produccion",
+         "categoria":"Operaciones",
          "icon":"mdi mdi-television",
          "enlaces":[
             {
@@ -233,43 +109,6 @@ export class SidebarComponent implements OnInit {
             }
          ]
       },
-      {
-          "categoria":"Tablas-Maestras",
-          "icon":"mdi mdi-settingst",
-          "enlaces":[
-            {
-               "nombre":"Fabricantes",
-               "url":"/main/fabricantes"
-            },
-            {
-               "nombre":"Familias",
-               "url":"/main/familias"
-            },
-            {
-               "nombre":"Caracteristicas equipos",
-               "url":"/main/caracteristicas"
-            },
-            {
-               "nombre":"Tipo Unidades",
-               "url":"/main/unidades"
-            }
-          ]
-      },
-      {
-          "categoria":"Eventos",
-          "icon":"mdi mdi-settingst",
-          "enlaces":[
-            {
-               "nombre":"Fiesta",
-               "url":"/main/evento/listado"
-            },
-            {
-               "nombre":"Ingreso",
-               "url":"/main/evento/ingreso"
-            },
-
-          ]
-      },
 
     ]; 
 
@@ -279,45 +118,18 @@ export class SidebarComponent implements OnInit {
           "icon":"mdi mdi-television",
           "enlaces":[
             {
-               "nombre":"Listado Equipos",
-               "url":"/main/dashboard"
-            },
-            {
-               "nombre":"PedidoProduccion",
+               "nombre":"Pedidos",
                "url":"/main/dashboard/pedido"
             },
-            {
-               "nombre":"InformeVentas",
-               "url":"/main/dashboard/informe"
-            }
           ]
       }
      
     ]; 
 
-    const menu_thumano = [
-      {
-         "categoria":"Eventos",
-         "icon":"mdi mdi-settingst",
-         "enlaces":[
-           {
-              "nombre":"Fiesta",
-              "url":"/main/evento/listado"
-           },
-           {
-              "nombre":"Ingreso",
-              "url":"/main/evento/ingreso"
-           },
 
-         ]
-     },
-     
-    ]; 
 
     if (rol_id==1) {
       return menu_item_administrador;
-    }else if (rol_id==7) {
-         return menu_thumano;
     } else if((rol_id!=1) && (rol_id!=3) && (rol_id!=6) && (rol_id!=7)) {
       return menu_item_implementador;
     }else{
