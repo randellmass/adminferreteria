@@ -66,27 +66,35 @@
                         
                     </div>
 
-                    <div class="col-lg-3">
-                        <div class="form-group">
-                            <label for="">Fecha Entrega:</label>
-                            <input type="date" 
-                                    class="form-control" 
-                                    formControlName="fecha_entrega">
-              
-                        </div>
-                        
-                    </div>
 
                     <div class="col-lg-3">
                         <div class="form-group">
-                            <label for="">Vendedor:</label>
-                            <select class="form-control" formControlName="vendedor">
-                                <option value="" selected>*Escoja Vendedor</option>
-                                <option [value]="vendedor['id']" *ngFor="let vendedor of vendedores">{{ vendedor['email']}}</option>
+                            <label for="">Dirección:</label>
+                            <input type="text" 
+                                    class="form-control" 
+                                    formControlName="direccion">
+                            <label class="error mt-2 text-danger" 
+                                for="direccion" 
+                            *ngIf="campoNoValido('direccion')">*Digite Dirección </label>
+                        </div>
+                        
+                    </div>   
+       
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label for="">Ciudades</label>
+                            <select class="form-control" formControlName="ciudad_id">
+                                <option value="" selected>*Escoja almácen</option>
+                                <ng-container *ngFor="let ciudad of ciudades">
+                                    <option [value]="ciudad['id']" *ngIf="ciudad['id']!=pedido['ciudad_id']">{{ ciudad['nombre'] }}</option>
+                                    <option [value]="ciudad['id']" *ngIf="ciudad['id']==pedido['ciudad_id']">Select -> {{ ciudad['nombre'] }}</option>
+                                </ng-container>
+                             
+                              
                             </select>
                             <label class="error mt-2 text-danger" 
-                                for="vendedor" 
-                            *ngIf="campoNoValido('vendedor')">*Escoja Vendedor: </label>
+                                for="ciudad_id" 
+                            *ngIf="campoNoValido('ciudad_id')">*Escoja ciudad: </label>
                         </div>
                         
                     </div>
@@ -101,35 +109,6 @@
                             <label class="error mt-2 text-danger" 
                                 for="pedidoestado_id" 
                             *ngIf="campoNoValido('pedidoestado_id')">*Escoja estado: </label>
-                        </div>
-                        
-                    </div>
-
-                </div>
-
-                <div class="row">
-       
-                    <div class="col-lg-3">
-                        <div class="form-group">
-                            <label for="">Almácen:</label>
-                            <select class="form-control" formControlName="almacen_id">
-                                <option value="" selected>*Escoja almácen</option>
-                                <option [value]="almacen['almacen_id']" *ngFor="let almacen of almacenes">{{ almacen['almacen_nombre'] }}</option>
-                            </select>
-                            <label class="error mt-2 text-danger" 
-                                for="almacen_id" 
-                            *ngIf="campoNoValido('almacen_id')">*Escoja almácen: </label>
-                        </div>
-                        
-                    </div>
-
-                    <div class="col-lg-3">
-                        <div class="form-group">
-                            <label for="">Valor Costo:</label>
-                            <input type="number" 
-                                    class="form-control" 
-                                    formControlName="valor_costo">
-              
                         </div>
                         
                     </div>

@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { EditarPedidosComponent } from './pages/editar-pedidos/editar-pedidos.component';
 import { InformePedidosComponent } from './pages/informe-pedidos/informe-pedidos.component';
-import { ListadoOrdenComponent } from './pages/listado-orden/listado-orden.component';
 import { ListadoPedidosComponent } from './pages/listado-pedidos/listado-pedidos.component';
 import { RegistroPedidosComponent } from './pages/registro-pedidos/registro-pedidos.component';
 import { VerPedidosComponent } from './pages/ver-pedidos/ver-pedidos.component';
@@ -23,9 +22,6 @@ const routes: Routes = [
       },
       {
          path:'editar/:id', component:EditarPedidosComponent
-      },
-      {
-        path:'ordenes/:id', component:ListadoOrdenComponent
       },
       {
         path:'ver/:id', component:VerPedidosComponent

@@ -1,11 +1,34 @@
 <div class="row">
     <div class="col-10">
 
+        
+
+        <div class="row mb-2">
+            <div class="col-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-subtitle">Pedido</h4>
+                        
+                        <table *ngIf="!loading" class="table table-bordered table-hover table-responsive">
+                            <tr>
+                                <td><strong>Nombre:</strong></td>
+                                <td>{{ pedido['tercero_documento']}} - {{ pedido['tercero_nombre']}}</td>
+                            </tr>
+
+                        </table>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
         <div class="row mb-2">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-subtitle">Pedido</h4>
+                        
                         <table *ngIf="pedido" class="table table-bordered table-hover table-responsive">
                             <tr>
                                 <td><strong>Documento:</strong></td>
@@ -14,16 +37,13 @@
                                 <td>{{ pedido['pedidoestado_nombre']}}</td>
                             </tr>
                             <tr>
-                                <td><strong>F.Entrega:</strong></td>
-                                <td>{{ pedido['fecha_entrega']}}</td>
-                                <td><strong>F.Recibido:</strong></td>
-                                <td>{{ pedido['fecha_recibido']}}</td>
+                                <td colspan="4"><strong>F.Recibido: &nbsp; {{ pedido['fecha_recibido']}}</strong></td>
                             </tr>
                             <tr>
-                                <td><strong>Fecha actual:</strong></td>
-                                <td>{{ pedido['fecha_actual'] }}</td>
-                                <td><strong>Dias Entrega:</strong></td>
-                                <td>{{ pedido['dias_entrega']}}</td>
+                                <td><strong>Guia:</strong></td>
+                                <td>{{ pedido['guia'] }}</td>
+                                <td><strong>Dirección:</strong></td>
+                                <td>{{ pedido['direccion']}} - {{ pedido['ciudad_nombre']}}</td>
                             </tr>
                             <tr>
                                 <td colspan="4"><strong>Observación interna:</strong></td>
@@ -45,35 +65,7 @@
             </div>
         </div>
 
-        <div class="row mb-2">
-            <div class="col-12">
-
-                <div class="card">
-                    <div class="card-body">
-                        
-                        <table *ngIf="!loading" class="table table-bordered table-hover table-responsive">
-                            <tr>
-                                <td><strong>Cliente:</strong></td>
-                                <td>{{ pedido['tercero_documento']}} - {{ pedido['tercero_nombre']}}</td>
-                            </tr>
-
-                            <tr>
-                                <td><strong>Asesor:</strong></td>
-                                <td>{{ pedido['vendedor_email']}}</td>
-                            </tr>
-
-                            <tr>
-                                <td><strong>Guia:</strong></td>
-                                <td>{{ pedido['guia']}}</td>
-                            </tr>
-
-                        </table>
-                        
-                    </div>
-                </div>
-
-            </div>
-        </div>
+ 
         
     </div>
 
