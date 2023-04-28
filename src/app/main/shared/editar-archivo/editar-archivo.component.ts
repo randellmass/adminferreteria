@@ -19,8 +19,6 @@ export class EditarArchivoComponent implements OnInit {
   @Output() operacion_form = new EventEmitter<string>();
 
     form_file:FormGroup = this.fb.group({
-      roles: ['',Validators.required],
-      archivo_tipo_id: ['',Validators.required],
       nombre: ['',[Validators.required,Validators.minLength(3)]],
     });
 
@@ -32,9 +30,7 @@ export class EditarArchivoComponent implements OnInit {
     archivo_editar:any=[];
 
     constructor(private fb:FormBuilder,
-              private usuariosService:UsuariosService,
-              private filesSubirService:FilesSubirService,
-              private archivosTiposService:ArchivosTiposService) { }
+              private filesSubirService:FilesSubirService) { }
 
     ngOnInit(): void {
       this.cargarSelectInicial();
@@ -48,21 +44,15 @@ export class EditarArchivoComponent implements OnInit {
     async cargarSelectInicial(){
   
       this.loading=true;
-        this.roles = await this.usuariosService.listado_roles();
-        const FileTypes = await this.archivosTiposService.listado_archivo_tipos();
-        this.archivo_tipos = FileTypes['data'];
-
+       
         this.archivo_editar = await this.filesSubirService.ver_file(this.modelo,this.modelo_id,this.archivo_id);
-        const permisos = this.archivo_editar['data']['permisos'].map( (rol_id:any) => parseInt(rol_id));
-        this.cargar_form_data(permisos);
-      this.loading=false;
+        this.cargar_form_data();
+       this.loading=false;
       
     }
 
-    cargar_form_data(permisos:any){
+    cargar_form_data(){
        this.form_file.reset({
-           roles:permisos,
-           archivo_tipo_id:this.archivo_editar['data']['file_type_id'],
            nombre:this.archivo_editar['data']['nombre']}
        );
     }
@@ -77,8 +67,6 @@ export class EditarArchivoComponent implements OnInit {
                                                               this.modelo,
                                                               this.modelo_id,
                                                               this.archivo_id,
-                                                              this.form_file.get('roles').value,
-                                                              this.form_file.get('archivo_tipo_id').value,
                                                               this.form_file.get('nombre').value)
         
         if (editar['res'])

@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-6">
+    <div class="col-4">
 
         <div class="row mb-2">
             <div class="col-12">
@@ -15,31 +15,49 @@
     </div>
 
 
-    <div class="col-6">
+    <div class="col-8">
         <div class="card">
             <div class="card-body">
-                    <form class="d-flex" [formGroup]="formBuscarPedido" (ngSubmit)="buscar_pedido()">
-              
-                        <input class="form-control me-2"
-                            formControlName="buscarPedido"
-                            type="search" 
-                            placeholder="Buscar" aria-label="Search">
-                        <button class="btn btn-outline-primary"
-                                type="submit">BuscarPedido</button>
-                    </form>
-                    <div class="error mt-2 text-danger" 
-                                for="buscarPedido" 
-                                *ngIf="campoNoValido('buscarPedido')">*buscarPedido: </div>
+                <form class="d-flex" [formGroup]="formBuscarPedido" (ngSubmit)="buscar_pedido()">
+                            
+                    <div class="col">
+                        <label class="form-label">fechaInicial:</label>
+                        <input class="form-control"
+                            formControlName="fechaInicial"
+                            type="date">
+                    </div>
+                    <div class="ml-2">
+                        <label class="form-label">fechafinal:</label>
+                        <input class="form-control"
+                            formControlName="fechaFinal"
+                            type="date">
+                    </div>
+                    <div class="ml-2 ">
+                        <label for="">Búsqueda</label>
+                        <input class="form-control"
+                                formControlName="buscarPedido"
+                                type="search" 
+                                    placeholder="Buscar Pedidos" aria-label="Search">
+                    </div>
+                    
+                        
+                    <button class="ml-2 btn btn-outline-primary"
+                            type="submit">Buscar</button>
 
-                    <div class="row mt-5" *ngIf="errors.length>0">
-                        <div class="col-12">
-                            <div class="alert alert-danger " role="alert">
-                                <ul>
-                                    <li *ngFor="let error of errors" >{{ error }}</li>
-                                </ul>
-                            </div>
+                </form>
+                <div class="error mt-2 text-danger" 
+                            for="buscarPedido" 
+                            *ngIf="campoNoValido('buscarPedido')">*buscarPedido: </div>
+
+                <div class="row mt-5" *ngIf="errors.length>0">
+                    <div class="col-12">
+                        <div class="alert alert-danger " role="alert">
+                            <ul>
+                                <li *ngFor="let error of errors" >{{ error }}</li>
+                            </ul>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </div>
@@ -65,6 +83,7 @@
                             <th>Observación Publica</th>
                             <th>Dirección</th>
                             <th>Guia</th>
+                            <th>Archivos</th>
                             <th>Estado</th>
                         </tr>
                     </thead>
@@ -79,6 +98,11 @@
                             <td>{{ pedido['observacion_publica']}}</td>
                             <td>{{ pedido['direccion'] }} - {{ pedido['ciudad_nombre'] }}</td>
                             <td>{{ pedido['guia']}}</td>
+                            <td>
+                                <div *ngFor="let archivo of pedido['archivos']">
+                                    <div class="mb-2"><a [href]="archivo['url']|imagen" target="_blank" >{{ archivo['nombre']}}</a></div>
+                                </div>
+                            </td>
                             <td>
                                 <div [ngSwitch]="pedido['pedidoestado_id']">
                                     <div *ngSwitchCase="1"><label class="badge badge-primary">{{ pedido['pedidoestado_nombre']}}</label></div>

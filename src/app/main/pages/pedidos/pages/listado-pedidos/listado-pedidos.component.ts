@@ -12,7 +12,9 @@ import { PedidosService } from '../../services/pedidos.service';
 export class ListadoPedidosComponent implements OnInit {
 
     formBuscarPedido:FormGroup = this.fb.group({
-      buscarPedido : ['',[Validators.required]]
+      fechaInicial : [''],
+      fechaFinal : [''],
+      buscarPedido : ['']
     });
 
     errors:any=[];
@@ -41,7 +43,7 @@ export class ListadoPedidosComponent implements OnInit {
         {
           this.errors="";  
           this.pedidos = result_ter['data'];  
-     
+      
         } else {
           this.errors = result_ter['data']; 
         }

@@ -54,15 +54,36 @@
                     
                     <app-loading *ngIf="loading"></app-loading>
                     
-                    <div class="card-columns" *ngIf="!loading && pedidos.length>0">
-                        <div class="card mr-4" *ngFor="let pedido of pedidos">
+                    <div *ngIf="!loading && pedidos.length>0">
+                        <div class="card mb-4" *ngFor="let pedido of pedidos">
                             <div class="card-body">
-                
-                                <div><strong>Nombre:</strong>&nbsp;{{ pedido['tercero_documento']}} - {{ pedido['tercero_nombre']}}</div>
-                                <div><strong>Notas:</strong></div>
-                                <div class="mb-1">{{ pedido['observacion_publica']}}</div>
-                                <div><strong>Guia#:</strong>&nbsp;{{ pedido['guia']}}</div>
-                                <div><strong>Dirección:</strong>&nbsp;{{ pedido['direccion']}} - {{ pedido['ciudad_nombre']}}</div>
+                                
+                                <table class="table table-responsive">
+                                    <tr>
+                                        <td><strong>Nombre:</strong></td>
+                                        <td>{{ pedido['tercero_documento']}} - {{ pedido['tercero_nombre']}}</td>
+                                        <td><strong>FechaCreación:</strong></td>
+                                        <td>{{ pedido['fecha_recibido']}}</td>
+                                        <td><strong>Guia#:</strong></td>
+                                        <td>{{ pedido['guia']}}</td>
+                                        <td><strong>Dirección:</strong></td>
+                                        <td>{{ pedido['direccion']}} - {{ pedido['ciudad_nombre']}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td ><strong>Notas:</strong></td>
+                                        <td colspan="7">{{ pedido['observacion_publica']}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Archivos:</strong></td>
+                                        <td colspan="7">
+                                            <div *ngFor="let archivo of pedido['archivos']">
+                                                <div class="mb-2"><a [href]="archivo['url']|imagen" target="_blank" >{{ archivo['nombre']}}</a></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+              
+                                </table>
+                            
                                 <div [ngSwitch]="pedido['pedidoestado_id']">
                                     <div *ngSwitchCase="1"><label class="badge badge-primary">{{ pedido['pedidoestado_nombre']}}</label></div>
                                     <div *ngSwitchCase="2"><label class="badge badge-warning">{{ pedido['pedidoestado_nombre']}}</label></div>

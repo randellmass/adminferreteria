@@ -8,7 +8,6 @@ import { EditarPedidosComponent } from './pages/editar-pedidos/editar-pedidos.co
 import { SharedModule } from '../../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { VerPedidosComponent } from './pages/ver-pedidos/ver-pedidos.component';
-import { InformePedidosComponent } from './pages/informe-pedidos/informe-pedidos.component';
 
 
 @NgModule({
@@ -16,7 +15,7 @@ import { InformePedidosComponent } from './pages/informe-pedidos/informe-pedidos
       ListadoPedidosComponent, 
       RegistroPedidosComponent, 
       EditarPedidosComponent, 
-      VerPedidosComponent, InformePedidosComponent,],
+      VerPedidosComponent,],
   imports: [
     CommonModule,
     PedidosRoutingModule,

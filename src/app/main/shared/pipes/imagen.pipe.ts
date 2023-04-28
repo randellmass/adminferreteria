@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { environment } from '../../../../environments/environment.prod';
 
-const URL = environment.URL;
+const URL = environment.URL2;
 
 @Pipe({
   name: 'imagen'
@@ -11,13 +11,10 @@ export class ImagenPipe implements PipeTransform {
   transform(img: string,vista:string): string {
 
     if(img){
-      //return `http://backendrefrinet.comfortfresh.com/public/${ img }`;
       if (vista == "thumb") {
-        //return `http://homestead.test/thumb/${ img }`;
-        return `http://backendcs.comfortfresh.com/public/thumb/${ img }`;
+        return `${ URL }/public/thumb/${ img }`;
       } else {
-        //return `http://homestead.test/${ img }`;
-        return `http://backendcs.comfortfresh.com/public/${ img }`;
+        return `${ URL }/${ img }`;
       }
 
     }else{
