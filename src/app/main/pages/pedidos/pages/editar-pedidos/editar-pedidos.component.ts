@@ -19,9 +19,8 @@ export class EditarPedidosComponent implements OnInit {
         observacion_publica: [''],
         fecha_recibido: ['',[Validators.required]],
         fecha_entrega: [''],
-        vendedor: ['',[Validators.required]],
-        almacen_id: ['',[Validators.required]],
-        valor_costo: [''],
+        direccion: ['',[Validators.required]],
+        ciudad_id: ['',[Validators.required]],
         guia: ['',[Validators.required]],
         pedidoestado_id: ['',[Validators.required]],
     });
@@ -30,14 +29,11 @@ export class EditarPedidosComponent implements OnInit {
     errors:any =[];
     pedido:any;
     terceros:any[] =[];
-    almacenes:any[] =[];
-    vendedores:any[] =[];
+    ciudades:any[] =[];
     pedidoEstados:any[] =[];
-
     
     constructor(private fb:FormBuilder,
                 private pedidosService:PedidosService,
-                private usuariosService:UsuariosService,
                 private activatedRoute:ActivatedRoute,
                 private router:Router) { }
 
@@ -67,19 +63,16 @@ export class EditarPedidosComponent implements OnInit {
         if (result_pedido['res'])
         {
             this.pedido = result_pedido['data'];
+            //console.log(this.pedido);
         }
 
-        const result_almacenes = await this.pedidosService.index_almacenes();
-        if (result_almacenes['res'])
+        const result_ciudades = await this.pedidosService.index_ciudades();
+        if (result_ciudades['res'])
         {
-            this.almacenes = result_almacenes['data'];
+            this.ciudades = result_ciudades['data'];
         }
 
-        const vendedores_list = await this.usuariosService.listado_Usuarios();
-        if(vendedores_list['res']){
-          this.vendedores = vendedores_list['data'];
-        }
-
+  
         const estados_list = await this.pedidosService.index_pedido_estados();
         if(estados_list['res']){
           this.pedidoEstados = estados_list['data'];

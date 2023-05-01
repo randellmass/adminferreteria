@@ -2,7 +2,7 @@
     <div class="col-12">
 
         <div class="row mb-2">
-            <div class="col-6">
+            <div class="col-4">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-subtitle">Pedidos</h5>
@@ -10,16 +10,33 @@
                 </div>
             </div>
 
-            <div class="col-6">
+            <div class="col-8 col-xs-12">
                 <div class="card">
                     <div class="card-body">
                         <form class="d-flex" [formGroup]="formBuscarPedido" (ngSubmit)="buscar_pedido()">
-                    
-                                <input class="form-control me-2"
-                                    formControlName="buscarPedido"
-                                    type="search" 
-                                    placeholder="Buscar Pedidos" aria-label="Search">
-                            <button class="btn btn-outline-primary"
+                            
+                            <div class="col">
+                                <label class="form-label">fechaInicial:</label>
+                                <input class="form-control"
+                                    formControlName="fechaInicial"
+                                    type="date">
+                            </div>
+                            <div class="ml-2">
+                                <label class="form-label">fechafinal:</label>
+                                <input class="form-control"
+                                    formControlName="fechaFinal"
+                                    type="date">
+                            </div>
+                            <div class="ml-2 ">
+                                <label for="">Búsqueda</label>
+                                <input class="form-control"
+                                        formControlName="buscarPedido"
+                                        type="search" 
+                                         placeholder="Buscar Pedidos" aria-label="Search">
+                            </div>
+                            
+                                
+                            <button class="ml-2 btn btn-outline-primary"
                                     type="submit">Buscar</button>
 
                         </form>
@@ -51,9 +68,10 @@
                                     <th>Cliente</th>
                                     <th>Observación Interna</th>
                                     <th>Observación Publica</th>
-                                    <th>Costo</th>
-                                    <th>Estado</th>
+                                    <th>Dirección</th>
                                     <th>Guia</th>
+                                    <th>Archivos</th>
+                                    <th>Estado</th>
                                     <th>Opción</th>
                                 </tr>
                             </thead>
@@ -63,16 +81,25 @@
                                     <td>
                                         <div class="mb-2"><strong>Cliente:</strong>&nbsp;{{ pedido['tercero_documento']}} - {{ pedido['tercero_nombre']}}</div>
                                         <div class="mb-2"><strong>F.Recibido:</strong>&nbsp;{{ pedido['fecha_recibido']}}</div>
-                                        <div class="mb-2"><strong>F.Entrega:</strong>&nbsp;{{ pedido['fecha_entrega']}}</div>
-                                        <div class="mb-2"><strong>Dias Entrega:</strong>&nbsp;{{ pedido['dias_entrega']}}</div>
-                                        <div class="mb-2"><strong>Vendedor:</strong>&nbsp;{{ pedido['vendedor_email']}}</div>
-                                        <div class="mb-2"><strong>Almácen:</strong>&nbsp;{{ pedido['almacen_nombre']}}</div>
                                     </td>
                                     <td>{{ pedido['observacion_interna']}}</td>
                                     <td>{{ pedido['observacion_publica']}}</td>
-                                    <td>{{ pedido['valor_costo'] | number}}</td>
+                                    <td>{{ pedido['direccion'] }} - {{ pedido['ciudad_nombre'] }}</td>
                                     <td>{{ pedido['guia']}}</td>
-                                    <td>{{ pedido['pedidoestado_nombre']}}</td>
+                                    <td>
+                                        <div *ngFor="let archivo of pedido['archivos']">
+                                            <div class="mb-2"><a [href]="archivo['url']|imagen" target="_blank" >{{ archivo['nombre']}}</a></div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div [ngSwitch]="pedido['pedidoestado_id']">
+                                            <div *ngSwitchCase="1"><label class="badge badge-primary">{{ pedido['pedidoestado_nombre']}}</label></div>
+                                            <div *ngSwitchCase="2"><label class="badge badge-warning">{{ pedido['pedidoestado_nombre']}}</label></div>
+                                            <div *ngSwitchCase="3"><label class="badge badge-danger">{{ pedido['pedidoestado_nombre']}}</label></div>
+                                            <div *ngSwitchCase="4"><label class="badge badge-success">{{ pedido['pedidoestado_nombre']}}</label></div>
+                                            <div *ngSwitchDefault>{{ pedido['pedidoestado_nombre']}}</div>
+                                        </div>
+                                    </td>
                                     <td>
                                         <div>
                                             <button type="button" class="btn btn-inverse-dark mb-2" (click)="editar_pedido(pedido)">Editar</button>

@@ -11,8 +11,10 @@ import { PedidosService } from '../../../pedidos/services/pedidos.service';
 export class VercomercialPedidoComponent implements OnInit {
 
   formBuscarPedido:FormGroup = this.fb.group({
-    buscarPedido : ['',[Validators.required]],
-  });
+      fechaInicial : [''],
+      fechaFinal : [''],
+      buscarPedido : ['']
+    });
 
 
   loading:boolean = false;

@@ -136,7 +136,7 @@ export class TercerosService {
             }else{
                 resolve({
                   res:false,
-                  mensaje:resp['mensaje']
+                  data:resp['mensaje']
                 });
             }
         

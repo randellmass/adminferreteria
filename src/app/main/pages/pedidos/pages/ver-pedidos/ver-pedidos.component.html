@@ -1,11 +1,27 @@
 <div class="row">
-    <div class="col-10">
+    <div class="col-12">
 
-        <div class="row mb-2">
-            <div class="col-12">
+        <div class="row">
+            <div class="col-8">
+
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-subtitle">Pedido</h4>
+                        
+                        <table *ngIf="!loading" class="table table-bordered table-hover table-responsive">
+                            <tr>
+                                <td><strong>Nombre:</strong></td>
+                                <td>{{ pedido['tercero_documento']}} - {{ pedido['tercero_nombre']}}</td>
+                            </tr>
+
+                        </table>
+                        
+                    </div>
+                </div>
+
+                <div class="card mt-2">
+                    <div class="card-body">
+                        
                         <table *ngIf="pedido" class="table table-bordered table-hover table-responsive">
                             <tr>
                                 <td><strong>Documento:</strong></td>
@@ -14,16 +30,13 @@
                                 <td>{{ pedido['pedidoestado_nombre']}}</td>
                             </tr>
                             <tr>
-                                <td><strong>F.Entrega:</strong></td>
-                                <td>{{ pedido['fecha_entrega']}}</td>
-                                <td><strong>F.Recibido:</strong></td>
-                                <td>{{ pedido['fecha_recibido']}}</td>
+                                <td colspan="4"><strong>F.Recibido: &nbsp; {{ pedido['fecha_recibido']}}</strong></td>
                             </tr>
                             <tr>
-                                <td><strong>Fecha actual:</strong></td>
-                                <td>{{ pedido['fecha_actual'] }}</td>
-                                <td><strong>Dias Entrega:</strong></td>
-                                <td>{{ pedido['dias_entrega']}}</td>
+                                <td><strong>Guia:</strong></td>
+                                <td>{{ pedido['guia'] }}</td>
+                                <td><strong>Dirección:</strong></td>
+                                <td>{{ pedido['direccion']}} - {{ pedido['ciudad_nombre']}}</td>
                             </tr>
                             <tr>
                                 <td colspan="4"><strong>Observación interna:</strong></td>
@@ -42,39 +55,40 @@
                     </div>
 
                 </div>
+
             </div>
-        </div>
 
-        <div class="row mb-2">
-            <div class="col-12">
+            <div class="col-4">
+                <app-subir-archivo modelo="pedido" [modelo_id]="pedido['id']" *ngIf="!loading && operacion =='guardar'" (archivos_form)="archivos = $event"></app-subir-archivo>
+                <app-editar-archivo modelo="pedido" [modelo_id]="pedido['id']" [archivo_id]="archivo_id" *ngIf="!loading && operacion =='editar'" (archivos_form)="archivos = $event"  (operacion_form)="operacion = $event"></app-editar-archivo>
 
-                <div class="card">
+                <div class="card mt-2">
                     <div class="card-body">
+                        <h4 class="card-subtitle">Listado Archivos</h4>
+                        <table class="table table-bordered table-inverse table-responsive">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Opcion</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let archivo of archivos">
+                                        <td scope="row"><a [href]="archivo['url']|imagen" target="_blank" >{{ archivo['nombre']}}</a></td>
+                                        <td>
+                                            <a class="btn btn-inverse-secondary " (click)="editar_archivo(archivo['id'])">Editar</a>&nbsp;
+                                            <a class="btn btn-inverse-danger " (click)="eliminar_archivo(archivo)">Eliminar</a>
+                                        </td>
+                                    </tr>
                         
-                        <table *ngIf="!loading" class="table table-bordered table-hover table-responsive">
-                            <tr>
-                                <td><strong>Cliente:</strong></td>
-                                <td>{{ pedido['tercero_documento']}} - {{ pedido['tercero_nombre']}}</td>
-                            </tr>
-
-                            <tr>
-                                <td><strong>Asesor:</strong></td>
-                                <td>{{ pedido['vendedor_email']}}</td>
-                            </tr>
-
-                            <tr>
-                                <td><strong>Guia:</strong></td>
-                                <td>{{ pedido['guia']}}</td>
-                            </tr>
-
+                                </tbody>
                         </table>
-                        
                     </div>
                 </div>
-
             </div>
         </div>
-        
+
     </div>
 
 </div>
+

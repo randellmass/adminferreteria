@@ -18,8 +18,6 @@ export class FilesSubirService {
     subir_file(archivo:File,
                 modelo:string,
                 id:string,
-                roles:any,
-                archivo_tipo_id:string,
                 nombreFile:string)
    {
      
@@ -33,11 +31,6 @@ export class FilesSubirService {
        formData.append('id',id);
        formData.append('tipo',modelo);
        formData.append('file',archivo);
-       formData.append('archivo_tipo_id',archivo_tipo_id);
-       roles.forEach( (rol:string) => {
-         formData.append('roles[]',rol);
-       });
-
        formData.append('nombre',nombreFile);
 
  
@@ -65,11 +58,9 @@ export class FilesSubirService {
  
     } 
 
-   editar_file(modelo:string,
+    editar_file(modelo:string,
             modelo_id:string,
             archivo_id:string,
-            roles:any,
-            archivo_tipo_id:string,
             nombreFile:string)
     {
 
@@ -81,10 +72,6 @@ export class FilesSubirService {
           });
           const formData = new FormData();
           formData.append('archivo_id',archivo_id);
-          roles.forEach( (rol:string) => {
-            formData.append('roles[]',rol);
-          });
-          formData.append('archivo_tipo_id',archivo_tipo_id);
           formData.append('nombre',nombreFile);
 
 
@@ -112,7 +99,7 @@ export class FilesSubirService {
 
     } 
 
-  eliminar_file(archivo_id:number)
+    eliminar_file(archivo_id:number)
   {
 
     return new Promise<any>( resolve =>{
@@ -180,5 +167,5 @@ export class FilesSubirService {
   
           }); 
   
-      } 
+    } 
 }

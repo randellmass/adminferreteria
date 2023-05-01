@@ -3,7 +3,6 @@ import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators }
 import { Router } from '@angular/router';
 
 import { TercerosService } from '../../../terceros/services/terceros.service';
-import { UsuariosService } from '../../../usuarios/services/usuarios.service';
 import { PedidosService } from '../../services/pedidos.service';
 
 @Component({
@@ -19,12 +18,10 @@ export class RegistroPedidosComponent implements OnInit {
         documento: [''],
         tercero_id: ['',[Validators.required]],
         fecha_recibido: ['',[Validators.required]],
-        fecha_entrega: [''],
         observacion_interna: [''],
         observacion_publica: [''],
-        vendedor: ['',[Validators.required]],
-        almacen_id: ['',[Validators.required]],
-        valor_costo: [''],
+        direccion: [''],
+        ciudad_id: ['',[Validators.required]],
         guia: [''],
     });
 
@@ -36,14 +33,11 @@ export class RegistroPedidosComponent implements OnInit {
     loading:boolean = true;
     errors:any =[];
     terceros:any[] =[];
-    almacenes:any[] =[];
-    vendedores:any[] =[];
-    oculto_tipo:boolean=true;
+    ciudades:any[] =[];
     
     constructor(private fb:FormBuilder,
                 private router:Router,
                 private pedidosService:PedidosService,
-                private usuariosService:UsuariosService,
                 private tercerosService:TercerosService) { }
 
     ngOnInit(): void {
@@ -59,17 +53,11 @@ export class RegistroPedidosComponent implements OnInit {
       this.loading=true;
 
 
-        const list_almacenes = await this.pedidosService.index_almacenes();
-        if (list_almacenes['res'])
+        const list_ciudades = await this.pedidosService.index_ciudades();
+        if (list_ciudades['res'])
         {
-            this.almacenes = list_almacenes['data'];
-            // console.log(this.almacenes)
-        }
-
-        const vendedores_list = await this.usuariosService.listado_Usuarios();
-        if(vendedores_list['res']){
-          this.vendedores = vendedores_list['data'];
-          // console.log(this.vendedores);
+            this.ciudades = list_ciudades['data'];
+            //console.log(this.ciudades)
         }
 
   
@@ -100,8 +88,13 @@ export class RegistroPedidosComponent implements OnInit {
     {
         this.loading= true;
         const eq = await this.tercerosService.search_tercero(this.form_buscar_tercero.value);
-        this.terceros = eq['data'];
-        this.loading= false;
+        if(eq['res']){
+          this.terceros = eq['data'];
+          this.loading= false;
+        }else{
+            this.errors = eq['data'];
+            this.loading = false;
+        }
     }
 
 }

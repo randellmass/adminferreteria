@@ -119,7 +119,7 @@ export class PedidosService {
         }); 
     }
 
-    index_pedido_tipos()
+    index_ciudades()
     {
       
       return new Promise<any>( resolve =>{
@@ -129,42 +129,7 @@ export class PedidosService {
           'Authorization': `Bearer ${ this.authService.token }` 
         });
 
-        this.http.get(`${ URL}/pedidoTipos`,{ headers })
-        .subscribe( resp =>{
-          
-            if(resp['res'])
-            {
-                resolve(
-                  {
-                    res:true,
-                    data: resp['data']
-                  }
-                );
-            }else{
-                resolve(
-                  {
-                    res:false,
-                    data: resp['mensaje']
-                  }
-                );
-            }
-        
-          });
-
-        }); 
-    }
-
-    index_almacenes()
-    {
-      
-      return new Promise<any>( resolve =>{
-        
-        const headers = new HttpHeaders({
-          'Accept': 'application/json', 
-          'Authorization': `Bearer ${ this.authService.token }` 
-        });
-
-        this.http.get(`${ URL}/almacenes`,{ headers })
+        this.http.get(`${ URL}/ciudades`,{ headers })
         .subscribe( resp =>{
           
             if(resp['res'])

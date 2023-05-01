@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { ArchivosTiposService } from '../../pages/archivos-tipos/service/archivos-tipos.service';
-import { UsuariosService } from '../../pages/usuarios/services/usuarios.service';
 import { FilesSubirService } from '../service/files-subir.service';
 
 @Component({
@@ -18,43 +16,27 @@ export class SubirArchivoComponent implements OnInit {
  
   
   form_file:FormGroup = this.fb.group({
-    roles: ['',Validators.required],
-    archivo_tipo_id: ['',Validators.required],
     nombre: ['',[Validators.required,Validators.minLength(3)]],
     file: ['',[Validators.required]]
   });
   
 
   file:File;
-  roles:any =[];
-  archivo_tipos:any =[];
   archivo:any;
-  loading:boolean = true;
+  loading:boolean = false;
   errors:any =[];
   archivos:any=[];
 
   constructor(private fb:FormBuilder,
-              private usuariosService:UsuariosService,
-              private filesSubirService:FilesSubirService,
-              private archivosTiposService:ArchivosTiposService) { }
+              private filesSubirService:FilesSubirService) { }
 
   ngOnInit(): void {
-    this.cargarSelectInicial();
   }
 
   campoNoValido(campo:string){
     return this.form_file.controls[campo].touched && this.form_file.controls[campo].errors;
   }
 
-  async cargarSelectInicial(){
-
-    this.loading=true;
-      this.roles = await this.usuariosService.listado_roles();
-      const FileTypes = await this.archivosTiposService.listado_archivo_tipos();
-      this.archivo_tipos = FileTypes['data'];
-    this.loading=false;
-    
-  }
 
   async agregar_file(){
     if(this.form_file.invalid){
@@ -68,8 +50,6 @@ export class SubirArchivoComponent implements OnInit {
                                   this.file,
                                   this.modelo,
                                   this.modelo_id,
-                                  this.form_file.get('roles').value,
-                                  this.form_file.get('archivo_tipo_id').value,
                                   this.form_file.get('nombre').value);
      
      if (this.archivo['res'])
